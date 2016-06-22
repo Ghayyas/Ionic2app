@@ -1,0 +1,26 @@
+.signup {
+
+}
+.toolbar-background {
+    border-color: none;
+    background: #2f74f5;
+    color: #fff;
+}
+.bar-button-default {
+    color: #ffffff;
+    background-color: transparent;
+}
+.toolbar[primary] .toolbar-background {
+    background: #387ef5;
+    background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+}
+.button.button-positive{
+    background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    text-transform: capitalize;
+}

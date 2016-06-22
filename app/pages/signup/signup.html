@@ -1,0 +1,120 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
+  <!--<ion-title>signup</ion-title>-->
+  <ion-toolbar primary>
+  <ion-title>REGISTER</ion-title>
+</ion-toolbar>
+</ion-navbar>
+
+<ion-content padding class="signup signupcreen ecnob-fields">
+   <style type="text/css">
+   .signupform{
+	padding: 0px 20px;
+	padding-top: 30px;
+}
+.ecnob-fields .fieldgroup{
+	margin-bottom: 15px;
+}
+.ecnob-fields input[type="text"],
+.ecnob-fields input[type="tel"],
+.ecnob-fields input[type="num"],
+.ecnob-fields input[type="url"],
+.ecnob-fields input[type="email"],
+.ecnob-fields input[type="password"],
+.ecnob-fields select{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+.ecnob-fields select{
+	color:#999999;
+  background: none;
+}
+
+.ecnob-fields textarea{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+
+</style>
+    <div class="signupform">
+
+   <ion-list class="padding">
+
+
+    <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" name="" placeholder="Email Address">
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" name="" placeholder="User Name">
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="password" name="" placeholder="Password">
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="password" name="" placeholder="Confirm Password">
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+      <select>
+        <option>Select Category</option>
+      	<option>cat 1</option>
+      	<option>cat 2</option>
+      	<option>cat 3</option>
+      </select>
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <select>
+        <option>Select Sub-Category</option>
+      	<option>cat 1</option>
+      	<option>cat 2</option>
+      	<option>cat 3</option>
+      </select>
+     </div>
+    </div>
+
+</ion-list>
+
+ <ion-list>
+   <div style="padding: 0px 15px;">
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" [navPush]="gotohomescreen">
+  Register Now
+</button>
+<div class="fieldgroup" style="margin-bottom:20px;">
+  <p class="text-center" style="text-align:center; color: #3d3d3d;"> Already have an account?</p>
+  </div>
+ <!-- <a class="button button-block button-positive" href="#/app/signin" style="font-size: 20px; height: 50px;">
+  Sign in
+</a>-->
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;"  [navPush]="signinPage">
+  Sign in
+</button>
+</div>
+ </ion-list>
+
+    </div>
+</ion-content>

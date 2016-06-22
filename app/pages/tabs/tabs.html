@@ -1,0 +1,26 @@
+
+<ion-tabs class="foo-tabs" tabbarplacement="bottom">
+  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Deals" tabIcon="pricetags"></ion-tab>
+  <ion-tab [root]="tab3Allevent" tabTitle="Events" tabIcon="md-calendar"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="Companies" tabIcon="md-grid"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="More" tabIcon="md-add"></ion-tab>
+</ion-tabs>
+
+<style type="text/css">
+ion-icon.tab-button{
+	font-size: 14px;
+    text-transform: capitalize;
+}
+span.tab-button-text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    font-size: 10px;
+}
+ion-tabs.foo-tabs ion-tabbar-section{
+    position: fixed;
+    z-index: 9999999;
+    bottom: 0px;
+}
+</style>

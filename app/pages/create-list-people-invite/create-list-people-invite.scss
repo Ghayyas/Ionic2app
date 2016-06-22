@@ -1,0 +1,107 @@
+.create-list-people-invite {
+
+}
+.ecnob-fields .fieldgroup{
+	margin-bottom: 15px;
+  position:relative;
+}
+.ecnob-fields .fieldgroup ion-icon{
+position: absolute;
+    right: 12px;
+    top: 0px;
+    min-height: 40px;
+    line-height: 40px;
+    color: #999999;
+    clip: auto;
+}
+
+.ecnob-fields input[type="text"],
+.ecnob-fields input[type="tel"],
+.ecnob-fields input[type="num"],
+.ecnob-fields input[type="url"],
+.ecnob-fields input[type="email"],
+.ecnob-fields input[type="password"],
+.ecnob-fields input[type="date"],
+.ecnob-fields select{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+    background: none;
+    padding-right:22px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button{
+display:none;
+    -webkit-appearance: none;
+}
+.ecnob-fields input[type="date"]{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+        background: none;
+}
+
+.ecnob-fields input[type="date"]{
+	color:#999999;
+}
+.ecnob-fields select{
+	color:#999999;
+	background-color:#fff;
+	    background: none;
+}
+
+.ecnob-fields textarea{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+        background: none;
+}
+.button.button-positive{
+	background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+	background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+	background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+	background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+}
+.create-event input[type="radio"] {
+  border: 0;
+  height: 1px; margin: -1px;
+  padding: 0;
+  position: absolute;
+  width: 0.5px;
+}
+
+/* One radio button per line */
+.create-event label.radiolabel {
+display: inline-block;
+    cursor: pointer;
+    line-height: 2.5;
+    font-size: 16px;
+    color: #999999;
+    padding-right: 15px;
+}
+
+[type="radio"] + span:before {
+content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: -0.25em;
+    border-radius: 1em;
+    border: 0.125em solid #fff;
+    box-shadow: 0 0 0 1px #929292;
+    margin-right: 0.75em;
+    -webkit-transition: 0.5s ease all;
+    transition: 0.5s ease all;
+}
+
+/* the checked style using the :checked pseudo class */
+[type="radio"]:checked + span:before {
+background: #999999;
+    box-shadow: 0 0 0 1px #ccc;
+    padding: 0px;
+}

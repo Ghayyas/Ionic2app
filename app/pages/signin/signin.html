@@ -1,0 +1,103 @@
+<!--
+  Generated template for the SigninPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-navbar *navbar style="padding:0px 0px; text-align:center;">
+   <ion-toolbar primary>
+  <ion-title>SIGN IN</ion-title>
+</ion-toolbar>
+</ion-navbar> -->
+
+<ion-content padding class="signin signupcreen ecnob-fields">
+  <style type="text/css">
+  .toolbar-background {
+    border-color: none;
+       background: #2f74f5;
+    color: #fff;
+}
+.bar-button-default {
+    color: #ffffff;
+    background-color: transparent;
+}
+.signinform{
+	padding: 0px 20px;
+	padding-top: 30px;
+}
+.ecnob-fields .fieldgroup{
+	margin-bottom: 15px;
+}
+.ecnob-fields input[type="text"],
+.ecnob-fields input[type="tel"],
+.ecnob-fields input[type="num"],
+.ecnob-fields input[type="url"],
+.ecnob-fields input[type="email"],
+.ecnob-fields input[type="password"],
+.ecnob-fields select{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+.ecnob-fields select{
+	color:#999999;
+    background: none;
+}
+
+.ecnob-fields textarea{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+
+
+</style>
+    <div class="signinform">
+
+   <ion-list class="padding">
+
+   <div class="fullwidthrow">
+     <div class="fieldgroup">
+        <div class="text-center" style="text-align:center;">
+         <img src="img/ecnob-logo.png" style="max-width: 120px;">
+          <div class="fieldgroup" style="padding: 0px 0px;">
+           <p style="text-align:center;margin-top: 3px;margin-bottom: 30px; color: #3d3d3d;">Business ­ Customer Relation Simplified</p>
+         </div>
+        </div>
+     </div>
+     </div>
+
+    <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" name="" placeholder="Username">
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="password" name="" placeholder="Password">
+     </div>
+    </div>
+
+</ion-list>
+
+ <ion-list>
+   <div style="padding: 0px 15px;">
+  <button type="button" class="button button-block button-positive" style="font-size: 20px; height: 50px;" [navPush]="homescreen">
+  Sign in
+</button>
+<div class="fieldgroup" style="margin-bottom:20px;">
+  <p class="text-center" style="margin-bottom: 35px; text-align:center;"> Don't have an account?</p>
+  </div>
+  <button type="button" class="button button-block button-positive" [navPush]="signupPage" style="font-size: 20px; height: 50px;">
+  Register Now
+</button>
+</div>
+ </ion-list>
+
+    </div>
+
+</ion-content>

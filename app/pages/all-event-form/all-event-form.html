@@ -1,0 +1,110 @@
+<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
+
+<ion-toolbar primary>
+  <ion-title>ALL EVENTS</ion-title>
+    <ion-buttons start>
+    <button royal [navPush]="alleventformscreen">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-navbar>
+
+<ion-content padding class="all-event-form ecnob-fields">
+  <ion-list class="padding">
+
+<div class="fullwidthrow">
+     <div class="fieldgroup">
+       <ion-label style="color: #fff;"><big>Search By</big> | Near by</ion-label>
+     </div>
+     </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+      <select>
+        <option>Region/City</option>
+      	<option>cat 1</option>
+      	<option>cat 2</option>
+      	<option>cat 3</option>
+      </select>
+     </div>
+    </div>
+
+   <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" name="" placeholder="Event Name">
+     </div>
+    </div>
+
+
+<ion-grid style="padding-left: 0px;padding-right: 0px; padding:0px 0px;">
+  <ion-row>
+    <ion-col width-50 style="padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="date" name="" placeholder="20/5/2016">
+     </div>
+    </div>
+    </ion-col>
+    <ion-col width-50 style="padding-right: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="date" name="" placeholder="20/5/2016">
+     </div>
+    </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" name="" placeholder="Radius Mile">
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" name="" placeholder="Company Name">
+     </div>
+    </div>
+
+        <ion-grid style="padding-left: 0px;padding-right: 0px; padding:0px 0px;">
+  <ion-row>
+    <ion-col width-50 style="padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+      <select>
+        <option>Category</option>
+      	<option>cat 1</option>
+      	<option>cat 2</option>
+      	<option>cat 3</option>
+      </select>
+     </div>
+    </div>
+    </ion-col>
+    <ion-col width-50 style="padding-right: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+      <select>
+        <option>Sub Category</option>
+      	<option>cat 1</option>
+      	<option>cat 2</option>
+      	<option>cat 3</option>
+      </select>
+     </div>
+    </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-list>
+
+ <ion-list>
+   <div style="padding: 0px 15px;">
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" [navPush]="createevent">
+  Search
+</button>
+</div>
+ </ion-list>
+</ion-content>

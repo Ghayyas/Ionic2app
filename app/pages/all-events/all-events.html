@@ -1,0 +1,141 @@
+<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
+
+<ion-toolbar primary>
+  <ion-title>ALL EVENTS</ion-title>
+    <ion-buttons start>
+    <button royal [navPush]="alleventformscreen">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-navbar>
+
+<ion-page>
+<ion-content class="all-events">
+ <ion-list class="eventlist" [navPush]="eventDetailPage">
+	  <ion-item>
+	    <ion-grid>
+  <ion-row>
+    <ion-col width-50>
+     <h2 class="eventname">Event Name</h2>
+     <h3 class="blue-text">By: Bussiness Name</h3>
+    </ion-col>
+    <ion-col width-50 style="text-align:right;">
+      <p style="color:#7d7d7d;" class="datetime">30 April 8 May</p>
+       <div class="padding">
+       <ion-segment class="segbar" [(ngModel)]="pet">
+    <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
+      YES
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="puppies">
+      NO
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="GAMES">
+      MAY BE
+    </ion-segment-button>
+  </ion-segment>
+       </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+	  </ion-item>
+	</ion-list>
+	<ion-list class="eventlist" [navPush]="eventDetailPage">
+	  <ion-item style="padding: 0px 0px;">
+	     <img src="img/evenbanner.jpg">
+         <div class="img-layer"></div>
+	  </ion-item>
+	  <ion-item style="padding: 0px 10px;">
+
+	     <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
+ Lorem Ipsum is simply dummy text of the printing.</p>
+	  </ion-item>
+	</ion-list>
+
+
+
+ <ion-list class="eventlist" [navPush]="eventDetailPage">
+	  <ion-item>
+	    <ion-grid>
+  <ion-row>
+    <ion-col width-50>
+     <h2 class="eventname">Event Name</h2>
+     <h3 class="blue-text">By: Bussiness Name</h3>
+    </ion-col>
+    <ion-col width-50 style="text-align:right;">
+      <p style="color:#7d7d7d;" class="datetime">30 April 8 May</p>
+       <div class="padding">
+       <ion-segment class="segbar" [(ngModel)]="pet">
+    <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
+      YES
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="puppies">
+      NO
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="GAMES">
+      MAY BE
+    </ion-segment-button>
+  </ion-segment>
+       </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+	  </ion-item>
+	</ion-list>
+	<ion-list class="eventlist" [navPush]="eventDetailPage">
+	  <ion-item style="padding: 0px 0px;">
+	     <img src="img/evenbanner.jpg">
+       <div class="img-layer"></div>
+	  </ion-item>
+	  <ion-item style="padding: 0px 10px;">
+	       <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
+ Lorem Ipsum is simply dummy text of the printing.</p>
+	  </ion-item>
+	</ion-list>
+
+
+
+
+	 <ion-list class="eventlist" [navPush]="eventDetailPage">
+	  <ion-item>
+	    <ion-grid>
+  <ion-row>
+    <ion-col width-50>
+     <h2 class="eventname">Event Name</h2>
+     <h3 class="blue-text">By: Bussiness Name</h3>
+    </ion-col>
+    <ion-col width-50 style="text-align:right;">
+      <p style="color:#7d7d7d;" class="datetime">30 April 8 May</p>
+       <div class="padding">
+       <ion-segment class="segbar" [(ngModel)]="pet">
+    <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
+      YES
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="puppies">
+      NO
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="GAMES">
+      MAY BE
+    </ion-segment-button>
+  </ion-segment>
+       </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+	  </ion-item>
+	</ion-list>
+	<ion-list class="eventlist" [navPush]="eventDetailPage">
+	  <ion-item style="padding: 0px 0px;">
+	     <img src="img/evenbanner.jpg">
+       <div class="img-layer"></div>
+	  </ion-item>
+	  <ion-item style="padding: 0px 10px;">
+	       <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
+ Lorem Ipsum is simply dummy text of the printing.</p>
+	  </ion-item>
+	</ion-list>
+
+
+
+</ion-content>
+</ion-page>

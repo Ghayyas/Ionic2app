@@ -1,0 +1,40 @@
+.page2 {
+
+}
+.primarytabs tabbar{
+    background:none;
+	background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: 0-linear-gradient left, #2f74f5 7%, #33c1f6 67%;
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+        padding: 0px 20px;
+}
+
+.primarytabs tabbar .tab-button[aria-selected=true] {
+    color: #387ef5;
+    opacity: 1;
+    box-shadow: inset 0px -4px 0px #0057be;
+    margin-top: 0px;
+}
+
+.primarytabs .tab-button, .primarytabs a{
+	color:#fff;
+}
+tabbar .tab-button{
+	color:#fff !important;
+}
+
+
+ion-tabs.primarytabs tabbar a{
+	color:#fff !important;
+}
+tabbar .tab-button {
+    color: #333 !important;
+}
+
+ion-tabs.footertabs tabbar {
+    background: #ffffff;
+    border-top: 1px solid #e6e6e6;
+}
+ion-label{
+      white-space: inherit;
+}

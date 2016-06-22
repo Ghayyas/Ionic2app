@@ -1,0 +1,243 @@
+.all-events {
+
+}
+
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('../../fonts/opensans-bold.woff2') format('woff2'),
+         url('../../fonts/opensans-bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sansbold_italic';
+    src: url('../../fonts/opensans-bolditalic.woff2') format('woff2'),
+         url('../../fonts/opensans-bolditalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sansextrabold';
+    src: url('../../fonts/opensans-extrabold.woff2') format('woff2'),
+         url('../../fonts/opensans-extrabold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sansextrabold_italic';
+    src: url('../../fonts/opensans-extrabolditalic.woff2') format('woff2'),
+         url('../../fonts/opensans-extrabolditalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sansitalic';
+    src: url('../../fonts/opensans-italic.woff2') format('woff2'),
+         url('../../fonts/opensans-italic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sanslight';
+    src: url('../../fonts/opensans-light.woff2') format('woff2'),
+         url('../../fonts/opensans-light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sanslight_italic';
+    src: url('../../fonts/opensans-lightitalic.woff2') format('woff2'),
+         url('../../fonts/opensans-lightitalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('../../fonts/opensans-regular.woff2') format('woff2'),
+         url('../../fonts/opensans-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sanssemibold';
+    src: url('../../fonts/opensans-semibold.woff2') format('woff2'),
+         url('../../fonts/opensans-semibold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'open_sanssemibold_italic';
+    src: url('../../fonts/opensans-semibolditalic.woff2') format('woff2'),
+         url('../../fonts/opensans-semibolditalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+h1,h2,h3,h4,h5,h6{
+  color:#3d3d3d;
+}
+p{
+  color:#3d3d3d;
+}
+.blue-text{
+  color:#2e70f5;
+}
+.toolbar-background {
+    border-color: none;
+    background: #f8f8f8;
+    background: #2f74f5;
+    color: #fff;
+}
+.bar-button-default {
+    color: #ffffff;
+    background-color: transparent;
+}
+ion-list.eventlist{
+	margin:0px 0px;
+	margin-bottom:-1px;
+}
+ion-list.eventlist .segment-button.activated, ion-list.eventlist .segment-button.segment-activated {
+    border-color: #387ef5;
+    opacity: 1;
+        background: #387ef5;
+    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: 0-linear-gradient left, #2f74f5 7%, #33c1f6 67%;
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    color: #fff;
+}
+ion-segment.segbar .segment-button{
+  height: 30px;
+  line-height: 30px;
+  border-right: 1px solid #e2e2e2;
+  white-space: normal;
+    font-size: 11px;
+    color: #3d3d3d;
+}
+ion-list.eventlist{
+	margin:0px 0px;
+	margin-bottom:-1px;
+}
+ion-list.eventlist ion-item{
+padding-left:0px;
+border-top:none;
+}
+ion-list.eventlist ion-item i.fa{
+color: #2c9df5;
+font-size: 16px;
+padding-right: 5px;
+}
+
+ion-list.eventlist:last-child ion-item{
+border-bottom:none;
+}
+.eventlist ion-label{
+	margin:0px 0px 0px 0px;
+}
+.item-inner {
+    padding-right: 0px;
+}
+ion-list.eventlist ion-item .item-inner {
+    padding-right: 0px;
+    border: none;
+}
+
+	.footer-tabs{
+  position: fixed !important;
+  bottom: 0px !important;
+  width: 100% !important;
+  z-index: 99999999999 !important;
+}
+ion-tabs.footer-tabs ion-tabbar-section{
+position: fixed !important;
+    bottom: 0px !important;
+    width: 100% !important;
+    float: left !important;
+    z-index: 999999999999 !important;
+}
+
+ion-list.eventlist ion-label{
+	margin:0px 0px 0px 0px;
+}
+ion-list.eventlist ion-item .item-inner {
+    padding-right: 0px;
+}
+ion-list.eventlist ion-item .item-inner h2{
+  font-size: 18px;
+font-family: 'open_sanssemibold';
+color: #3d3d3d;
+}
+ion-list.eventlist .eventname{
+  margin-top:9px;
+}
+ion-segment.segbar{
+  border-radius: 4px;
+    border: 1px solid #eaeaea;
+    margin-bottom: 2px !important;
+margin-top: 8px;
+}
+.segment-button {
+    border-bottom-width: 0px;
+}
+.img-layer{
+position: absolute;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+background: RGBA(0, 0, 0, 0);
+box-shadow: inset 0px -31px 50px RGBA(0, 0, 0, 0.53);
+z-index: 22;
+}
+
+.all-events ion-segment.segbar .segment-button.seg-active{
+    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    color: #fff;
+}

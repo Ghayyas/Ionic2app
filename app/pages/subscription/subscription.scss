@@ -1,0 +1,76 @@
+.subscription {
+
+}
+.subscription .subs-banner{
+	position:relative;
+	float:left;
+	width:100%;
+}
+.subscription .subs-box{
+	float: left;
+    width: 100%;
+    position: relative;
+}
+.subscription .subs-content{
+	float: left;
+    width: 100%;
+    position: absolute;
+    top:-45px;
+    
+}
+.subscription .subs-modal{
+    width: 80%;
+    margin: auto;
+    background: #fff;
+    border: 1px solid #dbdfe2;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px #bebfbf;
+    padding: 15px 20px;
+    text-align: Center;
+    color:#3d3d3d;
+}
+.subscription .sp-bg{
+	background-image: url('../../img/subs-price-bg.png');
+    width: 120px;
+    height: 125px;
+    display: block;
+    margin: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+.subscription .sp-bg h2{
+	line-height: 1;
+    margin-top: 0px;
+    float: left;
+    width: 100%;
+    padding-top: 38px;
+    font-weight: 600;
+    font-size: 31px;
+    margin-bottom:5px;
+    color:#fff;
+}
+.subscription .sp-bg p{
+    line-height: 1;
+    float: left;
+    width: 100%;
+    text-align: Center;
+    color: #fff;
+    margin: 0px 0px;
+}
+.subscription .subs-btn{
+    width: 100%;
+        background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    height: 40px;
+        padding-right: 45px;
+    font-size: 19px;
+}
+.subscription .subs-btn span.btn-p{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    max-width: 22px;
+}

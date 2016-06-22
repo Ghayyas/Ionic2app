@@ -1,0 +1,61 @@
+<!--
+  Generated template for the EventDetailsPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
+<ion-toolbar primary>
+  <ion-title>EVENT NAME</ion-title>
+  <ion-buttons start>
+    <button royal>
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-navbar>
+
+<ion-content class="event-details">
+  <ion-list class="eventlist even-detail-list">
+
+	  <ion-item style="padding: 0px 0px; position:relative;">
+	  <div class="coverphoto">
+	     <img src="img/evenbanner.jpg">
+       <div class="img-layer"></div>
+	     </div>
+	       <ion-row class="banner-content">
+    <ion-col width-50>
+     <h2>Event Name</h2>
+     <h3>30 April 8 May</h3>
+     <ion-segment class="segbar" [(ngModel)]="pet">
+    <ion-segment-button class="segbtn segment-activated" value="kittens">
+      YES
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="puppies">
+      NO
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="GAMES">
+      MAY BE
+    </ion-segment-button>
+  </ion-segment>
+    </ion-col>
+    <ion-col width-50 style="text-align:right;">
+    </ion-col>
+  </ion-row>
+	  </ion-item>
+	  <ion-item style="padding: 0px 10px; border-bottom: 1px solid rgb(237, 237, 237);">
+	     <p> <i class="fa fa-map-marker" aria-hidden="true"></i>  Lorem Ipsum is simply dummy text of the printing.</p>
+	  </ion-item>
+	  <ion-item style="padding: 0px 10px;" class="ev-details">
+	     <h1> Lorem Ipsum dollar sit amet</h1>
+	     <p>consectetur adipiscingelit. Nulla quam velit, vulputate eu pharetra nec, mattisac neque. Duis vulputate commodo lectus, ac blandite ique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. </p>
+
+<p>Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. </p>
+
+<p>Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orc. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit.</p>
+	  </ion-item>
+	</ion-list>
+	  <style type="text/css">
+
+</style>
+</ion-content>

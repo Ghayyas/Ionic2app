@@ -1,0 +1,159 @@
+.page1 {
+
+}
+.toolbar-background {
+    border-color: none;
+    background: #f8f8f8;
+    background: none;
+    color: #fff;
+}
+.bar-button-default {
+    color: #ffffff;
+    background-color: transparent;
+}
+.toolbar[primary] .toolbar-background {
+    background: #387ef5;
+    background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+}
+.primarytabs tabbar{
+    background:none;
+	background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: 0-linear-gradient left, #2f74f5 7%, #33c1f6 67%;
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+        padding: 0px 20px;
+}
+
+.primarytabs tabbar .tab-button[aria-selected=true] {
+    color: #387ef5;
+    opacity: 1;
+    box-shadow: inset 0px -4px 0px #0057be;
+    margin-top: 0px;
+}
+
+.primarytabs .tab-button, .primarytabs a{
+	color:#fff;
+}
+tabbar .tab-button{
+	color:#fff !important;
+}
+
+
+ion-tabs.primarytabs tabbar a{
+	color:#fff !important;
+}
+tabbar .tab-button {
+    color: #333 !important;
+}
+
+ion-tabs.footertabs tabbar {
+    background: #ffffff;
+    border-top: 1px solid #e6e6e6;
+}
+ion-label{
+      white-space: inherit;
+}
+ion-segment.tab-ion-segment{
+    background: #387ef5;
+    background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%); 
+}
+ion-segment.tab-ion-segment .tab-segment.segment-button{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 0 6px;
+    width: 0;
+    height: 50px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 50px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: transparent;
+    opacity: 0.99;
+    -webkit-transition: 100ms all linear;
+    transition: 100ms all linear;
+}
+
+ion-segment.tab-ion-segment .tab-segment.segment-button {
+    border-bottom: none;
+    border-bottom-width: 0px;
+    overflow: visible;
+    text-transform: Capitalize;
+    font-size: 17px;
+}
+
+ion-segment.tab-ion-segment ion-segment-button.segment-button.activated, ion-segment.tab-ion-segment .segment-button.segment-activated {
+    /*border-color: #0058be;
+    opacity: 1;
+    border-bottom: 4px solid #0058be;*/
+    background:none;
+}
+
+ion-segment.tab-ion-segment ion-segment-button.segment-button.activated:after, ion-segment.tab-ion-segment .segment-button.segment-activated:after {
+    position: absolute;
+    content: "";
+        width: 80%;
+    height: 4px;
+    background: #0058be;
+    bottom: -3px;
+    left: 17px;
+    /* padding: 0px 15px; */
+    /* margin: 0px 15px 0px -15px; */
+    /* top: 9px; */
+    z-index: 999999999999999;
+    border-radius: 20px;
+}
+
+.no-padding{
+   padding:0px 0px;
+}
+ion-icon.tab-button{
+    font-size: 14px;
+    text-transform: capitalize;
+}
+span.tab-button-text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    font-size: 10px;
+}
+ion-tabs.foo-tabs ion-tabbar-section{
+position: fixed;
+    z-index: 9999999;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+        border-top: 1px solid #eaeaea;
+}
+.show-page ion-page {
+    padding-bottom: 65px;
+}
+.toolbar-title {
+    font-size: 4.5vw;
+    white-space: normal;
+}
+.tab-button-icon {
+    white-space: initial;
+    text-overflow: initial;
+    overflow:visible;
+}
+span.tab-button-text {
+    text-overflow: initial;
+    white-space: initial;
+    text-overflow: initial;
+    overflow:visible;
+    font-size: 12px;
+}
+.tab-button {
+    padding: 12px 2px 5px 2px;
+}

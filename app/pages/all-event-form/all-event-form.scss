@@ -1,0 +1,60 @@
+.all-event-form {
+
+}
+.all-event-form {
+    background: rgba(0, 0, 0, 0.89);
+    }
+.ecnob-fields .fieldgroup{
+	margin-bottom: 15px;
+}
+.all-event-form.ecnob-fields input[type="text"],
+.all-event-form.ecnob-fields input[type="tel"],
+.all-event-form.ecnob-fields input[type="num"],
+.all-event-form.ecnob-fields input[type="url"],
+.all-event-form.ecnob-fields input[type="email"],
+.all-event-form.ecnob-fields input[type="password"],
+.all-event-form.ecnob-fields input[type="date"],
+.all-event-form.ecnob-fields select{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+        background: none;
+        color:#fff;
+}
+
+.ecnob-fields input[type="date"]{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+        background: none;
+}
+
+.all-event-form.ecnob-fields input[type="date"]{
+	color:#fff;
+}
+.all-events-form.ecnob-fields select{
+	color:#999999;
+	background-color:#fff;
+	    background: none;
+}
+
+.all-event-form.ecnob-fields textarea{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+        background: none;
+}
+.button.button-positive{
+	background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+	background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+	background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+	background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+}
+.toolbar-title{
+	color:#fff;
+}
