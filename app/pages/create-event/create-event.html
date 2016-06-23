@@ -16,8 +16,18 @@
      <div class="fieldgroup">
      
        	<h3>Event Type</h3>
+<!--<ion-list radio-group [(ngModel)]="event.key">
+  <ion-item>
+    <ion-label>By list</ion-label>
+    <ion-radio value="by list" checked></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>By General invitation</ion-label>
+    <ion-radio value="family"></ion-radio>
+  </ion-item>
+</ion-list>-->
        	<label class="radiolabel" for="radio-one">
-		<input type="radio" value="radio-one" name="quality" checked="" id="radio-one"> <span>By list</span>
+		<input type="radio" value="radio-one" name="quality" id="radio-one"> <span>By list</span>
 		</label>
 
 		<label class="radiolabel" for="radio-two">
@@ -29,13 +39,13 @@
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Name">
+     <input type="text" name="" placeholder="Event Name" #event.name> 
      </div>
     </div>
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Location">
+     <input type="text" name="" placeholder="Event Location" #event.location>
      </div>
     </div>
 
@@ -45,7 +55,7 @@
     <ion-col width-50 style="padding-left: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="" placeholder="20/5/2016">
+     <input type="date" name="" placeholder="20/5/2016" #event.dateStart>
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
@@ -53,7 +63,7 @@
     <ion-col width-50 style="padding-right: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="" placeholder="20/5/2016">
+     <input type="date" name="" placeholder="20/5/2016" #event.dateEnd>
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
@@ -63,7 +73,7 @@
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Image">
+     <input type="text" name="" placeholder="Event Image" #event.image>
      <ion-icon ios="ios-attach" md="md-attach"></ion-icon>
      </div>
     </div>
@@ -71,7 +81,7 @@
 
          <div class="fullwidthrow">
      <div class="fieldgroup">
-     <textarea name="" placeholder="Enter Events Details" rows="5" cols="50"></textarea>
+     <textarea name="" placeholder="Enter Events Details" rows="5" cols="50" #event.details></textarea>
      </div>
     </div>
 
@@ -79,9 +89,10 @@
 </ion-list>
 
  <ion-list>
-   <div style="padding: 0px 15px;">
-  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" [navPush]="createListPeopleToInvite">
-  Next
+   <div style="padding: 0px 15px;">   
+     <!--[navPush]="createListPeopleToInvite"-->
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="submit(event)">
+  Submit
 </button>
 </div>
  </ion-list>
