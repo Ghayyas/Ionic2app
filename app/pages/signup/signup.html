@@ -53,19 +53,19 @@
 
     <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Email Address">
+     <input type="text" name="" placeholder="Email Address" [(ngModel)]="usercreds.email">
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="User Name">
+     <input type="text" name="" placeholder="Name" [(ngModel)]="usercreds.name">
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="password" name="" placeholder="Password">
+     <input type="password" name="" placeholder="Password" [(ngModel)]="usercreds.password">
      </div>
     </div>
 
@@ -101,7 +101,7 @@
 
  <ion-list>
    <div style="padding: 0px 15px;">
-  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" [navPush]="gotohomescreen">
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="register(usercreds)">
   Register Now
 </button>
 <div class="fieldgroup" style="margin-bottom:20px;">

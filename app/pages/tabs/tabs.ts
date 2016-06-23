@@ -7,10 +7,7 @@ import {AllEventsPage} from '../all-events/all-events';
 
 
 @Component({
-  templateUrl: 'build/pages/tabs/tabs.html',
-  config: {
-     tabbarPlacement: 'bottom'
-  }
+  templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
   // this tells the tabs component which Pages
