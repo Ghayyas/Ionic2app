@@ -22,7 +22,7 @@
   <script src="cordova.js"></script>
   <!-- Polyfill needed for platforms without Promise and Collection support -->
 
-
+ 
 
   <script src="build/js/es6-shim.min.js"></script>
   <!-- Zone.js and Reflect-metadata  -->
@@ -30,15 +30,19 @@
   <script src="build/js/zone.js"></script>
   <!-- the bundle which is built from the app's source code -->
   <script src="build/js/app.bundle.js"></script>
-<script src="jquery/jquery-2-2-4.min.js"></script>
 
-  <script type="text/javascript">
-   $(document).ready(function(e)){
-     alert("working....");
-     $(".btnclick").click(function(e)){
-    alert("working....");
-     });
-   });
+ <script src="jquery/jquery-2-2-4.min.js"></script>
+  
+
+  <script>
+
+$(document).ready(function(){
+   //alert("working....");
+    $("#btnclick").click(function(){
+        alert("The paragraph was clicked.");
+    });
+});
+
   </script>
 
 </body>
