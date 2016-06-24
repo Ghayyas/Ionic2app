@@ -16,10 +16,10 @@
      <div class="fieldgroup">
      
        	<h3>Event Type</h3>
-<!--<ion-list radio-group [(ngModel)]="event.key">
+<!--<ion-list radio-group [(ngModel)]="parameters.key">
   <ion-item>
     <ion-label>By list</ion-label>
-    <ion-radio value="by list" checked></ion-radio>
+    <ion-radio value="bylist" checked></ion-radio>
   </ion-item>
   <ion-item>
     <ion-label>By General invitation</ion-label>
@@ -27,11 +27,11 @@
   </ion-item>
 </ion-list>-->
        	<label class="radiolabel" for="radio-one">
-		<input type="radio" value="radio-one" name="quality" id="radio-one"> <span>By list</span>
+		<input type="radio" value="radio-one" name="quality" id="radio-one" [(ngModel)]="parameters.key" ngValue=true> <span>By list</span>
 		</label>
 
-		<label class="radiolabel" for="radio-two">
-		<input type="radio" value="radio-two" name="quality" id="radio-two"> <span>By Genral invitation</span>
+		<label class="radiolabel" for="radio-two">  
+		<input type="radio" value="radio-two" name="quality" id="radio-two" [(ngModel)]="parameters.key" ngValue=false> <span>By Genral invitation</span>
 		</label>
        
      </div>
@@ -39,13 +39,13 @@
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Name" #event.name> 
+     <input type="text" name="" [(ngModel)]="parameters.EventName" placeholder="Event Name"> 
      </div>
     </div>
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Location" #event.location>
+     <input type="text" name="" placeholder="Event Location" [(ngModel)]="parameters.location">
      </div>
     </div>
 
@@ -55,7 +55,7 @@
     <ion-col width-50 style="padding-left: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="" placeholder="20/5/2016" #event.dateStart>
+     <input type="date" name="" placeholder="20/5/2016" [(ngModel)]="parameters.startDate">
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
@@ -63,7 +63,7 @@
     <ion-col width-50 style="padding-right: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="" placeholder="20/5/2016" #event.dateEnd>
+     <input type="date" name="" placeholder="20/5/2016" [(ngModel)]="parameters.endDate">
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
@@ -73,7 +73,7 @@
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Image" #event.image>
+     <input type="text" name="" placeholder="Event Image" [(ngModel)]="parameters.image">
      <ion-icon ios="ios-attach" md="md-attach"></ion-icon>
      </div>
     </div>
@@ -81,7 +81,7 @@
 
          <div class="fullwidthrow">
      <div class="fieldgroup">
-     <textarea name="" placeholder="Enter Events Details" rows="5" cols="50" #event.details></textarea>
+     <textarea name="" placeholder="Enter Events Details" [(ngModel)]="parameters.eventDetails" rows="5" cols="50" ></textarea>
      </div>
     </div>
 
@@ -91,7 +91,7 @@
  <ion-list>
    <div style="padding: 0px 15px;">   
      <!--[navPush]="createListPeopleToInvite"-->
-  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="submit(event)">
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="submit(parameters)">
   Submit
 </button>
 </div>

@@ -44,6 +44,7 @@ export class SigninPage {
     * @param {[type]} usercreds [description]
     */
    login(usercreds) {
+              //  console.log('users',usercreds)
 	   let loading = Loading.create({
 		   content: "Please wait...",
 		   duration: 3000,
