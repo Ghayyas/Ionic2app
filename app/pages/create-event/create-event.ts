@@ -99,12 +99,15 @@ export class CreateEventPage {
     this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/events/create',data,{headers:headers})
     .subscribe(
       (data) => {
+        alert('Your data has been sent..')
       console.log('reciveing data',data);
     },
     (err) =>{
+      alert('Cant send data to server')
       let str = JSON.parse(err._body);
       // str = str.replace(/\\/g, '')
       if(str.status_code == 422){
+        alert('Please fill all fields')
         console.log('Please Fill all Required Fields');
       }
       console.log('status code',str.status_code)
