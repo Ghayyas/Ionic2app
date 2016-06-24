@@ -12,16 +12,18 @@
 
 <ion-page>
 <ion-content class="all-events">
+  <div *ngFor = "let arr of event">
+    
  <ion-list class="eventlist" [navPush]="eventDetailPage">
 	  <ion-item>
 	    <ion-grid>
   <ion-row>
     <ion-col width-50>
-     <h2 class="eventname">Event Name</h2>
-     <h3 class="blue-text">By: Bussiness Name</h3>
-    </ion-col>
+     <h2 class="eventname">{{arr.name}} </h2>
+     <!--<h3 class="blue-text">By: Bussiness Name</h3>-->
+     </ion-col>
     <ion-col width-50 style="text-align:right;">
-      <p style="color:#7d7d7d;" class="datetime">30 April 8 May</p>
+      <p style="color:#7d7d7d;" class="datetime">{{arr.star_date}} {{arr.end_date}}</p>
        <div class="padding">
        <ion-segment class="segbar" [(ngModel)]="pet">
     <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
@@ -48,13 +50,13 @@
 	  <ion-item style="padding: 0px 10px;">
 
 	     <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
- Lorem Ipsum is simply dummy text of the printing.</p>
+ {{arr.location}}</p>
 	  </ion-item>
 	</ion-list>
 
+</div>
 
-
- <ion-list class="eventlist" [navPush]="eventDetailPage">
+ <!--<ion-list class="eventlist" [navPush]="eventDetailPage">
 	  <ion-item>
 	    <ion-grid>
   <ion-row>
@@ -134,8 +136,9 @@
  Lorem Ipsum is simply dummy text of the printing.</p>
 	  </ion-item>
 	</ion-list>
-
-
+<!--<ion-page>
+<ion-content>
+  <ul><li *ngFor="let arr of arr">{{arr.name}}</li></ul>-->
 
 </ion-content>
 </ion-page>
