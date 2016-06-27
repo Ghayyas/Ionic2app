@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController,Alert, Loading} from 'ionic-angular';
 import {EventDetailsPage} from '../event-details/event-details';
 import {AllEventFormPage} from '../all-event-form/all-event-form';
 import {Http, Headers } from '@angular/http';
@@ -18,11 +18,17 @@ export class AllEventsPage {
   eventDetailPage = EventDetailsPage;
   event: [Object];
   arr:[Object];
-  // ev:string
+  
   alleventformscreen = AllEventFormPage;
   constructor(public nav: NavController, public http:Http) {
     this.http = http;
-
+        let loading = Loading.create({
+           content: "Please wait...",
+           
+           dismissOnPageChange: true
+            
+        });
+  this.nav.present(loading);
     let headers = new Headers();
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
@@ -30,25 +36,57 @@ export class AllEventsPage {
     this.http.get('http://nameless-scrubland-35696.herokuapp.com/api/events/get',{headers:headers})
     .subscribe(
       (data)=>{
-  // this.arr = [{"name":"value"},{"name":"hers"},{"name":"abcd"}]
+
       
-          // let s = data;
+
         this.event = data.json().events;
         console.log('data',this.event);
+      
       
 
       },
       (err)=>{
+        if (err){
+                    
+          let alert = Alert.create({
+          title: 'Error !',
+          subTitle: 'Something went wrong!',
+          buttons: ['OK']
+     });
+       this.nav.present(alert);
+        }
         console.log('err',err);
         let str = JSON.parse(err._body);
+       
       // str = str.replace(/\\/g, '')
-      if(str.status_code == 422){
-        console.log('Please Fill all Required Fields');
+      
+      if(str.status_code == 500){
+        
+      let alert = Alert.create({
+      title: 'Error !',
+      subTitle: 'Internal Server Error Please Contact Application Developer to resolve',
+      buttons: ['OK']
+    });
+    this.nav.present(alert);
+  
       }
+     else if(str.status_code == 401){
+        let alert = Alert.create({
+          title: "Error !",
+          subTitle: "Your Token is Expire Please logout and signin again",
+          buttons : ['OK']
+        })
+        this.nav.present(alert);
+      }
+          
+          
+
+     
       console.log('status code',str.status_code)
       console.log('error reciveing', str.message);
       }
     )
+      
   }
   // getRandom(){
 

@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController,Page,ActionSheet} from 'ionic-angular';
+import {NavController,Page,ActionSheet,Alert, Loading} from 'ionic-angular';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
 import {NgZone} from "@angular/core";
@@ -30,13 +30,18 @@ export class CreateEventPage {
     parameters = {
       photo : ""
     }
-    // base64Image: string;
     zone: any;
     
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http) {
     this.http = http;
-    // this.image = "https://placehold.it/150x150";
+        let loading = Loading.create({
+           content: "Please wait...",
+           duration: 3000,
+           dismissOnPageChange: true
+            
+        });
+  this.nav.present(loading);
         this.zone = new NgZone({enableLongStackTrace: false});
   }
   presentActionSheet() {
@@ -48,10 +53,10 @@ export class CreateEventPage {
         role: 'destructive',
         handler: () => {
           Camera.getPicture({
-            quality : 75,
+            quality : 45,
             destinationType : navigator.camera.DestinationType.DATA_URL,
             sourceType : navigator.camera.PictureSourceType.CAMERA,
-            allowEdit : true,
+            // allowEdit : true,
             encodingType: navigator.camera.EncodingType.JPEG,
             targetWidth: 300,
             targetHeight: 300,
@@ -59,16 +64,55 @@ export class CreateEventPage {
         }).then(imageData => {
             this.zone.run(() => {
                 this.parameters.photo = "data:image/jpeg;base64," + imageData;
+                let alert = Alert.create({
+                      title: 'Succeed !',
+                      subTitle: 'Image has been captured',
+                      buttons: ['OK']
+                });
+                      this.nav.present(alert);
             });
         }, error => {
+
+           let alert = Alert.create({
+                      title: 'Error !',
+                      subTitle: 'Something went wrong',
+                      buttons: ['OK']
+                });
+                      this.nav.present(alert);
             console.log("ERROR -> " + JSON.stringify(error));
         });
-          // console.log('Destructive clicked');
         }
       },
       {
         text: 'Upload from Gallery',
         handler: () => {
+          Camera.getPicture({
+            quality : 45,
+            destinationType : navigator.camera.DestinationType.DATA_URL,    //File URI only for Android  to use for IOS type NATIVE_URI	instead of FILE_URI
+            sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+            // allowEdit : true,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            targetWidth: 300,
+            targetHeight: 300,
+            saveToPhotoAlbum: false
+        }).then(imageData => {
+            this.zone.run(() => {
+                this.parameters.photo = "data:image/jpeg;base64," + imageData;
+                  let alert = Alert.create({
+                      title: 'Succeed !',
+                      subTitle: 'Image has been captured',
+                      buttons: ['OK']
+                });
+                      this.nav.present(alert);
+            });
+        }, error => {
+           let alert = Alert.create({
+                      title: 'Error !',
+                      subTitle: 'Something went wrong',
+                      buttons: ['OK']
+                });
+                      this.nav.present(alert);
+        });
           console.log('Archive clicked');
         }
       },
@@ -85,11 +129,20 @@ export class CreateEventPage {
   this.nav.present(actionSheet);
   }
 
-  takePicture() {
-        
-    }
 
   submit(parameters){
+    let loading = Loading.create({
+           content: "Please wait...",
+           dismissOnPageChange: true
+            
+        });
+  this.nav.present(loading);
+    //   let alert = Alert.create({
+    //   title: 'Succeed !',
+    //   subTitle: 'Data has been sent',
+    //   buttons: ['OK']
+    // });
+    //    this.nav.present(alert);
     // console.log('params',this.parameters);
     var headers = new Headers();
     var data  = this.parameters;
@@ -99,19 +152,39 @@ export class CreateEventPage {
     this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/events/create',data,{headers:headers})
     .subscribe(
       (data) => {
-        alert('Your data has been sent..')
-      console.log('reciveing data',data);
+              let alert = Alert.create({
+      title: 'Succeed !',
+      subTitle: 'Data has been sent',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
+       console.log('data send',data.json())
     },
     (err) =>{
-      alert('Cant send data to server')
+     let alert = Alert.create({
+      title: 'Error !',
+      subTitle: 'Data has not been sent',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
       let str = JSON.parse(err._body);
-      // str = str.replace(/\\/g, '')
       if(str.status_code == 422){
-        alert('Please fill all fields')
-        console.log('Please Fill all Required Fields');
+              let alert = Alert.create({
+      title: 'Error !',
+      subTitle: 'Please Fill all required Fields',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
       }
-      console.log('status code',str.status_code)
-      console.log('error reciveing', str.message);
+      else if(str.status_code == 401){
+        let alert = Alert.create({
+          title: "Error !",
+          subTitle: "Your Token is Expire Please logout and signin again",
+          buttons : ['OK']
+        })
+        this.nav.present(alert);
+      }
+      console.log('Error',err.json())
     }
     )
 
