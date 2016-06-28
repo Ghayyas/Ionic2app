@@ -28,7 +28,13 @@ declare var navigator: any;
 export class CreateEventPage {
     
     parameters = {
-      photo : ''
+      photo : '',  
+      name : '',  //required
+      type : '',  //required
+      location : '', //required
+      start_date : '',//required
+      end_date : '', //required
+     description : ''
     }
     zone: any; 
    public empty: any;
@@ -46,12 +52,12 @@ export class CreateEventPage {
         });
        this.nav.present(loading); 
       this.empty = function(){
-        this.parameters.photo = "";
-        this.parameters.name = '';
-        this.parameters.type = '';
-        this.parameters.location = '';
-        this.parameters.start_date = '';
-        this.parameters.end_date = '';
+        this.parameters.photo = "";    
+        this.parameters.name = '';  //required
+        this.parameters.type = '';  //required
+        this.parameters.location = ''; //required
+        this.parameters.start_date = '';//required
+        this.parameters.end_date = ''; //required
         this.parameters.description = '';
       }
   
@@ -150,6 +156,18 @@ export class CreateEventPage {
             
         });
   this.nav.present(loading);
+  if(this.parameters.name || this.parameters.location || this.parameters.type || this.parameters.start_date || this.parameters.end_date == ''){
+   let alert = Alert.create({
+      title: 'Validation failed !',
+      subTitle: 'Please fill all required field',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);    
+  }
+  else{
+
+  
+  
     //   let alert = Alert.create({
     //   title: 'Succeed !',
     //   subTitle: 'Data has been sent',
@@ -206,4 +224,5 @@ export class CreateEventPage {
     )
 
 }
+  }
 }

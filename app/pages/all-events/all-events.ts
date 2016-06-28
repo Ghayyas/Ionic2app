@@ -20,11 +20,13 @@ export class AllEventsPage {
   arr:[Object];
   public loading: Loading;
   public error: boolean;
+  public definedError: boolean;
   
   alleventformscreen = AllEventFormPage;
   constructor(public nav: NavController, public http:Http) {
     this.http = http;
     this.error = false;
+    this.definedError = false;
    
          this.loading = Loading.create({
            content: "Please wait...",
@@ -46,6 +48,17 @@ export class AllEventsPage {
      
 
         this.event = data.json().events;
+        if(this.event == undefined){
+         let alert = Alert.create({
+          title: 'Error !',
+          subTitle: 'Data Fetching Error!',
+          buttons: ['OK']
+     });
+       this.nav.present(alert);
+
+         this.definedError = true;         //IF DATA IS FROM SERVER IS UNDEFINED
+
+        }
         console.log('data',this.event);
       
      
