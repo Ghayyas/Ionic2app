@@ -28,20 +28,33 @@ declare var navigator: any;
 export class CreateEventPage {
     
     parameters = {
-      photo : ""
+      photo : ''
     }
-    zone: any;
+    zone: any; 
+   public empty: any;
     
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http) {
     this.http = http;
+    
+    
         let loading = Loading.create({
            content: "Please wait...",
            duration: 3000,
            dismissOnPageChange: true
             
         });
-  this.nav.present(loading);
+       this.nav.present(loading); 
+      this.empty = function(){
+        this.parameters.photo = "";
+        this.parameters.name = '';
+        this.parameters.type = '';
+        this.parameters.location = '';
+        this.parameters.start_date = '';
+        this.parameters.end_date = '';
+        this.parameters.description = '';
+      }
+  
         this.zone = new NgZone({enableLongStackTrace: false});
   }
   presentActionSheet() {
@@ -158,7 +171,8 @@ export class CreateEventPage {
       buttons: ['OK']
     });
        this.nav.present(alert);
-       console.log('data send',data.json())
+       console.log('data send',data.json()); 
+         this.empty();
     },
     (err) =>{
      let alert = Alert.create({
@@ -184,7 +198,10 @@ export class CreateEventPage {
         })
         this.nav.present(alert);
       }
+      this.empty();
+      
       console.log('Error',err.json())
+             
     }
     )
 

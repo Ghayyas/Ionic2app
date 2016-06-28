@@ -18,17 +18,21 @@ export class AllEventsPage {
   eventDetailPage = EventDetailsPage;
   event: [Object];
   arr:[Object];
+  public loading: Loading;
+  public error: boolean;
   
   alleventformscreen = AllEventFormPage;
   constructor(public nav: NavController, public http:Http) {
     this.http = http;
-        let loading = Loading.create({
+    this.error = false;
+   
+         this.loading = Loading.create({
            content: "Please wait...",
            
            dismissOnPageChange: true
             
         });
-  this.nav.present(loading);
+  this.nav.present(this.loading);  
     let headers = new Headers();
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
@@ -36,18 +40,21 @@ export class AllEventsPage {
     this.http.get('http://nameless-scrubland-35696.herokuapp.com/api/events/get',{headers:headers})
     .subscribe(
       (data)=>{
+       this.loading.dismiss();
 
-      
+
+     
 
         this.event = data.json().events;
         console.log('data',this.event);
       
-      
+     
 
       },
       (err)=>{
         if (err){
-                    
+          this.loading.dismiss();
+          this.error = true;
           let alert = Alert.create({
           title: 'Error !',
           subTitle: 'Something went wrong!',
