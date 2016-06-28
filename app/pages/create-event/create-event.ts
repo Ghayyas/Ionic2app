@@ -36,13 +36,34 @@ export class CreateEventPage {
       end_date : '', //required
      description : ''
     }
-    zone: any; 
+    
+    
+   zone: any; 
    public empty: any;
+   public requiredFields: boolean;
+   public loading: Loading;
+   public nameField:boolean;
+   public locationField: boolean;
+   public typeField:boolean;
+   public startDate:boolean;
+   public endDateField:boolean;
+   
+   
+   
+   
+   
+   
     
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http) {
     this.http = http;
-    
+     
+    this.typeField = false;
+    this.requiredFields = false;
+    this.nameField = false;
+    this.locationField = false;
+    this.startDate = false;
+    this.endDateField = false
     
         let loading = Loading.create({
            content: "Please wait...",
@@ -150,22 +171,82 @@ export class CreateEventPage {
 
 
   submit(parameters){
-    let loading = Loading.create({
+    this.loading = Loading.create({
            content: "Please wait...",
            dismissOnPageChange: true
             
         });
-  this.nav.present(loading);
-  if(this.parameters.name || this.parameters.location || this.parameters.type || this.parameters.start_date || this.parameters.end_date == ''){
-   let alert = Alert.create({
+  this.nav.present(this.loading);
+  // if(this.parameters.name || this.parameters.location || this.parameters.type || this.parameters.start_date || this.parameters.end_date == ''){
+  //  this.requiredFields = true;
+  //         // this.loading.dismiss();
+  //  let alert = Alert.create({
+  //     title: 'Validation failed !',
+  //     subTitle: 'Please fill all required field',
+  //     buttons: ['OK']
+  //   });
+  //      this.nav.present(alert);    
+  // }
+  if(this.parameters.type == ''){
+    this.typeField = true;
+       let alert = Alert.create({
       title: 'Validation failed !',
       subTitle: 'Please fill all required field',
       buttons: ['OK']
     });
-       this.nav.present(alert);    
+       this.nav.present(alert); 
+    // this.typeField  = false;
+  }
+  if(this.parameters.name == ''){
+    this.nameField = true; 
+       let alert = Alert.create({
+      title: 'Validation failed !',
+      subTitle: 'Please fill all required field',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
+      //  this.nameField = false; 
+  }
+  if(this.parameters.location == ''){
+    this.locationField = true;
+       let alert = Alert.create({
+      title: 'Validation failed !',
+      subTitle: 'Please fill all required field',
+      buttons: ['OK']
+    });
+       this.nav.present(alert); 
+      //  this.locationField = false;
+  }
+
+  if(this.parameters.start_date == ''){
+    this.startDate = true;
+    
+       let alert = Alert.create({
+      title: 'Validation failed !',
+      subTitle: 'Please fill all required field',
+      buttons: ['OK']
+    });
+       this.nav.present(alert); 
+      //  this.startDate = false;
+  }
+  if(this.parameters.end_date == ''){
+    this.endDateField = true;
+    
+       let alert = Alert.create({
+      title: 'Validation failed !',
+      subTitle: 'Please fill all required field',
+      buttons: ['OK']
+    });
+       this.nav.present(alert); 
+       
   }
   else{
-
+       this.typeField = false;
+    this.requiredFields = false;
+    this.nameField = false;
+    this.locationField = false;
+    this.startDate = false;
+    this.endDateField = false
   
   
     //   let alert = Alert.create({
@@ -183,6 +264,7 @@ export class CreateEventPage {
     this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/events/create',data,{headers:headers})
     .subscribe(
       (data) => {
+                  // this.loading.dismiss();
               let alert = Alert.create({
       title: 'Succeed !',
       subTitle: 'Data has been sent',
@@ -190,9 +272,17 @@ export class CreateEventPage {
     });
        this.nav.present(alert);
        console.log('data send',data.json()); 
+     
          this.empty();
     },
     (err) =>{
+    //   this.typeField = false;
+    // this.requiredFields = false;
+    // this.nameField = false;
+    // this.locationField = false;
+    // this.startDate = false;
+    // this.endDateField = false
+                // this.loading.dismiss();
      let alert = Alert.create({
       title: 'Error !',
       subTitle: 'Data has not been sent',

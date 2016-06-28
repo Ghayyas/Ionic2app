@@ -16,7 +16,9 @@
      <div class="fieldgroup">
      
        	<h3>Event Type</h3>
-<radio-group [(ngModel)]="parameters.type">
+<radio-group [(ngModel)]="parameters.type" required>
+
+
        	<label class="radiolabel" for="radio-one">
 		<input type="radio" value="0" name="quality" id="radio-one"> <span>By list</span>
 		</label>
@@ -25,18 +27,23 @@
 		<input type="radio" value="1" name="quality" id="radio-two"> <span>By Genral invitation</span>
 		</label>
        </radio-group>
+                     <span style="color:red;" *ngIf="typeField == true">This field Required</span>
      </div>
+
      </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" [(ngModel)]="parameters.name" placeholder="Event Name"> 
+     <input type="text" name="" [(ngModel)]="parameters.name" placeholder="Event Name">
+               <span style="color:red;" *ngIf="nameField == true">This field Required</span>
+ 
      </div>
     </div>
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="text" name="" placeholder="Event Location" [(ngModel)]="parameters.location">
+          <span style="color:red;" *ngIf="locationField == true">This field Required</span>
      </div>
     </div>
 
@@ -47,6 +54,7 @@
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="date" name="" placeholder="20/5/2016" [(ngModel)]="parameters.start_date">
+          <span style="color:red;" *ngIf="startDate == true">This field Required</span>
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
@@ -55,6 +63,7 @@
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="date" name="" placeholder="20/5/2016" [(ngModel)]="parameters.end_date">
+          <span style="color:red;" *ngIf="endDateField == true">This field Required</span>
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
