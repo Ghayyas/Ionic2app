@@ -16,7 +16,7 @@
      <div class="fieldgroup">
      
        	<h3>Event Type</h3>
-<radio-group [(ngModel)]="parameters.type" required>
+<radio-group [(ngModel)]="parameters.type">
 
 
        	<label class="radiolabel" for="radio-one">
@@ -27,7 +27,7 @@
 		<input type="radio" value="1" name="quality" id="radio-two"> <span>By Genral invitation</span>
 		</label>
        </radio-group>
-                     <span style="color:red;" *ngIf="typeField == true">This field Required</span>
+                     <span style="color:red;" [hidden]="!typeField">This field Required</span>
      </div>
 
      </div>

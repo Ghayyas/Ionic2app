@@ -187,7 +187,7 @@ export class CreateEventPage {
   //   });
   //      this.nav.present(alert);    
   // }
-  if(this.parameters.type == ''){
+  if(this.parameters.type === ''){
     this.typeField = true;
        let alert = Alert.create({
       title: 'Validation failed !',
@@ -196,8 +196,10 @@ export class CreateEventPage {
     });
        this.nav.present(alert); 
     // this.typeField  = false;
+  
   }
-  if(this.parameters.name == ''){
+
+  else if(this.parameters.name === ''){
     this.nameField = true; 
        let alert = Alert.create({
       title: 'Validation failed !',
@@ -207,7 +209,7 @@ export class CreateEventPage {
        this.nav.present(alert);
       //  this.nameField = false; 
   }
-  if(this.parameters.location == ''){
+  else if(this.parameters.location === ''){
     this.locationField = true;
        let alert = Alert.create({
       title: 'Validation failed !',
@@ -218,7 +220,7 @@ export class CreateEventPage {
       //  this.locationField = false;
   }
 
-  if(this.parameters.start_date == ''){
+  else if(this.parameters.start_date === ''){
     this.startDate = true;
     
        let alert = Alert.create({
@@ -229,7 +231,7 @@ export class CreateEventPage {
        this.nav.present(alert); 
       //  this.startDate = false;
   }
-  if(this.parameters.end_date == ''){
+  else if(this.parameters.end_date === ''){
     this.endDateField = true;
     
        let alert = Alert.create({
@@ -241,7 +243,7 @@ export class CreateEventPage {
        
   }
   else{
-       this.typeField = false;
+    this.typeField = false;
     this.requiredFields = false;
     this.nameField = false;
     this.locationField = false;
@@ -267,7 +269,7 @@ export class CreateEventPage {
                   // this.loading.dismiss();
               let alert = Alert.create({
       title: 'Succeed !',
-      subTitle: 'Data has been sent',
+      subTitle: 'Event has been Published',
       buttons: ['OK']
     });
        this.nav.present(alert);
