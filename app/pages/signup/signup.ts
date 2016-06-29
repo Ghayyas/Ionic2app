@@ -1,6 +1,17 @@
 import {Component} from '@angular/core';
 import {NavController, Page, Loading} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
+import {
+  Control,
+  ControlGroup,
+  NgForm,
+  Validators,
+  NgControl,
+  ControlValueAccessor,
+  NgControlName,
+  NgFormModel,
+  FormBuilder
+} from '@angular/common';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from '../signin/authservice';
 
@@ -22,11 +33,15 @@ export class SignupPage {
 
   authservice = null;
   token = null;
+   langs;
+  langForm;
 
   usercreds = {
 	  email: '',
 	  password: '',
-	  name: ''
+	  name: '',
+	  type: '',
+	  location: null
   }
 
 
@@ -34,14 +49,24 @@ export class SignupPage {
    * [constructor description]
    * @param {NavController} public nav [description]
    */
-  constructor(public auth: AuthService, public nav: NavController) {
+  constructor(public auth: AuthService, public nav: NavController,fb: FormBuilder) {
 	  this.authservice = auth;
 	  this.nav = nav;
+     this.langs = new Control("");
+    this.langForm = fb.group({
+      "langs": this.langs
+    });
 	  this.token = window.localStorage.getItem('ecnob.token');
 	  if (this.token != null) {
 		  this.nav.setRoot(TabsPage);
 	  }   
 
+  }
+
+
+  doSubmit(event) {
+    console.log('Submitting form', this.langForm.value);
+    event.preventDefault();
   }
 
 
