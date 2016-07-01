@@ -1,10 +1,13 @@
 
 import {NavController, Page, Loading,ActionSheet,Alert} from 'ionic-angular';
-import {Camera,Transfer} from 'ionic-native';
+import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService} from '../../service/dataService/dataService';
 declare var navigator: any;
+declare var FileUploadOptions:any;
+declare var FileTransfer :any;
+
 
  @Page({
   templateUrl: 'build/pages/profile/profile.html',
@@ -17,42 +20,47 @@ declare var navigator: any;
  */
 export class profile {
   zone:any
-  fileURL: string;
+  fileURL:string;
   uri:string;
   trustAllHosts:boolean;
+ FileUrlAddress: string;
     constructor(public nav: NavController, private http:Http, public data: DataService) {
         this.zone = new NgZone({enableLongStackTrace: false});
-    this.fileURL =  DataService.dataArray[0].photo;
-   this.uri = encodeURI("http://lilanisoft.com/hotworks/api/index.php/uploadImage");
-  //  this.options =  options;
-   this.trustAllHosts = true
+    
     }
-  usercreds = {
-      photo: ''
-    }
-  public ft:Transfer;
+  // usercreds = {
+  //     photo: ''
+  //   }
+  // public ft:Transfer;
 //=============================//
 
  uploadFile() {
 
 
+    var fileURL = this.FileUrlAddress;
+   console.log('fileUrl',fileURL)
+   var uri = encodeURI("http://lilanisoft.com/hotworks/api/index.php/uploadImage");
+   var options = new FileUploadOptions();
+	 var str = this.FileUrlAddress;
+  let array = str.split("?")
+     console.log(array[0])
+   options.fileKey = "image";
+   
+      
+   options.fileName =  array[0];  
+   options.mimeType = "image/jpg";
+console.log('options',options);
 
+   var ft = new FileTransfer();
 
-	
-  //  options.fileKey = "image.jpg";
-  //  options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
-  //  options.mimeType = "img/jgp";
-
-  //  var headers = {'headerParam':'headerValue'};
-  //  options.headers = headers;
-
-  //  var ft = Transfer;
-
-    this.ft.upload(this.fileURL,this.uri,this.trustAllHosts)
-
+   ft.upload(array[0], uri, onSuccess, onError, options);
+   console.log('arra',fileURL);
    function onSuccess(r) {
       console.log("Code = " + r.responseCode);
       console.log("Response = " + r.response);
+      let photoParse = JSON.parse(r.response);
+      DataService.dataArray[0].photo = photoParse.image;
+     
       console.log("Sent = " + r.bytesSent);
    }
 
@@ -87,17 +95,18 @@ upload():void {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                DataService.dataArray[0].photo = imageData;
+                this.FileUrlAddress = imageData;
+            console.log('from camera',imageData);
                 let alert = Alert.create({
                       title: 'Succeed !',
                       subTitle: 'Image has been captured',
                       buttons: ['OK']
                 });
                       this.nav.present(alert);
-                      this.uploadFile();
             });
+            
         }, error => {
-              DataService.dataArray[0].photo = ''
+              // this.FileUrlAddress  = null
            let alert = Alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
@@ -114,7 +123,7 @@ upload():void {
           Camera.getPicture({
             quality : 45,
             destinationType : navigator.camera.DestinationType.FILE_URI,    //File URI only for Android  to use for IOS type NATIVE_URI	instead of FILE_URI
-            sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+            sourceType : navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
             // allowEdit : true,
             encodingType: navigator.camera.EncodingType.JPEG,
             targetWidth: 300,
@@ -122,16 +131,18 @@ upload():void {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                DataService.dataArray[0].photo  =  imageData;
+                this.FileUrlAddress  =  imageData;
+                console.log('image Data',imageData);
                   let alert = Alert.create({
                       title: 'Succeed !',
                       subTitle: 'Image has been captured',
                       buttons: ['OK']
                 });
                       this.nav.present(alert);
-                      this.uploadFile()
             });
+            // this.FileUrlAddress = null;
         }, error => {
+          // this.FileUrlAddress = null;
            let alert = Alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
@@ -159,10 +170,14 @@ upload():void {
     // this.data.pushData(this.usercreds);
     // DataService.pushData(this.usercreds);
     console.log('data clicked');
-   
+    this.uploadFile()
+    setTimeout(function() {
     DataService.getData();
-    
+    this.FileUrlAddress = null;
   
+    },4000)
+    
+    
   
   }
 }
