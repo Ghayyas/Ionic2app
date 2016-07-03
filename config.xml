@@ -86,4 +86,5 @@
     <plugin name="cordova-plugin-camera" spec="~2.2.0" />
     <plugin name="cordova-plugin-file" spec="~4.2.0" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.5.1" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.2.0" />
 </widget>

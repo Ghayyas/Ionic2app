@@ -1,5 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
+import {Platform} from "ionic-angular"
+import {Geolocation} from 'ionic-native';
 import {SignupPage} from "../../pages/signup/signup";
 
 @Injectable()
@@ -8,12 +10,15 @@ export class DataService {
 static dataArray : Array<usercreds> = new Array();
        
   constructor() {
+   
   }
   static pushData(key){
       return new Promise(resolve=>{
         DataService.dataArray.push(key);
         if(DataService.dataArray !== null){
+             console.log('key',DataService.dataArray);
             resolve(true)
+            
         }
         else{
             resolve(false)
@@ -27,22 +32,43 @@ static getData(){
 }
   
 }
+
 export class usercreds{
     public email:string;
     public password: string;
     public name:string;
     public type: string;
     public photo:string;
+    public location: any;
+    // public lat:number;
+    // public long: number;
+    
 
     constructor(email1:string,
      password1: string,
      name1:string,
      type1: string,
-     photo1:string){
+     photo1:string,
+    //  platform: Platform,
+    location:any){
+        Geolocation.getCurrentPosition().then((resp) => {
+     this.location.lat  = resp.coords.latitude;
+    this.location.long =  resp.coords.longitude;
+ console.log('cordova latitude',this.location.lat)
+ console.log('cordova longitude',this.location.long)
+},(err)=>{
+  if(err.code === 1){
+    alert('we need to access your Location in order to access this app');
+    // platform.exitApp()
+    //return;
+  }
+  console.log('reciveing error ',err);
+})  
        this.email = email1;
        this.password = password1;
        this.name = name1;
        this.type = type1;
        this.photo = photo1;
+       this.location = location;
     }
 }

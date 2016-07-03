@@ -1,5 +1,5 @@
 import {Component,Directive,Input,Output, EventEmitter} from '@angular/core';
-import {NavController, Page, Loading} from 'ionic-angular';
+import {NavController, Page, Loading,Platform} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {NgZone} from "@angular/core";
@@ -20,7 +20,8 @@ import {TabsPage} from '../tabs/tabs';
 import {AuthService} from '../signin/authservice';
 
 import {DataService,usercreds} from '../../service/dataService/dataService';
-import {profile} from "../profile/profile"
+import {profile} from "../profile/profile";
+import {Geolocation} from "ionic-native";
 
 
 /*
@@ -43,6 +44,8 @@ export class SignupPage {
 
   authservice = null;
   token = null;
+  // public lat: number;
+  // public long: number;
   // DataService = null; 
   
    usercreds = {
@@ -51,14 +54,18 @@ export class SignupPage {
 	  name: '',
     type: '',
     photo: null,
+    location: {
+      lat: '',
+      long: ''
+    }
   }
-
 
   /**
    * [constructor description]
    * @param {NavController} public nav [description]
    */
-  constructor(public auth: AuthService, public nav: NavController, public data: DataService) {
+  constructor(public auth: AuthService, public nav: NavController, public data: DataService,platform:Platform) {
+   
 	  this.authservice = auth;
 	  this.nav = nav;
 	  this.token = window.localStorage.getItem('ecnob.token');
@@ -83,12 +90,13 @@ export class SignupPage {
 	  });
 	  this.nav.present(loading);
     
-    var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo);
+    var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.location);
    DataService.pushData(obj);
     // DataService.dataArray.push(obj);
     // DataService.getData();
-    console.log('object value',obj,this.usercreds.email)
+    console.log('object value',obj);
     	this.nav.push(profile);
+      
 	  // this.authservice.register(usercreds).then(data => {
 		//   if (data) {
 		// 	  this.nav.setRoot(TabsPage);
