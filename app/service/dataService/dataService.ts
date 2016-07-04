@@ -15,9 +15,9 @@ static dataArray : Array<usercreds> = new Array();
   static pushData(key){
       return new Promise(resolve=>{
         DataService.dataArray.push(key);
-        if(DataService.dataArray !== null){
-             console.log('key',DataService.dataArray);
+        if(DataService.dataArray[0] !==null){
             resolve(true)
+
             
         }
         else{
@@ -29,6 +29,7 @@ static dataArray : Array<usercreds> = new Array();
 static getData(){
     // return this.dataArray;
     console.log(DataService.dataArray);
+    return DataService.dataArray[0];
 }
   
 }

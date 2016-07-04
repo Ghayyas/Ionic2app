@@ -22,6 +22,7 @@ import {AuthService} from '../signin/authservice';
 import {DataService,usercreds} from '../../service/dataService/dataService';
 import {profile} from "../profile/profile";
 import {Geolocation} from "ionic-native";
+// import {location} from "../location/location"
 
 
 /*
@@ -55,8 +56,8 @@ export class SignupPage {
     type: '',
     photo: null,
     location: {
-      lat: '',
-      long: ''
+      lat: null,
+      long: null
     }
   }
 
@@ -91,11 +92,21 @@ export class SignupPage {
 	  this.nav.present(loading);
     
     var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.location);
-   DataService.pushData(obj);
+   DataService.pushData(obj).then((data)=>{
+     console.log('reciveing data',data);
+       
+       if(data === true){
+         this.nav.push(profile);
+       }
+     else{
+       alert('Oppss! Something went wrong. Make sure you allows Geolocation from your device and try again')
+     }
+   },(err)=>{
+     console.log('reciveing error',err)
+   });
     // DataService.dataArray.push(obj);
     // DataService.getData();
     console.log('object value',obj);
-    	this.nav.push(profile);
       
 	  // this.authservice.register(usercreds).then(data => {
 		//   if (data) {

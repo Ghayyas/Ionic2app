@@ -4,6 +4,9 @@ import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService} from '../../service/dataService/dataService';
+import {locationPage} from "../location/location";
+import {SigninPage} from '../signin/signin';
+
 declare var navigator: any;
 declare var FileUploadOptions:any;
 declare var FileTransfer :any;
@@ -13,7 +16,6 @@ declare var FileTransfer :any;
   templateUrl: 'build/pages/profile/profile.html',
   providers: [DataService]
 })
-
 
 /**
  * Profile class
@@ -166,16 +168,19 @@ upload():void {
   this.nav.present(actionSheet);
   
   }
+  
   uploadSelectedImage(){
     // this.data.pushData(this.usercreds);
     // DataService.pushData(this.usercreds);
     console.log('data clicked');
-    this.uploadFile()
-    setTimeout(function() {
-    DataService.getData();
-    this.FileUrlAddress = null;
-  
-    },4000)
+    // this.uploadFile()
+          this.nav.push(locationPage);  
+
+    // setTimeout(function() {
+    // console.log(DataService.dataArray[0].location);
+    // this.FileUrlAddress = null;
+
+    // },4000)
     
     
   
