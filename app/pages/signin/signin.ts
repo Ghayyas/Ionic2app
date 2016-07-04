@@ -52,11 +52,11 @@ export class SigninPage {
 	   });
 	   this.nav.present(loading);
 
-	   this.authservice.login(usercreds).then(data => {
-		   if (data){
+	  //  this.authservice.login(usercreds).then(data => {
+		  //  if (data){
 			   this.nav.setRoot(TabsPage);
-		   }
-	   })
+		  //  }
+	  //  })
    }
 
 }

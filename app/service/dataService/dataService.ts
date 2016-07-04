@@ -28,7 +28,7 @@ static dataArray : Array<usercreds> = new Array();
   }
 static getData(){
     // return this.dataArray;
-    console.log(DataService.dataArray);
+    console.log(DataService.dataArray[0]);
     return DataService.dataArray[0];
 }
   
@@ -71,5 +71,6 @@ export class usercreds{
        this.type = type1;
        this.photo = photo1;
        this.location = location;
+       
     }
 }

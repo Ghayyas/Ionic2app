@@ -44,8 +44,25 @@
     padding: 8px 10px;
     border-radius: 2px;
 }
+.segment-button.activated, .segment-button.segment-activated{
+  color: #2f74f5 !important;
+  background: white !important;
+  background-image: white !important;
+}
 
 </style>
+<div class="">
+  <ion-segment class="" [(ngModel)]="usercreds.type">
+    <ion-segment-button class="" value="0" itemtype="radio">
+      <!--<input type="radio">-->
+      User    
+      </ion-segment-button>
+    <ion-segment-button  class="" value="1" itemtype="radio">
+    <!--<input type="radio">-->
+    Company
+    </ion-segment-button>
+  </ion-segment>
+</div>
     <div class="signupform">
 
    <ion-list class="padding">
@@ -84,7 +101,7 @@
 		<input type="radio" value="1" name="quality" id="radio-two"> <span>Company</span>
 		</label>
        </radio-group>-->
-       <ion-list radio-group  [(ngModel)]="usercreds.type">
+       <!--<ion-list radio-group  [(ngModel)]="usercreds.type">
    <ion-item>
        <ion-label>user</ion-label>
        <ion-radio value="0" ></ion-radio>
@@ -95,7 +112,7 @@
 
        <ion-radio value="1"></ion-radio>
    </ion-item>
- </ion-list>
+ </ion-list>-->
 
         <div class="fullwidthrow">
      <div class="fieldgroup">

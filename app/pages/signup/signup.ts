@@ -57,7 +57,8 @@ export class SignupPage {
     photo: null,
     location: {
       lat: null,
-      long: null
+      long: null,
+      radius: 3
     }
   }
 
