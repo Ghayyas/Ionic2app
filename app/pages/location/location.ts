@@ -5,7 +5,7 @@ import {Http, Headers } from '@angular/http';
 import {DataService} from '../../service/dataService/dataService';
 
 declare var google:any;
-declare var load:any;
+declare var load:any;    
 
  @Page({
   templateUrl: 'build/pages/location/location.html',
@@ -14,23 +14,24 @@ declare var load:any;
 
 export class locationPage{
     public map:any;
-    public cityCircle;
-    public myRadius;
-    public kmConverter;
+    public cityCircle;   //Circle Map
+    public myRadius;      ///Radius of the Map
+    public kmConverter;   //to Convert Meters in Kilometer
     constructor(public data:DataService){
       setTimeout(()=>{
        
          this.map = null;
          this.initMap();
          this.data = data;
-      },3000);
-         console.log('my radius',this.myRadius)
+      },3000);   // Map will load after 3 seconds
+        //  console.log('my radius',this.myRadius)
     }
+     //=====================staring the map ============///
      initMap() {
         var myLatLng = {lat: DataService.dataArray[0].location.lat, lng: DataService.dataArray[0].location.long};
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
-          zoom: 5,
+          zoom: 8,
           center: myLatLng
         });
 
@@ -65,7 +66,7 @@ export class locationPage{
   // });
 
   marker.addListener('dragstart', function() {
-    // map.setZoom(8);
+   
     map.setCenter(marker.getPosition());
     var drage_lat = marker.getPosition().lat();
     var drage_long = marker.getPosition().lng();
@@ -79,37 +80,30 @@ export class locationPage{
 
       }
       
+      //====================== END =========================//
+      
+      
+      //=====================Range Values Update  ====================//
+      
     updateCircleRadius = function(val) {
-              // this.cityCircle.setRadius(Number(val))
-               this.kmConverter = Number(val) * 1000;
-             // this.cityCircle.setRadius(Number(val))
-          // let circleBounds = this.cityCircle;
+                 this.kmConverter = Number(val) * 1000;
+             
                this.cityCircle.setRadius(this.kmConverter);
-               DataService.dataArray[0].location.radius = val
+               
+                 DataService.dataArray[0].location.radius = val   //push the values in array
 
-            console.log('city bounds',val);
+                  console.log('city bounds',val);
           }
-        
+         //======================end =========================//
+      
+      //==============Update Profile Function ==================//
       updateProfile(){
-      //  DataService.pushData(this.usercreds);  
-      DataService.getData();  
+      DataService.getData();   // all data array;
        }
-						
+			//=========================end=========================//
           
-    //   upError(){
-    //     this.cityCircle.radius=this.myRadius++; 
-    //         console.log('ere',this.cityCircle.radius);
-
-    //   }
-    // downError(){
-    //   this.cityCircle.radius=this.myRadius--;
-    //       console.log('ere',this.cityCircle.radius);
-
-    // }
-   
- 
+    
   }
  
 
 
-// }

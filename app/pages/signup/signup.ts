@@ -3,6 +3,10 @@ import {NavController, Page, Loading,Platform} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {NgZone} from "@angular/core";
+import { EqualValidator } from '../../service/equal-validator-service/equal-validator.directive';
+
+// import { NgForm }    from '@angular/common';
+
 
 import {
   Control,
@@ -34,7 +38,9 @@ import {Geolocation} from "ionic-native";
 
 @Page({
 		templateUrl: 'build/pages/signup/signup.html',
-		providers: [AuthService,DataService,RADIO_GROUP_DIRECTIVES]
+		providers: [AuthService,DataService,RADIO_GROUP_DIRECTIVES],
+      directives: [EqualValidator]
+
 })
 
 
@@ -52,8 +58,9 @@ export class SignupPage {
    usercreds = {
 	  email: '',
 	  password: '',
+    confirmPassword: '',
 	  name: '',
-    type: '',
+    type: '0',
     photo: null,
     location: {
       lat: null,

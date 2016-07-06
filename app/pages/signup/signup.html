@@ -7,7 +7,7 @@
 <ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
   <!--<ion-title>signup</ion-title>-->
   <ion-toolbar primary>
-  <ion-title>REGISTER</ion-title>
+  <ion-title>Registration</ion-title>
 </ion-toolbar>
 </ion-navbar>
 
@@ -44,22 +44,58 @@
     padding: 8px 10px;
     border-radius: 2px;
 }
+.ion-segment.tab-ion-segment {
+ background: white;
+ background-image: auto !important;
+}
+
 .segment-button.activated, .segment-button.segment-activated{
   color: #2f74f5 !important;
   background: white !important;
   background-image: white !important;
 }
-
+ion-segment.tab-ion-segment .tab-segment.segment-button {
+    /*border-bottom: none;*/
+    /*border-bottom-width: 0px;*/
+    overflow: visible;
+    text-transform: Capitalize;
+    font-size: 17px;
+    background: white;
+    color: #9bbffb;
+}
+.tabs-image{
+  margin-bottom: 3px;
+}
 </style>
-<div class="">
-  <ion-segment class="" [(ngModel)]="usercreds.type">
-    <ion-segment-button class="" value="0" itemtype="radio">
+<form  (ngSubmit)="register()" #signupForm="ngForm">
+<div class="no-padding">
+  <ion-segment class="tab-ion-segment" [(ngModel)]="usercreds.type" name="type">
+    <ion-segment-button class="tab-segment segment-activated" value="0" itemtype="radio"> 
       <!--<input type="radio">-->
-      User    
+      <div *ngIf="usercreds.type == 0">
+      <img src="./img/user_active.png" height="24px" class="tabs-image" alt="" >
+      <div style="margin-top: -38px;font-size: 12px;">User</div>
+       
+      </div>
+      <div *ngIf="usercreds.type==1">
+        <img src="./img/user_inactive.png" height="24px" class="tabs-image" alt="">
+        <div style="margin-top: -38px;font-size: 12px;">User</div>
+         
+      </div>
+      
+         
       </ion-segment-button>
-    <ion-segment-button  class="" value="1" itemtype="radio">
+    <ion-segment-button  class="tab-segment" value="1" itemtype="radio">
     <!--<input type="radio">-->
-    Company
+    <div *ngIf="usercreds.type==1">
+    <img src="./img/company_active.png" height="24px" class="tabs-image" alt="">
+    <div style="margin-top: -38px;font-size: 12px;">Company</div>
+    </div>
+    <div *ngIf="usercreds.type==0">
+    <img src="./img/company_inactive.png" height="24px" class="tabs-image" alt="">
+    <div style="margin-top: -38px;font-size: 12px;">Company</div>
+    </div>
+        
     </ion-segment-button>
   </ion-segment>
 </div>
@@ -69,26 +105,41 @@
 
 
     <div class="fullwidthrow">
-     <div class="fieldgroup">
-     <input type="text" name="email" placeholder="Email Address" [(ngModel)]="usercreds.email">
+     <div class="fieldgroup">   
+       <!--\S+@\S+\.\S+-->
+       <!--^[A-Z0-9][A-Z0-9._%+-]{0,63}@
+(?:[A-Z0-9](?:[A-Z0-9-]{0,62}[A-Z0-9])?\.){1,8}[A-Z]{2,63}$-->
+    <input type="email" name="email" required placeholder="Email Address" [(ngModel)]="usercreds.email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{2,3})?" #email="ngModel">
+     <div [hidden]="email.valid || email.pristine" style="color:red;">
+         <small> Email is required and Format should be According to <i>"ghayyasmubashir@gmail.com"</i></small>
+        </div>
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="userName" placeholder="Name" [(ngModel)]="usercreds.name">
+     <input type="text" name="userName" required placeholder="Username" minlength="5" [(ngModel)]="usercreds.name" #name="ngModel" >
+     <div [hidden]="name.valid || name.pristine" style="color:red;">
+         <small> User name is required and must be 5 characters long</small>
+        </div>
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="password" name="password" placeholder="Password" [(ngModel)]="usercreds.password">
+     <input type="password" name="password" validateEqual="confirmPassword" minlength="6" reverse="true" required placeholder="Password" #password="ngModel" [(ngModel)]="usercreds.password">
+     <div [hidden]="password.valid || password.pristine" style="color:red;">
+         <small> Invalid Password & Password Must be 6 charactes long</small>
+        </div>
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="password" name="confirmPassword" placeholder="Confirm Password">
+     <input type="password" name="confirmPassword" required placeholder="Confirm Password" validateEqual="password" reverse="false" #confirmPassword="ngModel" [(ngModel)]="usercreds.confirmPassword">
+     <div [hidden]="confirmPassword.valid || confirmPassword.pristine" style="color:red;">
+         <small>Password mismatch</small>
+        </div>
      </div>
     </div>
 
@@ -140,23 +191,23 @@
 
  <ion-list>
    <div style="padding: 0px 15px;">
-  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="register()">
-  Register Now
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" type="submit" [disabled]="!signupForm.form.valid">
+  Sign Up
 </button>
 <div class="fieldgroup" style="margin-bottom:20px;">
-  <p class="text-center" style="text-align:center; color: #3d3d3d;"> Already have an account?</p>
+  <p class="text-center" style="text-align:center; color: #3d3d3d;"> Already have an account? <a [navPush]="signinPage">Sign In</a></p>
   </div>
  <!-- <a class="button button-block button-positive" href="#/app/signin" style="font-size: 20px; height: 50px;">
   Sign in
 </a>-->
-  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;"  [navPush]="signinPage">
+  <!--<button class="button button-block button-positive" style="font-size: 20px; height: 50px;"  [navPush]="signinPage">
   Sign in
-</button>
+</button>-->
 </div>
  </ion-list>
 
     </div>
 
-
+</form>
 
 </ion-content>

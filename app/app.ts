@@ -3,6 +3,8 @@ import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {SigninPage} from './pages/signin/signin';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
+
 // import {Geolocation} from 'ionic-native';
 
 
@@ -38,4 +40,7 @@ export class MyApp {
 }
 
 
-ionicBootstrap(MyApp)
+ionicBootstrap(MyApp, [
+  disableDeprecatedForms(),
+  provideForms()
+ ])
