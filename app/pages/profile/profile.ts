@@ -24,11 +24,21 @@ export class profile {
   zone:any
   fileURL:string;
   uri:string;
+  public email;
+  public userName;
+  locationPage:locationPage
   trustAllHosts:boolean;
  FileUrlAddress: string;
     constructor(public nav: NavController, private http:Http, public data: DataService) {
         this.zone = new NgZone({enableLongStackTrace: false});
-    
+        
+        // this.email = '';
+        // this.userName = '';
+        this.email = DataService.dataArray[0].email;
+        this.userName = DataService.dataArray[0].name;
+        // DataService.dataArray[0].email = this.email;
+        // DataService.dataArray[0].name = this.userName
+       
     }
   // usercreds = {
   //     photo: ''
@@ -172,9 +182,12 @@ upload():void {
   uploadSelectedImage(){
     // this.data.pushData(this.usercreds);
     // DataService.pushData(this.usercreds);
+        DataService.dataArray[0].email = this.email;
+        DataService.dataArray[0].name = this.userName
     console.log('data clicked');
     // this.uploadFile()
           this.nav.push(locationPage);  
+          console.log('works!');
 
     // setTimeout(function() {
     // console.log(DataService.dataArray[0].location);

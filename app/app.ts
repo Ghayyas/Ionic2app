@@ -40,6 +40,7 @@ export class MyApp {
 }
 
 
+
 ionicBootstrap(MyApp, [
   disableDeprecatedForms(),
   provideForms()

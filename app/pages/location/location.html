@@ -1,41 +1,34 @@
-<!--<style>
-  
-  .scroll {
-    height: 100%;
-}
- 
-#map_canvas {
-    width: 100%;
-    height: 100%;
-}
-.google-maps-card{
-  height: 40vh;
-}
-</style>-->
 
+<ion-header>
+  <ion-toolbar>
+    
+    <button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    
+    <ion-title>
+      Profile
+    </ion-title>
+    
 
-<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
-<ion-toolbar primary>
-  <ion-title>Profile Page</ion-title>
-</ion-toolbar>
-</ion-navbar>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-    <!--<ion-card>-->
-   <!--<div class="item item-divider">-->
-  <div style="width:380px; height: 290px;">
+ <div id='container'>
+      <p class="container-para">Select mile Radius with in a geographical location to recieve information from companies</p>
+      <input class="location-input" type="text" placeholder="My Location">
+      <p class="mile-radius"><b>Mile Radius</b>: {{myRadius.value}}km</p>
+    <ion-range  #myRadius  min="3" max="10" danger pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
+<!--<p>{{myRadius.value}}</p>-->
+<button (click)="updateProfile()">Update Profile</button>      
+ </div>
+
 <div id="map_canvas"></div>
-</div>
-    <ion-range [(ngModel)]="myRadius" min="3" max="10" danger pin="true" (ngModelChange)="updateCircleRadius(myRadius)"></ion-range>
-<p>{{myRadius}}</p>
-<button (click)="updateProfile()">Update Profile</button>
-<!--<button (click)="upError()">up eroor</button>
-<button (click)="downError()">down error</button>-->
-  <!--</ion-card>-->
- 
-    <!--</ion-content>
-    <ion-footer-bar class="bar-dark">
-      <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Find Me</a>
-    </ion-footer-bar>-->
- 
-  <!--</div>-->
+
+    <!--<ion-range  #myRadius  min="3" max="10" danger pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
+<p>{{myRadius.value}}</p>
+<button (click)="updateProfile()">Update Profile</button>-->
+
     </ion-content>
+    
+   

@@ -1,8 +1,11 @@
-<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
-<ion-toolbar primary>
+
+<!--<ion-toolbar primary>
+  <button>
+  <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+</button>
   <ion-title>Profile Page</ion-title>
 </ion-toolbar>
-</ion-navbar>
+
 
 <ion-content padding class="create-event ecnob-fields">
 <ion-item>
@@ -11,4 +14,145 @@
     </ion-avatar>
 </ion-item>
 <button class="button button-block button-positive" (click)="uploadSelectedImage()">upload selected</button>
+</ion-content>-->
+
+<ion-header>
+  <ion-toolbar>
+    
+    <button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    
+    <ion-title>
+      Profile
+    </ion-title>
+    
+    <ion-buttons end>
+    <button>
+      <ion-icon ios="ios-create" md="md-create"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <style type="text/css">
+   .signupform{
+	padding: 0px 20px;
+	padding-top: 30px;
+}
+ .fieldgroup{
+	margin-bottom: 15px;
+}
+ input[type="text"],
+input[type="tel"],
+ input[type="num"],
+input[type="url"],
+ input[type="email"],
+ input[type="password"],
+ select{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+ select{
+	color:#999999;
+  background: none;
+}
+
+textarea{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+.ion-segment.tab-ion-segment {
+ background: white;
+ background-image: auto !important;
+}
+
+.segment-button.activated, .segment-button.segment-activated{
+  color: #2f74f5 !important;
+  background: white !important;
+  background-image: white !important;
+}
+ion-segment.tab-ion-segment .tab-segment.segment-button {
+    /*border-bottom: none;*/
+    /*border-bottom-width: 0px;*/
+    overflow: visible;
+    text-transform: Capitalize;
+    font-size: 17px;
+    background: white;
+    color: #9bbffb;
+}
+.tabs-image{
+  margin-bottom: 3px;
+}
+</style>
+  
+  
+      <img src="img/profile_pic.png" (click)="upload()" height="88px" style="margin-left: 134px; margin-buttom: 13px; margin-top: 42px; height: 98px;"> 
+    
+    
+    
+
+    <div class="signupform">
+
+   <ion-list class="padding">
+
+
+    <div class="fullwidthrow">
+     <div class="fieldgroup">   
+
+    <input type="email" name="email" [(ngModel)]="email" value="{{email}}" placeholder="Email Address" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{2,3})?">
+     
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" name="userName" [(ngModel)]="userName" value="{{userName}}"  placeholder="Username" minlength="5">
+     
+     </div>
+    </div>
+
+
+        
+
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+      <select>
+        <option>Select Category</option>
+      	<option>cat 1</option>
+      	<option>cat 2</option>
+      	<option>cat 3</option>
+      </select>
+     </div>
+    </div>
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <select>
+        <option>Select Sub-Category</option>
+      	<option>cat 1</option>
+      	<option>cat 2</option>
+      	<option>cat 3</option>
+      </select>
+     </div>
+    </div>
+
+</ion-list>
+
+ <ion-list>
+   <div style="padding: 0px 15px;">
+  <button class="button button-block button-positive" (click)="uploadSelectedImage()" style="font-size: 20px; height: 50px; width: 339px; margin-left: -12px;" type="submit">
+  Update Profile
+</button>
+</div>
+ </ion-list>
+
+    </div>
 </ion-content>

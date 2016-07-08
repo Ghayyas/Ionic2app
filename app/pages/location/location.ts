@@ -1,6 +1,6 @@
 import {NavController, Page, Loading,ActionSheet,Alert} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
-import {NgZone, Component} from "@angular/core";
+import {NgZone, Component, EventEmitter} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService} from '../../service/dataService/dataService';
 
@@ -9,11 +9,16 @@ declare var load:any;
 
  @Page({
   templateUrl: 'build/pages/location/location.html',
-  providers: [DataService]
+  providers: [DataService],
+  inputs: ['inputValue'],    
+  outputs: ['inputValueChange']
 })
 
 export class locationPage{
     public map:any;
+    inputValue: boolean;
+    inputValueChange: EventEmitter<any> = new EventEmitter();
+
     public cityCircle;   //Circle Map
     public myRadius;      ///Radius of the Map
     public kmConverter;   //to Convert Meters in Kilometer
@@ -31,7 +36,7 @@ export class locationPage{
         var myLatLng = {lat: DataService.dataArray[0].location.lat, lng: DataService.dataArray[0].location.long};
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
-          zoom: 8,
+          zoom: 12,
           center: myLatLng
         });
 
@@ -56,14 +61,7 @@ export class locationPage{
             center: myLatLng,
             radius: 3000
           });
-          
-  //         map.addListener('center_changed', function() {
-  //   // 3 seconds after the center of the map has changed, pan back to the
-  //   // marker.
-  //       window.setTimeout(function() {
-  //     map.panTo(marker.getPosition());
-  //   }, 3000);
-  // });
+        
 
   marker.addListener('dragstart', function() {
    
@@ -83,9 +81,16 @@ export class locationPage{
       //====================== END =========================//
       
       
+      
+      
+      
+      
+      
       //=====================Range Values Update  ====================//
       
     updateCircleRadius = function(val) {
+         console.log('value',val);
+      
                  this.kmConverter = Number(val) * 1000;
              
                this.cityCircle.setRadius(this.kmConverter);
@@ -95,6 +100,13 @@ export class locationPage{
                   console.log('city bounds',val);
           }
          //======================end =========================//
+         
+         
+         
+         
+         
+         
+         
       
       //==============Update Profile Function ==================//
       updateProfile(){

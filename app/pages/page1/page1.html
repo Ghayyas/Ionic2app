@@ -62,7 +62,7 @@ ion-item.itemcontent.item .input-wrapper ion-label{
 </style>
 
 
-<div class="no-padding">
+<div class="no-padding" *ngIf="pet">
   <ion-segment class="tab-ion-segment" [(ngModel)]="pet">
     <ion-segment-button class="tab-segment" value="kittens">
        Featured Deals

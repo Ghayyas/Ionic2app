@@ -25,6 +25,7 @@ import {AuthService} from '../signin/authservice';
 
 import {DataService,usercreds} from '../../service/dataService/dataService';
 import {profile} from "../profile/profile";
+import {locationPage} from '../location/location';
 import {Geolocation} from "ionic-native";
 // import {location} from "../location/location"
 

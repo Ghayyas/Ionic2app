@@ -3,6 +3,7 @@ import {NavController, Page, Loading} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
+import {profile} from "../profile/profile";
 
 /*
   Generated class for the SigninPage page.
@@ -18,7 +19,7 @@ export class SigninPage {
    
 
    homescreen = TabsPage;
-   signupPage = SignupPage;
+   signupPage = SignupPage;  ///profile page for now cna pe change to signupPage after
    authservice = null;
    token = null;
 
