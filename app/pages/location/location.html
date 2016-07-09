@@ -9,18 +9,20 @@
     <ion-title>
       Profile
     </ion-title>
-    
+      <ion-buttons end>
+    <button primary (click)="updateProfile()">Update Profile</button>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 <ion-content>
  <div id='container'>
       <p class="container-para">Select mile Radius with in a geographical location to recieve information from companies</p>
-      <input class="location-input" type="text" placeholder="My Location">
+      <input class="location-input" id="pac-input" type="text" placeholder="My Location">
       <p class="mile-radius"><b>Mile Radius</b>: {{myRadius.value}}km</p>
     <ion-range  #myRadius  min="3" max="10" danger pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
 <!--<p>{{myRadius.value}}</p>-->
-<button (click)="updateProfile()">Update Profile</button>      
+<!--<button (click)="updateProfile()">Update Profile</button>      -->
  </div>
 
 <div id="map_canvas"></div>

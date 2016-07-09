@@ -21,15 +21,59 @@
     position: relative;
     margin-top: 87%;
     margin-left: 2%;
-    border: 1px solid blue;
-    width: 95%;
+    border: 1px solid wheat;
+      width: 95%;
+    background-size: cover;
+    opacity: 0.8;
     height: 32%;
     background-color: white;
+    overflow: scroll;
 }
 .container-para{
-  padding: 4px;
+  padding: 23px;
+  color: rgb(27, 99, 234);
+;
 }
 .location-input{
-  width: 44%;
-  height: 4%;
+  border: 1px solid wheat;
+  width: 88%;
+    height: 25%;
+    margin-left: 7%;
+    margin-top: 2px;
   }
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  line-height: 1.5em;
+  padding-left:  2px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  line-height: 1.5em;
+  padding-left:  2px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  line-height: 1.5em;
+  padding-left:  2px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+  line-height: 1.5em;
+  padding-left:  2px;
+}
+input[type=text] {
+     padding-left: 18px;
+     
+}
+.mile-radius{
+  margin-left: 8%;
+  margin-top: 5%;
+}
+
+.range-has-pin {
+    padding-top: 0px;
+}
+ion-range {
+    padding: 10px 42px;
+}
+.toolbar-title {
+    color: #fff;
+    text-align: center;
+}
