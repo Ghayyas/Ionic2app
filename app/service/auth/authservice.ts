@@ -1,14 +1,16 @@
 import {Injectable, Inject} from '@angular/core';
 import {Http, Headers} from '@angular/http';
+import {DataService,usercreds} from '../../service/dataService/dataService';
+
 
 
 @Injectable()
 export class AuthService {
-    static get parameters() {
-        return [[Http], [NavController]];
-    }
-
-    constructor(http, navcontroller) {
+    // static get parameters() {
+    //     return [[Http], [NavController]];
+    // }
+    public isLoggedin:boolean;
+    constructor(public http:Http) {
         this.http = http;
         this.isLoggedin = false;
     }
@@ -34,10 +36,10 @@ export class AuthService {
 
 
     }
-    register(user) {
+    register() {
 
         return new Promise(resolve => {
-            var creds = "name=" + user.name + "&password=" + user.password + "&email="+user.email;
+            var creds = DataService.dataArray[0];
 
             var headers = new Headers();
             headers.append('Content-Type', 'application/x-www-form-urlencoded');

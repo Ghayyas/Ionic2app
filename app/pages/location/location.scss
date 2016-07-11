@@ -19,7 +19,7 @@
 #container {
     z-index: 100;
     position: relative;
-    margin-top: 87%;
+    margin-top: 79%;
     margin-left: 2%;
     border: 1px solid wheat;
       width: 95%;
@@ -31,8 +31,9 @@
 }
 .container-para{
   padding: 23px;
-  color: rgb(27, 99, 234);
-;
+  color:black;
+  // color: rgb(27, 99, 234);
+
 }
 .location-input{
   border: 1px solid wheat;
@@ -80,4 +81,12 @@ ion-range {
 .toolbar-title {
     color: #fff;
     text-align: center;
+}
+.locationbutton{
+  font-size: 20px !important;
+    height: 60px !important;
+    width: 100% !important;
+    margin-left: 3px !important;
+    position: fixed !important;
+    bottom: -3px !important;
 }

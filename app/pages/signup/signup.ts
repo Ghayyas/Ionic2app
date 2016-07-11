@@ -63,11 +63,10 @@ export class SignupPage {
 	  name: '',
     type: '0',
     photo: null,
-    location: {
-      lat: null,
-      long: null,
-      radius: 3
-    }
+    longitude: null,
+    latitude: null,
+    radius: 3
+    
   }
 
   /**
@@ -100,7 +99,7 @@ export class SignupPage {
 	  });
 	  this.nav.present(loading);
     
-    var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.location);
+    var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.latitude,this.usercreds.longitude,this.usercreds.radius);
    DataService.pushData(obj).then((data)=>{
      console.log('reciveing data',data);
        

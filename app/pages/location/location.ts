@@ -3,6 +3,7 @@ import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component, EventEmitter} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService} from '../../service/dataService/dataService';
+// import {AuthService}from "../../service/auth/authservice";
 
 declare var google:any;
 declare var load:any;    
@@ -15,23 +16,25 @@ declare var $:any;
 
 export class locationPage{
     public map:any;
-
+    // public authservice;
     public cityCircle;   //Circle Map
     public Radius;      ///Radius of the Map
     public kmConverter;   //to Convert Meters in Kilometer
-    constructor(public data:DataService){
-      setTimeout(()=>{
+    constructor(public data:DataService,public http:Http){
        
+      setTimeout(()=>{
+    //    this.authservice = auth
          this.map = null;
          this.initMap();
          this.data = data;
+         this.http = http;
          this.Radius = 3;
       },3000);   // Map will load after 3 seconds
         //  console.log('my radius',this.myRadius)
     }
      //=====================staring the map ============///
      initMap() {
-        var myLatLng = {lat: DataService.dataArray[0].location.lat, lng: DataService.dataArray[0].location.long};
+        var myLatLng = {lat: DataService.dataArray[0].latitude, lng: DataService.dataArray[0].longitude};
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
           zoom: 12,
@@ -142,11 +145,11 @@ export class locationPage{
         
 
          this.cityCircle = new google.maps.Circle({
-           strokeColor: 'white',
+           strokeColor: 'blue',
             strokeOpacity: 0.8,
             strokeWeight: 2,
             fillColor: 'white',
-            fillOpacity: 4.35,
+            fillOpacity: 0.5,
             draggable: true,
              map: map,
              editable: false,
@@ -160,8 +163,8 @@ export class locationPage{
     map.setCenter(marker.getPosition());
     var drage_lat = marker.getPosition().lat();
     var drage_long = marker.getPosition().lng();
-    DataService.dataArray[0].location.lat = drage_lat;
-    DataService.dataArray[0].location.long = drage_long;
+    DataService.dataArray[0].latitude = drage_lat;
+    DataService.dataArray[0].longitude = drage_long;
     console.log("postion latitude",drage_lat);
     console.log('position long',drage_long);
   });
@@ -213,7 +216,7 @@ export class locationPage{
              
                this.cityCircle.setRadius(this.kmConverter);
                
-                 DataService.dataArray[0].location.radius = val   //push the values in array
+                 DataService.dataArray[0].radius = val   //push the values in array
 
                   console.log('city bounds',val);
           }
@@ -228,7 +231,33 @@ export class locationPage{
       
       //==============Update Profile Function ==================//
       updateProfile(){
-      DataService.getData();   // all data array;
+      DataService.getData();
+                          // all data array;
+                          
+        //  var creds = DataService.dataArray[0];
+
+        //     var headers = new Headers();
+        //     headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        //     this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers }).subscribe(data => {
+        //         // if (data.json().token)
+        //         //     resolve(true);
+        //         // else
+        //         //     resolve(false);
+        //         console.log('data',data.json())
+
+        //     },(err)=>{
+        //         console.log('err',err);
+        //     });
+        
+        
+        
+        
+          //    this.auth.register().then((data)=>{
+    //        console.log('success',data);
+    //    },(err)=>{
+    //        console.log('err',err);
+    //    })
+                          
        }
 			//=========================end=========================//
           

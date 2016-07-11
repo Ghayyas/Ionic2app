@@ -32,6 +32,7 @@ export class profile {
  FileUrlAddress: string;
  public enableuserFields: boolean;
  public formDisabled:boolean;
+ public profilePic:any
     constructor(public nav: NavController, private http:Http, public data: DataService) {
         this.zone = new NgZone({enableLongStackTrace: false});
         this.enableuserFields = false;
@@ -74,7 +75,7 @@ console.log('options',options);
    var ft = new FileTransfer();
 
    ft.upload(array[0], uri, onSuccess, onError, options);
-   console.log('arra',fileURL);
+   console.log('arra',array[0],"fileUrl",fileURL);
    function onSuccess(r) {
       console.log("Code = " + r.responseCode);
       console.log("Response = " + r.response);
@@ -113,7 +114,13 @@ upload():void {
         }).then(imageData => {
             this.zone.run(() => {
                 this.FileUrlAddress = imageData;
-            console.log('from camera',imageData);
+                
+                 var str = this.FileUrlAddress;
+                  let array = str.split("?")
+                    //  console.log(array[0])
+                // console.log('image Data',array[0]);
+                this.profilePic = array[0];
+            console.log('from camera',this.profilePic);
                 let alert = Alert.create({
                       title: 'Succeed !',
                       subTitle: 'Image has been captured',
@@ -149,7 +156,11 @@ upload():void {
         }).then(imageData => {
             this.zone.run(() => {
                 this.FileUrlAddress  =  imageData;
-                console.log('image Data',imageData);
+                var str = this.FileUrlAddress;
+                  let array = str.split("?")
+                    //  console.log(array[0])
+                    this.profilePic = array[0];
+                console.log('image Data',this.profilePic);
                   let alert = Alert.create({
                       title: 'Succeed !',
                       subTitle: 'Image has been captured',
@@ -184,26 +195,32 @@ upload():void {
   
   }
   
-  uploadSelectedImage(val1,val2){
+  uploadSelectedImage(){
     // this.data.pushData(this.usercreds);
     // DataService.pushData(this.usercreds);
-    if(val1 && val2 === true){
+    // if(val1 && val2 === true){
         DataService.dataArray[0].email = this.email;
         DataService.dataArray[0].name = this.userName;
         
-    console.log('val',val1,val2);
-    // this.uploadFile()
+    // console.log('val',val1,val2);
+    this.uploadFile()
+   let loading = Loading.create({
+		  content: "Please wait...",
+		  duration: 3000,
+		  // dismissOnPageChange: true
+	  });
+	  this.nav.present(loading);
           this.nav.push(locationPage);  
           console.log('works!');
-    }
-    else{
-      let alert = Alert.create({
-                      title: 'Validation Falied!',
-                      subTitle: 'Please Validate form and try again',
-                      buttons: ['OK']
-                });
-                      this.nav.present(alert);
-    }
+    // }
+    // else{
+      // let alert = Alert.create({
+      //                 title: 'Validation Falied!',
+      //                 subTitle: 'Please Validate form and try again',
+      //                 buttons: ['OK']
+      //           });
+      //                 this.nav.present(alert);
+    // }
     // setTimeout(function() {
     // console.log(DataService.dataArray[0].location);
     // this.FileUrlAddress = null;

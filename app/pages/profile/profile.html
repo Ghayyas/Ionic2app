@@ -16,24 +16,32 @@
 <button class="button button-block button-positive" (click)="uploadSelectedImage()">upload selected</button>
 </ion-content>-->
 
-<ion-header>
-  <ion-toolbar>
+<!--<ion-header>
+  <ion-toolbar>-->
     
     <!--<button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
     -->
-    <ion-title>
+    <!--<ion-title>
       Profile
-    </ion-title>
+    </ion-title>-->
     
     <!--<ion-buttons end>
     <button (click)="enableFileds()">
       <ion-icon ios="ios-create" md="md-create"></ion-icon>
     </button>
     </ion-buttons>-->
-  </ion-toolbar>
-</ion-header>
+  <!--</ion-toolbar>
+</ion-header>-->
+
+<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
+  <!--<ion-title>signup</ion-title>-->
+  <ion-toolbar primary>
+  <ion-title>Profile</ion-title>
+</ion-toolbar>
+</ion-navbar>
+
 
 <ion-content padding>
   <style type="text/css">
@@ -92,10 +100,11 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 }
 .bigSpan{
   position: relative;
-    left: 28%;
+  /*text-align: center;*/
+    left: 15%;
 }
 .parentSpan{
-
+ border-radius: 550px; 
 }
 .childSpan{
 position: relative;
@@ -104,7 +113,7 @@ position: relative;
   font-size: 20px !important;
     height: 60px !important;
     width: 100% !important;
-     margin-left: 0 !important; 
+    margin-left: -14px !important;
     position: fixed !important;
     bottom: -3px !important;
 }
@@ -115,7 +124,14 @@ position: relative;
    <br>
    <div class="bigSpan">
      <span class="parentSpan">
-             <img src="img/stub_profile.png" style="height: 200px;"> 
+       
+       <!--<span *ngIf="profilePic .== null">-->
+             <img src="{{profilePic || 'img/stub_profile.png'}}" style="height: 200px;
+border-radius: 97px;
+width: 203px;"> 
+     <!--</span>-->
+         <!--<img src="{{profilePic}}" alt="profie pic" style="height: 200px;">-->
+       
      </span>
        <span class="childSpan">
                <img src="img/ic_add.png" (click)="upload()" alt="add button" style="position: relative; top: -121px;height: 35px;left: -7%;">
@@ -123,7 +139,12 @@ position: relative;
          </span>
          
          </div>
-     
+         
+         <br>
+          <br>
+          <br>
+            <h5 style="margin-left: 41%;">Add Photo</h5>
+       <p style="width: 187px; margin-left: 28%; color:#5d584e"><small>Press Icon Above to add your Profile picture or press next to skip step</small></p>
     <!--<button>  
       <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon>
 </button>-->
@@ -191,12 +212,16 @@ position: relative;
  <!--</ion-list>
 
     </div>-->
+    <!--<button class="button button-block button-positive"  (click)="uploadSelectedImage()" style="font-size: 20px; height: 50px; width: 339px; margin-left: -12px;">
+  Update Profile
+</button>
+    -->
+<button full class="button lastbutton"  (click)="uploadSelectedImage()">
+  Next
+</button>
 </ion-content>
 <!--<ion-toolbar position="bottom">
   <ion-title>
     <button>Next</button></ion-title>
 </ion-toolbar>-->
 
-<button postion="bottom" full class="button lastbutton"  (click)="uploadSelectedImage()" style="font-size: 20px; height: 50px; width: 339px; margin-left: -12px;">
-  Update Profile
-</button>

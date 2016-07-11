@@ -40,9 +40,10 @@ export class usercreds{
     public name:string;
     public type: string;
     public photo:string;
-    public location: any;
-    // public lat:number;
-    // public long: number;
+    // public location: any;
+    public longitude:number;
+    public latitude: number;
+    public  radius:number;
     
 
     constructor(email1:string,
@@ -51,12 +52,17 @@ export class usercreds{
      type1: string,
      photo1:string,
     //  platform: Platform,
-    location:any){
+    longitude:number,
+    latitude:number,
+    radius:number
+    
+    // location:any
+    ){
         Geolocation.getCurrentPosition().then((resp) => {
-     this.location.lat  = resp.coords.latitude;
-    this.location.long =  resp.coords.longitude;
- console.log('cordova latitude',this.location.lat)
- console.log('cordova longitude',this.location.long)
+     this.latitude  = resp.coords.latitude;
+    this.longitude =  resp.coords.longitude;
+ console.log('cordova latitude',this.latitude)
+ console.log('cordova longitude',this.longitude)
 },(err)=>{
   if(err.code === 1){
     alert('we need to access your Location in order to access this app');
@@ -70,7 +76,9 @@ export class usercreds{
        this.name = name1;
        this.type = type1;
        this.photo = photo1;
-       this.location = location;
+       this.longitude = longitude;
+       this.latitude = latitude;
+       this.radius= radius;
        
     }
 }

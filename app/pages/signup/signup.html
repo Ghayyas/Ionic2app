@@ -57,12 +57,15 @@
 ion-segment.tab-ion-segment .tab-segment.segment-button {
     /*border-bottom: none;*/
     /*border-bottom-width: 0px;*/
-    overflow: visible;
+    /*overflow: visible;
     text-transform: Capitalize;
-    font-size: 17px;
+    font-size: 17px;*/
     background: white;
     color: #9bbffb;
 }
+ ion-segment.tab-ion-segment .tab-segment.segment-button {
+ overflow: hidden !important;     
+    }
 .tabs-image{
   margin-bottom: 3px;
 }
@@ -189,12 +192,12 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 
 </ion-list>
 
- <ion-list>
+ <!--<ion-list>
    <div style="padding: 0px 15px;">
   <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" type="submit" [disabled]="!signupForm.form.valid">
   Sign Up
-</button>
-<div class="fieldgroup" style="margin-bottom:20px;">
+</button>-->
+<div class="fieldgroup" style="margin-bottom:20px;margin-top: 14%;;">
   <p class="text-center" style="text-align:center; color: #3d3d3d;"> Already have an account? <a [navPush]="signinPage">Sign In</a></p>
   </div>
  <!-- <a class="button button-block button-positive" href="#/app/signin" style="font-size: 20px; height: 50px;">
@@ -203,11 +206,13 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
   <!--<button class="button button-block button-positive" style="font-size: 20px; height: 50px;"  [navPush]="signinPage">
   Sign in
 </button>-->
-</div>
- </ion-list>
+<!--</div>
+ </ion-list>-->
 
     </div>
-
+<button full class="button lastbutton" type="submit" [disabled]="!signupForm.form.valid">
+  Next
+</button>
 </form>
 
 </ion-content>
