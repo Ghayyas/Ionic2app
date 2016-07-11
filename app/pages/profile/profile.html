@@ -19,19 +19,19 @@
 <ion-header>
   <ion-toolbar>
     
-    <button menuToggle>
+    <!--<button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
-    
+    -->
     <ion-title>
       Profile
     </ion-title>
     
-    <ion-buttons end>
-    <button>
+    <!--<ion-buttons end>
+    <button (click)="enableFileds()">
       <ion-icon ios="ios-create" md="md-create"></ion-icon>
     </button>
-    </ion-buttons>
+    </ion-buttons>-->
   </ion-toolbar>
 </ion-header>
 
@@ -90,15 +90,46 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 .tabs-image{
   margin-bottom: 3px;
 }
-</style>
-  
-  
-      <img src="img/profile_pic.png" (click)="upload()" height="88px" style="margin-left: 134px; margin-buttom: 13px; margin-top: 42px; height: 98px;"> 
-    
-    
-    
+.bigSpan{
+  position: relative;
+    left: 28%;
+}
+.parentSpan{
 
-    <div class="signupform">
+}
+.childSpan{
+position: relative;
+}
+.lastbutton{
+  font-size: 20px !important;
+    height: 60px !important;
+    width: 100% !important;
+     margin-left: 0 !important; 
+    position: fixed !important;
+    bottom: -3px !important;
+}
+</style>
+   <br>
+   <br>
+   <br>
+   <br>
+   <div class="bigSpan">
+     <span class="parentSpan">
+             <img src="img/stub_profile.png" style="height: 200px;"> 
+     </span>
+       <span class="childSpan">
+               <img src="img/ic_add.png" (click)="upload()" alt="add button" style="position: relative; top: -121px;height: 35px;left: -7%;">
+
+         </span>
+         
+         </div>
+     
+    <!--<button>  
+      <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon>
+</button>-->
+
+
+    <!--<div class="signupform">
 
    <ion-list class="padding">
 
@@ -106,15 +137,19 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
     <div class="fullwidthrow">
      <div class="fieldgroup">   
 
-    <input type="email" name="email" [(ngModel)]="email" value="{{email}}" placeholder="Email Address" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{2,3})?">
-     
+    <input type="email" name="email"  [(ngModel)]="email" #userEmail="ngModel" [disabled]="!enableuserFields" value="{{email}}" placeholder="Email Address" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{2,3})?">
+     <div [hidden]="userEmail.valid || userEmail.pristine" style="color:red;">
+         <small> Email is required and Format should be According to <i>"ghayyasmubashir@gmail.com"</i></small>
+        </div>
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="userName" [(ngModel)]="userName" value="{{userName}}"  placeholder="Username" minlength="5">
-     
+     <input type="text" name="userName" [(ngModel)]="userName" #userName2="ngModel" [disabled]="!enableuserFields" value="{{userName}}"  placeholder="Username" minlength="5">
+     <div [hidden]="userName2.valid || userName2.pristine" style="color:red">
+        <small> userName Must be 5 Character long</small>
+     </div>
      </div>
     </div>
 
@@ -146,13 +181,22 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 
 </ion-list>
 
- <ion-list>
-   <div style="padding: 0px 15px;">
-  <button class="button button-block button-positive" (click)="uploadSelectedImage()" style="font-size: 20px; height: 50px; width: 339px; margin-left: -12px;" type="submit">
+ <ion-list>-->
+
+   <!--<div style="padding: 0px 15px;">
+  <button class="button button-block button-positive"  (click)="uploadSelectedImage()" style="font-size: 20px; height: 50px; width: 339px; margin-left: -12px;">
   Update Profile
 </button>
-</div>
- </ion-list>
+</div>-->
+ <!--</ion-list>
 
-    </div>
+    </div>-->
 </ion-content>
+<!--<ion-toolbar position="bottom">
+  <ion-title>
+    <button>Next</button></ion-title>
+</ion-toolbar>-->
+
+<button postion="bottom" full class="button lastbutton"  (click)="uploadSelectedImage()" style="font-size: 20px; height: 50px; width: 339px; margin-left: -12px;">
+  Update Profile
+</button>

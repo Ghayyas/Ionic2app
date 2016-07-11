@@ -17,7 +17,7 @@ export class locationPage{
     public map:any;
 
     public cityCircle;   //Circle Map
-    public myRadius;      ///Radius of the Map
+    public Radius;      ///Radius of the Map
     public kmConverter;   //to Convert Meters in Kilometer
     constructor(public data:DataService){
       setTimeout(()=>{
@@ -25,6 +25,7 @@ export class locationPage{
          this.map = null;
          this.initMap();
          this.data = data;
+         this.Radius = 3;
       },3000);   // Map will load after 3 seconds
         //  console.log('my radius',this.myRadius)
     }
@@ -34,27 +35,118 @@ export class locationPage{
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
           zoom: 12,
-          center: myLatLng
+          center: myLatLng,
+          styles: [
+    {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#444444"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#46bcec"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    }
+]
+          
         });
+        // var input = new google.maps.places.input(document.getElementById('pac-input'));
 
+        // google.maps.event.addListener(input,'places_changed',function(){
+        //     console.log("search",input.getPlaces());
+        //  // var places = input.getPlaces();
+        // })
+    //    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    //     var autocomplete = new google.maps.places.Autocomplete(input);
+    //     autocomplete.bindTo('bounds', map);
 
         
         
         var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
+          icon: 'img/ic_marker.png',
           draggable: true,
 
           title: 'Hello World!'
         });
-        this.myRadius = 3;
+        
 
          this.cityCircle = new google.maps.Circle({
-            strokeColor: '#FF0000',
+           strokeColor: 'white',
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.35,
+            fillColor: 'white',
+            fillOpacity: 4.35,
             draggable: true,
              map: map,
              editable: false,
@@ -76,64 +168,32 @@ export class locationPage{
   this.cityCircle.bindTo('center', marker, 'position');
   
         // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        // var input = document.getElementById('pac-input');
+        // var searchBox = new google.maps.places.SearchBox(input);
+        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+              var input = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-        
-    var input = document.getElementById('pac-input');         
-    var autocomplete = new google.maps.places.Autocomplete(input, {
-        types: ["geocode"]
-    });          
-    
-    autocomplete.bindTo('bounds', map); 
-    var infowindow = new google.maps.InfoWindow(); 
- 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-        infowindow.close();
-        var place = autocomplete.getPlace();
-        if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-        } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);  
-        }
-        
-        moveMarker(place.name, place.geometry.location);
-    });  
-     $("input").focusin(function () {
-        $(document).keypress(function (e) {
-            if (e.which == 13) {
-                infowindow.close();
-                var firstResult = $(".pac-container .pac-item:first").text();
-                
-                var geocoder = new google.maps.Geocoder();
-                geocoder.geocode({"address":firstResult }, function(results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        var lat = results[0].geometry.location.lat(),
-                            lng = results[0].geometry.location.lng(),
-                            placeName = results[0].address_components[0].long_name,
-                            latlng = new google.maps.LatLng(lat, lng);
-                        
-                        moveMarker(placeName, latlng);
-                        $("input").val(firstResult);
-                    }
-                });
+        google.maps.event.addListener(input,'places_changed',function(){
+            console.log("search",input.getPlaces());
+            var places = input.getPlaces();
+            var bounds = new google.maps.LatLngBounds();
+            var i, place;
+            for( i = 0; place=places[i];i++ ){
+                console.log('place', place.geometry.location);
+                bounds.extend(place.geometry.location);
+                marker.setPosition(place.geometry.location);
+                map.setCenter(place.geometry.location);
             }
-        });
-    });
-     
-     function moveMarker(placeName, latlng){
-        // marker.setIcon(image);
-        marker.setPosition(latlng);
-        infowindow.setContent(placeName);
-        infowindow.open(map, marker);
-     }
-
+            map.fitBounds(bounds);
+            map.setZoom(12);
+         // var places = input.getPlaces();
+        })
+        // Bias the SearchBox results towards current map's viewport.
+        // map.addListener('bounds_changed', function() {
+        //   searchBox.setBounds(map.getBounds());
+        // });
+        
+    
       }
       
       //====================== END =========================//

@@ -7,6 +7,7 @@ import {DataService} from '../../service/dataService/dataService';
 import {locationPage} from "../location/location";
 import {SigninPage} from '../signin/signin';
 
+
 declare var navigator: any;
 declare var FileUploadOptions:any;
 declare var FileTransfer :any;
@@ -29,13 +30,20 @@ export class profile {
   locationPage:locationPage
   trustAllHosts:boolean;
  FileUrlAddress: string;
+ public enableuserFields: boolean;
+ public formDisabled:boolean;
     constructor(public nav: NavController, private http:Http, public data: DataService) {
         this.zone = new NgZone({enableLongStackTrace: false});
-        
+        this.enableuserFields = false;
         // this.email = '';
+        this.formDisabled = false;
+       
+       
+
         // this.userName = '';
         this.email = DataService.dataArray[0].email;
         this.userName = DataService.dataArray[0].name;
+        console.log('userFileds',this.enableuserFields);
         // DataService.dataArray[0].email = this.email;
         // DataService.dataArray[0].name = this.userName
        
@@ -83,9 +91,6 @@ console.log('options',options);
    }
 	
 }
-
-
-
 
     //=====================================//
 upload():void {
@@ -179,16 +184,26 @@ upload():void {
   
   }
   
-  uploadSelectedImage(){
+  uploadSelectedImage(val1,val2){
     // this.data.pushData(this.usercreds);
     // DataService.pushData(this.usercreds);
+    if(val1 && val2 === true){
         DataService.dataArray[0].email = this.email;
-        DataService.dataArray[0].name = this.userName
-    console.log('data clicked');
+        DataService.dataArray[0].name = this.userName;
+        
+    console.log('val',val1,val2);
     // this.uploadFile()
           this.nav.push(locationPage);  
           console.log('works!');
-
+    }
+    else{
+      let alert = Alert.create({
+                      title: 'Validation Falied!',
+                      subTitle: 'Please Validate form and try again',
+                      buttons: ['OK']
+                });
+                      this.nav.present(alert);
+    }
     // setTimeout(function() {
     // console.log(DataService.dataArray[0].location);
     // this.FileUrlAddress = null;
@@ -197,5 +212,10 @@ upload():void {
     
     
   
+  }
+  
+  enableFileds(){
+    this.enableuserFields = true;
+    console.log('now user filed',this.enableuserFields);
   }
 }

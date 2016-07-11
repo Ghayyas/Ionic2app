@@ -19,8 +19,8 @@
  <div id='container'>
       <p class="container-para">Select mile Radius with in a geographical location to recieve information from companies</p>
       <input class="location-input" id="pac-input" type="text" placeholder="My Location">
-      <p class="mile-radius"><b>Mile Radius</b>: {{myRadius.value}}km</p>
-    <ion-range  #myRadius  min="3" max="10" danger pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
+      <p class="mile-radius"><b>Mile Radius</b>: <span *ngIf="myRadius.value == null">{{Radius}}</span>{{myRadius.value}}km</p>
+    <ion-range  #myRadius  min="3" max="100" danger pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
 <!--<p>{{myRadius.value}}</p>-->
 <!--<button (click)="updateProfile()">Update Profile</button>      -->
  </div>
