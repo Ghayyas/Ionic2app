@@ -42,9 +42,9 @@ export class profile {
        
 
         // this.userName = '';
-        this.email = DataService.dataArray[0].email;
-        this.userName = DataService.dataArray[0].name;
-        console.log('userFileds',this.enableuserFields);
+        // this.email = DataService.dataArray[0].email;
+        // this.userName = DataService.dataArray[0].name;
+        // console.log('userFileds',this.enableuserFields);
         // DataService.dataArray[0].email = this.email;
         // DataService.dataArray[0].name = this.userName
        
@@ -57,7 +57,7 @@ export class profile {
 
  uploadFile() {
 
-
+   if(this.FileUrlAddress !== undefined){
     var fileURL = this.FileUrlAddress;
    console.log('fileUrl',fileURL)
    var uri = encodeURI("http://lilanisoft.com/hotworks/api/index.php/uploadImage");
@@ -74,9 +74,9 @@ console.log('options',options);
 
    var ft = new FileTransfer();
 
-   ft.upload(array[0], uri, onSuccess, onError, options);
+   ft.upload(array[0], uri, suc, err, options);
    console.log('arra',array[0],"fileUrl",fileURL);
-   function onSuccess(r) {
+   var suc = function onSuccess(r) {
       console.log("Code = " + r.responseCode);
       console.log("Response = " + r.response);
       let photoParse = JSON.parse(r.response);
@@ -85,12 +85,13 @@ console.log('options',options);
       console.log("Sent = " + r.bytesSent);
    }
 
-   function onError(error) {
+ var err =   function onError(error) {
       alert("An error has occurred: Code = " + error.code);
       console.log("upload error source " + error.source);
       console.log("upload error target " + error.target);
    }
 	
+ }
 }
 
     //=====================================//
@@ -116,17 +117,15 @@ upload():void {
                 this.FileUrlAddress = imageData;
                 
                  var str = this.FileUrlAddress;
-                  let array = str.split("?")
-                    //  console.log(array[0])
-                // console.log('image Data',array[0]);
+                  let array = str.split("?");
                 this.profilePic = array[0];
-            console.log('from camera',this.profilePic);
-                let alert = Alert.create({
-                      title: 'Succeed !',
-                      subTitle: 'Image has been captured',
-                      buttons: ['OK']
-                });
-                      this.nav.present(alert);
+            // console.log('from camera',this.profilePic);
+                // let alert = Alert.create({
+                //       title: 'Succeed !',
+                //       subTitle: 'Image has been captured',
+                //       buttons: ['OK']
+                // });
+                //       this.nav.present(alert);
             });
             
         }, error => {
@@ -199,11 +198,11 @@ upload():void {
     // this.data.pushData(this.usercreds);
     // DataService.pushData(this.usercreds);
     // if(val1 && val2 === true){
-        DataService.dataArray[0].email = this.email;
-        DataService.dataArray[0].name = this.userName;
+        // DataService.dataArray[0].email = this.email;
+        // DataService.dataArray[0].name = this.userName;
         
     // console.log('val',val1,val2);
-    // this.uploadFile()
+    this.uploadFile()
    let loading = Loading.create({
 		  content: "Please wait...",
 		  duration: 3000,
@@ -231,8 +230,8 @@ upload():void {
   
   }
   
-  enableFileds(){
-    this.enableuserFields = true;
-    console.log('now user filed',this.enableuserFields);
-  }
+  // enableFileds(){
+  //   this.enableuserFields = true;
+  //   console.log('now user filed',this.enableuserFields);
+  // }
 }

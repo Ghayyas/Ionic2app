@@ -25,7 +25,7 @@ export class AuthService {
             this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/login', creds, { headers: headers }).subscribe(data => {
 
                 if (data.json().token) {
-                    window.localStorage.setItem('token', data.json().token);
+                    window.localStorage.setItem('ecnob.token', data.json().token);
                     this.isLoggedin = true;
                 }
                 resolve(this.isLoggedin);

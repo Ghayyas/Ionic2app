@@ -17,23 +17,10 @@ export class MyApp {
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
+      console.log('platform works..');
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-//       Geolocation.getCurrentPosition().then((resp) => {
-//      var cd  = resp.coords.latitude;
-//     var ab =  resp.coords.longitude;
-//  console.log('cordova latitude',cd)
-//  console.log('cordova longitude',ab)
-// },(err)=>{
-//   if(err.code === 1){
-//     alert('we need to access your Location in order to access this app');
-//     platform.exitApp()
-//     //return;
-//   }
-//   console.log('reciveing error ',err);
-// })
-//     });
   }
 
     )}

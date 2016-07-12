@@ -58,7 +58,7 @@ export class usercreds{
     
     // location:any
     ){
-        Geolocation.getCurrentPosition().then((resp) => {
+ Geolocation.getCurrentPosition().then((resp) => {
      this.latitude  = resp.coords.latitude;
     this.longitude =  resp.coords.longitude;
  console.log('cordova latitude',this.latitude)

@@ -70,7 +70,7 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
   margin-bottom: 3px;
 }
 </style>
-<form  (ngSubmit)="register()" #signupForm="ngForm">
+<form  (ngSubmit)="signup()" #signupForm="ngForm">
 <div class="no-padding">
   <ion-segment class="tab-ion-segment" [(ngModel)]="usercreds.type" name="type">
     <ion-segment-button class="tab-segment segment-activated" value="0" itemtype="radio"> 
@@ -116,12 +116,15 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
      <div [hidden]="email.valid || email.pristine" style="color:red;">
          <small> Email is required and Format should be According to <i>"ghayyasmubashir@gmail.com"</i></small>
         </div>
+        <div [hidden]="!emailExist" style="color:red;">
+         <small> Email Already Exist</small>
+        </div>
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="userName" required placeholder="Username" minlength="5" [(ngModel)]="usercreds.name" #name="ngModel" >
+     <input type="text" name="userName" required placeholder="Your Name" minlength="5" [(ngModel)]="usercreds.name" #name="ngModel" >
      <div [hidden]="name.valid || name.pristine" style="color:red;">
          <small> User name is required and must be 5 characters long</small>
         </div>
@@ -210,7 +213,7 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
  </ion-list>-->
 
     </div>
-<button full class="button lastbutton" type="submit" [disabled]="!signupForm.form.valid">
+<button class="button lastbutton" type="submit" [disabled]="!signupForm.form.valid">
   Next
 </button>
 </form>

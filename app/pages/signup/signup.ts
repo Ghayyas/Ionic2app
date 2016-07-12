@@ -1,11 +1,10 @@
 import {Component,Directive,Input,Output, EventEmitter} from '@angular/core';
-import {NavController, Page, Loading,Platform} from 'ionic-angular';
+import {NavController, Page, Loading,Platform,Alert} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {NgZone} from "@angular/core";
 import { EqualValidator } from '../../service/equal-validator-service/equal-validator.directive';
 
-// import { NgForm }    from '@angular/common';
 
 
 import {
@@ -27,6 +26,8 @@ import {DataService,usercreds} from '../../service/dataService/dataService';
 import {profile} from "../profile/profile";
 import {locationPage} from '../location/location';
 import {Geolocation} from "ionic-native";
+import {Http, Headers} from '@angular/http';
+
 // import {location} from "../location/location"
 
 
@@ -49,12 +50,11 @@ export class SignupPage {
   gotohomescreen = TabsPage;
   signinPage = SigninPage;
   profilePage = profile;
+  public emailExist:boolean
 
-  authservice = null;
+ 
   token = null;
-  // public lat: number;
-  // public long: number;
-  // DataService = null; 
+
   
    usercreds = {
 	  email: '',
@@ -73,10 +73,11 @@ export class SignupPage {
    * [constructor description]
    * @param {NavController} public nav [description]
    */
-  constructor(public auth: AuthService, public nav: NavController, public data: DataService,platform:Platform) {
-   
-	  this.authservice = auth;
+  constructor(public auth: AuthService, public nav: NavController, public data: DataService,platform:Platform,public http:Http) {
+   this.http = http;
+	  // this.authservice = auth;
 	  this.nav = nav;
+    this.emailExist = false;
 	  this.token = window.localStorage.getItem('ecnob.token');
 	  if (this.token != null) {
 		  this.nav.setRoot(TabsPage);
@@ -91,17 +92,31 @@ export class SignupPage {
    * [login description]
    * @param {[type]} usercreds [description]
    */
-  register() {
+
+ //========================= Register Function ===========================//
+  
+  signup() {
+    
 	  let loading = Loading.create({
 		  content: "Please wait...",
-		  duration: 300,
+		  // duration: 300,
 		  dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
-    
-    var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.latitude,this.usercreds.longitude,this.usercreds.radius);
-   DataService.pushData(obj).then((data)=>{
-     console.log('reciveing data',data);
+
+    var headers = new Headers();
+        var creds = "email=" + this.usercreds.email;
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+   let email = "email "+this.usercreds.email 
+    this.http.post('https://nameless-scrubland-35696.herokuapp.com/api/auth/checkemail',creds, { headers: headers }).subscribe((data)=>{
+        console.log('email found',data.json());
+        let success = data.json().success;
+        loading.dismiss()
+        if(success !== true){
+          var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.latitude,this.usercreds.longitude,this.usercreds.radius);
+          DataService.pushData(obj).then((data)=>{
+           console.log('reciveing data',data);
        
        if(data === true){
          this.nav.push(profile);
@@ -112,16 +127,23 @@ export class SignupPage {
    },(err)=>{
      console.log('reciveing error',err)
    });
-    // DataService.dataArray.push(obj);
-    // DataService.getData();
-    console.log('object value',obj);
-      
-	  // this.authservice.register(usercreds).then(data => {
-		//   if (data) {
-		// 	  this.nav.setRoot(TabsPage);
-		//   }
-	  // })
+        }
+        else{
+          this.emailExist = true;
+        }
+    },(err)=>{
+      loading.dismiss();
+      let alert = Alert.create({
+      title: 'ERROR !',
+      subTitle: 'Make Sure you have working internet connection',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
+        // alert('Error Make Sure you have working internet connection');
+      console.log('email not found',err.json());
+    })
+  
   }
-
+//============================== END =================================//
 
 }

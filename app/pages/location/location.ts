@@ -1,8 +1,10 @@
-import {NavController, Page, Loading,ActionSheet,Alert} from 'ionic-angular';
+import {NavController, Page, Loading,ActionSheet,Alert,Toast} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component, EventEmitter} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService} from '../../service/dataService/dataService';
+import {TabsPage} from '../tabs/tabs';
+
 // import {AuthService}from "../../service/auth/authservice";
 
 declare var google:any;
@@ -20,11 +22,12 @@ export class locationPage{
     public cityCircle;   //Circle Map
     public Radius;      ///Radius of the Map
     public kmConverter;   //to Convert Meters in Kilometer
-    constructor(public data:DataService,public http:Http){
+    constructor(public data:DataService,public http:Http, public nav: NavController){
        
       setTimeout(()=>{
     //    this.authservice = auth
          this.map = null;
+         this.nav = nav;
          this.initMap();
          this.data = data;
          this.http = http;
@@ -224,39 +227,66 @@ export class locationPage{
          
          
          
-         
+         //================== TOAST ============//
+
+
+
+   
+  
+
+
+
+         //==================END====================//
          
          
          
       
       //==============Update Profile Function ==================//
       updateProfile(){
+          let loading = Loading.create({
+		  content: "Please wait...",
+          duration: 3000,
+		dismissOnPageChange: true
+	  });
+	  this.nav.present(loading);
       DataService.getData();
                           // all data array;
                           
-        //  var creds = DataService.dataArray[0];
+         var creds =  "email=" + DataService.dataArray[0].email + "&name="+DataService.dataArray[0].name 
+         + "&password=" +DataService.dataArray[0].password + "&longitude="+DataService.dataArray[0].longitude
+         + "&latitude=" +DataService.dataArray[0].latitude + "&radius=" +DataService.dataArray[0].radius
+         + "&photo=" +DataService.dataArray[0].photo + "&type="+DataService.dataArray[0].type
 
-        //     var headers = new Headers();
-        //     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //     this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers }).subscribe(data => {
-        //         // if (data.json().token)
-        //         //     resolve(true);
-        //         // else
-        //         //     resolve(false);
-        //         console.log('data',data.json())
-
-        //     },(err)=>{
-        //         console.log('err',err);
-        //     });
+            var headers = new Headers();
+            headers.append('Content-Type', 'application/x-www-form-urlencoded');
+            this.http.post('https://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers })
+            .subscribe(data => {
+             console.log('data',data.json());
+              if (data.json().token){
+           let alert = Alert.create({
+               title: 'success !',
+               subTitle: 'successfully signup',
+               buttons: ['OK']
+           });
+             this.nav.present(alert);
+                window.localStorage.setItem('ecnob.token',data.json().token);
+                this.nav.setRoot(TabsPage);
+              }
+             
+              },(err)=>{
+         let alert = Alert.create({
+               title: 'Error !',
+               subTitle: 'Make sure You have Working internet connection and GeoLocation is enable',
+               buttons: ['OK']
+           });
+       this.nav.present(alert);
+              console.log('err',err);
+            });
         
         
         
         
-          //    this.auth.register().then((data)=>{
-    //        console.log('success',data);
-    //    },(err)=>{
-    //        console.log('err',err);
-    //    })
+   
                           
        }
 			//=========================end=========================//
