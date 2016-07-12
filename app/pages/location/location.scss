@@ -22,27 +22,25 @@
     margin-top: 79%;
     margin-left: 2%;
     border: 1px solid wheat;
-      width: 95%;
+    width: 95%;
     background-size: cover;
     opacity: 0.8;
-    height: 32%;
+    height: 42%;
     background-color: white;
-    overflow: scroll;
 }
 .container-para{
-  padding: 23px;
-  color:black;
-  // color: rgb(27, 99, 234);
-
+  font-size: smaller;
+    padding: 22px;
+    color: black;
 }
+
+
 .location-input{
   border: 1px solid wheat;
-  width: 88%;
-    height: 25%;
+    width: 88%;
+    height: 17%;
     margin-left: 7%;
     margin-top: 2px;
-
-
     text-overflow: ellipsis;
    
   }
@@ -69,24 +67,26 @@ input[type=text] {
 }
 .mile-radius{
   margin-left: 8%;
-  margin-top: 5%;
+    margin-top: 2%;
 }
 
 .range-has-pin {
     padding-top: 0px;
 }
 ion-range {
-    padding: 10px 42px;
+    padding: 12px 49px;
 }
 .toolbar-title {
     color: #fff;
     text-align: center;
 }
 .locationbutton{
-  font-size: 20px !important;
-    height: 60px !important;
+  font-size: 18px !important;
+    height: 51px !important;
     width: 100% !important;
+    /* margin-top: 68px !important; */
     margin-left: 3px !important;
     position: fixed !important;
-    bottom: -3px !important;
+    bottom: -6px !important;
+
 }

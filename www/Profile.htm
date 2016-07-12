@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://localhost:8100/?restart=184903 -->
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+    <script>
+      // Injected Ionic Go To URL Live Reload Plugin
+      window.LiveReloadPlugin_IonicGoToUrl = (function() {
+        var GOTO_KEY = "__ionic_goto_url__";
+        var HISTORY_GO_KEY = "__ionic_history_go__";
+        var GoToUrlPlugin = function(window, host) {
+          this.window = window;
+          this.host = host;
+        }
+        GoToUrlPlugin.identifier = "__ionic_goto_url__";
+        GoToUrlPlugin.version = "1.0";
+        GoToUrlPlugin.prototype.reload = function(path) {
+          try {
+            if (path) {
+              if (path.indexOf(GOTO_KEY) === 0) {
+                this.window.document.location = path.replace(GOTO_KEY, "");
+                return true;
+              }
+              if (path.indexOf(HISTORY_GO_KEY) === 0) {
+                this.window.document.history.go( parseInt(path.replace(HISTORY_GO_KEY, ""), 10));
+                return true;
+              }
+            }
+          } catch(e) {
+            console.log(e);
+          }
+          return false;
+        };
+        return GoToUrlPlugin;
+      })();
+    </script>
+  <title>Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link ios-href="build/css/app.ios.css" rel="stylesheet">
+  <link rel="stylesheet" href="./Profile_files/app.md.css">
+  <link wp-href="build/css/app.wp.css" rel="stylesheet">  
+  <link rel="stylesheet" href="./Profile_files/fontawesomes.css">
+  <link rel="stylesheet" href="./Profile_files/customize.css">
+<style>ion-app{display:none}</style><style>.toolbar-background[_ngcontent-hee-4] {
+    border-color: none;
+       background: #2f74f5;
+    color: #fff;
+}
+.bar-button-default[_ngcontent-hee-4] {
+    color: #ffffff;
+    background-color: transparent;
+}
+.signinform[_ngcontent-hee-4]{
+	padding: 0px 20px;
+	padding-top: 30px;
+}
+.ecnob-fields[_ngcontent-hee-4] .fieldgroup[_ngcontent-hee-4]{
+	margin-bottom: 15px;
+}
+.ecnob-fields[_ngcontent-hee-4] input[type="text"][_ngcontent-hee-4], .ecnob-fields[_ngcontent-hee-4] input[type="tel"][_ngcontent-hee-4], .ecnob-fields[_ngcontent-hee-4] input[type="num"][_ngcontent-hee-4], .ecnob-fields[_ngcontent-hee-4] input[type="url"][_ngcontent-hee-4], .ecnob-fields[_ngcontent-hee-4] input[type="email"][_ngcontent-hee-4], .ecnob-fields[_ngcontent-hee-4] input[type="password"][_ngcontent-hee-4], .ecnob-fields[_ngcontent-hee-4] select[_ngcontent-hee-4]{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+.ecnob-fields[_ngcontent-hee-4] select[_ngcontent-hee-4]{
+	color:#999999;
+    background: none;
+}
+
+.ecnob-fields[_ngcontent-hee-4] textarea[_ngcontent-hee-4]{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}</style><style>.signupform[_ngcontent-hee-8]{
+	padding: 0px 20px;
+	padding-top: 30px;
+}
+.ecnob-fields[_ngcontent-hee-8] .fieldgroup[_ngcontent-hee-8]{
+	margin-bottom: 15px;
+}
+.ecnob-fields[_ngcontent-hee-8] input[type="text"][_ngcontent-hee-8], .ecnob-fields[_ngcontent-hee-8] input[type="tel"][_ngcontent-hee-8], .ecnob-fields[_ngcontent-hee-8] input[type="num"][_ngcontent-hee-8], .ecnob-fields[_ngcontent-hee-8] input[type="url"][_ngcontent-hee-8], .ecnob-fields[_ngcontent-hee-8] input[type="email"][_ngcontent-hee-8], .ecnob-fields[_ngcontent-hee-8] input[type="password"][_ngcontent-hee-8], .ecnob-fields[_ngcontent-hee-8] select[_ngcontent-hee-8]{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+.ecnob-fields[_ngcontent-hee-8] select[_ngcontent-hee-8]{
+	color:#999999;
+  background: none;
+}
+
+.ecnob-fields[_ngcontent-hee-8] textarea[_ngcontent-hee-8]{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+.ion-segment.tab-ion-segment[_ngcontent-hee-8] {
+ background: white;
+ background-image: auto !important;
+}
+
+.segment-button.activated[_ngcontent-hee-8], .segment-button.segment-activated[_ngcontent-hee-8]{
+  color: #2f74f5 !important;
+  background: white !important;
+  background-image: white !important;
+}
+ion-segment.tab-ion-segment[_ngcontent-hee-8] .tab-segment.segment-button[_ngcontent-hee-8] {
+    
+    
+    
+    background: white;
+    color: #9bbffb;
+}
+ ion-segment.tab-ion-segment[_ngcontent-hee-8] .tab-segment.segment-button[_ngcontent-hee-8] {
+ overflow: hidden !important;     
+    }
+.tabs-image[_ngcontent-hee-8]{
+  margin-bottom: 3px;
+}</style><script type="text/javascript" charset="UTF-8" src="./Profile_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./Profile_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./Profile_files/stats.js"></script><style>.signupform[_ngcontent-hee-17]{
+	padding: 0px 20px;
+	padding-top: 30px;
+}
+ .fieldgroup[_ngcontent-hee-17]{
+	margin-bottom: 15px;
+}
+ input[type="text"][_ngcontent-hee-17], input[type="tel"][_ngcontent-hee-17], input[type="num"][_ngcontent-hee-17], input[type="url"][_ngcontent-hee-17], input[type="email"][_ngcontent-hee-17], input[type="password"][_ngcontent-hee-17], select[_ngcontent-hee-17]{
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+ select[_ngcontent-hee-17]{
+	color:#999999;
+  background: none;
+}
+
+textarea[_ngcontent-hee-17]{
+    width: 100%;
+    border: 1px solid #dbdfe2;
+    padding: 8px 10px;
+    border-radius: 2px;
+}
+.ion-segment.tab-ion-segment[_ngcontent-hee-17] {
+ background: white;
+ background-image: auto !important;
+}
+
+.segment-button.activated[_ngcontent-hee-17], .segment-button.segment-activated[_ngcontent-hee-17]{
+  color: #2f74f5 !important;
+  background: white !important;
+  background-image: white !important;
+}
+ion-segment.tab-ion-segment[_ngcontent-hee-17] .tab-segment.segment-button[_ngcontent-hee-17] {
+    
+    
+    overflow: visible;
+    text-transform: Capitalize;
+    font-size: 17px;
+    background: white;
+    color: #9bbffb;
+}
+.tabs-image[_ngcontent-hee-17]{
+  margin-bottom: 3px;
+}
+.bigSpan[_ngcontent-hee-17]{
+  
+  text-align: center;
+    
+}
+.parentSpan[_ngcontent-hee-17]{
+  text-align: center;
+    border-radius: 550px;
+    margin-left: 29px;
+ 
+}
+.childSpan[_ngcontent-hee-17]{
+position: relative;
+}
+.lastbutton[_ngcontent-hee-17]{
+  font-size: 20px !important;
+    height: 60px !important;
+    width: 100% !important;
+    margin-left: -14px !important;
+    position: fixed !important;
+    bottom: -3px !important;
+}</style></head>
+<body class="md platform-mobile platform-android platform-android5 platform-android5_0 platform-mobileweb disable-scroll">
+
+  <!-- this Ionic's root component and where the app will load -->
+  <ion-app class="app-init"><ion-nav ng-reflect-root="function SigninPage(auth, nav) {
+        this.auth = auth;
+        this.nav = nav;
+        this.homescreen = tabs_1.TabsPage;
+        this.signupPage = signup_1.SignupPage; ///profile page for now cna pe change to signupPage after
+        this.authservice = null;
+        this.token = null;
+        this.usercreds = {
+            email: &#39;&#39;,
+            password: &#39;&#39;
+        };
+        this.authservice = auth;
+        this.nav = nav;
+        this.token = window.localStorage.getItem(&#39;ecnob.token&#39;);
+        if (this.token != null) {
+            this.nav.setRoot(tabs_1.TabsPage);
+        }
+    }" class="has-views"><div></div><ion-page _nghost-hee-4="" class="signin-page show-page" style="z-index: 100;" hidden="">
+
+
+<ion-content _ngcontent-hee-4="" class="signin signupcreen ecnob-fields" padding=""><scroll-content>
+  
+    <div _ngcontent-hee-4="" class="signinform">
+
+   <ion-list _ngcontent-hee-4="" class="padding">
+
+   <div _ngcontent-hee-4="" class="fullwidthrow">
+     <div _ngcontent-hee-4="" class="fieldgroup">
+        <div _ngcontent-hee-4="" class="text-center" style="text-align:center;">
+         <img _ngcontent-hee-4="" src="./Profile_files/ecnob-logo.png" style="max-width: 120px;">
+          <div _ngcontent-hee-4="" class="fieldgroup" style="padding: 0px 0px;">
+           <p _ngcontent-hee-4="" style="text-align:center;margin-top: 3px;margin-bottom: 30px; color: #3d3d3d;">Business ­ Customer Relation Simplified</p>
+         </div>
+        </div>
+     </div>
+     </div>
+
+    <div _ngcontent-hee-4="" class="fullwidthrow">
+     <div _ngcontent-hee-4="" class="fieldgroup">
+     <input _ngcontent-hee-4="" name="" placeholder="Enter your Email" type="text" ng-reflect-model="" ng-reflect-name="" class="ng-untouched ng-pristine ng-valid">
+     </div>
+    </div>
+
+        <div _ngcontent-hee-4="" class="fullwidthrow">
+     <div _ngcontent-hee-4="" class="fieldgroup">
+     <input _ngcontent-hee-4="" name="" placeholder="Password" type="password" ng-reflect-model="" ng-reflect-name="" class="ng-untouched ng-pristine ng-valid">
+     </div>
+    </div>
+
+</ion-list>
+
+ <ion-list _ngcontent-hee-4="">
+   <div _ngcontent-hee-4="" style="padding: 0px 15px;">
+       
+  <button _ngcontent-hee-4="" class="button button-block button-positive disable-hover button-default" style="font-size: 20px; height: 50px;" type="button"><span class="button-inner">
+  Sign in
+</span><ion-button-effect></ion-button-effect></button>
+<div _ngcontent-hee-4="" class="fieldgroup" style="margin-bottom:20px;">
+  <p _ngcontent-hee-4="" class="text-center" style="margin-bottom: 35px; text-align:center;"> Don't have an account?</p>
+  </div>
+  <button _ngcontent-hee-4="" class="button button-block button-positive disable-hover button-default" role="link" style="font-size: 20px; height: 50px;" type="button" ng-reflect-nav-push="function SignupPage(auth, nav, data, platform) {
+        this.auth = auth;
+        this.nav = nav;
+        this.data = data;
+        this.gotohomescreen = tabs_1.TabsPage;
+        this.signinPage = signin_1.SigninPage;
+        this.profilePage = profile_1.profile;
+        this.authservice = null;
+        this.token = null;
+        // public lat: number;
+        // public long: number;
+        // DataService = null; 
+        this.usercreds = {
+            email: &#39;&#39;,
+            password: &#39;&#39;,
+            confirmPassword: &#39;&#39;,
+            name: &#39;&#39;,
+            type: &#39;0&#39;,
+            photo: null,
+            longitude: null,
+            latitude: null,
+            radius: 3
+        };
+        this.authservice = auth;
+        this.nav = nav;
+        this.token = window.localStorage.getItem(&#39;ecnob.token&#39;);
+        if (this.token != null) {
+            this.nav.setRoot(tabs_1.TabsPage);
+        }
+    }"><span class="button-inner">
+  Register Now
+</span><ion-button-effect style="left: 211.564px; transform: scale(1) translateZ(0px); height: 240px; width: 240px; margin-left: -120px; margin-top: -120px; top: 46.407px; opacity: 0; transition: transform 387.488ms, opacity 271.241ms 116.246ms;"></ion-button-effect></button>
+</div>
+ </ion-list>
+
+    </div>
+
+</scroll-content></ion-content>
+</ion-page><ion-page _nghost-hee-8="" class="signup-page show-page" style="z-index: 101;" hidden="">
+<!--template bindings={}--><ion-navbar _ngcontent-hee-8="" class="toolbar show-navbar" style="padding: 0px 0px; text-align: Center;" ng-reflect-hidden="false" hidden=""><div class="toolbar-background"></div><button category="bar-button" class="back-button disable-hover bar-button bar-button-default show-back-button" ng-reflect-category="bar-button" ng-reflect-hidden="false"><span class="button-inner"><span class="button-inner"><ion-icon class="back-button-icon ion-md-arrow-back" role="img" aria-label="arrow back" ng-reflect-name="md-arrow-back"></ion-icon><span class="back-button-text"><span class="back-default"></span></span></span></span><ion-button-effect></ion-button-effect></button><div class="toolbar-content">
+  
+  <ion-toolbar _ngcontent-hee-8="" class="toolbar" primary=""><div class="toolbar-background"></div><div class="toolbar-content">
+  <ion-title _ngcontent-hee-8=""><div class="toolbar-title">Registration</div></ion-title>
+</div></ion-toolbar>
+</div></ion-navbar>
+
+<ion-content _ngcontent-hee-8="" class="signup signupcreen ecnob-fields" padding=""><scroll-content>
+   
+<form _ngcontent-hee-8="">
+<div _ngcontent-hee-8="" class="no-padding">
+  <ion-segment _ngcontent-hee-8="" class="tab-ion-segment ng-untouched ng-pristine ng-valid" name="type" ng-reflect-model="0" ng-reflect-name="type">
+    <ion-segment-button _ngcontent-hee-8="" class="tab-segment segment-activated segment-button" itemtype="radio" role="button" tappable="" value="0" ng-reflect-value="0" aria-pressed="true"> 
+      
+      <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><div _ngcontent-hee-8="">
+      <img _ngcontent-hee-8="" alt="" class="tabs-image" height="24px" src="./Profile_files/user_active.png">
+      <div _ngcontent-hee-8="" style="margin-top: -38px;font-size: 12px;">User</div>
+       
+      </div>
+      <!--template bindings={
+  "ng-reflect-ng-if": "false"
+}-->
+      
+         
+      <ion-button-effect></ion-button-effect></ion-segment-button>
+    <ion-segment-button _ngcontent-hee-8="" class="tab-segment segment-button" itemtype="radio" role="button" tappable="" value="1" ng-reflect-value="1" aria-pressed="false">
+    
+    <!--template bindings={
+  "ng-reflect-ng-if": "false"
+}-->
+    <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><div _ngcontent-hee-8="">
+    <img _ngcontent-hee-8="" alt="" class="tabs-image" height="24px" src="./Profile_files/company_inactive.png">
+    <div _ngcontent-hee-8="" style="margin-top: -38px;font-size: 12px;">Company</div>
+    </div>
+        
+    <ion-button-effect></ion-button-effect></ion-segment-button>
+  </ion-segment>
+</div>
+    <div _ngcontent-hee-8="" class="signupform">
+
+   <ion-list _ngcontent-hee-8="" class="padding">
+
+
+    <div _ngcontent-hee-8="" class="fullwidthrow">
+     <div _ngcontent-hee-8="" class="fieldgroup">   
+       
+       
+    <input _ngcontent-hee-8="" name="email" pattern="[a-z0-9!#$%&amp;&#39;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&#39;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{2,3})?" placeholder="Email Address" required="" type="email" ng-reflect-model="a@a.cin" ng-reflect-name="email" class="ng-dirty ng-valid ng-touched">
+     <div _ngcontent-hee-8="" style="color:red;" ng-reflect-hidden="true" hidden="">
+         <small _ngcontent-hee-8=""> Email is required and Format should be According to <i _ngcontent-hee-8="">"ghayyasmubashir@gmail.com"</i></small>
+        </div>
+     </div>
+    </div>
+
+        <div _ngcontent-hee-8="" class="fullwidthrow">
+     <div _ngcontent-hee-8="" class="fieldgroup">
+     <input _ngcontent-hee-8="" minlength="5" name="userName" placeholder="Username" required="" type="text" ng-reflect-model="asdfasd" ng-reflect-name="userName" class="ng-dirty ng-valid ng-touched">
+     <div _ngcontent-hee-8="" style="color:red;" ng-reflect-hidden="true" hidden="">
+         <small _ngcontent-hee-8=""> User name is required and must be 5 characters long</small>
+        </div>
+     </div>
+    </div>
+
+        <div _ngcontent-hee-8="" class="fullwidthrow">
+     <div _ngcontent-hee-8="" class="fieldgroup">
+     <input _ngcontent-hee-8="" minlength="6" name="password" placeholder="Password" required="" reverse="true" type="password" validateequal="confirmPassword" ng-reflect-model="123456" ng-reflect-name="password" class="ng-dirty ng-valid ng-touched">
+     <div _ngcontent-hee-8="" style="color:red;" ng-reflect-hidden="true" hidden="">
+         <small _ngcontent-hee-8=""> Invalid Password &amp; Password Must be 6 charactes long</small>
+        </div>
+     </div>
+    </div>
+
+        <div _ngcontent-hee-8="" class="fullwidthrow">
+     <div _ngcontent-hee-8="" class="fieldgroup">
+     <input _ngcontent-hee-8="" name="confirmPassword" placeholder="Confirm Password" required="" reverse="false" type="password" validateequal="password" ng-reflect-model="123456" ng-reflect-name="confirmPassword" class="ng-dirty ng-valid ng-touched">
+     <div _ngcontent-hee-8="" style="color:red;" ng-reflect-hidden="true" hidden="">
+         <small _ngcontent-hee-8="">Password mismatch</small>
+        </div>
+     </div>
+    </div>
+
+    
+       
+
+        <div _ngcontent-hee-8="" class="fullwidthrow">
+     <div _ngcontent-hee-8="" class="fieldgroup">
+      <select _ngcontent-hee-8="">
+        <option _ngcontent-hee-8="">Select Category</option>
+      	<option _ngcontent-hee-8="">cat 1</option>
+      	<option _ngcontent-hee-8="">cat 2</option>
+      	<option _ngcontent-hee-8="">cat 3</option>
+      </select>
+     </div>
+    </div>
+
+        <div _ngcontent-hee-8="" class="fullwidthrow">
+     <div _ngcontent-hee-8="" class="fieldgroup">
+     <select _ngcontent-hee-8="">
+        <option _ngcontent-hee-8="">Select Sub-Category</option>
+      	<option _ngcontent-hee-8="">cat 1</option>
+      	<option _ngcontent-hee-8="">cat 2</option>
+      	<option _ngcontent-hee-8="">cat 3</option>
+      </select>
+     </div>
+    </div>
+
+</ion-list>
+
+ 
+<div _ngcontent-hee-8="" class="fieldgroup" style="margin-bottom:20px;margin-top: 14%;;">
+  <p _ngcontent-hee-8="" class="text-center" style="text-align:center; color: #3d3d3d;"> Already have an account? <a _ngcontent-hee-8="" role="link" ng-reflect-nav-push="function SigninPage(auth, nav) {
+        this.auth = auth;
+        this.nav = nav;
+        this.homescreen = tabs_1.TabsPage;
+        this.signupPage = signup_1.SignupPage; ///profile page for now cna pe change to signupPage after
+        this.authservice = null;
+        this.token = null;
+        this.usercreds = {
+            email: &#39;&#39;,
+            password: &#39;&#39;
+        };
+        this.authservice = auth;
+        this.nav = nav;
+        this.token = window.localStorage.getItem(&#39;ecnob.token&#39;);
+        if (this.token != null) {
+            this.nav.setRoot(tabs_1.TabsPage);
+        }
+    }">Sign In</a></p>
+  </div>
+ 
+  
+
+
+    </div>
+<button _ngcontent-hee-8="" class="button lastbutton disable-hover button-default button-full" full="" type="submit" ng-reflect-full="" ng-reflect-disabled="false"><span class="button-inner">
+  Next
+</span><ion-button-effect style="left: 179.685px; transform: scale(1) translateZ(0px); height: 240px; width: 240px; margin-left: -120px; margin-top: -120px; top: 32.868px; opacity: 0; transition: transform 418.688ms, opacity 293.082ms 125.606ms;"></ion-button-effect></button>
+</form>
+
+</scroll-content></ion-content>
+</ion-page><ion-page _nghost-hee-17="" class="profile">
+
+
+
+    
+    
+    
+    
+    
+  
+
+<!--template bindings={}--><ion-navbar _ngcontent-hee-17="" class="toolbar" style="padding: 0px 0px; text-align: Center;" ng-reflect-hidden="false"><div class="toolbar-background"></div><button category="bar-button" class="back-button disable-hover bar-button bar-button-default" ng-reflect-category="bar-button" ng-reflect-hidden="false"><span class="button-inner"><span class="button-inner"><ion-icon class="back-button-icon ion-md-arrow-back" role="img" aria-label="arrow back" ng-reflect-name="md-arrow-back"></ion-icon><span class="back-button-text"><span class="back-default"></span></span></span></span><ion-button-effect></ion-button-effect></button><div class="toolbar-content">
+  
+  
+  <ion-title _ngcontent-hee-17=""><div class="toolbar-title">Profile</div></ion-title>
+
+</div></ion-navbar>
+
+
+<ion-content _ngcontent-hee-17="" padding=""><scroll-content>
+  
+   <br _ngcontent-hee-17="">
+   <br _ngcontent-hee-17="">
+   <br _ngcontent-hee-17="">
+   <br _ngcontent-hee-17="">
+   <div _ngcontent-hee-17="" class="bigSpan">
+     <span _ngcontent-hee-17="" class="parentSpan">
+       
+       
+             <img _ngcontent-hee-17="" style="height: 200px;
+border-radius: 97px;
+width: 203px;" ng-reflect-src="img/stub_profile.png" src="./Profile_files/stub_profile.png"> 
+     
+         
+       
+     </span>
+       <span _ngcontent-hee-17="" class="childSpan">
+               <img _ngcontent-hee-17="" alt="add button" src="./Profile_files/ic_add.png" style="position: relative; top: -121px;height: 35px;left: -7%;">
+
+         </span>
+         
+         </div>
+         
+         <br _ngcontent-hee-17="">
+          <br _ngcontent-hee-17="">
+          <br _ngcontent-hee-17="">
+            <h5 _ngcontent-hee-17="" style="margin-left: 41%;">Add Photo</h5>
+       <p _ngcontent-hee-17="" style="width: 187px; margin-left: 28%; color:#5d584e"><small _ngcontent-hee-17="">Press Icon Above to add your Profile picture or press next to skip step</small></p>
+    
+
+
+    
+
+   
+ 
+    
+<button _ngcontent-hee-17="" class="button lastbutton disable-hover button-default button-full" full="" ng-reflect-full=""><span class="button-inner">
+  Next
+</span><ion-button-effect></ion-button-effect></button>
+</scroll-content></ion-content>
+
+
+</ion-page><ion-page _nghost-hee-17="" class="profile show-page" style="z-index: 102;">
+
+
+
+    
+    
+    
+    
+    
+  
+
+<!--template bindings={}--><ion-navbar _ngcontent-hee-17="" class="toolbar show-navbar" style="padding: 0px 0px; text-align: Center;" ng-reflect-hidden="false"><div class="toolbar-background"></div><button category="bar-button" class="back-button disable-hover bar-button bar-button-default show-back-button" ng-reflect-category="bar-button" ng-reflect-hidden="false"><span class="button-inner"><span class="button-inner"><ion-icon class="back-button-icon ion-md-arrow-back" role="img" aria-label="arrow back" ng-reflect-name="md-arrow-back"></ion-icon><span class="back-button-text"><span class="back-default"></span></span></span></span><ion-button-effect></ion-button-effect></button><div class="toolbar-content">
+  
+  
+  <ion-title _ngcontent-hee-17=""><div class="toolbar-title">Profile</div></ion-title>
+
+</div></ion-navbar>
+
+
+<ion-content _ngcontent-hee-17="" padding=""><scroll-content>
+  
+   <br _ngcontent-hee-17="">
+   <br _ngcontent-hee-17="">
+   <br _ngcontent-hee-17="">
+   <br _ngcontent-hee-17="">
+   <div _ngcontent-hee-17="" class="bigSpan">
+     <span _ngcontent-hee-17="" class="parentSpan">
+       
+       
+             <img _ngcontent-hee-17="" style="height: 200px;
+border-radius: 97px;
+width: 203px;" ng-reflect-src="img/stub_profile.png" src="./Profile_files/stub_profile.png"> 
+     
+         
+       
+     </span>
+       <span _ngcontent-hee-17="" class="childSpan">
+               <img _ngcontent-hee-17="" alt="add button" src="./Profile_files/ic_add.png" style="position: relative; top: -121px;height: 35px;left: -7%;">
+
+         </span>
+         
+         </div>
+         
+         <br _ngcontent-hee-17="">
+          <br _ngcontent-hee-17="">
+          <br _ngcontent-hee-17="">
+            <h5 _ngcontent-hee-17="" style="margin-left: 41%;">Add Photo</h5>
+       <p _ngcontent-hee-17="" style="width: 187px; margin-left: 28%; color:#5d584e"><small _ngcontent-hee-17="">Press Icon Above to add your Profile picture or press next to skip step</small></p>
+    
+
+
+    
+
+   
+ 
+    
+<button _ngcontent-hee-17="" class="button lastbutton disable-hover button-default button-full" full="" ng-reflect-full=""><span class="button-inner">
+  Next
+</span><ion-button-effect></ion-button-effect></button>
+</scroll-content></ion-content>
+
+
+</ion-page><div nav-portal=""></div><ion-loading role="dialog" class="loading-cmp"><ion-backdrop disable-activated="" role="presentation" tappable=""></ion-backdrop><div class="loading-wrapper"><!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><div class="loading-spinner"><ion-spinner ng-reflect-name="crescent" ng-reflect-class-name="spinner-crescent" class="spinner-crescent"><!--template bindings={
+  "ng-reflect-ng-for-of": "[object Object]"
+}--><svg viewBox="0 0 64 64" ng-reflect-raw-style="[object Object]" style="animation-duration: 750ms;"><circle transform="translate(32,32)" r="26"></circle></svg><!--template bindings={
+  "ng-reflect-ng-for-of": ""
+}--></ion-spinner></div><!--template bindings={
+  "ng-reflect-ng-if": "Please wait..."
+}--><div class="loading-content" ng-reflect-inner-h-t-m-l="Please wait...">Please wait...</div></div></ion-loading></ion-nav></ion-app>
+
+  <!-- cordova.js required for cordova apps -->
+  <script src="./Profile_files/cordova.js"></script>
+  <!-- Polyfill needed for platforms without Promise and Collection support -->
+
+ 
+
+  <script src="./Profile_files/es6-shim.min.js"></script>
+  <!-- Zone.js and Reflect-metadata  -->
+  <script src="./Profile_files/Reflect.js"></script>
+  <script src="./Profile_files/zone.js"></script>
+   <script src="./Profile_files/jquery-2-2-4.min.js"></script>
+
+  <!-- the bundle which is built from the app's source code -->
+  <script src="./Profile_files/app.bundle.js"></script><focus-ctrl aria-hidden="true"><button tabindex="-1"></button></focus-ctrl>
+  <!--https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places&callback=initAutocomplete-->
+  <!--https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places≥-->
+<script src="./Profile_files/js" async="" defer="">
+    </script>
+
+  
+
+  <script>
+
+$(document).ready(function(){
+   //alert("working....");
+    $("#btnclick").click(function(){
+        alert("The paragraph was clicked.");
+    });
+});
+
+  </script>
+
+
+<script>//<![CDATA[
+document.write('<script src="//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>')
+//]]></script><script src="./Profile_files/livereload.js"></script>
+
+
+</body></html>

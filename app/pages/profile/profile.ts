@@ -203,7 +203,7 @@ upload():void {
         DataService.dataArray[0].name = this.userName;
         
     // console.log('val',val1,val2);
-    this.uploadFile()
+    // this.uploadFile()
    let loading = Loading.create({
 		  content: "Please wait...",
 		  duration: 3000,
