@@ -54,8 +54,9 @@
 }
 
 </style>
-    <div class="signinform">
+    <form (submit)="login(usercreds)" #signInForm="ngForm">
 
+    <div class="signinform">
    <ion-list class="padding">
 
    <div class="fullwidthrow">
@@ -71,13 +72,19 @@
 
     <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" [(ngModel)]="usercreds.email" placeholder="Enter your Email">
+   <input type="text" name="email" required [(ngModel)]="usercreds.email" placeholder="Enter your Email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{2,3})?" #email="ngModel">
+     <div [hidden]="email.valid || email.pristine" style="color:red">
+         <small>*Required</small>
+     </div>
      </div>
     </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="password" name="" [(ngModel)]="usercreds.password" placeholder="Password">
+     <input type="password" name="password" minlength="6" [(ngModel)]="usercreds.password" required #password="ngModel" placeholder="Password">
+     <div [hidden]="password.valid || password.pristine" style="color: red">
+         <small>*Required</small>
+     </div>
      </div>
     </div>
 
@@ -86,7 +93,7 @@
  <ion-list>
    <div style="padding: 0px 15px;">
        <!--usercreds-->
-  <button type="button" class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="login(usercreds)" >
+  <button type="button" [disabled]="!signInForm.form.valid" type="submit" class="button button-block button-positive" style="font-size: 20px; height: 50px;" >
   Sign in
 </button>
 <div class="fieldgroup" style="margin-bottom:20px;">
@@ -99,5 +106,6 @@
  </ion-list>
 
     </div>
+</form>
 
 </ion-content>

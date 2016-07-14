@@ -8,25 +8,43 @@
 
 -->
 
+<style>
 
-<ion-navbar *navbar>
+</style>
+    <ion-navbar hideBackButton *navbar>
 
-<!--<ion-toolbar primary>-->
-
-  <ion-buttons start>
-    <button royal menuToggle>
-        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+    <button menuToggle>
+      <ion-icon name='menu'></ion-icon>
     </button>
-  </ion-buttons>
-  <ion-title>ALL EVENTS</ion-title>
+    <ion-title>
+      All Events
+    </ion-title>
     <ion-buttons end>
-    <button royal [navPush]="alleventformscreen">
+    <button royal>
       <ion-icon name="search"></ion-icon>
     </button>
   </ion-buttons>
-<!--</ion-toolbar>-->
-</ion-navbar>
-
+      <ion-buttons end>
+    <button royal [navPush]="alleventformscreen">
+       <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+  </ion-buttons>
+   </ion-navbar>
+   
+   <!--[attr.primary]="isAndroid ? '' : null" no-border-top-->
+   <!--[attr.light]="isAndroid ? '' : null"-->
+     <ion-toolbar>
+    <ion-segment (ngModel)="pet">
+      <ion-segment-button value="puppies">
+        Puppies
+      </ion-segment-button>
+      <ion-segment-button value="kittens">
+        Kittens
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+   
+   <!--</ion-header>-->
 <ion-page>
 <ion-content class="all-events">
   <div *ngIf="definedError == true">
@@ -57,7 +75,7 @@
     <ion-col width-50 style="text-align:right;">
       <p style="color:#7d7d7d;" class="datetime">{{arr.star_date}} {{arr.end_date}}</p>
        <div class="padding">
-       <ion-segment class="segbar" [(ngModel)]="pet">
+       <ion-segment class="segbar" (ngModel)="pet">
     <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
       YES
     </ion-segment-button>
@@ -76,7 +94,7 @@
 	</ion-list>
 	<ion-list class="eventlist" [navPush]="eventDetailPage">
 	  <ion-item style="padding: 0px 0px;">
-	     <img [src]="img/company2.jpg" alt="image not avalibles">
+	     <img src="img/company2.jpg" alt="image not avalibles">
          <div class="img-layer"></div>
 	  </ion-item>
 	  <ion-item style="padding: 0px 10px;">

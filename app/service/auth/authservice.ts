@@ -36,21 +36,21 @@ export class AuthService {
 
 
     }
-    register() {
+    // register() {
 
-        return new Promise(resolve => {
-            var creds = DataService.dataArray[0];
+    //     return new Promise(resolve => {
+    //         var creds = DataService.dataArray[0];
 
-            var headers = new Headers();
-            headers.append('Content-Type', 'application/x-www-form-urlencoded');
-            this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers }).subscribe(data => {
-                if (data.json().token)
-                    resolve(true);
-                else
-                    resolve(false);
+    //         var headers = new Headers();
+    //         headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    //         this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers }).subscribe(data => {
+    //             if (data.json().token)
+    //                 resolve(true);
+    //             else
+    //                 resolve(false);
 
-            });
-        });
+    //         });
+    //     });
 
     }
 

@@ -30,7 +30,6 @@ export class AllEventsPage {
 
   constructor(public nav: NavController, public http:Http, menu: MenuController) {
     this.http = http;
-    menu.enable(true);
     this.error = false;
     this.definedError = false;
    

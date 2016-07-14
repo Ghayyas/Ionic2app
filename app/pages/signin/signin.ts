@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Page, Loading} from 'ionic-angular';
+import {NavController, Page, Loading,Alert} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
@@ -39,7 +39,20 @@ export class SigninPage {
 		   this.nav.setRoot(TabsPage);
 	   }   
    }
-
+   
+   //=============== Alert Funciton =================//
+   
+     getalert(data,msg){
+       let alert = Alert.create({
+                   title: data,
+                   subTitle: msg,
+                   buttons: ['OK']
+                 });
+                      this.nav.present(alert);
+     }
+  
+  //================= Alert END =============//
+  
    /**
     * [login description]
     * @param {[type]} usercreds [description]
@@ -48,15 +61,18 @@ export class SigninPage {
               //  console.log('users',usercreds)
 	   let loading = Loading.create({
 		   content: "Please wait...",
-		   duration: 3000,
+		  //  duration: 3000,
 		   dismissOnPageChange: true
 	   });
 	   this.nav.present(loading);
 
 	   this.authservice.login(usercreds).then(data => {
-		   if (data){
+		  
+       loading.dismiss(true);
+       if (data){
 			   this.nav.setRoot(TabsPage);
 		   }
+      
 	   })
    }
 
