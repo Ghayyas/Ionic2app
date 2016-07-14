@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController,Alert, Loading} from 'ionic-angular';
+import {NavController,Alert, Loading,MenuController} from 'ionic-angular';
 import {EventDetailsPage} from '../event-details/event-details';
 import {AllEventFormPage} from '../all-event-form/all-event-form';
 import {Http, Headers } from '@angular/http';
@@ -23,8 +23,14 @@ export class AllEventsPage {
   public definedError: boolean;
   
   alleventformscreen = AllEventFormPage;
-  constructor(public nav: NavController, public http:Http) {
+
+
+  // ============== Constructor =============//
+
+
+  constructor(public nav: NavController, public http:Http, menu: MenuController) {
     this.http = http;
+    menu.enable(true);
     this.error = false;
     this.definedError = false;
    
@@ -39,7 +45,7 @@ export class AllEventsPage {
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
    headers.append('Authorization', `Bearer ${ecnobToken}`)
-    this.http.get('http://nameless-scrubland-35696.herokuapp.com/api/events/get',{headers:headers})
+    this.http.get(' https://nameless-scrubland-35696.herokuapp.com/api/events/eventlist',{headers:headers})
     .subscribe(
       (data)=>{
        this.loading.dismiss();

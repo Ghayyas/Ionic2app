@@ -1,13 +1,30 @@
-<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
 
-<ion-toolbar primary>
+
+<!--
+  
+  
+  Created by Ghayyas Mubashir
+
+
+-->
+
+
+<ion-navbar *navbar>
+
+<!--<ion-toolbar primary>-->
+
+  <ion-buttons start>
+    <button royal menuToggle>
+        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+    </button>
+  </ion-buttons>
   <ion-title>ALL EVENTS</ion-title>
-    <ion-buttons start>
+    <ion-buttons end>
     <button royal [navPush]="alleventformscreen">
       <ion-icon name="search"></ion-icon>
     </button>
   </ion-buttons>
-</ion-toolbar>
+<!--</ion-toolbar>-->
 </ion-navbar>
 
 <ion-page>
