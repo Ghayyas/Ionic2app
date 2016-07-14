@@ -1,34 +1,38 @@
 .signup {
 
 }
-.toolbar-background {
-    border-color: none;
-    // background: #2f74f5;
-    color: #fff;
+// .toolbar-background {
+//     border-color: none;
+//     // background: #2f74f5;
+//     color: #fff;
+// }
+// .bar-button-default {
+//     color: #ffffff;
+//     background-color: transparent;
+// }
+// .toolbar[primary] .toolbar-background {
+//     background: #387ef5;
+//     background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+//     background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+//     background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+//     background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+// }
+// .button.button-positive{
+//     background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+//     background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+//     background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+//     background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
+//     text-transform: capitalize;
+// }
+
+
+.toolbar-title {
+    display: block;
+    overflow: hidden;
+    // width: initial;
+    text-overflow: clip;
+    white-space: nowrap;
 }
-.bar-button-default {
-    color: #ffffff;
-    background-color: transparent;
-}
-.toolbar[primary] .toolbar-background {
-    background: #387ef5;
-    background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-    background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-}
-.button.button-positive{
-    background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-    background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-    background-image: -0-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-    background-image: -linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
-    text-transform: capitalize;
-}
-.lastbutton{
-  font-size: 20px !important;
-    height: 60px !important;
-    width: 100% !important;
-     margin-left: -14px !important; 
-    position: fixed !important;
-    bottom: -3px !important;
+.toolbar-content{
+    margin-left: -12%;
 }

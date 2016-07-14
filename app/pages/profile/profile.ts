@@ -114,12 +114,12 @@ upload():void {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                this.FileUrlAddress = imageData;
-                
-                 var str = this.FileUrlAddress;
-                  let array = str.split("?");
-                this.profilePic = array[0];
-            // console.log('from camera',this.profilePic);
+                this.FileUrlAddress  =  imageData;
+                var str = this.FileUrlAddress;
+                  let array = str.split("?")
+                    //  console.log(array[0])
+                    this.profilePic = array[0];
+                console.log('image Data',this.profilePic);
                 // let alert = Alert.create({
                 //       title: 'Succeed !',
                 //       subTitle: 'Image has been captured',
@@ -160,12 +160,12 @@ upload():void {
                     //  console.log(array[0])
                     this.profilePic = array[0];
                 console.log('image Data',this.profilePic);
-                  let alert = Alert.create({
-                      title: 'Succeed !',
-                      subTitle: 'Image has been captured',
-                      buttons: ['OK']
-                });
-                      this.nav.present(alert);
+            //       let alert = Alert.create({
+            //           title: 'Succeed !',
+            //           subTitle: 'Image has been captured',
+            //           buttons: ['OK']
+            //     });
+            //           this.nav.present(alert);
             });
             // this.FileUrlAddress = null;
         }, error => {

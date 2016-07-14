@@ -15,6 +15,7 @@ static dataArray : Array<usercreds> = new Array();
   static pushData(key){
       return new Promise(resolve=>{
         DataService.dataArray.push(key);
+        console.log('data Service',DataService.dataArray[0]);
         if(DataService.dataArray[0] !==null){
             resolve(true)
 

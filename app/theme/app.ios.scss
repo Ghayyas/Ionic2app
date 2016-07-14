@@ -30,3 +30,23 @@
 // App iOS Only Sass
 // --------------------------------------------------
 // CSS that should only apply to the iOS app
+ion-segment.tab-ion-segment .tab-segment.segment-button {
+    border-bottom: 1px solid blue;
+    border-bottom-width: 1px;
+    overflow: visible;
+    text-transform: Capitalize;
+    font-size: 17px;
+}
+#container{
+    height: 50%;
+}
+.lastbutton{
+    position: absolute;
+    right: 0;
+    // bottom: 0;
+    left: 0;
+    padding: 2rem;
+    bottom: -4px !important;
+    /* background-color: #efefef; */
+    text-align: center;
+}

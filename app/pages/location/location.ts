@@ -168,8 +168,8 @@ export class locationPage{
     var drage_long = marker.getPosition().lng();
     DataService.dataArray[0].latitude = drage_lat;
     DataService.dataArray[0].longitude = drage_long;
-    console.log("postion latitude",drage_lat);
-    console.log('position long',drage_long);
+    // console.log("postion latitude",drage_lat);
+    // console.log('position long',drage_long);
   });
   this.cityCircle.bindTo('center', marker, 'position');
   
@@ -180,12 +180,12 @@ export class locationPage{
               var input = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
         google.maps.event.addListener(input,'places_changed',function(){
-            console.log("search",input.getPlaces());
+            // console.log("search",input.getPlaces());
             var places = input.getPlaces();
             var bounds = new google.maps.LatLngBounds();
             var i, place;
             for( i = 0; place=places[i];i++ ){
-                console.log('place', place.geometry.location);
+                // console.log('place', place.geometry.location);
                 bounds.extend(place.geometry.location);
                 marker.setPosition(place.geometry.location);
                 map.setCenter(place.geometry.location);
@@ -221,7 +221,7 @@ export class locationPage{
                
                  DataService.dataArray[0].radius = val   //push the values in array
 
-                  console.log('city bounds',val);
+                //   console.log('city bounds',val);
           }
          //======================end =========================//
          
@@ -249,7 +249,7 @@ export class locationPage{
 		dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
-      DataService.getData();
+    //   DataService.getData();
                           // all data array;
                           
          var creds =  "email=" + DataService.dataArray[0].email + "&name="+DataService.dataArray[0].name 
@@ -261,7 +261,7 @@ export class locationPage{
             headers.append('Content-Type', 'application/x-www-form-urlencoded');
             this.http.post('https://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers })
             .subscribe(data => {
-             console.log('data',data.json());
+            //  console.log('data',data.json());
               if (data.json().token){
            let alert = Alert.create({
                title: 'success !',
@@ -280,7 +280,7 @@ export class locationPage{
                buttons: ['OK']
            });
        this.nav.present(alert);
-              console.log('err',err);
+            //   console.log('err',err);
             });
         
         

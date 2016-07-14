@@ -5,20 +5,6 @@ import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {NgZone} from "@angular/core";
 import { EqualValidator } from '../../service/equal-validator-service/equal-validator.directive';
 
-
-
-import {
-  Control,
-  ControlGroup,
-  NgForm,
-  Validators,
-  NgControl,
-  ControlValueAccessor,
-  NgControlName,
-  NgFormModel,
-  FormBuilder,
-  
-} from '@angular/common';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from '../signin/authservice';
 
@@ -96,10 +82,10 @@ export class SignupPage {
  //========================= Register Function ===========================//
   
   signup() {
-    
+     console.log('data',this.usercreds.email,this.usercreds.password,this.usercreds.type);
 	  let loading = Loading.create({
 		  content: "Please wait...",
-		  // duration: 300,
+		  //  duration: 300,
 		  dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
@@ -118,7 +104,15 @@ export class SignupPage {
           DataService.pushData(obj).then((data)=>{
            console.log('reciveing data',data);
        
-       if(data === true){
+       if(data == true){
+
+    //       let alert = Alert.create({
+    //   title: 'success !',
+    //   subTitle: 'Make Sure you have working internet connection',
+    //   buttons: ['OK']
+    // });
+    //    this.nav.present(alert);
+
          this.nav.push(profile);
        }
      else{

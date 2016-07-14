@@ -16,32 +16,39 @@
   <!--</ion-toolbar>
 </ion-header>-->
 
-<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
+
+<ion-navbar *navbar>
   <!--<ion-title>signup</ion-title>-->
-  <ion-toolbar primary>
+
   <ion-title>Profile</ion-title>
-</ion-toolbar>
+
 </ion-navbar>
 
 <ion-content>
+  <div id="map_canvas"></div>
+  <div class="wrapper">
+    <br>
+   
  <div id='container'>
       <p class="container-para">Select mile Radius with in a geographical location to recieve information from companies</p>
       <input class="location-input" id="pac-input" type="text" placeholder="My Location">
       <p class="mile-radius"><b>Mile Radius</b>: <span *ngIf="myRadius.value == null">{{Radius}}</span>{{myRadius.value}}km</p>
-   <ion-range  #myRadius  min="3" max="100" primary pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
+   <ion-range style="margin-top: -10px;"  #myRadius  min="3" max="100" primary pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
 
 <!--<p>{{myRadius.value}}</p>-->
 <!--<button (click)="updateProfile()">Update Profile</button>      -->
  </div>
+ <button full class="lastbutton"  (click)="updateProfile()">
+  Done
+</button>
 
-<div id="map_canvas"></div>
+
 
     <!--<ion-range  #myRadius  min="3" max="10" danger pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range>
 <p>{{myRadius.value}}</p>
 <button (click)="updateProfile()">Update Profile</button>-->
-<button full class="button locationbutton"  (click)="updateProfile()">
-  Done
-</button>
+
+</div>
     </ion-content>
     
    
