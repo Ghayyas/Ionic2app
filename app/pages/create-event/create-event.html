@@ -4,11 +4,11 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
-<ion-toolbar primary>
-  <ion-title>CREATE EVENT</ion-title>
-</ion-toolbar>
-</ion-navbar>
+ <ion-navbar primary hideBackButton *navbar>
+   <ion-title>
+     Create Events
+    </ion-title>
+   </ion-navbar>
 
 <ion-content padding class="create-event ecnob-fields">
   <ion-list class="padding">
@@ -16,7 +16,7 @@
      <div class="fieldgroup">
      
        	<h3>Event Type</h3>
-<radio-group [(ngModel)]="parameters.type">
+<radio-group (ngModel)="parameters.type">
 
 
        	<label class="radiolabel" for="radio-one">
@@ -74,7 +74,7 @@
      <div class="fullwidthrow">
      <div class="fieldgroup">
   
-     <button class="button button-block button-positive"  (click)="presentActionSheet()"> Upload Picture </button>
+     <input type="text" readonly value='myImage.png' (click)="presentActionSheet()"> 
      <ion-icon ios="ios-attach" md="md-attach"></ion-icon>
      </div>
     </div>
@@ -93,7 +93,7 @@
    <div style="padding: 0px 15px;">   
      <!--[navPush]="createListPeopleToInvite"-->
   <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="submit(parameters)">
-  Submit
+  Next
 </button>
 </div>
  </ion-list>

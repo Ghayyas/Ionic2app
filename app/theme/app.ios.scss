@@ -50,3 +50,18 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
     /* background-color: #efefef; */
     text-align: center;
 }
+ion-content-section{
+    margin-top: -10px !important;
+}
+
+
+.toolbar .segment-button{
+ max-width: 45%;
+height: 2.6rem;
+font-size: 1.2rem;
+line-height: 2.5rem;
+border-bottom: 1px solid white;
+}
+.button-small{
+    padding: 0 0.9px !important;
+}

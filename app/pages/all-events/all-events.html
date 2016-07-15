@@ -8,24 +8,22 @@
 
 -->
 
-<style>
 
-</style>
-    <ion-navbar hideBackButton *navbar>
+    <ion-navbar primary hideBackButton *navbar>
 
     <button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>
-      All Events
+     Events
     </ion-title>
     <ion-buttons end>
-    <button royal>
+    <button royal [navPush]="alleventformscreen">
       <ion-icon name="search"></ion-icon>
     </button>
   </ion-buttons>
       <ion-buttons end>
-    <button royal [navPush]="alleventformscreen">
+    <button royal [navPush]="creatEvent">
        <ion-icon ios="ios-add" md="md-add"></ion-icon>
     </button>
   </ion-buttons>
@@ -33,13 +31,13 @@
    
    <!--[attr.primary]="isAndroid ? '' : null" no-border-top-->
    <!--[attr.light]="isAndroid ? '' : null"-->
-     <ion-toolbar>
-    <ion-segment (ngModel)="pet">
-      <ion-segment-button value="puppies">
-        Puppies
+     <ion-toolbar primary>
+    <ion-segment #type>
+      <ion-segment-button class="tab-segment segment-activated" value="1" itemtype="radio">
+        Public Events
       </ion-segment-button>
-      <ion-segment-button value="kittens">
-        Kittens
+      <ion-segment-button class="tab-segment" value="0" itemtype="radio">
+        Private Events
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -47,6 +45,7 @@
    <!--</ion-header>-->
 <ion-page>
 <ion-content class="all-events">
+  <div class="from-top"></div>
   <div *ngIf="definedError == true">
     <h3>Cannot Fetch Data from Server Please Contact application developer for support.</h3>
   </div>
@@ -62,47 +61,112 @@
           <li>4. If every thing is working fine. Please contact application Developer for support.</li></ul>
     
   </div>
-  <div *ngFor = "let arr of event">
+  <!--*ngFor = "let arr of event" -->
+  <div class="card-background-page">
+    <ion-card [navPush]="eventDetailPage">
     
- <ion-list class="eventlist" [navPush]="eventDetailPage">
-	  <ion-item>
-	    <ion-grid>
-  <ion-row>
-    <ion-col width-50>
-     <h2 class="eventname">{{arr.name}} </h2>
-     <!--<h3 class="blue-text">By: Bussiness Name</h3>-->
-     </ion-col>
-    <ion-col width-50 style="text-align:right;">
-      <p style="color:#7d7d7d;" class="datetime">{{arr.star_date}} {{arr.end_date}}</p>
-       <div class="padding">
-       <ion-segment class="segbar" (ngModel)="pet">
-    <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
-      YES
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="puppies">
-      NO
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="GAMES">
-      MAY BE
-    </ion-segment-button>
-  </ion-segment>
-       </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-	  </ion-item>
-	</ion-list>
-	<ion-list class="eventlist" [navPush]="eventDetailPage">
-	  <ion-item style="padding: 0px 0px;">
-	     <img src="img/company2.jpg" alt="image not avalibles">
-         <div class="img-layer"></div>
-	  </ion-item>
-	  <ion-item style="padding: 0px 10px;">
+    <img src="img/comp-detail.jpg"/>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
+     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <!--<span item-right>Yes</span>
+    <span item-right>No</span>-->
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+     Yes
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      No
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      MayBe
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
 
-	     <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
- {{arr.location}}</p>
-	  </ion-item>
-	</ion-list>
+</div>
+
+<div class="card-background-page">
+    <ion-card [navPush]="eventDetailPage">
+    
+    <img src="img/comp-detail.jpg"/>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
+     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <!--<span item-right>Yes</span>
+    <span item-right>No</span>-->
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+     Yes
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      No
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      MayBe
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
+
+</div>
+
+<div class="card-background-page">
+    <ion-card [navPush]="eventDetailPage">
+    
+    <img src="img/comp-detail.jpg"/>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
+     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <!--<span item-right>Yes</span>
+    <span item-right>No</span>-->
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+     Yes
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      No
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      MayBe
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
 
 </div>
 

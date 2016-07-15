@@ -11,7 +11,7 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 @Component({
   template: `
-  <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="true"></ion-nav>
+  <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
 
   <ion-menu [content]="content">
 
