@@ -1,13 +1,28 @@
-<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
+ 
+ 
+ <style>
+   
+   ion-buttons{
+     margin-bottom: -8%;
+   }
+ </style>
+ 
+ 
+ <ion-navbar primary hideBackButton *navbar>
 
-<ion-toolbar primary>
-  <ion-title>ALL EVENTS</ion-title>
-    <ion-buttons start>
+<!--<ion-toolbar primary>-->
+  <ion-buttons>
+     <button royal (click)="AllEventsPage()" style="text-transform: capitalize;">
+       Cancel
+     </button>
+    </ion-buttons>
+  <ion-title>Search Event</ion-title>
+    <!--<ion-buttons start>
     <button royal [navPush]="alleventformscreen">
       <ion-icon name="search"></ion-icon>
     </button>
-  </ion-buttons>
-</ion-toolbar>
+  </ion-buttons>-->
+<!--</ion-toolbar>-->
 </ion-navbar>
 
 <ion-content padding class="all-event-form ecnob-fields">
@@ -15,7 +30,7 @@
 
 <div class="fullwidthrow">
      <div class="fieldgroup">
-       <ion-label style="color: #fff;"><big>Search By</big> | Near by</ion-label>
+       <ion-label><big>Search By</big> | Near by</ion-label>
      </div>
      </div>
 
@@ -43,6 +58,8 @@
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="date" name="" placeholder="20/5/2016">
+           <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+
      </div>
     </div>
     </ion-col>
@@ -50,6 +67,8 @@
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="date" name="" placeholder="20/5/2016">
+           <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+
      </div>
     </div>
     </ion-col>
@@ -59,7 +78,7 @@
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Radius Mile">
+     <input type="number" name="" placeholder="Radius Mile">
      </div>
     </div>
 

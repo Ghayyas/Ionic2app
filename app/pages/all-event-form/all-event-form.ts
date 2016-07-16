@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {CreateEventPage} from '../create-event/create-event';
+import {AllEventsPage} from '../all-events/all-events';
 
 /*
   Generated class for the AllEventFormPage page.
@@ -12,6 +12,15 @@ import {CreateEventPage} from '../create-event/create-event';
   templateUrl: 'build/pages/all-event-form/all-event-form.html',
 })
 export class AllEventFormPage {
-  createevent = CreateEventPage;
-  constructor(public nav: NavController) {}
+  // createevent = AllEventsPage;
+  constructor(public nav: NavController) {
+    this.nav = nav;
+    console.log('nav',this.nav.id)
+  }
+  cancel(){
+    this.nav.pop();
+    // this.nav.push(AllEventsPage)
+  }
+  
+
 }

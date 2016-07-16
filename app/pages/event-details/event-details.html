@@ -6,6 +6,7 @@
 -->
 <ion-navbar primary *navbar style="padding: 0px 0px; text-align: Center;">
 <!--<ion-toolbar primary>-->
+<!--<ion-nav id="nav" [root]="page" #content swipe-back-enabled="false"></ion-nav>-->
   <ion-title>Event's Details</ion-title>
   <!--<ion-buttons start>
     <button royal>
@@ -15,19 +16,60 @@
 <!--</ion-toolbar>-->
 </ion-navbar>
 
+
+<style>
+  ion-tabs.myfoo ion-tabbar-section{
+    position: fixed;
+    z-index: 9999999;
+    bottom: 0px;
+}
+  .markerblack{
+    color:rgba(0, 0, 0, 0.37) !important;
+  }
+
+  
+</style>
+
 <ion-content class="event-details">
+  
+    <!--<ion-tabs tabbarPlacement="bottom" class="myfoo" preloadTabs="false" #paymentTabs>
+            <ion-tab [root]="cars" [rootParams]="fooId" tabTitle="cars" tabIcon="pulse"></ion-tab>
+            <ion-tab [root]="bikes" tabTitle="bikes" [rootParams]="fooId" tabIcon="analytics"></ion-tab>
+            <ion-tab [root]="ships" tabTitle="ships" [rootParams]="fooId" tabIcon="card" ></ion-tab>
+        </ion-tabs>-->
+  
   <ion-list class="eventlist even-detail-list">
 
 	  <ion-item style="padding: 0px 0px; position:relative;">
-	  <div class="coverphoto">
+    <div class="coverphoto">
 	     <img src="img/evenbanner.jpg" style="border-radius: 12px;">
        <!--<div class="img-layer"></div>-->
-	     </div>
+       </div>
+	  <div class="alignmiddle">   
      <div class="head-center">
-       <h2>New Year Celebration</h1>
+       <h2>New Year Celebration</h2>
      </div>
-
-	       <!--<!--<ion-row class="banner-content">
+     <br>
+     
+     <div class="Fireworks">
+     <h3>Fireworks Inc</h3>
+     <p>1st januray 2-16 at 00:00 Hrs</p>
+     </div>
+     <div class="cityToShow">
+       <p><i class="fa fa-map-marker markerblack" aria-hidden="true"></i>New York, USA</p>
+     </div>
+	    <br>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere perspiciatis odit maiores ad saepe doloribus voluptate illo dolorum quisquam veniam beatae molestiae adipisci eaque voluptatem quos sunt, quas ipsa assumenda.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur reprehenderit tempora, unde eligendi provident aut ut ex, magni veritatis quam omnis doloribus placeat voluptate! Optio dolorem explicabo nisi accusamus autem!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt esse tempora doloremque minima fugiat aliquam suscipit velit, officiis labore libero debitis odio molestiae. Veniam quo laboriosam ea nemo eaque obcaecati.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora illo vero hic corrupti nam, tempore suscipit. Dolores perspiciatis asperiores, veritatis, at consequuntur esse blanditiis inventore perferendis omnis tenetur iste repellat.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat dignissimos voluptatibus cum dolores harum, labore magni saepe quibusdam modi ab vitae, expedita voluptates? Quasi quia laborum maiores a accusantium labore!
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, dolores velit sed. Voluptates debitis fugit excepturi sit impedit, at placeat, nobis distinctio maxime deleniti nam assumenda, omnis similique, natus quod?
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint suscipit labore porro consectetur assumenda placeat dicta magnam aut odit, omnis ad molestiae tenetur et distinctio tempore nesciunt iste, tempora! Ipsum.
+    
+    
+    </div>
+      <!--<!--<ion-row class="banner-content">
     <ion-col width-50>
      <h2>Event Name</h2>
      <h3>30 April 8 May</h3>
@@ -61,3 +103,4 @@
 	</ion-list>
 
 </ion-content>
+  <!--<ion-tab [root]="tab5Root" tabTitle="More" tabIcon="md-add"></ion-tab>-->

@@ -112,7 +112,7 @@ ion-list.eventlist .banner-content{
 }
 ion-list.eventlist.even-detail-list .input-wrapper  ion-label .coverphoto{
     padding: 9px;
-	 height: 190px;
+	//  height: 190px;
     float: left;
     width: 100%;
 }
@@ -122,4 +122,12 @@ ion-list.eventlist.even-detail-list .input-wrapper ion-label .coverphoto img{
 }
 .head-center{
     text-align: center;
+}
+.alignmiddle{
+    padding: 15px;
+}
+.cityToShow{
+    float: right;
+    margin-top: -36px;
+    font-weight: bold;
 }

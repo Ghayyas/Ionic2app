@@ -12,6 +12,11 @@ static dataArray : Array<usercreds> = new Array();
   constructor() {
    
   }
+  
+  static tabsData: boolean;
+   
+  
+  
   static pushData(key){
       return new Promise(resolve=>{
         DataService.dataArray.push(key);
@@ -29,8 +34,8 @@ static dataArray : Array<usercreds> = new Array();
   }
 static getData(){
     // return this.dataArray;
-    console.log(DataService.dataArray[0]);
-    return DataService.dataArray[0];
+    console.log(DataService.tabsData);
+    // return DataService.dataArray[0];
 }
   
 }

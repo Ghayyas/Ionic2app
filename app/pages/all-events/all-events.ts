@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController,Alert, Loading,MenuController} from 'ionic-angular';
+import {NavController, App, Alert, Loading,MenuController} from 'ionic-angular';
 import {EventDetailsPage} from '../event-details/event-details';
 import {AllEventFormPage} from '../all-event-form/all-event-form';
 import {Http, Headers } from '@angular/http';
@@ -23,10 +23,9 @@ export class AllEventsPage {
   public definedError: boolean;
   public type:any;
   alleventformscreen = AllEventFormPage;
-  creatEvent = CreateEventPage;
-
+  createEvent = CreateEventPage;
+  public pet: string;
  
-
 
   // ============== Constructor =============//
 
@@ -34,7 +33,7 @@ export class AllEventsPage {
   constructor(public nav: NavController, public http:Http, menu: MenuController) {
 
 
-
+    this.pet = 'private';
     this.http = http;
     this.type = '1';
     this.error = false;
@@ -52,81 +51,89 @@ export class AllEventsPage {
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
    headers.append('Authorization', `Bearer ${ecnobToken}`)
-    // this.http.get(' https://nameless-scrubland-35696.herokuapp.com/api/events/eventlist',{headers:headers})
-    // .subscribe(
-    //   (data)=>{
-    //    this.loading.dismiss(true);
+    this.http.get(' https://nameless-scrubland-35696.herokuapp.com/api/events/eventlist',{headers:headers})
+    .subscribe(
+      (data)=>{
+       this.loading.dismiss(true);
 
 
      
 
-    //     this.event = data.json().events;
-    //     if(this.event == undefined){
-    //      let alert = Alert.create({
-    //       title: 'Error !',
-    //       subTitle: 'Data Fetching Error!',
-    //       buttons: ['OK']
-    //  });
-    //    this.nav.present(alert);
+        this.event = data.json().events;
+        if(this.event == undefined){
+         let alert = Alert.create({
+          title: 'Error !',
+          subTitle: 'Data Fetching Error!',
+          buttons: ['OK']
+     });
+       this.nav.present(alert);
 
-    //      this.definedError = true;         //IF DATA IS FROM SERVER IS UNDEFINED
+         this.definedError = true;         //IF DATA IS FROM SERVER IS UNDEFINED
 
-    //     }
-    //     console.log('data',this.event);
+        }
+        console.log('data',this.event);
       
      
 
-    //   },
-    //   (err)=>{
-    //     if (err){
-    //       this.loading.dismiss(true);
-    //       this.error = true;
-    //       let alert = Alert.create({
-    //       title: 'Error !',
-    //       subTitle: 'Something went wrong!',
-    //       buttons: ['OK']
-    //  });
-    //    this.nav.present(alert);
-    //     }
-    //     console.log('err',err);
-    //     let str = JSON.parse(err._body);
+      },
+      (err)=>{
+        if (err){
+          this.loading.dismiss(true);
+          this.error = true;
+          let alert = Alert.create({
+          title: 'Error !',
+          subTitle: 'Something went wrong!',
+          buttons: ['OK']
+     });
+       this.nav.present(alert);
+        }
+        console.log('err',err);
+        let str = JSON.parse(err._body);
        
-    //   // str = str.replace(/\\/g, '')
+      // str = str.replace(/\\/g, '')
       
-    //   if(str.status_code == 500){
+      if(str.status_code == 500){
         
-    //   let alert = Alert.create({
-    //   title: 'Error !',
-    //   subTitle: 'Internal Server Error Please Contact Application Developer to resolve',
-    //   buttons: ['OK']
-    // });
-    // this.nav.present(alert);
+      let alert = Alert.create({
+      title: 'Error !',
+      subTitle: 'Internal Server Error Please Contact Application Developer to resolve',
+      buttons: ['OK']
+    });
+    this.nav.present(alert);
   
-    //   }
-    //  else if(str.status_code == 401){
-    //     let alert = Alert.create({
-    //       title: "Error !",
-    //       subTitle: "Your Token is Expire Please logout and signin again",
-    //       buttons : ['OK']
-    //     })
-    //     this.nav.present(alert);
-    //   }
+      }
+     else if(str.status_code == 401){
+        let alert = Alert.create({
+          title: "Error !",
+          subTitle: "Your Token is Expire Please logout and signin again",
+          buttons : ['OK']
+        })
+        this.nav.present(alert);
+      }
           
           
 
      
-    //   console.log('status code',str.status_code)
-    //   console.log('error reciveing', str.message);
-    //   }
-    // )
+      console.log('status code',str.status_code)
+      console.log('error reciveing', str.message);
+      }
+    )
       
   }
-  public mybtn:boolean;
-     btn(){
-       this.mybtn  = false;
-     }
-
   
+  
+   myclick(param){
+     this.pet = param;
+     console.log('params',this.pet);
+   }
+  newTabs(){
+    // this.nav.setRoot(EventDetailsPage).then((data)=>{
+    //   console.log('setting root')
+    // },(err)=>{
+    //   console.log('gettomg err');
+    // })
+    this.nav.rootNav.push(EventDetailsPage)
+  }
 
     // console.log('params',this.parameters);
     

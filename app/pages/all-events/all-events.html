@@ -10,7 +10,7 @@
 
 
     <ion-navbar primary hideBackButton *navbar>
-
+<!--<ion-navbar id="nav" [root]="myRoot" #content swipe-back-enabled="false">-->
     <button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
@@ -23,7 +23,7 @@
     </button>
   </ion-buttons>
       <ion-buttons end>
-    <button royal [navPush]="creatEvent">
+    <button royal [navPush]="createEvent">
        <ion-icon ios="ios-add" md="md-add"></ion-icon>
     </button>
   </ion-buttons>
@@ -31,12 +31,13 @@
    
    <!--[attr.primary]="isAndroid ? '' : null" no-border-top-->
    <!--[attr.light]="isAndroid ? '' : null"-->
+   
      <ion-toolbar primary>
-    <ion-segment #type>
-      <ion-segment-button class="tab-segment segment-activated" value="1" itemtype="radio">
+    <ion-segment>
+      <ion-segment-button (click)="myclick('public')" class="tab-segment segment-activated" value="private">
         Public Events
       </ion-segment-button>
-      <ion-segment-button class="tab-segment" value="0" itemtype="radio">
+      <ion-segment-button class="tab-segment" (click)="myclick('private')" value="public">
         Private Events
       </ion-segment-button>
     </ion-segment>
@@ -62,7 +63,141 @@
     
   </div>
   <!--*ngFor = "let arr of event" -->
-  <div class="card-background-page">
+  
+  
+  
+  
+  
+  
+  <div [ngSwitch]="pet">
+      <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
+
+<div class="card-background-page"> 
+    <ion-card (click)="newTabs()">
+    <div class="imgBlack">
+    <img src="img/comp-detail.jpg"/>
+    </div>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
+     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <!--<span item-right>Yes</span>
+    <span item-right>No</span>-->
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+     Yes
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      No
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      MayBe
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
+
+</div>
+
+<div class="card-background-page">
+    <ion-card (click)="newTabs()">
+    
+    <img src="img/comp-detail.jpg"/>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
+     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <!--<span item-right>Yes</span>
+    <span item-right>No</span>-->
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+     Yes
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      No
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      MayBe
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
+
+</div>
+
+<div class="card-background-page">
+    <ion-card [navPush]="eventDetailPage">
+    
+    <img src="img/comp-detail.jpg"/>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
+     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <!--<span item-right>Yes</span>
+    <span item-right>No</span>-->
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+     Yes
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      No
+    </button>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+      <!--<ion-icon name="navigate"></ion-icon>-->
+      MayBe
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
+
+</div>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--  SWITCH  -->
+  
+  <div *ngSwitchCase="'public'">
+  event Page
+  <div class="card-background-page"> 
     <ion-card [navPush]="eventDetailPage">
     
     <img src="img/comp-detail.jpg"/>
@@ -169,90 +304,10 @@
   </ion-card>
 
 </div>
-
- <!--<ion-list class="eventlist" [navPush]="eventDetailPage">
-	  <ion-item>
-	    <ion-grid>
-  <ion-row>
-    <ion-col width-50>
-     <h2 class="eventname">Event Name</h2>
-     <h3 class="blue-text">By: Bussiness Name</h3>
-    </ion-col>
-    <ion-col width-50 style="text-align:right;">
-      <p style="color:#7d7d7d;" class="datetime">30 April 8 May</p>
-       <div class="padding">
-       <ion-segment class="segbar" [(ngModel)]="pet">
-    <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
-      YES
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="puppies">
-      NO
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="GAMES">
-      MAY BE
-    </ion-segment-button>
-  </ion-segment>
-       </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-	  </ion-item>
-	</ion-list>
-	<ion-list class="eventlist" [navPush]="eventDetailPage">
-	  <ion-item style="padding: 0px 0px;">
-	     <img src="img/evenbanner.jpg">
-       <div class="img-layer"></div>
-	  </ion-item>
-	  <ion-item style="padding: 0px 10px;">
-	       <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
- Lorem Ipsum is simply dummy text of the printing.</p>
-	  </ion-item>
-	</ion-list>
+</div>
+  </div>
 
 
-
-
-	 <ion-list class="eventlist" [navPush]="eventDetailPage">
-	  <ion-item>
-	    <ion-grid>
-  <ion-row>
-    <ion-col width-50>
-     <h2 class="eventname">Event Name</h2>
-     <h3 class="blue-text">By: Bussiness Name</h3>
-    </ion-col>
-    <ion-col width-50 style="text-align:right;">
-      <p style="color:#7d7d7d;" class="datetime">30 April 8 May</p>
-       <div class="padding">
-       <ion-segment class="segbar" [(ngModel)]="pet">
-    <ion-segment-button class="segbtn segment-activated seg-active" value="kittens">
-      YES
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="puppies">
-      NO
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="GAMES">
-      MAY BE
-    </ion-segment-button>
-  </ion-segment>
-       </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-	  </ion-item>
-	</ion-list>
-	<ion-list class="eventlist" [navPush]="eventDetailPage">
-	  <ion-item style="padding: 0px 0px;">
-	     <img src="img/evenbanner.jpg">
-       <div class="img-layer"></div>
-	  </ion-item>
-	  <ion-item style="padding: 0px 10px;">
-	       <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
- Lorem Ipsum is simply dummy text of the printing.</p>
-	  </ion-item>
-	</ion-list>
-<!--<ion-page>
-<ion-content>
-  <ul><li *ngFor="let arr of arr">{{arr.name}}</li></ul>-->
 
 </ion-content>
 </ion-page>

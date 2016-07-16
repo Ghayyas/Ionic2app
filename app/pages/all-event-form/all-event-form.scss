@@ -2,12 +2,13 @@
 
 }
 .all-event-form {
-    background: rgba(0, 0, 0, 0.89);
+    // background: rgba(0, 0, 0, 0.89);
     }
 .ecnob-fields .fieldgroup{
 	margin-bottom: 15px;
 }
 .all-event-form.ecnob-fields input[type="text"],
+.all-event-form.ecnob-fields input[type="number"],
 .all-event-form.ecnob-fields input[type="tel"],
 .all-event-form.ecnob-fields input[type="num"],
 .all-event-form.ecnob-fields input[type="url"],
@@ -21,7 +22,7 @@
     padding: 8px 10px;
     border-radius: 2px;
         background: none;
-        color:#fff;
+        // color:#fff;
 }
 
 .ecnob-fields input[type="date"]{
@@ -34,7 +35,7 @@
 }
 
 .all-event-form.ecnob-fields input[type="date"]{
-	color:#fff;
+	// color:#fff;
 }
 .all-events-form.ecnob-fields select{
 	color:#999999;
