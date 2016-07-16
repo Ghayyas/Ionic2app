@@ -12,6 +12,10 @@ import {DealsDetailPage} from '../deals-detail/deals-detail';
   templateUrl: 'build/pages/deals/deals.html',
 })
 export class DealsPage {
-   dealsDetailsPage = DealsDetailPage;
+  //  dealsDetailsPage = DealsDetailPage;
   constructor(public nav: NavController) {}
+dealsDetailsPage(){
+  console.log('Deals Page');
+  this.nav.rootNav.push(DealsDetailPage)    
+}
 }

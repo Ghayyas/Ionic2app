@@ -4,14 +4,116 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar *navbar style="padding: 0px 0px; text-align: Center;">
-<ion-toolbar primary>
-  <ion-title>DEALS</ion-title>
-</ion-toolbar>
-</ion-navbar>
+
+
+
+
+
+
+
+<style>
+  ion-navbar{
+    padding-bottom: 20px !important;
+  }
+  .card-background-page{
+    margin-top: 2% !important;
+    margin-bottom: 0 !important;
+  }
+</style>
+
+
+
+
+
+
+<ion-navbar primary hideBackButton *navbar>
+<!--<ion-navbar id="nav" [root]="myRoot" #content swipe-back-enabled="false">-->
+    <button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+     Deals
+    </ion-title>
+    <ion-buttons end>
+    <button royal>
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-buttons>
+      <!--<ion-buttons end>
+    <button royal [navPush]="createEvent">
+       <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+  </ion-buttons>-->
+   </ion-navbar>
 
 <ion-content class="deals">
-  <ion-list class="eventlist" [navPush]="dealsDetailsPage">
+  
+  
+  <div class="card-background-page"> 
+    <ion-card (click)="dealsDetailsPage()">
+    <div class="imgBlack">
+    <img src="img/comp-detail.jpg"/>
+    </div>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Amazon Web Service</div>
+     <div class="card-title"><!--{{arr.description}}-->Get 34% off free</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+          View
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
+
+</div>
+
+
+
+  <div class="card-background-page"> 
+    <ion-card (click)="dealsDetailsPage()">
+    <div class="imgBlack">
+    <img src="img/comp-detail.jpg"/>
+    </div>
+   
+     <div class="card-name"> <!--{{arr.name}}-->Amazon Web Service</div>
+     <div class="card-title"><!--{{arr.description}}-->Get 34% off free</div>
+    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small (click)="btn()">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; New York, USA
+        </button>
+      </ion-col>
+     <ion-item>
+    <button primary clear item-right class="button-blue" (click)="btn()">
+          View
+    </button>
+  </ion-item>
+    </ion-row>
+  </ion-card>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <!--<ion-list class="eventlist" [navPush]="dealsDetailsPage">
 	  <ion-item>
 	    <ion-grid>
   <ion-row>
@@ -66,7 +168,7 @@
 	       <p>  <i class="fa fa-map-marker" aria-hidden="true"></i>
  Lorem Ipsum is simply dummy text of the printing.</p>
 	  </ion-item>
-	</ion-list>
+	</ion-list>-->
 
 
 </ion-content>

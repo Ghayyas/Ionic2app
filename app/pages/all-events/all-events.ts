@@ -129,10 +129,11 @@ export class AllEventsPage {
   newTabs(){
     // this.nav.setRoot(EventDetailsPage).then((data)=>{
     //   console.log('setting root')
+    //   // this.nav.rootNav.push(EventDetailsPage)
     // },(err)=>{
     //   console.log('gettomg err');
     // })
-    this.nav.rootNav.push(EventDetailsPage)
+this.nav.rootNav.push(EventDetailsPage)    
   }
 
     // console.log('params',this.parameters);
