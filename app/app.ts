@@ -5,6 +5,7 @@ import {TabsPage} from './pages/tabs/tabs';
 import {SigninPage} from './pages/signin/signin';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import {EventDetailsPage} from './pages/event-details/event-details'; 
+import {AuthService} from "./service/auth/authservice";
 
 
 // import {Geolocation} from 'ionic-native';
@@ -12,28 +13,22 @@ import {EventDetailsPage} from './pages/event-details/event-details';
 
 
 @Component({
-  template: `
-  <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
+  templateUrl: 'build/app.html'
+//   <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
 
-  <ion-menu [content]="content">
 
-  <ion-toolbar>
-    <ion-title>Menu</ion-title>
-  </ion-toolbar>
+//   <ion-menu [content]="content">
 
-  <ion-content>
-    <ion-list>
-      <button ion-item>
-       my Page
-      </button>
-    </ion-list>
-  </ion-content>
 
-</ion-menu>
 
-<ion-overlay></ion-overlay>
+//   <ion-content>
+//   </ion-content>
+
+// </ion-menu>
+
+// <ion-overlay></ion-overlay>
   
-  `
+  
 })
 export class MyApp {
   rootPage: any = SigninPage;
@@ -55,6 +50,11 @@ export class MyApp {
   }
 
     )}
+    
+    logout(){
+      console.log('loogin out');
+      AuthService.logout();
+    }
 }
 
 

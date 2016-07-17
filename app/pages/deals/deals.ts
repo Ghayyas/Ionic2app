@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {DealsDetailPage} from '../deals-detail/deals-detail';
-
+import {searchDeals} from '../searchDeals/searchDeals';
 /*
   Generated class for the DealsPage page.
 
@@ -12,7 +12,7 @@ import {DealsDetailPage} from '../deals-detail/deals-detail';
   templateUrl: 'build/pages/deals/deals.html',
 })
 export class DealsPage {
-  //  dealsDetailsPage = DealsDetailPage;
+   search = searchDeals;
   constructor(public nav: NavController) {}
 dealsDetailsPage(){
   console.log('Deals Page');

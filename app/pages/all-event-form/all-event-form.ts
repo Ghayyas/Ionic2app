@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController,ViewController} from 'ionic-angular';
 import {AllEventsPage} from '../all-events/all-events';
 
 /*
@@ -13,8 +13,9 @@ import {AllEventsPage} from '../all-events/all-events';
 })
 export class AllEventFormPage {
   // createevent = AllEventsPage;
-  constructor(public nav: NavController) {
+  constructor(public nav: NavController,public view:ViewController) {
     this.nav = nav;
+  //  this.view.enableBack();
     console.log('nav',this.nav.id)
   }
   cancel(){

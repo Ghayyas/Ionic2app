@@ -9,10 +9,10 @@ export class AuthService {
     // static get parameters() {
     //     return [[Http], [NavController]];
     // }
-    public isLoggedin:boolean;
+    static isLoggedin:boolean;
     constructor(public http:Http) {
         this.http = http;
-        this.isLoggedin = false;
+        AuthService.isLoggedin = false;
     }
 
     login(user) {
@@ -26,9 +26,9 @@ export class AuthService {
 
                 if (data.json().token) {
                     window.localStorage.setItem('ecnob.token', data.json().token);
-                    this.isLoggedin = true;
+                    AuthService.isLoggedin = true;
                 }
-                resolve(this.isLoggedin);
+                resolve(AuthService.isLoggedin);
 
             });
 
@@ -52,10 +52,10 @@ export class AuthService {
     //         });
     //     });
 
-    }
+// }
 
-    logout() {
-        this.isLoggedin = false;
+    static logout() {
+        AuthService.isLoggedin = false;
         window.localStorage.clear();
     }
 }

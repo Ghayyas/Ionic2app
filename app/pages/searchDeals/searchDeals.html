@@ -5,30 +5,32 @@
    ion-buttons{
      margin-bottom: -8%;
    }
-   /*.button-clear {
-    position: relative;
-    top: 2px;
-    color: #fafafa !important;
-}*/
-/*ion-title{
-  position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}*/
+   label{
+       margin-left: 9px;
+    margin-right: 9px;
+   }
+   
+  .nearBy{
+    color: rgba(0, 0, 0, 0.46);  
+  }
+.button-clear{
+  color:white !important;
+}   
+  
+   
  </style>
  
  
- <ion-navbar primary *navbar>
+ <ion-navbar primary  *navbar>
 
-<!--<ion-toolbar>-->
-  <!--<ion-buttons>
-     <button  (click)="cancel()" style="text-transform: capitalize;">
+<!--<ion-toolbar primary>-->
+    
+  <!--<ion-buttons>-->
+     <!--<button clear light (click)="cancel()" style="text-transform: capitalize;">
        Cancel
-     </button>
-    </ion-buttons>-->
-  <ion-title>Search Event</ion-title>
+     </button>-->
+    <!--</ion-buttons>-->
+  <ion-title>Search Deals</ion-title>
     <!--<ion-buttons start>
     <button royal [navPush]="alleventformscreen">
       <ion-icon name="search"></ion-icon>
@@ -42,7 +44,7 @@
 
 <div class="fullwidthrow">
      <div class="fieldgroup">
-       <ion-label><big>Search By</big> | Near by</ion-label>
+       <ion-label><big>Search By</big> | <span class="nearBy">Near by</span></ion-label>
      </div>
      </div>
 
@@ -59,12 +61,12 @@
 
    <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Name">
+     <input type="text" name="" placeholder="Deal Name">
      </div>
     </div>
 
 
-<ion-grid style="padding-left: 0px;padding-right: 0px; padding:0px 0px;">
+<!--<ion-grid style="padding-left: 0px;padding-right: 0px; padding:0px 0px;">
   <ion-row>
     <ion-col width-50 style="padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
      <div class="fullwidthrow">
@@ -85,7 +87,7 @@
     </div>
     </ion-col>
   </ion-row>
-</ion-grid>
+</ion-grid>-->
 
 
         <div class="fullwidthrow">
@@ -99,22 +101,39 @@
      <input type="text" name="" placeholder="Company Name">
      </div>
     </div>
-
+      <p style="font-size: 16px;font-weight: bold;padding-bottom: 8px;padding-top: 5px;">Select Type</p>
         <ion-grid style="padding-left: 0px;padding-right: 0px; padding:0px 0px;">
   <ion-row>
-    <ion-col width-50 style="padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
-     <div class="fullwidthrow">
-     <div class="fieldgroup">
-      <select>
-        <option>Category</option>
-      	<option>cat 1</option>
-      	<option>cat 2</option>
-      	<option>cat 3</option>
-      </select>
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-50 style="padding-right: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
+    <!--<ion-col width-50 style="padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">-->
+     <!--<div class="">-->
+     <!--<div class="">-->
+         
+  
+  <ion-checkbox primary checked="vedio"></ion-checkbox>
+      <label>Vedio</label>
+        
+  <ion-checkbox primary checked="audio"></ion-checkbox>
+        <label>Audio</label>
+        
+  <ion-checkbox primary checked="text"></ion-checkbox>
+        <label>Text</label>
+        
+  <ion-checkbox primary checked="newsletter"></ion-checkbox>
+        <label>Newsletter</label> 
+     <!--<div class="box">
+
+     <input type="checkbox" id="cbox1" value="vedio"/><label for="derp">Vedio</label>
+
+     <input type="checkbox" id="cbox1" value="audio"><label for="derp">Audio</label>
+
+     <input type="checkbox" id="cbox1" value="text"><label for="derp">Text</label>
+
+     <input type="checkbox" id="cbox1" value="newsletter"><label for="derp">Newsetter</label>
+     </div>-->
+     <!--</div>-->
+    <!--</div>-->
+    <!--</ion-col>-->
+    <!--<ion-col width-50 style="padding-right: 0px; padding-bottom: 0px; padding-top: 0px; height: auto; line-height: 1;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
       <select>
@@ -125,7 +144,7 @@
       </select>
      </div>
     </div>
-    </ion-col>
+    </ion-col>-->
   </ion-row>
 </ion-grid>
 
@@ -133,7 +152,7 @@
 
  <ion-list>
    <div style="padding: 0px 15px;">
-  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" [navPush]="createevent">
+  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;">
   Search
 </button>
 </div>
