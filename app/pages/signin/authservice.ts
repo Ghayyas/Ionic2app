@@ -1,7 +1,9 @@
 
 import {Injectable, Inject} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {NavController,Alert} from 'ionic-angular';
+import {NavController,Alert,Loading, MenuController} from 'ionic-angular';
+import {SigninPage} from './signin';
+
 
 
 @Injectable()
@@ -10,12 +12,16 @@ export class AuthService {
     //     return [[Http], [NavController]];
     // }
 
-    isLoggedin:boolean;
+    static isLoggedin:boolean;
+    static nav: NavController;
+    static menu: MenuController
 
-    constructor(public http: Http, public nav:NavController) {
+    constructor(public http: Http ,nav:NavController, menu:MenuController) {
         this.http = http;
-        this.nav = nav;
-        this.isLoggedin = false;
+        AuthService.nav = nav;
+        AuthService.menu = menu;
+        // console.log('objc',nav);
+        AuthService.isLoggedin = false;
     }
 
 
@@ -28,7 +34,7 @@ export class AuthService {
                    subTitle: msg,
                    buttons: ['OK']
                  });
-                      this.nav.present(alert);
+                      AuthService.nav.present(alert);
      }
   
   //================= Alert END =============//
@@ -46,7 +52,7 @@ export class AuthService {
 
                 if (data.json().token) {
                     window.localStorage.setItem('ecnob.token', data.json().token);
-                    this.isLoggedin = true;
+                    AuthService.isLoggedin = true;
                    resolve(true);    
             }
             
@@ -71,28 +77,34 @@ export class AuthService {
 
 
     }
-    register(user) {
+    // register(user) {
 
-        return new Promise(resolve => {
-            var creds = "name=" + user.name + "&password=" + user.password + "&email="+user.email;
+    //     return new Promise(resolve => {
+    //         var creds = "name=" + user.name + "&password=" + user.password + "&email="+user.email;
 
-            var headers = new Headers();
-            headers.append('Content-Type', 'application/x-www-form-urlencoded');
-            this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers }).subscribe(data => {
-                if (data.json().token){
-                    window.localStorage.setItem('ecnob.token', data.json().token);
-                    resolve(true);
-                }
-                else
-                    resolve(false);
+    //         var headers = new Headers();
+    //         headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    //         this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers }).subscribe(data => {
+    //             if (data.json().token){
+    //                 window.localStorage.setItem('ecnob.token', data.json().token);
+    //                 resolve(true);
+    //             }
+    //             else
+    //                 resolve(false);
 
-            });
-        });
+    //         });
+    //     });
 
-    }
+    // }
 
-    logout() {
-        this.isLoggedin = false;
-        window.localStorage.clear();
+   
+
+    static logout() {  
+       
+          AuthService.isLoggedin = false;
+          AuthService.menu.close(); 
+          window.localStorage.clear();
+          AuthService.nav.rootNav.push(SigninPage);
+        // window.location.reload();
     }
 }

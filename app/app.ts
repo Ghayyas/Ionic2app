@@ -5,7 +5,7 @@ import {TabsPage} from './pages/tabs/tabs';
 import {SigninPage} from './pages/signin/signin';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import {EventDetailsPage} from './pages/event-details/event-details'; 
-import {AuthService} from "./service/auth/authservice";
+import {AuthService} from "./pages/signin/authservice";
 
 
 // import {Geolocation} from 'ionic-native';
@@ -37,9 +37,9 @@ export class MyApp {
 
 
 
-  constructor(platform: Platform, menu: MenuController) {
+  constructor(platform: Platform, public menu: MenuController) {
           // this.nav.viewDidEnter.subscribe((view) => { console.log(view.instance.constructor.name); });
-     
+  
     platform.ready().then(() => {
       console.log('platform works..');
       menu.enable(false);
@@ -52,8 +52,14 @@ export class MyApp {
     )}
     
     logout(){
+      
       console.log('loogin out');
+      // this.menu.close();
+      this.menu.enable(false)
+      // window.location.reload();
       AuthService.logout();
+      // AuthService.nav.pop();
+      // this.nav.pop();
     }
 }
 

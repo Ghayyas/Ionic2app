@@ -147,7 +147,7 @@ ion-title{
   </ion-list> -->
 
 <div [ngSwitch]="pet">
-      <div  class="hometab-content with-2col" id="status"  *ngSwitchWhen="'private'">
+      <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
 
 <div class="list card">
 
@@ -233,7 +233,7 @@ ion-title{
 
 
 
-  <div  class="hometab-content with-2col" id="status"  *ngSwitchWhen="'public'">
+  <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'public'">
 
 <div class="list card">
 

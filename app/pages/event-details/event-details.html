@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar primary *navbar style="padding: 0px 0px; text-align: Center;">
+<ion-navbar primary *navbar>
 <!--<ion-toolbar primary>-->
 <!--<ion-nav id="nav" [root]="page" #content swipe-back-enabled="false"></ion-nav>-->
   <ion-title>Event's Details</ion-title>
@@ -18,34 +18,37 @@
 
 
 <style>
-  ion-tabs.myfoo ion-tabbar-section{
+  /*ion-tabs.myfoo ion-tabbar-section{
     position: fixed;
     z-index: 9999999;
     bottom: 0px;
+}*/
+
+button.back-button.disable-hover.bar-button.bar-button-default.show-back-button{
+  margin-top: 15px !important;
 }
   .markerblack{
     color:rgba(0, 0, 0, 0.37) !important;
   }
+  span .button-inner{
+        margin-right: 76px !important;
+  }
+  ion-buttons{
+    display: inline !important;
+    /*padding-left: 40% !important;*/
+    padding-left: 26% !important;
+    padding-right: 6% !important;
+  }
+  /*.button{
+    margin-right: 46px;
+  }*/
 
   
 </style>
 
 <ion-content class="event-details">
   
-    <!--<ion-tabs tabbarPlacement="bottom" class="myfoo" preloadTabs="false" #paymentTabs>
-            <ion-tab [root]="cars" [rootParams]="fooId" tabTitle="cars" tabIcon="pulse"></ion-tab>
-            <ion-tab [root]="bikes" tabTitle="bikes" [rootParams]="fooId" tabIcon="analytics"></ion-tab>
-            <ion-tab [root]="ships" tabTitle="ships" [rootParams]="fooId" tabIcon="card" ></ion-tab>
-        </ion-tabs>-->
-        
-        
-  <ion-tabs class="foo-tabs" tabbarplacement="bottom">
-  <ion-tab [root]="tab1Root" tabTitle="YES" ></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="NO" ></ion-tab>
-  <ion-tab [root]="tab3Allevent" tabTitle="May Be"></ion-tab>
-  <!--<ion-tab [root]="tab4Root" tabTitle="Companies" tabIcon="grid"></ion-tab>-->
-  <!--<ion-tab [root]="tab5Root" tabTitle="More" tabIcon="md-add"></ion-tab>-->
-</ion-tabs>
+
   
   <ion-list class="eventlist even-detail-list">
 
@@ -68,6 +71,7 @@
        <p><i class="fa fa-map-marker markerblack" aria-hidden="true"></i>New York, USA</p>
      </div>
 	    <br>
+      <div class="event-details">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere perspiciatis odit maiores ad saepe doloribus voluptate illo dolorum quisquam veniam beatae molestiae adipisci eaque voluptatem quos sunt, quas ipsa assumenda.
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur reprehenderit tempora, unde eligendi provident aut ut ex, magni veritatis quam omnis doloribus placeat voluptate! Optio dolorem explicabo nisi accusamus autem!
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt esse tempora doloremque minima fugiat aliquam suscipit velit, officiis labore libero debitis odio molestiae. Veniam quo laboriosam ea nemo eaque obcaecati.
@@ -76,7 +80,7 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, dolores velit sed. Voluptates debitis fugit excepturi sit impedit, at placeat, nobis distinctio maxime deleniti nam assumenda, omnis similique, natus quod?
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint suscipit labore porro consectetur assumenda placeat dicta magnam aut odit, omnis ad molestiae tenetur et distinctio tempore nesciunt iste, tempora! Ipsum.
     
-    
+      </div>
     </div>
       <!--<!--<ion-row class="banner-content">
     <ion-col width-50>
@@ -116,5 +120,58 @@
 <div class="inner"><button  class="lastbutton1">No</button></div>
 <div class="inner"><button  class="lastbutton2">MayBe</button></div>
   </div>-->
+
+
+
+
+<!--<ion-row>
+    <ion-col >
+  
+     <button  style="position: fixed !important;
+    bottom: -5px;
+    margin-left: -5px;
+    float: left;
+    padding-right: 100%;">Yes</button>
+      </ion-col>
+       <ion-col >
+  
+     <button  style="position: fixed !important;
+    bottom: -5px;
+    float: left;
+    padding-right: 100%;">No</button>
+      </ion-col>
+       <ion-col >
+  
+     <button  style="position: fixed !important;
+    bottom: -5px;
+    float: left;
+    padding-right: 100%;">May Be</button>
+      </ion-col>
+  </ion-row>-->
+  
 </ion-content>
+
+   <ion-toolbar position="bottom">
+     <ion-buttons>
+         <button royal>
+      Yes
+   
+    </button>
+  </ion-buttons>
+  <ion-buttons >
+    <button royal> 
+      No
+   
+    </button>
+  </ion-buttons>
+    <ion-buttons end>
+  <button royal>
+      May Be
+    
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+
   <!--<ion-tab [root]="tab5Root" tabTitle="More" tabIcon="md-add"></ion-tab>-->

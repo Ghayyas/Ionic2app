@@ -8,6 +8,7 @@ import {DealsPage} from '../deals/deals';
 import {EventDetailsPage} from '../event-details/event-details'; 
 import {NavController,NavParams} from 'ionic-angular';
 import {DataService} from '../../service/dataService/dataService';
+// import {SigninPage} from '../signin/signin';
 
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
@@ -27,6 +28,8 @@ export class TabsPage {
   constructor(public nav:NavController){
     // selectTab(index: number) {
       console.log('nav',this.nav);
+
+      
       DataService.getData();
       // console.log('event',EventDetailsPage.tabbers);
       // TabsPage.tabsActivted.push(this.mytabObj.x)

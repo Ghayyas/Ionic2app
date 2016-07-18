@@ -4,6 +4,7 @@ import {DataService,usercreds} from '../../service/dataService/dataService';
 
 
 
+
 @Injectable()
 export class AuthService {
     // static get parameters() {
@@ -12,7 +13,8 @@ export class AuthService {
     static isLoggedin:boolean;
     constructor(public http:Http) {
         this.http = http;
-        AuthService.isLoggedin = false;
+     
+       
     }
 
     login(user) {
@@ -54,8 +56,8 @@ export class AuthService {
 
 // }
 
-    static logout() {
-        AuthService.isLoggedin = false;
-        window.localStorage.clear();
-    }
+    // static logout() {
+    //     AuthService.isLoggedin = falsee
+    //     window.localStorage.clear();
+    // }
 }

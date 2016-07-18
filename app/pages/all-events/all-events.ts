@@ -126,14 +126,18 @@ export class AllEventsPage {
      this.pet = param;
      console.log('params',this.pet);
    }
+   btn(){
+     console.log('my btn');
+   }
   newTabs(){
     // this.nav.setRoot(EventDetailsPage).then((data)=>{
-    //   console.log('setting root')
-    //   // this.nav.rootNav.push(EventDetailsPage)
+    //   console.log('setting root',data)
+    //   this.nav.rootNav.push(data)
     // },(err)=>{
     //   console.log('gettomg err');
     // })
-this.nav.rootNav.push(EventDetailsPage)    
+    //  this.nav.setRoot(EventDetailsPage);
+    this.nav.rootNav.push(EventDetailsPage)    
   }
 
     // console.log('params',this.parameters);

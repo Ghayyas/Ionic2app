@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
-import {MenuController}from 'ionic-angular'
+import {MenuController, NavController} from 'ionic-angular';
+import {SigninPage} from '../signin/signin';
 
 
 @Component({
@@ -9,8 +10,11 @@ export class Page1 {
   
   public pet: string;
   
-  constructor(public menu:MenuController) {
+  constructor(public menu:MenuController,public nav: NavController) {
   this.pet = 'public';
+  // if(SigninPage.isLoggedin == false){
+  //   this.nav.push(SigninPage)
+  // }
    menu.enable(true);
   }
   

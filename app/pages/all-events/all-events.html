@@ -26,7 +26,7 @@ ion-title{
 
 
 
-    <ion-navbar primary hideBackButton *navbar>
+    <ion-navbar primary  *navbar>
 <!--<ion-navbar id="nav" [root]="myRoot" #content swipe-back-enabled="false">-->
     <button menuToggle>
       <ion-icon name='menu'></ion-icon>
@@ -163,7 +163,7 @@ ion-title{
 </div>
 
 <div class="card-background-page">
-    <ion-card [navPush]="eventDetailPage">
+    <ion-card (click)="newTabs()">
     
     <img src="img/comp-detail.jpg"/>
    
@@ -215,7 +215,7 @@ ion-title{
   <div *ngSwitchCase="'public'">
   event Page
   <div class="card-background-page"> 
-    <ion-card [navPush]="eventDetailPage">
+    <ion-card (click)="newTabs()">
     
     <img src="img/comp-detail.jpg"/>
    
@@ -251,7 +251,7 @@ ion-title{
 </div>
 
 <div class="card-background-page">
-    <ion-card [navPush]="eventDetailPage">
+    <ion-card (click)="newTabs()">
     
     <img src="img/comp-detail.jpg"/>
    
@@ -287,7 +287,7 @@ ion-title{
 </div>
 
 <div class="card-background-page">
-    <ion-card [navPush]="eventDetailPage">
+    <ion-card (click)="newTabs()">
     
     <img src="img/comp-detail.jpg"/>
    
