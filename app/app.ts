@@ -38,31 +38,27 @@ export class MyApp {
 
 
   constructor(platform: Platform, public menu: MenuController) {
-          // this.nav.viewDidEnter.subscribe((view) => { console.log(view.instance.constructor.name); });
+          
   
     platform.ready().then(() => {
       console.log('platform works..');
       menu.enable(false);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+      // StatusBar.styleDefault();
 
   }
 
     )}
-    
+     
+     //======================== LOG OUT FUNCTION ===================///
     logout(){
-      
       console.log('loogin out');
-      // this.menu.close();
       this.menu.enable(false)
-      // window.location.reload();
-      AuthService.logout();
-      // AuthService.nav.pop();
-      // this.nav.pop();
+     AuthService.logout();
     }
 }
-
+//============================== END ===============================//
 
 
 ionicBootstrap(MyApp, [

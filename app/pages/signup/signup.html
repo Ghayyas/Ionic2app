@@ -71,9 +71,6 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 .tabs-image{
   margin-bottom: 3px;
 }
-.lastbutton{
-  
-}
 </style>
 <form  #signupForm="ngForm">
 <div class="no-padding">
@@ -221,8 +218,16 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 <!--<button class="button lastbutton" (click)="signup()" [disabled]="!signupForm.form.valid">
   Next
 </button>-->
-<button full class="lastbutton" (click)="signup()" [disabled]="!signupForm.form.valid">Next</button>
+
+<!--<button full class="lastbutton" (click)="signup()" [disabled]="!signupForm.form.valid">Next</button>-->
 
 </form>
 
 </ion-content>
+   <ion-toolbar position="bottom">
+     <ion-buttons>
+         <button royal (click)="signup()" [disabled]="!signupForm.form.valid">
+              NEXT
+        </button>
+  </ion-buttons>
+</ion-toolbar>

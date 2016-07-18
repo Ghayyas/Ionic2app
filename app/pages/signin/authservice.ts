@@ -105,6 +105,5 @@ export class AuthService {
           AuthService.menu.close(); 
           window.localStorage.clear();
           AuthService.nav.rootNav.push(SigninPage);
-        // window.location.reload();
     }
 }
