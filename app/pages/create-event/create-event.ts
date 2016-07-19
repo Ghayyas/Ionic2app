@@ -3,9 +3,10 @@ import {NavController,Page,ActionSheet,Alert, Loading} from 'ionic-angular';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
 import {NgZone} from "@angular/core";
-
+import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
 import {CreateListPeopleInvitePage} from '../create-list-people-invite/create-list-people-invite';
 import {Http, Headers } from '@angular/http';
+// import {broadcastEvent} from ''
 
 // import {RadioControlValueAccessor} from "./radio_value_accessor";
 
@@ -170,151 +171,161 @@ export class CreateEventPage {
   }
 
 
-  submit(parameters){
-    this.loading = Loading.create({
-           content: "Please wait...",
-           dismissOnPageChange: true
-            
-        });
-  this.nav.present(this.loading);
-  // if(this.parameters.name || this.parameters.location || this.parameters.type || this.parameters.start_date || this.parameters.end_date == ''){
-  //  this.requiredFields = true;
-  //         // this.loading.dismiss();
-  //  let alert = Alert.create({
-  //     title: 'Validation failed !',
-  //     subTitle: 'Please fill all required field',
-  //     buttons: ['OK']
-  //   });
-  //      this.nav.present(alert);    
-  // }
-  if(this.parameters.type === ''){
-    this.typeField = true;
-       let alert = Alert.create({
-      title: 'Validation failed !',
-      subTitle: 'Please fill all required field',
-      buttons: ['OK']
-    });
-       this.nav.present(alert); 
-    // this.typeField  = false;
-  
-  }
+  submit(params){
 
-  else if(this.parameters.name === ''){
-    this.nameField = true; 
-       let alert = Alert.create({
-      title: 'Validation failed !',
-      subTitle: 'Please fill all required field',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-      //  this.nameField = false; 
-  }
-  else if(this.parameters.location === ''){
-    this.locationField = true;
-       let alert = Alert.create({
-      title: 'Validation failed !',
-      subTitle: 'Please fill all required field',
-      buttons: ['OK']
-    });
-       this.nav.present(alert); 
-      //  this.locationField = false;
-  }
+    console.log('parameters',params);
+    if(params.type == '1'){
+    this.nav.rootNav.push(BroadcastEventPage);
 
-  else if(this.parameters.start_date === ''){
-    this.startDate = true;
-    
-       let alert = Alert.create({
-      title: 'Validation failed !',
-      subTitle: 'Please fill all required field',
-      buttons: ['OK']
-    });
-       this.nav.present(alert); 
-      //  this.startDate = false;
-  }
-  else if(this.parameters.end_date === ''){
-    this.endDateField = true;
-    
-       let alert = Alert.create({
-      title: 'Validation failed !',
-      subTitle: 'Please fill all required field',
-      buttons: ['OK']
-    });
-       this.nav.present(alert); 
-       
-  }
-  else{
-    this.typeField = false;
-    this.requiredFields = false;
-    this.nameField = false;
-    this.locationField = false;
-    this.startDate = false;
-    this.endDateField = false
-  
-  
-    //   let alert = Alert.create({
-    //   title: 'Succeed !',
-    //   subTitle: 'Data has been sent',
-    //   buttons: ['OK']
-    // });
-    //    this.nav.present(alert);
-    // console.log('params',this.parameters);
-    var headers = new Headers();
-    var data  = this.parameters;
-   headers.append('Content-Type', 'application/json');
-   let ecnobToken = window.localStorage.getItem('ecnob.token');
-   headers.append('Authorization', `Bearer ${ecnobToken}`)
-    this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/events/create',data,{headers:headers})
-    .subscribe(
-      (data) => {
-                  // this.loading.dismiss();
-              let alert = Alert.create({
-      title: 'Succeed !',
-      subTitle: 'Event has been Published',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-       console.log('data send',data.json()); 
-     
-         this.empty();
-    },
-    (err) =>{
-    //   this.typeField = false;
-    // this.requiredFields = false;
-    // this.nameField = false;
-    // this.locationField = false;
-    // this.startDate = false;
-    // this.endDateField = false
-                // this.loading.dismiss();
-     let alert = Alert.create({
-      title: 'Error !',
-      subTitle: 'Data has not been sent',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-      let str = JSON.parse(err._body);
-      if(str.status_code == 422){
-              let alert = Alert.create({
-      title: 'Error !',
-      subTitle: 'Please Fill all required Fields',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-      }
-      else if(str.status_code == 401){
-        let alert = Alert.create({
-          title: "Error !",
-          subTitle: "Your Token is Expire Please logout and signin again",
-          buttons : ['OK']
-        })
-        this.nav.present(alert);
-      }
-      this.empty();
-      
-      console.log('Error',err.json())
-             
     }
-    )
+    else if(params.type == '0'){
+    this.nav.rootNav.push(CreateListPeopleInvitePage);
+    }
+    
+//     this.loading = Loading.create({
+//            content: "Please wait...",
+//            dismissOnPageChange: true
+            
+//         });
+//   this.nav.present(this.loading);
+//   // if(this.parameters.name || this.parameters.location || this.parameters.type || this.parameters.start_date || this.parameters.end_date == ''){
+//   //  this.requiredFields = true;
+//   //         // this.loading.dismiss();
+//   //  let alert = Alert.create({
+//   //     title: 'Validation failed !',
+//   //     subTitle: 'Please fill all required field',
+//   //     buttons: ['OK']
+//   //   });
+//   //      this.nav.present(alert);    
+//   // }
+//   if(this.parameters.type === ''){
+//     this.typeField = true;
+//        let alert = Alert.create({
+//       title: 'Validation failed !',
+//       subTitle: 'Please fill all required field',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert); 
+//     // this.typeField  = false;
+  
+//   }
 
-}
+//   else if(this.parameters.name === ''){
+//     this.nameField = true; 
+//        let alert = Alert.create({
+//       title: 'Validation failed !',
+//       subTitle: 'Please fill all required field',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert);
+//       //  this.nameField = false; 
+//   }
+//   else if(this.parameters.location === ''){
+//     this.locationField = true;
+//        let alert = Alert.create({
+//       title: 'Validation failed !',
+//       subTitle: 'Please fill all required field',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert); 
+//       //  this.locationField = false;
+//   }
+
+//   else if(this.parameters.start_date === ''){
+//     this.startDate = true;
+    
+//        let alert = Alert.create({
+//       title: 'Validation failed !',
+//       subTitle: 'Please fill all required field',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert); 
+//       //  this.startDate = false;
+//   }
+//   else if(this.parameters.end_date === ''){
+//     this.endDateField = true;
+    
+//        let alert = Alert.create({
+//       title: 'Validation failed !',
+//       subTitle: 'Please fill all required field',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert); 
+       
+//   }
+//   else{
+//     this.typeField = false;
+//     this.requiredFields = false;
+//     this.nameField = false;
+//     this.locationField = false;
+//     this.startDate = false;
+//     this.endDateField = false
+  
+  
+//     //   let alert = Alert.create({
+//     //   title: 'Succeed !',
+//     //   subTitle: 'Data has been sent',
+//     //   buttons: ['OK']
+//     // });
+//     //    this.nav.present(alert);
+//     // console.log('params',this.parameters);
+//     var headers = new Headers();
+//     var data  = this.parameters;
+//    headers.append('Content-Type', 'application/json');
+//    let ecnobToken = window.localStorage.getItem('ecnob.token');
+//    headers.append('Authorization', `Bearer ${ecnobToken}`)
+//     this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/events/create',data,{headers:headers})
+//     .subscribe(
+//       (data) => {
+//                   // this.loading.dismiss();
+//               let alert = Alert.create({
+//       title: 'Succeed !',
+//       subTitle: 'Event has been Published',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert);
+//        console.log('data send',data.json()); 
+     
+//          this.empty();
+//     },
+//     (err) =>{
+//     //   this.typeField = false;
+//     // this.requiredFields = false;
+//     // this.nameField = false;
+//     // this.locationField = false;
+//     // this.startDate = false;
+//     // this.endDateField = false
+//                 // this.loading.dismiss();
+//      let alert = Alert.create({
+//       title: 'Error !',
+//       subTitle: 'Data has not been sent',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert);
+//       let str = JSON.parse(err._body);
+//       if(str.status_code == 422){
+//               let alert = Alert.create({
+//       title: 'Error !',
+//       subTitle: 'Please Fill all required Fields',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert);
+//       }
+//       else if(str.status_code == 401){
+//         let alert = Alert.create({
+//           title: "Error !",
+//           subTitle: "Your Token is Expire Please logout and signin again",
+//           buttons : ['OK']
+//         })
+//         this.nav.present(alert);
+//       }
+//       this.empty();
+      
+//       console.log('Error',err.json())
+             
+//     }
+//     )
+
+// }
   }
 }

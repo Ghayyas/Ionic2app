@@ -19,12 +19,13 @@
    </ion-navbar>
 
 <ion-content padding class="create-event ecnob-fields">
+  <form  #eventsForm="ngForm">
   <ion-list class="padding">
 <div class="fullwidthrow">
      <div class="fieldgroup">
      
        	<h3>Event Type</h3>
-<radio-group (ngModel)="parameters.type">
+<radio-group required [(ngModel)]="parameters.type">
 
 
        	<label class="radiolabel" for="radio-one">
@@ -35,23 +36,28 @@
 		<input type="radio" value="1" name="quality" id="radio-two"> <span>By Genral invitation</span>
 		</label>
        </radio-group>
-                     <span style="color:red;" [hidden]="!typeField">This field Required</span>
+                     <!--<span style="color:red;" [hidden]="!typeField">This field Required</span>-->
      </div>
 
      </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" [(ngModel)]="parameters.name" placeholder="Event Name">
-               <span style="color:red;" *ngIf="nameField == true">This field Required</span>
- 
+     <input type="text" name="" [(ngModel)]="parameters.name" placeholder="Event Name" required #name="ngModel">
+               <!--<span style="color:red;" *ngIf="nameField == true">This field Required</span>-->
+  <div [hidden]="name.valid || name.pristine" style="color:red">
+         <small>*Required</small>
+     </div>
      </div>
     </div>
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" name="" placeholder="Event Location" [(ngModel)]="parameters.location">
-          <span style="color:red;" *ngIf="locationField == true">This field Required</span>
+     <input type="text" name="" placeholder="Event Location" required [(ngModel)]="parameters.location" #location="ngModel">
+          <!--<span style="color:red;" *ngIf="locationField == true">This field Required</span>-->
+      <div [hidden]="location.valid || location.pristine" style="color:red">
+         <small>*Required</small>
+     </div>
      </div>
     </div>
 
@@ -61,8 +67,11 @@
     <ion-col width-50 style="padding-left: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="" placeholder="20/5/2016" [(ngModel)]="parameters.start_date">
-          <span style="color:red;" *ngIf="startDate == true">This field Required</span>
+     <input type="date" name="" placeholder="20/5/2016"  required [(ngModel)]="parameters.start_date" #start_date="ngModel">
+          <!--<span style="color:red;" *ngIf="startDate == true">This field Required</span>-->
+       <div [hidden]="start_date.valid || start_date.pristine" style="color:red">
+         <small>*Required</small>
+     </div>
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
@@ -70,8 +79,11 @@
     <ion-col width-50 style="padding-right: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="" placeholder="20/5/2016" [(ngModel)]="parameters.end_date">
-          <span style="color:red;" *ngIf="endDateField == true">This field Required</span>
+     <input type="date" name="" placeholder="20/5/2016" required [(ngModel)]="parameters.end_date" #end_date="ngModel">
+          <!--<span style="color:red;" *ngIf="endDateField == true">This field Required</span>-->
+  <div [hidden]="end_date.valid || end_date.pristine" style="color:red">
+         <small>*Required</small>
+     </div>
       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
@@ -96,11 +108,11 @@
 
 
 </ion-list>
-
+  </form>
  <ion-list>
    <div style="padding: 0px 15px;">   
      <!--[navPush]="createListPeopleToInvite"-->
-  <button class="button button-block button-positive" style="font-size: 20px; height: 50px;" (click)="submit(parameters)">
+  <button class="button button-block button-positive" [disabled]="!eventsForm.form.valid" style="font-size: 20px; height: 50px;" (click)="submit(parameters)">
   Next
 </button>
 </div>
