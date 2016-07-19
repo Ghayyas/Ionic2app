@@ -42,7 +42,7 @@ export class CreateEventPage {
       longitude: '',
       // },
 
-      created_at: new Date()
+      created_at: new Date().getTime()
     }
     
     
@@ -114,7 +114,7 @@ export class CreateEventPage {
    
 
      ngOnInit() {
-      this.myval = 'hello ghayyas'
+      // this.myval = 'hello ghayyas'
 
         console.log('hello world');
        
@@ -240,8 +240,8 @@ submit(params)
   {
     this.params.latitude = CreateEventPage.myLat;
     this.params.longitude = CreateEventPage.myLong;
-    console.log('myval',params)
-    console.log('sub lat',CreateEventPage.myLat,'sub long', CreateEventPage.myLong);
+    // console.log('myval',params)
+    // console.log('sub lat',CreateEventPage.myLat,'sub long', CreateEventPage.myLong);
   //  var id = <HTMLInputElement> document.getElementById('pac-input');
   //  console.log('pacINput',id.value);
   //   // console.dir(id);
@@ -256,140 +256,53 @@ submit(params)
   //   }
   
   console.log('params',params)
-      console.log('sub lat',CreateEventPage.myLat,'sub long', CreateEventPage.myLong);
+      // console.log('sub lat',CreateEventPage.myLat,'sub long', CreateEventPage.myLong);
     this.loading = Loading.create({
            content: "Please wait...",
+           duration: 300,
            dismissOnPageChange: true
-            
+           
         });
   this.nav.present(this.loading);
-  // if(this.parameters.name || this.parameters.location || this.parameters.type || this.parameters.start_date || this.parameters.end_date == ''){
-  //  this.requiredFields = true;
-  //         // this.loading.dismiss();
-  //  let alert = Alert.create({
-  //     title: 'Validation failed !',
-  //     subTitle: 'Please fill all required field',
-  //     buttons: ['OK']
-  //   });
-  //      this.nav.present(alert);    
-  // }
-  // if(this.parameters.type === ''){
-  //   this.typeField = true;
-  //      let alert = Alert.create({
-  //     title: 'Validation failed !',
-  //     subTitle: 'Please fill all required field',
-  //     buttons: ['OK']
-  //   });
-  //      this.nav.present(alert); 
-  //   // this.typeField  = false;
-  
-  // }
-
-  // else if(this.parameters.name === ''){
-  //   this.nameField = true; 
-  //      let alert = Alert.create({
-  //     title: 'Validation failed !',
-  //     subTitle: 'Please fill all required field',
-  //     buttons: ['OK']
-  //   });
-  //      this.nav.present(alert);
-  //     //  this.nameField = false; 
-  // }
-  // else if(this.parameters.location === ''){
-  //   this.locationField = true;
-  //      let alert = Alert.create({
-  //     title: 'Validation failed !',
-  //     subTitle: 'Please fill all required field',
-  //     buttons: ['OK']
-  //   });
-  //      this.nav.present(alert); 
-  //     //  this.locationField = false;
-  // }
-
-  // else if(this.parameters.start_date === ''){
-  //   this.startDate = true;
-    
-  //      let alert = Alert.create({
-  //     title: 'Validation failed !',
-  //     subTitle: 'Please fill all required field',
-  //     buttons: ['OK']
-  //   });
-  //      this.nav.present(alert); 
-  //     //  this.startDate = false;
-  // }
-  // else if(this.parameters.end_date === ''){
-  //   this.endDateField = true;
-    
-  //      let alert = Alert.create({
-  //     title: 'Validation failed !',
-  //     subTitle: 'Please fill all required field',
-  //     buttons: ['OK']
-  //   });
-  //      this.nav.present(alert); 
-       
-  // }
-  // else{
-  //   this.typeField = false;
-  //   this.requiredFields = false;
-  //   this.nameField = false;
-  //   this.locationField = false;
-  //   this.startDate = false;
-  //   this.endDateField = false
-  
-  
-    //   let alert = Alert.create({
-    //   title: 'Succeed !',
-    //   subTitle: 'Data has been sent',
-    //   buttons: ['OK']
-    // });
-    //    this.nav.present(alert);
-    // console.log('params',this.parameters);
-    var headers = new Headers();
-    var data  = this.params;
-   headers.append('Content-Type', 'application/json');
-   let ecnobToken = window.localStorage.getItem('ecnob.token');
-   headers.append('Authorization', `Bearer ${ecnobToken}`)
-    this.http.post( SERVER_NAME + 'events/create',data,{headers:headers})
-    .subscribe(
-      (data) => {
+ 
+  //   var headers = new Headers();
+  //   var data  = this.params;
+  //  headers.append('Content-Type', 'application/json');
+  //  let ecnobToken = window.localStorage.getItem('ecnob.token');
+  //  headers.append('Authorization', `Bearer ${ecnobToken}`)
+  //   this.http.post(SERVER_NAME + 'events/create',data,{headers:headers})
+  //   .subscribe(
+  //     (data) => {
                   // this.loading.dismiss();
-    //           let alert = Alert.create({
-    //   title: 'Succeed !',
-    //   subTitle: 'Event has been Published',
-    //   buttons: ['OK']
-    // });
-    //    this.nav.present(alert);
-       console.log('data send',data.json()); 
+  
+      //  console.log('data send',data.json()); 
 
        console.log('parameters',params);
     if(params.type == '1'){
     this.nav.rootNav.push(BroadcastEventPage);
+                  // this.loading.dismiss();
 
     }
     else if(params.type == '0'){
     this.nav.rootNav.push(CreateListPeopleInvitePage);
+                  // this.loading.dismiss();
+
     }
 
      
         //  this.empty();
-    },
-    (err) =>{
-      console.log('parameters',params);
+    // },
+    // (err) =>{
+    //   console.log('parameters',params);
 
-    //   this.typeField = false;
-    // this.requiredFields = false;
-    // this.nameField = false;
-    // this.locationField = false;
-    // this.startDate = false;
-    // this.endDateField = false
                 // this.loading.dismiss();
-     let alert = Alert.create({
-      title: 'Error !',
-      subTitle: 'Data has not been sent',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-      let str = JSON.parse(err._body);
+    //  let alert = Alert.create({
+    //   title: 'Error !',
+    //   subTitle: 'Data has not been sent Please Reset All Fieds',
+    //   buttons: ['OK']
+    // });
+    //    this.nav.present(alert);
+    //   let str = JSON.parse(err._body);
     //   if(str.status_code == 422){
     //           let alert = Alert.create({
     //   title: 'Error !',
@@ -398,20 +311,20 @@ submit(params)
     // });
     //    this.nav.present(alert);
       // }
-       if(str.status_code == 401){
-        let alert = Alert.create({
-          title: "Error !",
-          subTitle: "Your Token is Expire Please logout and signin again",
-          buttons : ['OK']
-        })
-        this.nav.present(alert);
-      }
-      // this.empty();
+    //    if(str.status_code == 401){
+    //     let alert = Alert.create({
+    //       title: "Error !",
+    //       subTitle: "Your Token is Expire Please logout and signin again",
+    //       buttons : ['OK']
+    //     })
+    //     this.nav.present(alert);
+    //   }
+    //   // this.empty();
       
-      console.log('Error',err.json())
+    //   console.log('Error',err.json())
              
-    }
-    )
+    // }
+    // )
 
 }
   }

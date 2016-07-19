@@ -13,5 +13,26 @@ import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
 })
 export class CreateListPeopleInvitePage {
   broadcastEvent = BroadcastEventPage;
-  constructor(public nav: NavController) {}
+  public emailArray = [];
+  public senderEmail: string;
+  constructor(public nav: NavController) {
+    
+  }
+  
+  add(useremail){
+    console.log('emai',useremail.value);
+    console.log('model Email',this.senderEmail);
+    this.emailArray.push(this.senderEmail);
+    console.log('array',this.emailArray);
+    useremail = '';
+        this.senderEmail = '';
+}
+ delete(){
+   for(var i = this.emailArray.length - 1; i >= 0; i--) {
+    if(this.emailArray[i] === Number) {
+       this.emailArray.splice(i, 1);
+    }
+}
+ }
+
 }

@@ -13,5 +13,18 @@ import {SubscriptionPage} from '../subscription/subscription';
 })
 export class BroadcastEventPage {
   subscription = SubscriptionPage;
-  constructor(public nav: NavController) {}
+  public region_arr = [];
+  public region: string;
+  
+  constructor(public nav: NavController) {
+ 
+}
+  add(user){
+    console.log('userRegion',user.value);
+    let region_val = this.region;
+    this.region_arr.push(region_val);
+    console.log('regionarr',this.region_arr);
+    this.region = '';
+    user = "";
+  }
 }

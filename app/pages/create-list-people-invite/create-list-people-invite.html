@@ -18,40 +18,23 @@
   
 
   <ion-grid>
+    <div *ngFor="let email of emailArray">
   <ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
+     <div   class="fieldgroup" style="margin-bottom: 0px;">
+     <input type="text" readonly name="email" value="{{email}}" placeholder="email@test.com">
      </div>
     </div>
     </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-<ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
+    <ion-col width-10>
+      <button (click)="delete()">
+      <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon>
+      </button>
+       </ion-col>
+     </ion-row>
+</div>
+<!--<ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
      <div class="fieldgroup" style="margin-bottom: 0px;">
@@ -84,6 +67,28 @@
     <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
   </ion-row>
 
+  <ion-row>
+    <ion-col width-90>
+    <div class="fullwidthrow">
+     <div class="fieldgroup" style="margin-bottom: 0px;">
+     <input type="text" readonly name="" placeholder="email@test.com">
+     </div>
+    </div>
+    </ion-col>
+    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col width-90>
+    <div class="fullwidthrow">
+     <div class="fieldgroup" style="margin-bottom: 0px;">
+     <input type="text" readonly name="" placeholder="email@test.com">
+     </div>
+    </div>
+    </ion-col>
+    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
+  </ion-row>-->
+<div style="position:absolute; bottom: 0; right: 0; left: 0">
     <div style=" padding: 10px 7px;font-size: 20px;">Add Recipient Email</div>
     <ion-row>
     <ion-col width-80>
@@ -91,15 +96,15 @@
     
      <div class="fieldgroup" style="margin-bottom: 0px;">
      
-     <input type="text" name="" placeholder="Enter EMail Address">
+     <input type="text" name="sendmail" #useremail [(ngModel)]="senderEmail" placeholder="Enter EMail Address">
      </div>
     </div>
     </ion-col>
-    <ion-col width-20><button class="button button-block button-positive" style="font-size: 16px; height: 40px;    margin-top: 0px;">ADD</button></ion-col>
+    <ion-col width-20><button class="button button-block button-positive" style="font-size: 16px; height: 40px; margin-top: 0px;" (click)="add(useremail)">ADD</button></ion-col>
   </ion-row>
 
    <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" [navPush]="broadcastEvent">Send Invites</button>
-
+</div>
 </ion-grid>
 
 </ion-content>

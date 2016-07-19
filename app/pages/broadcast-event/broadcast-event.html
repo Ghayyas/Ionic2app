@@ -17,33 +17,24 @@
 <ion-content padding class="broadcast-event ecnob-fields">
   
   <ion-grid>
+    <div *ngFor="let reg of region_arr">
   <ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
      <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="Region 1">
+       
+     <input type="text" readonly value="{{reg}}" name="region"  placeholder="Region 1">
      </div>
     </div>
     </ion-col>
     <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
   </ion-row>
-
-<ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="Region 2">
-     </div>
     </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
+<!--<ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
      <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="Region 3">
+     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 2">
      </div>
     </div>
     </ion-col>
@@ -54,7 +45,7 @@
     <ion-col width-90>
     <div class="fullwidthrow">
      <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="Region 4">
+     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 3">
      </div>
     </div>
     </ion-col>
@@ -65,7 +56,7 @@
     <ion-col width-90>
     <div class="fullwidthrow">
      <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="Region 5">
+     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 4">
      </div>
     </div>
     </ion-col>
@@ -76,13 +67,25 @@
     <ion-col width-90>
     <div class="fullwidthrow">
      <div class="fieldgroup" style="margin-bottom: 0px;">
-      <input type="text" readonly name="" placeholder="Region 6">
+     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 5">
      </div>
     </div>
     </ion-col>
     <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
   </ion-row>
 
+  <ion-row>
+    <ion-col width-90>
+    <div class="fullwidthrow">
+     <div class="fieldgroup" style="margin-bottom: 0px;">
+      <input type="text" readonly name="region" value="{{region}}" placeholder="Region 6">
+     </div>
+    </div>
+    </ion-col>
+    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
+  </ion-row>
+    </div>-->
+    <div style="position: absolute !important;bottom: 0 !important;left: 0;right: 0;">
     <div style=" padding: 10px 7px;font-size: 20px;">Select Region</div>
     <ion-row>
     <ion-col width-80>
@@ -90,15 +93,17 @@
     
      <div class="fieldgroup" style="margin-bottom: 0px;">
      
-     <input type="text" name="" placeholder="Enter Region">
+     <input type="text" name="user" [(ngModel)]="region" #user placeholder="Enter Region">
+     
      </div>
     </div>
     </ion-col>
-    <ion-col width-20><button class="button button-block button-positive" style="font-size: 16px; height: 40px;    margin-top: 0px;">ADD</button></ion-col>
+    <ion-col width-20>
+      <button class="button button-block button-positive" style="font-size: 16px; height: 40px;margin-top: 0px;" (click)="add(user)">ADD</button></ion-col>
   </ion-row>
 
    <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" [navPush]="subscription">Send Invites</button>
-
+    </div>
 </ion-grid>
 
 </ion-content>
