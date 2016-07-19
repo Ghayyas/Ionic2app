@@ -4,13 +4,18 @@ import {Platform} from "ionic-angular"
 import {Geolocation} from 'ionic-native';
 import {SignupPage} from "../../pages/signup/signup";
 
+
+
+
+export let SERVER_NAME = 'http://nameless-scrubland-35696.herokuapp.com/api/';
+
 @Injectable()
 export class DataService {
-    
+
+
 static dataArray : Array<usercreds> = new Array();
        
   constructor() {
-   
   }
   
   static tabsData: boolean;

@@ -7,7 +7,7 @@ import { EqualValidator } from '../../service/equal-validator-service/equal-vali
 
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from '../signin/authservice';
-
+import {SERVER_NAME} from '../../service/dataService/dataService';
 import {DataService,usercreds} from '../../service/dataService/dataService';
 import {profile} from "../profile/profile";
 import {locationPage} from '../location/location';
@@ -95,7 +95,7 @@ export class SignupPage {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
    let email = "email "+this.usercreds.email 
-    this.http.post('https://nameless-scrubland-35696.herokuapp.com/api/auth/checkemail',creds, { headers: headers }).subscribe((data)=>{
+    this.http.post(SERVER_NAME+'auth/checkemail',creds, { headers: headers }).subscribe((data)=>{
         console.log('email found',data.json());
         let success = data.json().success;
         loading.dismiss()

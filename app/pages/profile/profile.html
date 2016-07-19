@@ -218,8 +218,15 @@ left: 35%;-->
 <!--<button full class="button lastbutton"  (click)="uploadSelectedImage()">
   Next
 </button>-->
-<button full class="lastbutton" (click)="uploadSelectedImage()" >Next</button>
+<!--<button full class="lastbutton" (click)="uploadSelectedImage()" >Next</button>-->
 </ion-content>
+   <ion-toolbar position="bottom">
+     <ion-buttons>
+         <button royal (click)="uploadSelectedImage()">
+              NEXT
+        </button>
+  </ion-buttons>
+</ion-toolbar>
 <!--<ion-toolbar position="bottom">
   <ion-title>
     <button>Next</button></ion-title>

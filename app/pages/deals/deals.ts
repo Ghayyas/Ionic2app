@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {DealsDetailPage} from '../deals-detail/deals-detail';
 import {searchDeals} from '../searchDeals/searchDeals';
+import {SigninPage} from '../signin/signin';
 /*
   Generated class for the DealsPage page.
 
@@ -18,4 +19,15 @@ dealsDetailsPage(){
   console.log('Deals Page');
   this.nav.rootNav.push(DealsDetailPage)    
 }
+
+
+// ionViewLoaded(){
+//   this.nav.setRoot(SigninPage).then((data)=>{
+//     console.log('data',data);
+//   },(err)=>{
+//     console.log('err',err)
+//   })
+// }
+
+
 }

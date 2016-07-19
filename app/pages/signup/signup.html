@@ -71,9 +71,6 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 .tabs-image{
   margin-bottom: 3px;
 }
-.lastbutton{
-  
-}
 </style>
 <form  #signupForm="ngForm">
 <div class="no-padding">
@@ -117,7 +114,7 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
        <!--\S+@\S+\.\S+-->
        <!--^[A-Z0-9][A-Z0-9._%+-]{0,63}@
 (?:[A-Z0-9](?:[A-Z0-9-]{0,62}[A-Z0-9])?\.){1,8}[A-Z]{2,63}$-->
-    <input type="email" name="email" required placeholder="Email Address" [(ngModel)]="usercreds.email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{2,3})?" #email="ngModel">
+    <input type="email" name="email" required placeholder="Email Address" [(ngModel)]="usercreds.email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{1,2})?" #email="ngModel">
      <div [hidden]="email.valid || email.pristine" style="color:red;">
          <small> Email is required and Format should be According to <i>"example@example.com"</i></small>
         </div>
@@ -221,8 +218,16 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 <!--<button class="button lastbutton" (click)="signup()" [disabled]="!signupForm.form.valid">
   Next
 </button>-->
-<button full class="lastbutton" (click)="signup()" [disabled]="!signupForm.form.valid">Next</button>
+
+<!--<button full class="lastbutton" (click)="signup()" [disabled]="!signupForm.form.valid">Next</button>-->
 
 </form>
 
 </ion-content>
+   <ion-toolbar position="bottom">
+     <ion-buttons>
+         <button royal (click)="signup()" [disabled]="!signupForm.form.valid">
+              NEXT
+        </button>
+  </ion-buttons>
+</ion-toolbar>

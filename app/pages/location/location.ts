@@ -1,6 +1,6 @@
 import {NavController, Page, Loading,ActionSheet,Alert,Toast} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
-import {NgZone, Component, EventEmitter} from "@angular/core";
+import {NgZone, Component, EventEmitter, OnInit} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService} from '../../service/dataService/dataService';
 import {TabsPage} from '../tabs/tabs';
@@ -9,7 +9,7 @@ import {TabsPage} from '../tabs/tabs';
 
 declare var google:any;
 declare var load:any;    
-declare var $:any;
+// declare var $:any;
 
  @Page({
   templateUrl: 'build/pages/location/location.html',
@@ -172,12 +172,8 @@ export class locationPage{
     // console.log('position long',drage_long);
   });
   this.cityCircle.bindTo('center', marker, 'position');
-  
-        // Create the search box and link it to the UI element.
-        // var input = document.getElementById('pac-input');
-        // var searchBox = new google.maps.places.SearchBox(input);
-        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-              var input = new google.maps.places.SearchBox(document.getElementById('pac-input'));
+
+ var input = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
         google.maps.event.addListener(input,'places_changed',function(){
             // console.log("search",input.getPlaces());
@@ -192,12 +188,7 @@ export class locationPage{
             }
             map.fitBounds(bounds);
             map.setZoom(12);
-         // var places = input.getPlaces();
         })
-        // Bias the SearchBox results towards current map's viewport.
-        // map.addListener('bounds_changed', function() {
-        //   searchBox.setBounds(map.getBounds());
-        // });
         
     
       }

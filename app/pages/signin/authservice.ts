@@ -3,6 +3,7 @@ import {Injectable, Inject} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import {NavController,Alert,Loading, MenuController} from 'ionic-angular';
 import {SigninPage} from './signin';
+import {SERVER_NAME} from '../../service/dataService/dataService'
 
 
 
@@ -48,7 +49,7 @@ export class AuthService {
 
         return new Promise((resolve) => {
 
-            this.http.post('http://nameless-scrubland-35696.herokuapp.com/api/auth/login', creds, { headers: headers }).subscribe(data => {
+            this.http.post(SERVER_NAME +'auth/login', creds, { headers: headers }).subscribe(data => {
 
                 if (data.json().token) {
                     window.localStorage.setItem('ecnob.token', data.json().token);
@@ -105,6 +106,5 @@ export class AuthService {
           AuthService.menu.close(); 
           window.localStorage.clear();
           AuthService.nav.rootNav.push(SigninPage);
-        // window.location.reload();
     }
 }
