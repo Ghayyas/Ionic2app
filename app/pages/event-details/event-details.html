@@ -45,8 +45,8 @@ button.back-button.disable-hover.bar-button.bar-button-default.show-back-button{
 
   
 </style>
-
-<ion-content class="event-details">
+<!--*ngFor="let detail of eventDetailArray"-->
+<ion-content class="event-details" *ngFor="let detail of myArray">
   
 
   
@@ -54,100 +54,40 @@ button.back-button.disable-hover.bar-button.bar-button-default.show-back-button{
 
 	  <ion-item style="padding: 0px 0px; position:relative;">
     <div class="coverphoto">
-	     <img src="img/evenbanner.jpg" style="border-radius: 12px;">
+      <!--{{ detail.photo ||'img/evenbanner.jpg'}}-->
+	     <img src="{{ detail.photo ||'img/evenbanner.jpg'}}" style="border-radius: 12px;">
        <!--<div class="img-layer"></div>-->
        </div>
 	  <div class="alignmiddle">   
      <div class="head-center">
-       <h2>New Year Celebration</h2>
+       <!--{{detail.name}}-->
+       <h2>{{detail.name}}</h2>
      </div>
      <br>
      
      <div class="Fireworks">
-     <h3>Fireworks Inc</h3>
-     <p>1st januray 2-16 at 00:00 Hrs</p>
+       <!--{{detail.start_date}}-->
+       <div *ngIf="detail.user">
+     <h3>{{detail.user.name}}</h3>
+</div>
+      <div *ngIf="detail.company">
+         <h3>{{detail.company.name}}</h3>
+        </div>
+     <p>{{detail.start_date}}</p>
      </div>
      <div class="cityToShow">
-       <p><i class="fa fa-map-marker markerblack" aria-hidden="true"></i>New York, USA</p>
+       <!--{{detail.location}}-->
+       <p><i class="fa fa-map-marker markerblack" aria-hidden="true"></i>{{detail.location}}</p>
      </div>
 	    <br>
+      <!--{{detail.description}}-->
       <div class="event-details">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere perspiciatis odit maiores ad saepe doloribus voluptate illo dolorum quisquam veniam beatae molestiae adipisci eaque voluptatem quos sunt, quas ipsa assumenda.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur reprehenderit tempora, unde eligendi provident aut ut ex, magni veritatis quam omnis doloribus placeat voluptate! Optio dolorem explicabo nisi accusamus autem!
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt esse tempora doloremque minima fugiat aliquam suscipit velit, officiis labore libero debitis odio molestiae. Veniam quo laboriosam ea nemo eaque obcaecati.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora illo vero hic corrupti nam, tempore suscipit. Dolores perspiciatis asperiores, veritatis, at consequuntur esse blanditiis inventore perferendis omnis tenetur iste repellat.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat dignissimos voluptatibus cum dolores harum, labore magni saepe quibusdam modi ab vitae, expedita voluptates? Quasi quia laborum maiores a accusantium labore!
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, dolores velit sed. Voluptates debitis fugit excepturi sit impedit, at placeat, nobis distinctio maxime deleniti nam assumenda, omnis similique, natus quod?
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint suscipit labore porro consectetur assumenda placeat dicta magnam aut odit, omnis ad molestiae tenetur et distinctio tempore nesciunt iste, tempora! Ipsum.
-    
+      {{detail.description}}
       </div>
     </div>
-      <!--<!--<ion-row class="banner-content">
-    <ion-col width-50>
-     <h2>Event Name</h2>
-     <h3>30 April 8 May</h3>
-     <ion-segment class="segbar" (ngModel)="pet">
-    <ion-segment-button class="segbtn segment-activated" value="kittens">
-      YES
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="puppies">
-      NO
-    </ion-segment-button>
-    <ion-segment-button class="segbtn" value="GAMES">
-      MAY BE
-    </ion-segment-button>
-  </ion-segment>
-    </ion-col>
-    <ion-col width-50 style="text-align:right;">
-    </ion-col>
-  </ion-row>
-	  </ion-item>
-	  <ion-item style="padding: 0px 10px; border-bottom: 1px solid rgb(237, 237, 237);">
-	     <p> <i class="fa fa-map-marker" aria-hidden="true"></i>  Lorem Ipsum is simply dummy text of the printing.</p>
-	  </ion-item>
-	  <ion-item style="padding: 0px 10px;" class="ev-details">
-	     <h1> Lorem Ipsum dollar sit amet</h1>
-	     <p>consectetur adipiscingelit. Nulla quam velit, vulputate eu pharetra nec, mattisac neque. Duis vulputate commodo lectus, ac blandite ique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. </p>
-
-<p>Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. </p>
-
-<p>Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orc. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit.</p>-->
-	  </ion-item>
+    </ion-item>
 	</ion-list>
-  <!--<div id="outer">
-
- <div class="inner"><button  class="lastbutton">yes</button> </div>
-<div class="inner"><button  class="lastbutton1">No</button></div>
-<div class="inner"><button  class="lastbutton2">MayBe</button></div>
-  </div>-->
-
-
-
-
-<!--<ion-row>
-    <ion-col >
   
-     <button  style="position: fixed !important;
-    bottom: -5px;
-    margin-left: -5px;
-    float: left;
-    padding-right: 100%;">Yes</button>
-      </ion-col>
-       <ion-col >
-  
-     <button  style="position: fixed !important;
-    bottom: -5px;
-    float: left;
-    padding-right: 100%;">No</button>
-      </ion-col>
-       <ion-col >
-  
-     <button  style="position: fixed !important;
-    bottom: -5px;
-    float: left;
-    padding-right: 100%;">May Be</button>
-      </ion-col>
-  </ion-row>-->
   
 </ion-content>
 

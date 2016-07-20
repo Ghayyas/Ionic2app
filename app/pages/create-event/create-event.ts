@@ -259,72 +259,72 @@ submit(params)
       // console.log('sub lat',CreateEventPage.myLat,'sub long', CreateEventPage.myLong);
     this.loading = Loading.create({
            content: "Please wait...",
-           duration: 300,
+          //  duration: 300,
            dismissOnPageChange: true
            
         });
   this.nav.present(this.loading);
  
-  //   var headers = new Headers();
-  //   var data  = this.params;
-  //  headers.append('Content-Type', 'application/json');
-  //  let ecnobToken = window.localStorage.getItem('ecnob.token');
-  //  headers.append('Authorization', `Bearer ${ecnobToken}`)
-  //   this.http.post(SERVER_NAME + 'events/create',data,{headers:headers})
-  //   .subscribe(
-  //     (data) => {
-                  // this.loading.dismiss();
+    var headers = new Headers();
+    var data  = this.params;
+   headers.append('Content-Type', 'application/json');
+   let ecnobToken = window.localStorage.getItem('ecnob.token');
+   headers.append('Authorization', `Bearer ${ecnobToken}`)
+    this.http.post(SERVER_NAME + 'events/create',data,{headers:headers})
+    .subscribe(
+      (data) => {
+                  this.loading.dismiss(true);
   
-      //  console.log('data send',data.json()); 
+       console.log('data send',data.json()); 
 
        console.log('parameters',params);
     if(params.type == '1'){
     this.nav.rootNav.push(BroadcastEventPage);
-                  // this.loading.dismiss();
+                  this.loading.dismiss(true);
 
     }
     else if(params.type == '0'){
     this.nav.rootNav.push(CreateListPeopleInvitePage);
-                  // this.loading.dismiss();
+                  this.loading.dismiss(true);
 
     }
 
      
         //  this.empty();
-    // },
-    // (err) =>{
-    //   console.log('parameters',params);
+    },
+    (err) =>{
+      console.log('parameters',params);
 
-                // this.loading.dismiss();
-    //  let alert = Alert.create({
-    //   title: 'Error !',
-    //   subTitle: 'Data has not been sent Please Reset All Fieds',
-    //   buttons: ['OK']
-    // });
-    //    this.nav.present(alert);
-    //   let str = JSON.parse(err._body);
-    //   if(str.status_code == 422){
-    //           let alert = Alert.create({
-    //   title: 'Error !',
-    //   subTitle: 'Please Fill all required Fields',
-    //   buttons: ['OK']
-    // });
-    //    this.nav.present(alert);
-      // }
-    //    if(str.status_code == 401){
-    //     let alert = Alert.create({
-    //       title: "Error !",
-    //       subTitle: "Your Token is Expire Please logout and signin again",
-    //       buttons : ['OK']
-    //     })
-    //     this.nav.present(alert);
-    //   }
-    //   // this.empty();
+                this.loading.dismiss(true);
+     let alert = Alert.create({
+      title: 'Error !',
+      subTitle: 'Data has not been sent Please Reset All Fieds',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
+      let str = JSON.parse(err._body);
+      if(str.status_code == 422){
+              let alert = Alert.create({
+      title: 'Error !',
+      subTitle: 'Please Fill all required Fields',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
+      }
+       if(str.status_code == 401){
+        let alert = Alert.create({
+          title: "Error !",
+          subTitle: "Your Token is Expire Please logout and signin again",
+          buttons : ['OK']
+        })
+        this.nav.present(alert);
+      }
+      this.empty();
       
-    //   console.log('Error',err.json())
+      console.log('Error',err.json())
              
-    // }
-    // )
+    }
+    )
 
 }
   }

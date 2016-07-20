@@ -63,13 +63,14 @@ export class AuthService {
                            
                   console.log('error getting',err,'err json',err.json());       
                   let error = err.json();
+                  this.getalert('Error',"No Internet Access!");
                   if(error.status_code === 401){
                       this.getalert('Error','Email Or password Not matched')
                       console.log('Email or Password Not found on server');
                   }
-                  else{
-                      this.getalert('Error',"Make Sure you have Connected to Internet");
-                  }  
+                //   else{
+                //       this.getalert('Error',"Make Sure you have Connected to Internet");
+                //   }  
                   resolve(false);
                 
             });

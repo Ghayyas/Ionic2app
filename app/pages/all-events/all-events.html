@@ -51,10 +51,10 @@ ion-title{
    
      <ion-toolbar primary>
     <ion-segment>
-      <ion-segment-button (click)="myclick('public')" class="tab-segment segment-activated" value="private">
+      <ion-segment-button (click)="myclick('public')" class="tab-segment segment-activated" value="public">
         Public Events
       </ion-segment-button>
-      <ion-segment-button class="tab-segment" (click)="myclick('private')" value="public">
+      <ion-segment-button class="tab-segment" (click)="myclick('private')" value="private">
         Private Events
       </ion-segment-button>
     </ion-segment>
@@ -65,7 +65,7 @@ ion-title{
 <ion-content class="all-events">
   <div class="from-top"></div>
   <div *ngIf="definedError == true">
-    <h3>Cannot Fetch Data from Server Please Contact application developer for support.</h3>
+    <h3>No New Events Avalible</h3>
   </div>
   <div *ngIf="error == true">
     <h3>Error in Fetching new results form server. </h3>
@@ -86,38 +86,41 @@ ion-title{
   
   
   
-  <div [ngSwitch]="pet">
+  <div [ngSwitch]="pet" *ngFor = "let arr of event">
+    <div *ngIf="arr.type == 1">
       <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
 
 <div class="card-background-page"> 
-    <ion-card (click)="newTabs()">
+    <ion-card (click)="newTabs(arr.id)">
     <div class="imgBlack">
-    <img src="img/comp-detail.jpg"/>
+      <!--img/stub_profile.png-->
+      <!--img/comp-detail.jpg-->
+    <img src="{{arr.photo || 'img/comp-detail.jpg'}}"/>
     </div>
-   
-     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
-     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
-    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+   <div class="card-middle">
+     <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: left;">{{arr.name}} PRivate</span></div>
+     <div class="card-title"><!--{{arr.description}}--><span style="float: left;">{{arr.description}}</span></div>
+    <div class="card-time"> <!-- {{arr.end_date}}--><span style="float: left;">{{arr.end_date}}</span></div>
+    </div>
     <ion-row no-padding>
-      <ion-col>
-        <button clear small (click)="btn()">
+      <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
+        <!--<button clear small (click)="btn()">-->
           <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
-        </button>
+          &nbsp; {{arr.location}}
+        <!--</button>-->
       </ion-col>
      <ion-item>
-    <!--<span item-right>Yes</span>
-    <span item-right>No</span>-->
+ 
     <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
+ 
      Yes
     </button>
     <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
+   
       No
     </button>
     <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
+
       MayBe
     </button>
   </ion-item>
@@ -125,79 +128,9 @@ ion-title{
   </ion-card>
 
 </div>
+      </div>
+      </div>
 
-<div class="card-background-page">
-    <ion-card (click)="newTabs()">
-    
-    <img src="img/comp-detail.jpg"/>
-   
-     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
-     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
-    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
-    <ion-row no-padding>
-      <ion-col>
-        <button clear small (click)="btn()">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
-        </button>
-      </ion-col>
-     <ion-item>
-    <!--<span item-right>Yes</span>
-    <span item-right>No</span>-->
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-     Yes
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      No
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      MayBe
-    </button>
-  </ion-item>
-    </ion-row>
-  </ion-card>
-
-</div>
-
-<div class="card-background-page">
-    <ion-card (click)="newTabs()">
-    
-    <img src="img/comp-detail.jpg"/>
-   
-     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
-     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
-    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
-    <ion-row no-padding>
-      <ion-col>
-        <button clear small (click)="btn()">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
-        </button>
-      </ion-col>
-     <ion-item>
-    <!--<span item-right>Yes</span>
-    <span item-right>No</span>-->
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-     Yes
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      No
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      MayBe
-    </button>
-  </ion-item>
-    </ion-row>
-  </ion-card>
-
-</div>
-</div>
 
   
   
@@ -211,120 +144,47 @@ ion-title{
   
   
   <!--  SWITCH  -->
-  
+  <div *ngIf="arr.type == 0">
   <div *ngSwitchCase="'public'">
-  event Page
+
   <div class="card-background-page"> 
-    <ion-card (click)="newTabs()">
+    <ion-card (click)="newTabs(arr.id)">
     
-    <img src="img/comp-detail.jpg"/>
-   
-     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
-     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
-    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
+    <img src="{{arr.photo || 'img/comp-detail.jpg'}}"/>
+     <div class="card-middle">
+     <div class="card-name"> <!--{{arr.name}}--><span style="float: left;">{{arr.name}} public</span></div>
+     <div class="card-title"><!--{{arr.description}}--><span  style="float: left;">{{arr.description}}</span></div>
+    <div class="card-time"> <!-- {{arr.end_date}}--><span  style="float: left;">{{arr.end_date}}</span></div>
+    </div>
     <ion-row no-padding>
-      <ion-col>
-        <button clear small (click)="btn()">
+      <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
+        <!--<button clear small (click)="btn()">-->
           <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
-        </button>
+         {{arr.location}}
+        <!--</button>-->
       </ion-col>
      <ion-item>
-    <!--<span item-right>Yes</span>
-    <span item-right>No</span>-->
+
     <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
+
      Yes
     </button>
     <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
+  
       No
     </button>
     <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
+   
       MayBe
     </button>
   </ion-item>
     </ion-row>
   </ion-card>
 
-</div>
-
-<div class="card-background-page">
-    <ion-card (click)="newTabs()">
-    
-    <img src="img/comp-detail.jpg"/>
-   
-     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
-     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
-    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
-    <ion-row no-padding>
-      <ion-col>
-        <button clear small (click)="btn()">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
-        </button>
-      </ion-col>
-     <ion-item>
-    <!--<span item-right>Yes</span>
-    <span item-right>No</span>-->
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-     Yes
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      No
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      MayBe
-    </button>
-  </ion-item>
-    </ion-row>
-  </ion-card>
-
-</div>
-
-<div class="card-background-page">
-    <ion-card (click)="newTabs()">
-    
-    <img src="img/comp-detail.jpg"/>
-   
-     <div class="card-name"> <!--{{arr.name}}-->Invision Custom Solution</div>
-     <div class="card-title"><!--{{arr.description}}-->Happy New Year</div>
-    <div class="card-time"> <!-- {{arr.end_date}}-->1st January 2016 at 00.00 Hrs</div>
-    <ion-row no-padding>
-      <ion-col>
-        <button clear small (click)="btn()">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
-        </button>
-      </ion-col>
-     <ion-item>
-    <!--<span item-right>Yes</span>
-    <span item-right>No</span>-->
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-     Yes
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      No
-    </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-      <!--<ion-icon name="navigate"></ion-icon>-->
-      MayBe
-    </button>
-  </ion-item>
-    </ion-row>
-  </ion-card>
-
-</div>
 </div>
   </div>
-
-
+</div>
+  </div>
 
 </ion-content>
 </ion-page>

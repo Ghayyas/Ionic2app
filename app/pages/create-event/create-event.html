@@ -53,7 +53,7 @@
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" id="locationINput" name="location" placeholder="Event Location" required [(ngModel)]="params.location" #location="ngModel">
+     <input type="text"  id="locationINput" name="location" placeholder="Event Location" required [(ngModel)]="params.location" #location="ngModel">
           <!--<span style="color:red;" *ngIf="locationField == true">This field Required</span>-->
       <div [hidden]="location.valid || location.pristine" style="color:red">
          <small>*Required</small>

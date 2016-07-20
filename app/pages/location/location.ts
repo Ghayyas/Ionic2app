@@ -2,8 +2,9 @@ import {NavController, Page, Loading,ActionSheet,Alert,Toast} from 'ionic-angula
 import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component, EventEmitter, OnInit} from "@angular/core";
 import {Http, Headers } from '@angular/http';
-import {DataService} from '../../service/dataService/dataService';
+import {DataService, SERVER_NAME} from '../../service/dataService/dataService';
 import {TabsPage} from '../tabs/tabs';
+// import {Server_Name} from '../../service/data'
 
 // import {AuthService}from "../../service/auth/authservice";
 
@@ -250,7 +251,7 @@ export class locationPage{
 
             var headers = new Headers();
             headers.append('Content-Type', 'application/x-www-form-urlencoded');
-            this.http.post('https://nameless-scrubland-35696.herokuapp.com/api/auth/signup', creds, { headers: headers })
+            this.http.post(SERVER_NAME + 'auth/signup', creds, { headers: headers })
             .subscribe(data => {
             //  console.log('data',data.json());
               if (data.json().token){

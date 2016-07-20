@@ -1,6 +1,11 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController,Alert} from 'ionic-angular';
 import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
+import {AllEventsPage} from '../all-events/all-events';
+import {Page1} from '../page1/page1';
+import {SigninPage} from '../signin/signin';
+import {TabsPage} from '../tabs/tabs';
+
 
 /*
   Generated class for the CreateListPeopleInvitePage page.
@@ -13,6 +18,8 @@ import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
 })
 export class CreateListPeopleInvitePage {
   broadcastEvent = BroadcastEventPage;
+  page1= AllEventsPage;
+  eventsPage: AllEventsPage;
   public emailArray = [];
   public senderEmail: string;
   constructor(public nav: NavController) {
@@ -27,12 +34,13 @@ export class CreateListPeopleInvitePage {
     useremail = '';
         this.senderEmail = '';
 }
- delete(){
-   for(var i = this.emailArray.length - 1; i >= 0; i--) {
-    if(this.emailArray[i] === Number) {
-       this.emailArray.splice(i, 1);
-    }
-}
- }
+ delete(event){
 
+  console.log('event',event);
+       this.emailArray.splice(event, 1);
+
+ }
+ sendInvites(){
+   this.nav.push(TabsPage)
+}
 }

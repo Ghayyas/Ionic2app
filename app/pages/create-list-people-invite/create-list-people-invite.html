@@ -18,7 +18,7 @@
   
 
   <ion-grid>
-    <div *ngFor="let email of emailArray">
+    <div *ngFor="let email of emailArray; let i = index">
   <ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
@@ -28,9 +28,9 @@
     </div>
     </ion-col>
     <ion-col width-10>
-      <button (click)="delete()">
-      <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon>
-      </button>
+      <!--<button (click)="delete(i)">-->
+      <ion-icon style="font-size:40px;" (click)="delete(i)" ios="ios-trash" md="ios-trash"></ion-icon>
+      <!--</button>-->
        </ion-col>
      </ion-row>
 </div>
@@ -89,6 +89,7 @@
     <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
   </ion-row>-->
 <div style="position:absolute; bottom: 0; right: 0; left: 0">
+  <form #emailForm="ngForm">
     <div style=" padding: 10px 7px;font-size: 20px;">Add Recipient Email</div>
     <ion-row>
     <ion-col width-80>
@@ -96,14 +97,18 @@
     
      <div class="fieldgroup" style="margin-bottom: 0px;">
      
-     <input type="text" name="sendmail" #useremail [(ngModel)]="senderEmail" placeholder="Enter EMail Address">
+     <input type="email" required name="sendmail" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{1,2})?" [(ngModel)]="senderEmail" #useremail="ngModel" placeholder="Enter Email Address">
+     <div [hidden]="useremail.valid || useremail.pristine" style="color:red;">
+    <small>Valid Email is Required</small>
+     </div>
      </div>
     </div>
     </ion-col>
-    <ion-col width-20><button class="button button-block button-positive" style="font-size: 16px; height: 40px; margin-top: 0px;" (click)="add(useremail)">ADD</button></ion-col>
+    <ion-col width-20><button class="button button-block button-positive" style="font-size: 16px; height: 40px; margin-top: 0px;" [disabled]="!emailForm.form.valid" (click)="add(useremail)">ADD</button></ion-col>
   </ion-row>
+</form>
+   <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" (click)="sendInvites()">Send Invites</button>
 
-   <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" [navPush]="broadcastEvent">Send Invites</button>
 </div>
 </ion-grid>
 

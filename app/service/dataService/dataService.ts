@@ -7,7 +7,7 @@ import {SignupPage} from "../../pages/signup/signup";
 
 
 
-export let SERVER_NAME = 'http://nameless-scrubland-35696.herokuapp.com/api/';
+export let SERVER_NAME = 'http://ecnobapi.herokuapp.com/api/';
 
 @Injectable()
 export class DataService {

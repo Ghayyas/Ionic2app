@@ -290,7 +290,9 @@ z-index: 22;
     position: absolute;
     top: 12%;
     font-size: 17px;
-    width: 183px;
+    width: 100%;  //183px;
+    // right: 114px;
+    // left: -94px;
     font-weight: bold;
     color: #fff;
   }
@@ -298,8 +300,10 @@ z-index: 22;
   .card-time {
    font-size: 12px;
     position: absolute;
+    // right: 114px;
+    // left: -118px;
     top: 23%;
-    width: 208px;
+    width:  100%; //208px;
     color: #fff;
 
   }
@@ -314,8 +318,10 @@ ion-col {
 .card-name{
     font-size: 12px;
     position: absolute;
+    // right: 114px;
+    // left: -94px;
     top: 5%;
-    width: 187px;
+    width: 100%;        //187px;
     color: #fff;
 }
 }
@@ -337,7 +343,9 @@ ion-segment-button.tab-segment.segment-button.segment-activated{
     border: 1px solid white;
 }
 
-
+.card-middle{
+    padding-left: 15px;
+}
 // .all-events ion-segment.segbar .segment-button.seg-active{
 //     background-image: -webkit-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
 // background-image: -moz-linear-gradient(left, #2f74f5 7%, #33c1f6 67%);
