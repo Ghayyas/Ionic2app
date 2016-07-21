@@ -73,7 +73,7 @@ ion-segment.tab-ion-segment .tab-segment.segment-button{
     font-size: 15px;
     font-weight: 500;
     line-height: 50px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #ffffff;
     background-color: transparent;
     opacity: 0.99;
@@ -85,7 +85,7 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
     border-bottom: none;
     border-bottom-width: 0px;
     overflow: visible;
-    text-transform: Capitalize;
+    text-transform: capitalize;
     font-size: 17px;
 }
 
@@ -95,7 +95,9 @@ ion-segment.tab-ion-segment ion-segment-button.segment-button.activated, ion-seg
     border-bottom: 1px solid #0058be;
     background:none;
 }
-
+.segment-button{
+   text-transform: capitalize !important;   
+}
 ion-segment.tab-ion-segment ion-segment-button.segment-button.activated:after, ion-segment.tab-ion-segment .segment-button.segment-activated:after {
     position: absolute;
     content: "";
@@ -138,6 +140,7 @@ position: fixed;
 .toolbar-title {
     font-size: 4.5vw;
     white-space: normal;
+    margin-right: 11px;
 }
 .tab-button-icon {
     white-space: initial;

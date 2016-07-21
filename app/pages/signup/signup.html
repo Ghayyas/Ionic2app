@@ -4,9 +4,9 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar *navbar>
+<ion-navbar *navbar primary>
 
-  <ion-title>Registration</ion-title>
+  <ion-title><span style="margin-left: -26px;">Registration</span></ion-title>
 
 </ion-navbar>
 
@@ -19,9 +19,11 @@
 	padding: 0px 8px;
 padding-top: 14px
 }
+
 .ecnob-fields .fieldgroup{
 	margin-bottom: 15px;
 }
+
 .ecnob-fields input[type="text"],
 .ecnob-fields input[type="tel"],
 .ecnob-fields input[type="num"],
@@ -70,6 +72,9 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
     }
 .tabs-image{
   margin-bottom: 3px;
+}
+.toolbar-background{
+    background: #0E0EFF;
 }
 </style>
 <form  #signupForm="ngForm">
@@ -226,8 +231,8 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 </ion-content>
    <ion-toolbar position="bottom">
      <ion-buttons>
-         <button royal (click)="signup()" [disabled]="!signupForm.form.valid">
-              NEXT
+         <button  royal (click)="signup()" [disabled]="!signupForm.form.valid">
+            <span style="text-transform: capitalize !important;">Next</span> 
         </button>
   </ion-buttons>
 </ion-toolbar>

@@ -101,11 +101,12 @@ export class AuthService {
 
    
 
-    static logout() {  
+    // static logout() {  
        
-          AuthService.isLoggedin = false;
-          AuthService.menu.close(); 
-          window.localStorage.clear();
-          AuthService.nav.rootNav.push(SigninPage);
-    }
+    //       AuthService.isLoggedin = false;
+    //     //   this.menu.close(); 
+    //      AuthService.nav.push(SigninPage);
+    //       window.localStorage.clear();
+         
+    // }
 }

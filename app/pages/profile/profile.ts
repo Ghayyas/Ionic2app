@@ -36,23 +36,10 @@ export class profile {
     constructor(public nav: NavController, private http:Http, public data: DataService) {
         this.zone = new NgZone({enableLongStackTrace: false});
         this.enableuserFields = false;
-        // this.email = '';
+
         this.formDisabled = false;
        
-       
-
-        // this.userName = '';
-        // this.email = DataService.dataArray[0].email;
-        // this.userName = DataService.dataArray[0].name;
-        // console.log('userFileds',this.enableuserFields);
-        // DataService.dataArray[0].email = this.email;
-        // DataService.dataArray[0].name = this.userName
-       
     }
-  // usercreds = {
-  //     photo: ''
-  //   }
-  // public ft:Transfer;
 //=============================//
 
  uploadFile() {
@@ -117,19 +104,14 @@ upload():void {
                 this.FileUrlAddress  =  imageData;
                 var str = this.FileUrlAddress;
                   let array = str.split("?")
-                    //  console.log(array[0])
+             
                     this.profilePic = array[0];
                 console.log('image Data',this.profilePic);
-                // let alert = Alert.create({
-                //       title: 'Succeed !',
-                //       subTitle: 'Image has been captured',
-                //       buttons: ['OK']
-                // });
-                //       this.nav.present(alert);
+        
             });
             
         }, error => {
-              // this.FileUrlAddress  = null
+        
            let alert = Alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
@@ -157,19 +139,14 @@ upload():void {
                 this.FileUrlAddress  =  imageData;
                 var str = this.FileUrlAddress;
                   let array = str.split("?")
-                    //  console.log(array[0])
+     
                     this.profilePic = array[0];
                 console.log('image Data',this.profilePic);
-            //       let alert = Alert.create({
-            //           title: 'Succeed !',
-            //           subTitle: 'Image has been captured',
-            //           buttons: ['OK']
-            //     });
-            //           this.nav.present(alert);
+    
             });
-            // this.FileUrlAddress = null;
+           
         }, error => {
-          // this.FileUrlAddress = null;
+   
            let alert = Alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
@@ -195,22 +172,15 @@ upload():void {
   }
   
   uploadSelectedImage(){
-    // this.data.pushData(this.usercreds);
-    // DataService.pushData(this.usercreds);
-    // if(val1 && val2 === true){
-        // DataService.dataArray[0].email = this.email;
-        // DataService.dataArray[0].name = this.userName;
-        
-    // console.log('val',val1,val2);
-    this.uploadFile()
+   
    let loading = Loading.create({
 		  content: "Please wait...",
-		  duration: 3000,
+		  duration: 6000,
 		  // dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
-          this.nav.push(locationPage);  
-          console.log('works!');
+          this.nav.push(locationPage);
+        
     // }
     // else{
       // let alert = Alert.create({

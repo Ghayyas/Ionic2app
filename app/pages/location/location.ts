@@ -4,6 +4,8 @@ import {NgZone, Component, EventEmitter, OnInit} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService, SERVER_NAME} from '../../service/dataService/dataService';
 import {TabsPage} from '../tabs/tabs';
+import 'rxjs/Rx';
+import {Observable} from 'rxjs/Rx';
 // import {Server_Name} from '../../service/data'
 
 // import {AuthService}from "../../service/auth/authservice";
@@ -20,11 +22,14 @@ declare var load:any;
 export class locationPage{
     public map:any;
     // public authservice;
+
     public cityCircle;   //Circle Map
     public Radius;      ///Radius of the Map
     public kmConverter;   //to Convert Meters in Kilometer
     constructor(public data:DataService,public http:Http, public nav: NavController){
        
+ 
+
       setTimeout(()=>{
     //    this.authservice = auth
          this.map = null;
@@ -33,13 +38,21 @@ export class locationPage{
          this.data = data;
          this.http = http;
          this.Radius = 3;
-      },3000);   // Map will load after 3 seconds
+      },5000);   
+      // Map will load after 3 seconds
         //  console.log('my radius',this.myRadius)
     }
      //=====================staring the map ============///
      initMap() {
-        var myLatLng = {lat: DataService.dataArray[0].latitude, lng: DataService.dataArray[0].longitude};
 
+
+         let conLat = Number(DataService.dataArray[0].latitude);
+         let conlog = Number(DataService.dataArray[0].longitude);
+         let lati = typeof(conLat);
+         let logi = typeof(conlog);
+         console.log('lati',lati,'logi',logi,'conlat',conLat,'conlog',conlog);
+        var myLatLng = {lat: DataService.dataArray[0].latitude, lng: DataService.dataArray[0].longitude};
+       console.log('latitude',DataService.dataArray[0].latitude,'longitude',DataService.dataArray[0].longitude);
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
           zoom: 12,
           center: myLatLng,
@@ -149,11 +162,11 @@ export class locationPage{
         
 
          this.cityCircle = new google.maps.Circle({
-           strokeColor: 'blue',
+           strokeColor: '#2f74f5',
             strokeOpacity: 0.8,
-            strokeWeight: 2,
+            strokeWeight: 1,
             fillColor: 'white',
-            fillOpacity: 0.5,
+            fillOpacity: 0.1,
             draggable: true,
              map: map,
              editable: false,
@@ -237,7 +250,7 @@ export class locationPage{
       updateProfile(){
           let loading = Loading.create({
 		  content: "Please wait...",
-          duration: 3000,
+        //   duration: 3000,
 		dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
@@ -254,6 +267,7 @@ export class locationPage{
             this.http.post(SERVER_NAME + 'auth/signup', creds, { headers: headers })
             .subscribe(data => {
             //  console.log('data',data.json());
+            loading.dismiss(true);
               if (data.json().token){
            let alert = Alert.create({
                title: 'success !',
@@ -266,6 +280,7 @@ export class locationPage{
               }
              
               },(err)=>{
+                   loading.dismiss(true);
          let alert = Alert.create({
                title: 'Error !',
                subTitle: 'Make sure You have Working internet connection and GeoLocation is enable',

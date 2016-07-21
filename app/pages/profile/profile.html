@@ -35,16 +35,20 @@
   <!--</ion-toolbar>
 </ion-header>-->
 
-<ion-navbar *navbar>
+<ion-navbar *navbar primary>
   <!--<ion-title>signup</ion-title>-->
 
-  <ion-title>Profile</ion-title>
+  <ion-title><span style="margin-left: -59px;">Profile</span></ion-title>
 
 </ion-navbar>
 
 
 <ion-content padding>
   <style type="text/css">
+
+  .toolbar-background{
+    background: #0E0EFF;
+}
    .signupform{
 	padding: 0px 20px;
 	padding-top: 30px;
@@ -111,6 +115,14 @@ position: relative;
     top: -154px;
     left: 92px;
 }
+scroll-content {
+   overflow-y: hidden;
+}
+
+.scroll-bar-indicator
+{
+    display: none;
+}
 </style>
    <br>
    <br>
@@ -141,7 +153,7 @@ left: 35%;-->
          
          <br>
     <div style="text-align: center; width: 100%;">
-            <h5 style="text-align: center;">Add Photo</h5>
+            <h5 style="text-align: center; font-weight: bold;">Add Photo</h5>
        <p style="text-align: center; color:#5d584e"><small>Press Icon Above to add your Profile picture or press next to skip step</small></p>
     </div>
     <!--<button>  
@@ -223,7 +235,7 @@ left: 35%;-->
    <ion-toolbar position="bottom">
      <ion-buttons>
          <button royal (click)="uploadSelectedImage()">
-              NEXT
+             <span style="text-transform: capitalize !important;">Next</span> 
         </button>
   </ion-buttons>
 </ion-toolbar>

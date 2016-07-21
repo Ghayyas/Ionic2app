@@ -18,8 +18,14 @@ import {SERVER_NAME} from '../../service/dataService/dataService'
   Ionic pages and navigation.
 */
 
-declare var navigator: any;
+
 declare var google:any;
+declare var navigator: any;
+declare var FileUploadOptions:any;
+declare var FileTransfer :any;
+
+
+
 
 @Component({
   templateUrl: 'build/pages/create-event/create-event.html',
@@ -33,14 +39,14 @@ export class CreateEventPage {
       photo : '',  
       name : '',  //required
       type : '0',  //required
-      // location : '', //required
+  
       start_date : '',//required
       end_date : '', //required
       description : '',
-      // location: {
+
       latitude: '',
       longitude: '',
-      // },
+
 
       created_at: new Date().getTime()
     }
@@ -48,19 +54,11 @@ export class CreateEventPage {
     
    zone: any; 
    public empty: any;
-  //  public requiredFields: boolean;
+
    public loading: Loading;
-  //  public myLat: any;
-  //  public myLong: any;
-  //  public submit: any;
-  //  public presentActionSheet:any;
-  //  public nameField:boolean;
-  //  public locationField: boolean;
-  //  public typeField:boolean;
-  //  public startDate:boolean;
-  //  public endDateField:boolean;
+
    
-      public myval;
+  public myval;
   static myLat : any;
   static myLong : any;
    
@@ -71,16 +69,6 @@ export class CreateEventPage {
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http) {
     this.http = http;
-       
-
- 
-      //  this.ngOnInit();
-    // this.typeField = false;
-    // this.requiredFields = false;
-    // this.nameField = false;
-    // this.locationField = false;
-    // this.startDate = false;
-    // this.endDateField = false
     
         let loading = Loading.create({
            content: "Please wait...",
@@ -89,10 +77,6 @@ export class CreateEventPage {
             
         });
        this.nav.present(loading);
-    //    setTimeout(function() {
-        //  this.initMap();
-    //    }, 3000);
-//  google.maps.event.addDomListener(window,'load',this.initMap());
 
       this.empty = function(){
         this.params.photo = "";    
@@ -127,15 +111,13 @@ export class CreateEventPage {
             var i, place;
             for( i = 0; place=places[i];i++ ){
             console.log('place', place.geometry.location);
-             
-              //  let lat = place.geometry.location.lat();
+ 
                CreateEventPage.myLat = place.geometry.location.lat();
-              // let long = place.geometry.location.lng();
+
               CreateEventPage.myLong = place.geometry.location.lng();
              console.log('lat',CreateEventPage.myLat,'long', CreateEventPage.myLong);
             }
-            // this.presentActionSheet();
-            // this.submit();
+   
        
         })
      }
@@ -150,7 +132,65 @@ export class CreateEventPage {
 
 
 
- presentActionSheet(){
+
+
+//================== Cordova File to Be Send ===============//
+
+
+
+uploadFile() {
+
+   if( this.params.photo  !== undefined){
+    var fileURL =  this.params.photo ;
+   console.log('fileUrl',fileURL)
+   var uri = encodeURI("http://lilanisoft.com/hotworks/api/index.php/uploadImage");
+   var options = new FileUploadOptions();
+	 var str =  this.params.photo  ;
+  let array = str.split("?")
+     console.log(array[0])
+   options.fileKey = "image";
+   
+      
+   options.fileName =  array[0];  
+   options.mimeType = "image/jpg";
+console.log('options',options);
+
+   var ft = new FileTransfer();
+
+   ft.upload(array[0], uri, suc, err, options);
+   console.log('arra',array[0],"fileUrl",fileURL);
+   var suc = function onSuccess(r) {
+      console.log("Code = " + r.responseCode);
+      console.log("Response = " + r.response);
+      let photoParse = JSON.parse(r.response);
+       this.params.photo  = photoParse.image;
+     
+      console.log("Sent = " + r.bytesSent);
+   }
+
+ var err =   function onError(error) {
+      alert("An error has occurred: Code = " + error.code);
+      console.log("upload error source " + error.source);
+      console.log("upload error target " + error.target);
+   }
+	
+ }
+}
+
+
+
+
+
+
+//================= Cordova END ===============//
+
+
+
+
+
+//=============== Picture Taken ==============//
+
+presentActionSheet():void {
   let actionSheet = ActionSheet.create({
     title: 'Select from Camera',
     buttons: [
@@ -160,7 +200,7 @@ export class CreateEventPage {
         handler: () => {
           Camera.getPicture({
             quality : 45,
-            destinationType : navigator.camera.DestinationType.DATA_URL,
+            destinationType : navigator.camera.DestinationType.FILE_URI,
             sourceType : navigator.camera.PictureSourceType.CAMERA,
             // allowEdit : true,
             encodingType: navigator.camera.EncodingType.JPEG,
@@ -169,16 +209,17 @@ export class CreateEventPage {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                this.params.photo = "data:image/jpeg;base64," + imageData;
-                let alert = Alert.create({
-                      title: 'Succeed !',
-                      subTitle: 'Image has been captured',
-                      buttons: ['OK']
-                });
-                      this.nav.present(alert);
+                 this.params.photo  =  imageData;
+                var str =  this.params.photo
+                  let array = str.split("?")
+                 
+                     this.params.photo = array[0];
+                console.log('image Data', this.params.photo);
+           
             });
+            
         }, error => {
-
+       
            let alert = Alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
@@ -194,8 +235,8 @@ export class CreateEventPage {
         handler: () => {
           Camera.getPicture({
             quality : 45,
-            destinationType : navigator.camera.DestinationType.DATA_URL,    //File URI only for Android  to use for IOS type NATIVE_URI	instead of FILE_URI
-            sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+            destinationType : navigator.camera.DestinationType.FILE_URI,    //File URI only for Android  to use for IOS type NATIVE_URI	instead of FILE_URI
+            sourceType : navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
             // allowEdit : true,
             encodingType: navigator.camera.EncodingType.JPEG,
             targetWidth: 300,
@@ -203,15 +244,17 @@ export class CreateEventPage {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                this.params.photo = "data:image/jpeg;base64," + imageData;
-                  let alert = Alert.create({
-                      title: 'Succeed !',
-                      subTitle: 'Image has been captured',
-                      buttons: ['OK']
-                });
-                      this.nav.present(alert);
+                this.params.photo  =  imageData;
+                var str =  this.params.photo
+                  let array = str.split("?")
+             
+                     this.params.photo = array[0];
+                console.log('image Data', this.params.photo);
+
             });
+      
         }, error => {
+      
            let alert = Alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
@@ -233,30 +276,24 @@ export class CreateEventPage {
   });
 
   this.nav.present(actionSheet);
+  
   }
+
+
+//============== Picture Taken END  =====================//
+
+
+
 
 
 submit(params)
   {
     this.params.latitude = CreateEventPage.myLat;
     this.params.longitude = CreateEventPage.myLong;
-    // console.log('myval',params)
-    // console.log('sub lat',CreateEventPage.myLat,'sub long', CreateEventPage.myLong);
-  //  var id = <HTMLInputElement> document.getElementById('pac-input');
-  //  console.log('pacINput',id.value);
-  //   // console.dir(id);
 
-  //   console.log('parameters',params);
-  //   if(params.type == '1'){
-  //   this.nav.rootNav.push(BroadcastEventPage);
-
-  //   }
-  //   else if(params.type == '0'){
-  //   this.nav.rootNav.push(CreateListPeopleInvitePage);
-  //   }
+    this.uploadFile();
   
   console.log('params',params)
-      // console.log('sub lat',CreateEventPage.myLat,'sub long', CreateEventPage.myLong);
     this.loading = Loading.create({
            content: "Please wait...",
           //  duration: 300,
@@ -328,4 +365,4 @@ submit(params)
 
 }
   }
-// }
+

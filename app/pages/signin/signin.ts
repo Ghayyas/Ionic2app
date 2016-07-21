@@ -31,14 +31,36 @@ export class SigninPage {
 
 
    constructor(public auth: AuthService, public nav: NavController) { 
-	   this.authservice = auth;
+   
+    this.authservice = auth;
 	   this.nav = nav;
 	   this.token= window.localStorage.getItem('ecnob.token');
-	   if(this.token != null)
-	   {
-		   this.nav.setRoot(TabsPage);
-	   }   
+ 
+	 
+	   
    }
+
+
+//============ VIEW ENTER ==========//
+
+ionViewWillEnter(){
+    let loading = Loading.create({
+		   content: "Please wait...",
+		  //  duration: 3000,
+		   dismissOnPageChange: true
+	   });
+	   this.nav.present(loading);
+  if(this.token != null)
+	   {
+     
+		   this.nav.setRoot(TabsPage);
+       
+	   }   
+
+}
+
+//=============END ============//
+
    
    //=============== Alert Funciton =================//
    
