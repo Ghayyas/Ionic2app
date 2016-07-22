@@ -6,7 +6,7 @@ import {AllCompaniesPage} from '../all-companies/all-companies';
 import {AllEventsPage} from '../all-events/all-events';
 import {DealsPage} from '../deals/deals';
 import {EventDetailsPage} from '../event-details/event-details'; 
-import {NavController,NavParams} from 'ionic-angular';
+import {NavController,NavParams,MenuController} from 'ionic-angular';
 import {DataService} from '../../service/dataService/dataService';
 // import {SigninPage} from '../signin/signin';
 
@@ -20,15 +20,19 @@ export class TabsPage {
   tab2Root: any = DealsPage;  //deals Page
   tab3Allevent: any = AllEventsPage;
   tab4Root: any = AllCompaniesPage;
+  // private menu: MenuController;
   //  static tabsActivted = new Array();
  
   //  mytabObj = {
   //    x: EventDetailsPage.tabbers
   //  }
+  
   constructor(public nav:NavController){
     // selectTab(index: number) {
       console.log('nav',this.nav);
-
+  // ngAfterViewInit(){
+  
+  // }
       
       DataService.getData();
       // console.log('event',EventDetailsPage.tabbers);

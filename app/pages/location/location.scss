@@ -1,6 +1,7 @@
 .scroll {
     height: 100%;
 }
+
  
 // #map_canvas {
 //     width: 100%;
@@ -15,13 +16,34 @@
   left: 0; 
   right: 0; 
   z-index: 1;
+
+}
+
+#anotherContainer{
+      background: rgba(255,255,255,0.70);
+    border-radius: 10px;
+    // z-index: 100;
+    position: absolute;
+    bottom: 25px;
+    margin-left: 2%;
+    // border: 1px solid #0E0EFF;
+    width: 95%;
+    background-size: cover;
+    opacity: 3.8;
+    height: 46%;
+    z-index: 9999;
+ -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -o-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
   
 }
 #container {
 
     background: rgba(255,255,255,0.70);
     border-radius: 10px;
-    z-index: 100;
+    // z-index: 100;
     position: absolute;
     bottom: 25px;
     margin-left: 2%;
@@ -50,7 +72,7 @@
 
 }
 .toolbar-background{
-    background: rgba(0, 0, 255, 0.81);
+    background: rgb(7, 68, 189);
 }
 
 .location-input{
@@ -93,6 +115,11 @@ input[type=text] {
 .range-has-pin {
     padding-top: 0px;
 }
+
+@media screen and (max-width: 765px){
+ 
+}
+
 ion-range {
     padding-top: 20px !important;
     padding: 12px 72px;

@@ -64,7 +64,7 @@
         <div class="text-center" style="text-align:center;">
          <img src="img/ecnob-logo.png" style="max-width: 120px;">
           <div class="fieldgroup" style="padding: 0px 0px;">
-           <p style="text-align:center;margin-top: 3px;margin-bottom: 30px; color: #3d3d3d;">Business ­ Customer Relation Simplified</p>
+           <p style="text-align:center;margin-top: 3px;margin-bottom: 30px; color: #3d3d3d;"><small>Business ­- Customer Relation Simplified</small></p>
          </div>
         </div>
      </div>
@@ -91,17 +91,20 @@
 </ion-list>
 
  <ion-list>
-   <div style="padding: 0px 15px;">
+   <!--<div style="padding: 0px 15px;">-->
        <!--usercreds-->
-  <button type="button" [disabled]="!signInForm.form.valid" type="submit" class="button button-block button-positive" style="font-size: 20px; height: 50px;" >
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+  <button type="button" primary [disabled]="!signInForm.form.valid" type="submit" class="button button-block button-positive" style="font-size: 20px; height: 50px;" >
   Sign in
 </button>
+     </div>
 <div class="fieldgroup" style="margin-bottom:20px;">
   <p class="text-center" style="margin-bottom: 35px; text-align:center;"> Don't have an account?</p>
   </div>
-  <button type="button" class="button button-block button-positive" [navPush]="signupPage" style="font-size: 20px; height: 50px;">
+  <!--<button type="button" class="button button-block button-positive" [navPush]="signupPage" style="font-size: 20px; height: 50px;">
   Register Now
-</button>
+</button>-->
 </div>
  </ion-list>
 
@@ -109,3 +112,10 @@
 </form>
 
 </ion-content>
+<ion-toolbar position="bottom">
+     <ion-buttons>
+         <button  royal [navPush]="signupPage">
+            <span style="text-transform: capitalize !important;">Register Now</span> 
+        </button>
+  </ion-buttons>
+</ion-toolbar>

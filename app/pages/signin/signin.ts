@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Page, Loading,Alert} from 'ionic-angular';
+import {NavController, Page, Loading,Alert,MenuController} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
@@ -30,30 +30,35 @@ export class SigninPage {
 
 
 
-   constructor(public auth: AuthService, public nav: NavController) { 
-   
+   constructor(public auth: AuthService, public nav: NavController, public menu: MenuController) { 
+   this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
 	   this.token= window.localStorage.getItem('ecnob.token');
- 
-	 
-	   
    }
+
+
+ngOnInit(){
+ this.menu.enable(false);
+ console.log('menu false');
+}
 
 
 //============ VIEW ENTER ==========//
 
 ionViewWillEnter(){
+
     let loading = Loading.create({
 		   content: "Please wait...",
 		  //  duration: 3000,
 		   dismissOnPageChange: true
 	   });
 	   this.nav.present(loading);
-  if(this.token != null)
+  if(this.token !== null)
 	   {
-     
+      // this.menu.enable(true);
 		   this.nav.setRoot(TabsPage);
+        
        
 	   }   
 

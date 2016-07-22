@@ -45,7 +45,7 @@ public local = null;
   
     platform.ready().then(() => {
       console.log('platform works..');
-      menu.enable(false);
+      this.menu.enable(false);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // StatusBar.styleDefault();
@@ -56,9 +56,12 @@ public local = null;
     )}
      
 ngAfterViewInit(){
- let local =  window.localStorage.getItem('ecnob.token');
-      if(local === null){
+     
+      let local =  window.localStorage.getItem('ecnob.token');
+      if(local == null){
+      
         this.nav.rootNav.push(SigninPage);
+          this.menu.enable(false);
       }
 }
 
@@ -66,8 +69,10 @@ ngAfterViewInit(){
 
      //======================== LOG OUT FUNCTION ===================///
     logout(){
+      this.menu.close();
       localStorage.clear();
       console.log('loogin out');
+      
       this.menu.enable(false)
       this.nav.rootNav.push(SigninPage)
     //  AuthService.logout();

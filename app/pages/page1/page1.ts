@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component,OnInit} from "@angular/core";
 import {MenuController, NavController} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
 
@@ -10,13 +10,20 @@ export class Page1 {
   
   public pet: string;
   
-  constructor(public menu:MenuController,public nav: NavController) {
+  constructor(private menu:MenuController,public nav: NavController) {
   this.pet = 'public';
+  let token =  window.localStorage.getItem('ecnob.token');
+  if(token){
+ this.menu.enable(true);
+  }
+ 
   // if(SigninPage.isLoggedin == false){
   //   this.nav.push(SigninPage)
   // }
-   menu.enable(true);
+   
   }
+
+
   
   myclick(param){
      this.pet = param;
