@@ -56,12 +56,12 @@ export class CreateEventPage {
    public empty: any;
 
    public loading: Loading;
-
+  public fileUrl: any;
    
   public myval;
   static myLat : any;
   static myLong : any;
-   
+  static myImage:any; 
    
    
    
@@ -72,7 +72,7 @@ export class CreateEventPage {
     
         let loading = Loading.create({
            content: "Please wait...",
-           duration: 3000,
+           duration: 300,
            dismissOnPageChange: true
             
         });
@@ -140,12 +140,19 @@ export class CreateEventPage {
 
 uploadFile() {
 
-   if( this.params.photo  !== undefined){
-    var fileURL =  this.params.photo ;
+   if(this.fileUrl  !== undefined){
+      let loading = Loading.create({
+           content: "Please wait...",
+          //  duration: 300,
+           dismissOnPageChange: true
+            
+        });
+       this.nav.present(loading);
+    var fileURL =  this.fileUrl ;
    console.log('fileUrl',fileURL)
    var uri = encodeURI("http://lilanisoft.com/hotworks/api/index.php/uploadImage");
    var options = new FileUploadOptions();
-	 var str =  this.params.photo  ;
+	 var str =  this.fileUrl  ;
   let array = str.split("?")
      console.log(array[0])
    options.fileKey = "image";
@@ -157,22 +164,43 @@ console.log('options',options);
 
    var ft = new FileTransfer();
 
-   ft.upload(array[0], uri, suc, err, options);
-   console.log('arra',array[0],"fileUrl",fileURL);
-   var suc = function onSuccess(r) {
-      console.log("Code = " + r.responseCode);
-      console.log("Response = " + r.response);
+   ft.upload(array[0], uri, function onSuccess(r) {
+      // console.log("Code = " + r.responseCode);
+      // console.log("Response = " + r.response);
       let photoParse = JSON.parse(r.response);
-       this.params.photo  = photoParse.image;
+      // alert('Image Caputured Successs');
+       CreateEventPage.myImage  = photoParse.image;
+        console.log('Create Event Page Image',CreateEventPage.myImage);
+      // console.log("Sent = " + r.bytesSent);
+      loading.dismiss(true)
+   },  function onError(error) {
+     loading.dismiss(true);
+     let alert = Alert.create({
+                      title: 'Error !',
+                      subTitle: 'An error has occurred while sending picture to server',
+                      buttons: ['OK']
+                });
+                      this.nav.present(alert);
+      // alert("An error has occurred while sending picture to server: Code = " + error.code);
+      // console.log("upload error source " + error.source);
+      // console.log("upload error target " + error.target);
+   }, options);
+   console.log('arra',array[0],"fileUrl",fileURL);
+//    var suc = function onSuccess(r) {
+//       console.log("Code = " + r.responseCode);
+//       console.log("Response = " + r.response);
+//       let photoParse = JSON.parse(r.response);
+//       alert('Image Caputured Successs');
+//        this.params.photo  = photoParse.image;
      
-      console.log("Sent = " + r.bytesSent);
-   }
+//       console.log("Sent = " + r.bytesSent);
+//    }
 
- var err =   function onError(error) {
-      alert("An error has occurred: Code = " + error.code);
-      console.log("upload error source " + error.source);
-      console.log("upload error target " + error.target);
-   }
+//  var err =   function onError(error) {
+//       alert("An error has occurred: Code = " + error.code);
+//       console.log("upload error source " + error.source);
+//       console.log("upload error target " + error.target);
+//    }
 	
  }
 }
@@ -209,13 +237,11 @@ presentActionSheet():void {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                 this.params.photo  =  imageData;
-                var str =  this.params.photo
-                  let array = str.split("?")
-                 
-                     this.params.photo = array[0];
-                console.log('image Data', this.params.photo);
-           
+                 this.fileUrl  =  imageData;
+                var str =  this.fileUrl;
+                  let array = str.split("?");
+                   console.log('image Data', this.fileUrl);
+                   this.uploadFile();
             });
             
         }, error => {
@@ -226,8 +252,8 @@ presentActionSheet():void {
                       buttons: ['OK']
                 });
                       this.nav.present(alert);
-            console.log("ERROR -> " + JSON.stringify(error));
-        });
+            // console.log("ERROR -> " + JSON.stringify(error));
+      });
         }
       },
       {
@@ -244,14 +270,12 @@ presentActionSheet():void {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                this.params.photo  =  imageData;
-                var str =  this.params.photo
+                this.fileUrl =  imageData;
+                var str =  this.fileUrl
                   let array = str.split("?")
-             
-                     this.params.photo = array[0];
-                console.log('image Data', this.params.photo);
-
-            });
+                  console.log('image Data', this.fileUrl);
+                    this.uploadFile();
+        });
       
         }, error => {
       
@@ -262,7 +286,7 @@ presentActionSheet():void {
                 });
                       this.nav.present(alert);
         });
-          console.log('Archive clicked');
+          // console.log('Archive clicked');
         }
       },
       {
@@ -290,8 +314,8 @@ submit(params)
   {
     this.params.latitude = CreateEventPage.myLat;
     this.params.longitude = CreateEventPage.myLong;
+    this.params.photo = CreateEventPage.myImage;
 
-    this.uploadFile();
   
   console.log('params',params)
     this.loading = Loading.create({
@@ -310,24 +334,26 @@ submit(params)
     this.http.post(SERVER_NAME + 'events/create',data,{headers:headers})
     .subscribe(
       (data) => {
-                  this.loading.dismiss(true);
-  
+          this.loading.dismiss(true);
+    CreateEventPage.myImage = '';
+    CreateEventPage.myLat = '';
+    CreateEventPage.myLong = '';
        console.log('data send',data.json()); 
 
        console.log('parameters',params);
     if(params.type == '1'){
     this.nav.rootNav.push(BroadcastEventPage);
-                  this.loading.dismiss(true);
+         this.loading.dismiss(true);
 
     }
     else if(params.type == '0'){
     this.nav.rootNav.push(CreateListPeopleInvitePage);
-                  this.loading.dismiss(true);
+        this.loading.dismiss(true);
 
     }
 
      
-        //  this.empty();
+         this.empty();
     },
     (err) =>{
       console.log('parameters',params);
@@ -356,7 +382,7 @@ submit(params)
         })
         this.nav.present(alert);
       }
-      this.empty();
+      // this.empty();
       
       console.log('Error',err.json())
              

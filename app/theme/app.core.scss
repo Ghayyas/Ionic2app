@@ -43,5 +43,8 @@ tabbar .tab-button {
 
     scroll-content{
       overflow-x: hidden !important;
-      overflow-y: hidden !important;
+      overflow-y: auto !important;
+    }
+    ion-navbar-section{
+          padding: 30px ;
     }

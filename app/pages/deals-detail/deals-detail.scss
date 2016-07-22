@@ -72,7 +72,7 @@ ion-list.eventlist .banner-content{
    width:100%;
 }
 .deals-detail ion-list.eventlist ion-item{
-    smax-height: 230px;
+    // max-height: 0;
 }
 
 .deals-detail ion-list.eventlist ion-item ion-col h2{
@@ -98,7 +98,7 @@ ion-list.eventlist .banner-content{
     white-space: inherit;
     }
 .deals-detail ion-list.eventlist ion-item.ev-details .input-wrapper{
-        float: left;
+    float: left;
     width: 100%;
     height: auto;
     display: inline-block;
@@ -118,4 +118,8 @@ ion-list.eventlist.even-detail-list .input-wrapper  ion-label .coverphoto{
 ion-list.eventlist.even-detail-list .input-wrapper ion-label .coverphoto img{
 	width:100%;
 	height: 100%;
+}
+.deals-detail-color{
+    color: rgba(0, 0, 0, 0.63);
+    font-size: small;
 }

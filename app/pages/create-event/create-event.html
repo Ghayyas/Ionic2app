@@ -9,6 +9,7 @@
   .create-event label.radiolabel{
     display: inline !important;
   }
+
 </style>
 
 
@@ -24,18 +25,24 @@
 <div class="fullwidthrow">
      <div class="fieldgroup">
      
-       	<h3>Event Type</h3>
-<radio-group [(ngModel)]="params.type" name="radioGroup">
+       	<p style="font-size: 17px; font-weight: 700;">Event Type<p>
+<div radio-group [(ngModel)]="params.type" name="radioGroup">
 
-
-       	<label class="radiolabel" for="radio-one">
-		<input type="radio" value="0" name="type" id="radio-one"> <span>By list</span>
-		</label>
-
-		<label class="radiolabel" for="radio-two">  
+<ion-item>
+       	<!--<label class="radiolabel" for="radio-one">-->
+              <ion-label>By list</ion-label>
+    <ion-radio value="0" ></ion-radio>
+</ion-item>
+		<!--<input type="radio" value="0" name="type" id="radio-one" checked> <span>By list</span>-->
+		<!--</label>-->
+    <ion-item>
+        <ion-label>By General Invitaion</ion-label>
+    <ion-radio value="1"></ion-radio>
+    </ion-item>
+		<!--<label class="radiolabel" for="radio-two">  
 		<input type="radio" value="1" name="type" id="radio-two"> <span>By Genral invitation</span>
-		</label>
-       </radio-group>
+		</label>-->
+       </div>
                      <!--<span style="color:red;" [hidden]="!typeField">This field Required</span>-->
      </div>
 
@@ -84,7 +91,7 @@
   <div [hidden]="end_date.valid || end_date.pristine" style="color:red">
          <small>*Required</small>
      </div>
-      <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
      </div>
     </div>
     </ion-col>
@@ -94,7 +101,7 @@
      <div class="fullwidthrow">
      <div class="fieldgroup">
   
-     <input type="text" readonly value='myImage.png' (click)="presentActionSheet()"> 
+     <input type="text" readonly value="{{fileUrl || 'myImage.png'}}" (click)="presentActionSheet()"> 
      <ion-icon ios="ios-attach" md="md-attach"></ion-icon>
      </div>
     </div>

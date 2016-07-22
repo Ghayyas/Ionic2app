@@ -6,6 +6,7 @@ import {Http, Headers } from '@angular/http';
 import {CreateEventPage} from '../create-event/create-event';
 import {SERVER_NAME} from '../../service/dataService/dataService';
 import {SigninPage} from '../signin/signin';
+import {limit} from '../limit';
 
 
 /*
@@ -16,6 +17,7 @@ import {SigninPage} from '../signin/signin';
 */
 @Component({
   templateUrl: 'build/pages/all-events/all-events.html',
+   pipes: [limit]
 })
 export class AllEventsPage {
   eventDetailPage = EventDetailsPage;

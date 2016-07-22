@@ -2,7 +2,7 @@
 <style>
   
   ion-content{
-    background: rgba(22, 81, 230, 0.68) !important;
+    background: rgba(22, 81, 230, 0.9) !important;
   }
   .divPad{
     padding-left: 39px;
@@ -22,6 +22,14 @@
   color: white;
   text-decoration:none;
   }
+  .myspan{
+    position: absolute;
+    margin-top: -4px;
+  }
+  .logout{
+    position:absolute;
+    margin-top: 1px;
+  }
 </style>
 
 <ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
@@ -31,29 +39,33 @@
 
   <ion-content>
     <!--<ion-avatar>-->
-      <img style="margin-top: 65px;border-radius: 94px;height: 94px;width: 34%;margin-left: 90px;" src="img/company1.jpg">
+      <img style="margin-top: 65px;width: 100px;
+	height: 100px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;;margin-left: 104px;" src="img/company1.jpg">
     <!--</ion-avatar>-->
-    <h2 style="color:white; text-align:center;">Marty McFly</h2>
-    <p style="text-align: center;color: white;">abc@hotmail.com</p>
+    <h5 style="color:white; text-align:center;">Marty McFly</h5>
+    <p style="text-align: center;color: rgba(255, 255, 255, 0.57);">abc@hotmail.com</p>
     <br>
     <br>
     <div class="divPad">
         <div class="profiletab">
           <ion-icon ios="ios-person" md="md-person"></ion-icon>
-        <a href="#" class="menuspan">Profile</a>
+        <span class="myspan"><a href="#" class="menuspan">Profile</a></span>
        </div>
         <div class="profiletab">
           <ion-icon ios="ios-keypad" md="md-keypad"></ion-icon>
-          <a href="#" class="menuspan">My Events</a>
+         <span class="myspan"><a href="#" class="menuspan">My Events</a></span> 
         </div>
                 <div class="profiletab">
             <ion-icon ios="ios-send" md="md-send"></ion-icon>
-            <a href="#" class="menuspan">Subscribed Companies</a>
+           <span class="myspan"><a href="#" class="menuspan">Subscribed Companies</a></span> 
         </div>
             <div class="profiletab">
             
             <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
-             <span href="#" class="menuspan" (click)="logout()">Log Out</span>
+             <span href="#" class="menuspan logout" (click)="logout()">Log Out</span>
        
         </div>
     </div>

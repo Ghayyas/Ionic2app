@@ -19,6 +19,7 @@
     margin-top: 2% !important;
     margin-bottom: 0 !important;
   }
+
 </style>
 
 
@@ -31,8 +32,8 @@
     <button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>
-     Deals
+    <ion-title style="margin-top: -10px !important">
+    <span style="margin-left: -26px;">Deals</span>
     </ion-title>
     <ion-buttons end>
     <button royal [navPush]="search">
@@ -63,7 +64,8 @@
       <ion-col>
         <button clear small (click)="btn()">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
+          <!--<span *ngIf="location.length > 2">{{location}}</span>-->
+          &nbsp; {{location| limitTo: 6}}
         </button>
       </ion-col>
      <ion-item>
@@ -92,7 +94,7 @@
       <ion-col>
         <button clear small (click)="btn()">
           <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; New York, USA
+          &nbsp; {{location| limitTo: 6}}
         </button>
       </ion-col>
      <ion-item>

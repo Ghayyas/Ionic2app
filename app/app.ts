@@ -1,7 +1,7 @@
 import {Component,Inject, ViewChild} from "@angular/core";
 // import {Inject, ViewChild} from 'angular2/core';
 
-import {Platform, ionicBootstrap,MenuController, NavController} from 'ionic-angular';
+import {Platform, ionicBootstrap,MenuController, NavController,Keyboard} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {SigninPage} from './pages/signin/signin';
@@ -48,7 +48,9 @@ public local = null;
       this.menu.enable(false);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      // StatusBar.styleDefault();
+      Keyboard.disableScroll(true);
+      // Keyboard.
+      StatusBar.styleDefault();
      
 
     }
@@ -59,9 +61,8 @@ ngAfterViewInit(){
      
       let local =  window.localStorage.getItem('ecnob.token');
       if(local == null){
-      
-        this.nav.rootNav.push(SigninPage);
-          this.menu.enable(false);
+       this.nav.rootNav.push(SigninPage);
+        this.menu.enable(false);
       }
 }
 
@@ -69,11 +70,11 @@ ngAfterViewInit(){
 
      //======================== LOG OUT FUNCTION ===================///
     logout(){
-      this.menu.close();
+     
       localStorage.clear();
       console.log('loogin out');
-      
-      this.menu.enable(false)
+       this.menu.close();
+      this.menu.enable(false);
       this.nav.rootNav.push(SigninPage)
     //  AuthService.logout();
 
