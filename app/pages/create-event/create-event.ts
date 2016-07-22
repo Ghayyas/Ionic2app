@@ -39,13 +39,13 @@ export class CreateEventPage {
       photo : '',  
       name : '',  //required
       type : '0',  //required
-  
+      location: '',
       start_date : '',//required
       end_date : '', //required
       description : '',
 
-      latitude: '',
-      longitude: '',
+      latitude: '', //required
+      longitude: '', //required
 
 
       created_at: new Date().getTime()
@@ -101,7 +101,7 @@ export class CreateEventPage {
       // this.myval = 'hello ghayyas'
 
         console.log('hello world');
-       
+       this.params.location = '';
         var input = new google.maps.places.SearchBox(document.getElementById('locationINput'));
 
         google.maps.event.addListener(input,'places_changed',function(){
@@ -115,7 +115,7 @@ export class CreateEventPage {
                CreateEventPage.myLat = place.geometry.location.lat();
 
               CreateEventPage.myLong = place.geometry.location.lng();
-             console.log('lat',CreateEventPage.myLat,'long', CreateEventPage.myLong);
+            //  console.log('lat',CreateEventPage.myLat,'long', CreateEventPage.myLong);
             }
    
        
