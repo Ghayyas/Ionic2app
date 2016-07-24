@@ -15,7 +15,9 @@ import {AuthService} from "./pages/signin/authservice";
 
 
 @Component({
-  templateUrl: 'build/app.html'
+  templateUrl: 'build/app.html',
+    providers: [AuthService]
+
 //   <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
 
 
@@ -70,12 +72,17 @@ ngAfterViewInit(){
 
      //======================== LOG OUT FUNCTION ===================///
     logout(){
-     
-      localStorage.clear();
+     AuthService.logout().then((succ)=>{
+      // window.localStorage.clear();
       console.log('loogin out');
-       this.menu.close();
+      //  this.menu.close();
       this.menu.enable(false);
-      this.nav.rootNav.push(SigninPage)
+      this.nav.rootNav.push(SigninPage)       
+     },(err)=>{
+       console.log('getting error',err);
+       window.alert('Something went wrong.. Please try again');
+     })
+
     //  AuthService.logout();
 
     

@@ -85,14 +85,16 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
     border-bottom: none;
     border-bottom-width: 0px;
     overflow: visible;
+    border: none;
     text-transform: capitalize;
     font-size: 17px;
 }
 
 ion-segment.tab-ion-segment ion-segment-button.segment-button.activated, ion-segment.tab-ion-segment .segment-button.segment-activated {
     // border-color: #0058be;
+    border: none;
     opacity: 1;
-    border-bottom: 1px solid #0058be;
+    border-bottom: 1px solid #0058be !important;
     background:none;
 }
 .segment-button{

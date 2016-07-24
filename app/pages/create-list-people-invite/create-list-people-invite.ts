@@ -24,7 +24,7 @@ export class CreateListPeopleInvitePage {
   public senderEmail: string;
   constructor(public nav: NavController) {
     
-  }
+  }x  
   
   add(useremail){
     console.log('emai',useremail.value);

@@ -109,4 +109,41 @@ export class AuthService {
     //       window.localStorage.clear();
          
     // }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   static logout() {
+
+        return new Promise((resolve) => {
+                 let token = window.localStorage.clear();
+                if (token){   
+                   AuthService.isLoggedin = false;
+                   this.menu.close;
+                   resolve(true);    
+                }
+                else{
+                    resolve(false);
+                }
+            })
+            
+                
+
+                //   resolve(false);
+               
+
+
+    
+    }
+
+    
 }
