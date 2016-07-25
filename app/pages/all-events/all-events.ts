@@ -31,7 +31,7 @@ export class AllEventsPage {
   alleventformscreen = AllEventFormPage;
   createEvent = CreateEventPage;
   public pet: string;
- 
+  static allEventsArray = [];
 
   // ============== Constructor =============//
 
@@ -122,6 +122,8 @@ ionViewWillEnter(){
          this.definedError = true;         //IF DATA FROM SERVER IS UNDEFINED
 
         }
+        AllEventsPage.allEventsArray.push(this.event);
+        console.log('events Array',AllEventsPage.allEventsArray);
         console.log('data',this.event);
       
      
@@ -187,9 +189,18 @@ ionViewWillEnter(){
     //   console.log('gettomg err');
     // })
     //  this.nav.setRoot(EventDetailsPage);
+    
+      let loading = Loading.create({
+           content: "Please wait...",
+           duration: 3000,
+           dismissOnPageChange: true
+            
+        });
+  
     console.log('index',i);
-    this.nav.rootNav.push(EventDetailsPage,{ paramUser: i })    
-  }
+    this.nav.rootNav.push(EventDetailsPage,{ paramUser: i });    
+    this.nav.present(loading);  
+}
 
     // console.log('params',this.parameters);
     

@@ -11,7 +11,16 @@
 </ion-navbar> 
   <style>
     ion-icon{
-    color: #5F9CFC
+    color: #5F9CFC;
+  }
+  .button{
+    margin: 0 !important;
+  }
+  .button-block{
+    margin-left: -4px;
+  }
+  .button-inner{
+    margin-left: -3px;
   }
   </style>
 <ion-content padding class="broadcast-event ecnob-fields">
@@ -95,7 +104,7 @@
     
      <div class="fieldgroup" style="margin-bottom: 0px;">
      
-     <input type="text" name="user" minlength="6" [(ngModel)]="region" #user="ngModel" id="region" required placeholder="Enter Region">
+     <input type="text" id="region" name="user" minlength="6" [(ngModel)]="region" #user="ngModel" required placeholder="Enter Region">
      
      </div>
     </div>

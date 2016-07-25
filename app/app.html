@@ -30,6 +30,9 @@
     position:absolute;
     margin-top: 1px;
   }
+  .imagePic{
+    height: 20px;
+  }
 </style>
 
 
@@ -51,21 +54,25 @@
     <br>
     <div class="divPad">
         <div class="profiletab">
-          <ion-icon ios="ios-person" md="md-person"></ion-icon>
-        <span class="myspan"><a href="#" class="menuspan">Profile</a></span>
+          <!--<ion-icon ios="ios-person" md="md-person"></ion-icon>-->
+          <img src="./img/profile.png" alt="Profile Picture" class="imagePic">
+        &nbsp;<span class="myspan"><a href="#" class="menuspan">Profile</a></span>
        </div>
         <div class="profiletab">
-          <ion-icon ios="ios-keypad" md="md-keypad"></ion-icon>
-         <span class="myspan"><a href="#" class="menuspan">My Events</a></span> 
+          <img src="./img/my_events.png" alt="my events" class="imagePic">
+          <!--<ion-icon ios="ios-keypad" md="md-keypad"></ion-icon>-->
+         &nbsp;<span class="myspan"><a href="#" class="menuspan">My Events</a></span> 
         </div>
                 <div class="profiletab">
-            <ion-icon ios="ios-send" md="md-send"></ion-icon>
-           <span class="myspan"><a href="#" class="menuspan">Subscribed Companies</a></span> 
+            <!--<ion-icon ios="ios-send" md="md-send"></ion-icon>-->
+           <img src="./img/subscribed_companies.png" alt="subscribe Company" class="imagePic">
+           &nbsp;<span class="myspan"><a href="#" class="menuspan">Subscribed Companies</a></span> 
         </div>
             <div class="profiletab">
             
-            <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
-             <span href="#" class="menuspan logout" (click)="logout()">Log Out</span>
+            <!--<ion-icon ios="ios-exit" md="md-exit"></ion-icon>-->
+            <img src="./img/logout.png" alt="logOut" class="imagePic">
+             &nbsp;<span href="#" class="menuspan logout" (click)="logout()">Log Out</span>
        
         </div>
     </div>

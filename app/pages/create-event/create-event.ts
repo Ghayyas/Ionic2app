@@ -43,11 +43,8 @@ export class CreateEventPage {
       start_date : '',//required
       end_date : '', //required
       description : '',
-
       latitude: '', //required
       longitude: '', //required
-
-
       created_at: new Date().getTime()
     }
     
@@ -69,7 +66,14 @@ export class CreateEventPage {
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http) {
     this.http = http;
-    
+        this.params.photo = "";    
+        this.params.name = '';  //required
+        // this.params.type = '';  //required
+        this.params.location = ''; //required
+        this.params.start_date = '';//required
+        this.params.end_date = ''; //required
+        this.params.description = '';
+            
         let loading = Loading.create({
            content: "Please wait...",
            duration: 300,
@@ -101,7 +105,7 @@ export class CreateEventPage {
       // this.myval = 'hello ghayyas'
 
         console.log('hello world');
-       this.params.location = '';
+      //  this.params.location = '';
         var input = new google.maps.places.SearchBox(document.getElementById('locationINput'));
 
         google.maps.event.addListener(input,'places_changed',function(){
@@ -335,9 +339,9 @@ submit(params)
     .subscribe(
       (data) => {
           this.loading.dismiss(true);
-    CreateEventPage.myImage = '';
-    CreateEventPage.myLat = '';
-    CreateEventPage.myLong = '';
+    // CreateEventPage.myImage = '';
+    // CreateEventPage.myLat = '';
+    // CreateEventPage.myLong = '';
        console.log('data send',data.json()); 
 
        console.log('parameters',params);
@@ -353,7 +357,7 @@ submit(params)
     }
 
      
-         this.empty();
+        //  this.empty();
     },
     (err) =>{
       console.log('parameters',params);
@@ -369,7 +373,7 @@ submit(params)
       if(str.status_code == 422){
               let alert = Alert.create({
       title: 'Error !',
-      subTitle: 'Please Fill all required Fields',
+      subTitle: 'Make sure you have filled all required Fields',
       buttons: ['OK']
     });
        this.nav.present(alert);

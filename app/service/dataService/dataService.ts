@@ -76,9 +76,12 @@ export class usercreds{
  console.log('cordova longitude',this.longitude)
 },(err)=>{
   if(err.code === 1){
-    alert('we need to access your Location in order to access this app');
+    window.alert('we need to access your Location in order to access this app');
     // platform.exitApp()
     //return;
+  }
+  else{
+      window.alert('Could not fetch you location please check your Internet connection and try again');
   }
   console.log('reciveing error ',err);
 })  

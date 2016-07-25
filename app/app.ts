@@ -75,7 +75,7 @@ ngAfterViewInit(){
      AuthService.logout().then((succ)=>{
       // window.localStorage.clear();
       console.log('loogin out');
-      //  this.menu.close();
+       this.menu.close();
       this.menu.enable(false);
       this.nav.rootNav.push(SigninPage)       
      },(err)=>{

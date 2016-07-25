@@ -30,7 +30,7 @@ export class BroadcastEventPage {
   public myLong:any;
   
   constructor(public nav: NavController) {
- 
+  this.region = '';
 }
 
 
@@ -50,7 +50,7 @@ export class BroadcastEventPage {
             var places = input.getPlaces();
             var bounds = new google.maps.LatLngBounds();
             var i, place;
-            for( i = 0; place=places[i];i++ ){
+            for( i = 0; place=places[i]; i++){
             console.log('place', place.geometry.location);
              
               //  let lat = place.geometry.location.lat();
