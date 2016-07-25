@@ -73,12 +73,14 @@ button.back-button.disable-hover.bar-button.bar-button-default.show-back-button{
       <div *ngIf="detail.company">
          <h3>{{detail.company.name}}</h3>
         </div>
-     <p>{{detail.start_date}}</p>
-     </div>
-     <div class="cityToShow">
+          <div class="cityToShow">
        <!--{{detail.location}}-->
        <p><i class="fa fa-map-marker markerblack" aria-hidden="true"></i>{{detail.location}}</p>
      </div>
+     <br/>
+     <p>{{detail.start_date}}</p>
+     </div>
+   
 	    <br>
       <!--{{detail.description}}-->
       <div class="event-details">

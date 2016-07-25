@@ -38,7 +38,7 @@
 <ion-navbar *navbar primary>
   <!--<ion-title>signup</ion-title>-->
 
-  <ion-title><span style="margin-left: -59px;">Profile</span></ion-title>
+  <ion-title><span class="ionTitle">Profile</span></ion-title>
 
 </ion-navbar>
 
@@ -84,7 +84,7 @@ textarea{
  background: white;
  background-image: auto !important;
 }
-
+/*
 .segment-button.activated, .segment-button.segment-activated{
   color: #2f74f5 !important;
   background: white !important;
@@ -93,12 +93,12 @@ textarea{
 ion-segment.tab-ion-segment .tab-segment.segment-button {
     /*border-bottom: none;*/
     /*border-bottom-width: 0px;*/
-    overflow: visible;
+   /* overflow: visible;
     text-transform: Capitalize;
     font-size: 17px;
     background: white;
     color: #9bbffb;
-}
+}*/
 .tabs-image{
   margin-bottom: 3px;
 }
@@ -132,6 +132,10 @@ scroll-content {
      <div class="parentSpan">
        
        <!--<span *ngIf="profilePic .== null">-->
+         <!--height: 200px;
+border-radius: 97px;
+width: 203px;"-->
+<!--height: 199px;border-radius: 139px;width: 198px;-->
              <img src="{{profilePic || 'img/stub_profile.png'}}" style="height: 200px;
 border-radius: 97px;
 width: 203px;"> 

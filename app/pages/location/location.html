@@ -20,7 +20,7 @@
 <ion-navbar *navbar primary>
   <!--<ion-title>signup</ion-title>-->
 
-  <ion-title><span style="margin-left: -59px;">Profile</span></ion-title>
+  <ion-title><span class="ionTitle">Profile</span></ion-title>
 
 </ion-navbar>
 
@@ -37,9 +37,9 @@
       <!--<p class="mile-radius"><b>Mile Radius</b>: <span *ngIf="myRadius.value == null">{{Radius}}</span>{{myRadius.value}}km</p>-->
   <div>
    <span style="position: absolute;
-    top: 145px;
+   padding-top: 38px;
     left: 24px;">3km</span> <ion-range style="margin-top: -10px;"  #myRadius  min="3" max="100" style="color: #0E0EFF" pin="true" (ionChange)="updateCircleRadius(myRadius.value)"></ion-range> <span style="position: absolute;
-    top: 145px;
+    margin-top: -105px;
     right: 17px;">100km</span>
     </div> 
 

@@ -6,12 +6,21 @@
 -->
 <ion-navbar *navbar primary>
    <!--<ion-toolbar primary>-->
-  <ion-title>CREATE LIST OF PEOPLE TO INVITE</ion-title>
+  <ion-title>Invite People</ion-title>
 <!--</ion-toolbar>-->
 </ion-navbar>
 <style>
   ion-icon{
     color: #5F9CFC
+  }
+  .button{
+    margin: 0 !important;
+  }
+  .button-block{
+    margin-left: -4px;
+  }
+  .button-inner{
+    margin-left: -3px;
   }
 </style>
 <ion-content padding class="create-list-people-invite ecnob-fields">
@@ -29,7 +38,7 @@
     </ion-col>
     <ion-col width-10>
       <!--<button (click)="delete(i)">-->
-      <ion-icon style="font-size:40px;" (click)="delete(i)" ios="ios-trash" md="ios-trash"></ion-icon>
+      <ion-icon style="font-size: 31px; margin-top: 6px;" (click)="delete(i)" ios="ios-trash" md="ios-trash"></ion-icon>
       <!--</button>-->
        </ion-col>
      </ion-row>
@@ -88,7 +97,7 @@
     </ion-col>
     <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
   </ion-row>-->
-<div style="position:absolute; bottom: 0; right: 0; left: 0">
+<div style="position:absolute; bottom: 0; right: 0; left: 0;background: white;opacity: 2;">
   <form #emailForm="ngForm">
     <div style=" padding: 10px 7px;font-size: 20px;">Add Recipient Email</div>
     <ion-row>
@@ -104,7 +113,8 @@
      </div>
     </div>
     </ion-col>
-    <ion-col width-20><button class="button button-block button-positive" style="font-size: 16px; height: 40px; margin-top: 0px;" [disabled]="!emailForm.form.valid" (click)="add(useremail)">ADD</button></ion-col>
+    <ion-col width-15>
+      <button class="button button-block button-positive" style="font-size: 16px; height: 40px; margin-top: 0px;" [disabled]="!emailForm.form.valid" (click)="add(useremail)">ADD</button></ion-col>
   </ion-row>
 </form>
    <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" (click)="sendInvites()">Send Invites</button>

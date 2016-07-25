@@ -51,6 +51,9 @@ font-size: 16px;
 ion-label{
       white-space: inherit;
 }
+.segment-activated{
+   border-bottom: 1px  solid white !important;
+}
 
 .segment-button.activated, .segment-button.segment-activated {
     // opacity: 1;
@@ -155,7 +158,8 @@ ion-title{
 
 <div [ngSwitch]="pet">
       <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
-
+<!--<ion-grid>
+  <ion-row>-->
 <div class="list card">
 
   <div class="item item-image">
@@ -168,7 +172,11 @@ ion-title{
   </a>
 
 </div>
+<!--</ion-grid>
+  </ion-row>-->
 
+  <!--<ion-grid>
+  <ion-row>-->
 <div class="list card">
 
   <div class="item item-image">
@@ -181,7 +189,10 @@ ion-title{
   </a>
 
 </div>
-
+<!--</ion-grid>
+  </ion-row>
+<ion-grid>
+  <ion-row>-->
 <div class="list card">
 
   <div class="item item-image">
@@ -194,7 +205,10 @@ ion-title{
   </a>
 
 </div>
-
+<!--</ion-grid>
+  </ion-row>
+  <ion-grid>
+  <ion-row>-->
 <div class="list card">
 
   <div class="item item-image">
@@ -207,7 +221,10 @@ ion-title{
   </a>
 
 </div>
-
+<!--</ion-grid>
+  </ion-row>
+  <ion-grid>
+  <ion-row>-->
 <div class="list card">
 
   <div class="item item-image">
@@ -220,7 +237,10 @@ ion-title{
   </a>
 
 </div>
-
+<!--</ion-grid>
+  </ion-row>
+  <ion-grid>
+  <ion-row>-->
 <div class="list card">
 
   <div class="item item-image">
@@ -233,7 +253,8 @@ ion-title{
   </a>
 
 </div>
-
+<!--</ion-grid>
+  </ion-row>-->
 </div>
 
 
@@ -241,6 +262,107 @@ ion-title{
 
 
   <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'public'">
+<ion-grid>
+  <ion-row>
+<div class="list card">
+
+  <div class="item item-image">
+    <img src="img/deal1.jpg">
+  </div>
+
+  <a class="item item-icon-left assertive" href="#">
+  <ion-icon name="star" class="active"></ion-icon>
+    More than 110%...
+  </a>
+
+</div>
+  </ion-row>
+</ion-grid>
+<ion-grid>
+  <ion-row>
+<div class="list card">
+
+  <div class="item item-image">
+    <img src="img/deal2.jpg">
+  </div>
+
+  <a class="item item-icon-left assertive" href="#">
+    <ion-icon name="star"></ion-icon>
+    More than 110%...
+  </a>
+
+</div>
+  </ion-row>
+</ion-grid>
+  <!--<ion-grid>
+  <ion-row>-->
+<div class="list card">
+
+  <div class="item item-image">
+    <img src="img/deal1.jpg">
+  </div>
+
+  <a class="item item-icon-left assertive" href="#">
+    <ion-icon name="star" class="active"></ion-icon>
+    More than 110%...
+  </a>
+
+</div>
+<!--</ion-row>
+  </ion-grid>-->
+  <!--<ion-grid>
+  <ion-row>-->
+<div class="list card">
+
+  <div class="item item-image">
+    <img src="img/deal2.jpg">
+  </div>
+
+  <a class="item item-icon-left assertive" href="#">
+    <ion-icon name="star"></ion-icon>
+    More than 110%...
+  </a>
+
+</div>
+  <!--</ion-row>
+  </ion-grid>
+<ion-grid>
+  <ion-row>-->
+<div class="list card">
+
+  <div class="item item-image">
+    <img src="img/deal1.jpg">
+  </div>
+
+  <a class="item item-icon-left assertive" href="#">
+    <ion-icon name="star" class="active"></ion-icon>
+    More than 110%...
+  </a>
+
+</div>
+  <!--</ion-row>
+</ion-grid>
+  <ion-grid>
+  <ion-row>-->
+<div class="list card">
+
+  <div class="item item-image">
+    <img src="img/deal2.jpg">
+  </div>
+
+  <a class="item item-icon-left assertive" href="#">
+    <ion-icon name="star"></ion-icon>
+    More than 110%...
+  </a>
+
+</div>
+  <!--</ion-row>
+  </ion-grid>-->
+</div>
+</div>
+
+
+<!--<div  class="hometab-content with-2col" id="status">
 
 <div class="list card">
 
@@ -318,92 +440,8 @@ ion-title{
     More than 110%...
   </a>
 
-</div>
+</div>-->
 
-</div>
-</div>
-
-
-<div  class="hometab-content with-2col" id="status">
-
-<div class="list card">
-
-  <div class="item item-image">
-    <img src="img/deal1.jpg">
-  </div>
-
-  <a class="item item-icon-left assertive" href="#">
-  <ion-icon name="star" class="active"></ion-icon>
-    More than 110%...
-  </a>
-
-</div>
-
-<div class="list card">
-
-  <div class="item item-image">
-    <img src="img/deal2.jpg">
-  </div>
-
-  <a class="item item-icon-left assertive" href="#">
-    <ion-icon name="star"></ion-icon>
-    More than 110%...
-  </a>
-
-</div>
-
-<div class="list card">
-
-  <div class="item item-image">
-    <img src="img/deal1.jpg">
-  </div>
-
-  <a class="item item-icon-left assertive" href="#">
-    <ion-icon name="star" class="active"></ion-icon>
-    More than 110%...
-  </a>
-
-</div>
-
-<div class="list card">
-
-  <div class="item item-image">
-    <img src="img/deal2.jpg">
-  </div>
-
-  <a class="item item-icon-left assertive" href="#">
-    <ion-icon name="star"></ion-icon>
-    More than 110%...
-  </a>
-
-</div>
-
-<div class="list card">
-
-  <div class="item item-image">
-    <img src="img/deal1.jpg">
-  </div>
-
-  <a class="item item-icon-left assertive" href="#">
-    <ion-icon name="star" class="active"></ion-icon>
-    More than 110%...
-  </a>
-
-</div>
-
-<div class="list card">
-
-  <div class="item item-image">
-    <img src="img/deal2.jpg">
-  </div>
-
-  <a class="item item-icon-left assertive" href="#">
-    <ion-icon name="star"></ion-icon>
-    More than 110%...
-  </a>
-
-</div>
-
-</div>
+<!--</div>-->
 
 </ion-content>

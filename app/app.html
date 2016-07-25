@@ -32,7 +32,7 @@
   }
 </style>
 
-<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
 
 <ion-menu [content]="content">
 
@@ -72,4 +72,5 @@
   </ion-content>
 
 </ion-menu>
-<ion-overlay></ion-overlay>
+<!--<ion-overlay></ion-overlay>-->
+<ion-nav id="nav" #content [root]="rootPage" swipeBackEnabled="false"></ion-nav>

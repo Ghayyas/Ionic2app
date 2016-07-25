@@ -6,7 +6,7 @@
 -->
 <ion-navbar *navbar primary>
 
-  <ion-title><span style="margin-left: -26px;">Registration</span></ion-title>
+  <ion-title><span class="ionTitle">Registration</span></ion-title>
 
 </ion-navbar>
 
@@ -81,7 +81,7 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 <form  #signupForm="ngForm">
 <div class="no-padding">
   <ion-segment class="tab-ion-segment" [(ngModel)]="usercreds.type" name="type">
-    <ion-segment-button class="tab-segment segment-activated" value="0" itemtype="radio"> 
+    <ion-segment-button (click)="myUserSegmentClick()" id="userSeg" class="tab-segment segment-activated" value="0" itemtype="radio"> 
       <!--<input type="radio">-->
       <div *ngIf="usercreds.type == 0">
       <img src="./img/user_active.png" height="24px" class="tabs-image" alt="" >
@@ -96,7 +96,7 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
       
          
       </ion-segment-button>
-    <ion-segment-button  class="tab-segment" value="1" itemtype="radio">
+    <ion-segment-button (click)="myCompanyClick()" id="companyseg" class="tab-segment" value="1" itemtype="radio">
     <!--<input type="radio">-->
     <div *ngIf="usercreds.type==1">
     <img src="./img/company_active.png" height="24px" class="tabs-image" alt="">

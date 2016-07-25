@@ -37,7 +37,8 @@ export class SignupPage {
   signinPage = SigninPage;
   profilePage = profile;
   public emailExist:boolean
-
+  static clickLength : number;
+  static userClickLength: number
  
   token = null;
 
@@ -63,6 +64,8 @@ export class SignupPage {
    this.http = http;
 	  // this.authservice = auth;
 	  this.nav = nav;
+    SignupPage.clickLength = 1;
+    SignupPage.userClickLength = 1;
     this.emailExist = false;
 	  this.token = window.localStorage.getItem('ecnob.token');
 	  if (this.token != null) {
@@ -139,5 +142,22 @@ export class SignupPage {
   
   }
 //============================== END =================================//
+
+//===================== Two Times Calling ======================//
+  myUserSegmentClick(){
+      
+  document.getElementById('companyseg').classList.remove('activated');
+   console.log('class remove successfullly');
+ 
+  }
+  myCompanyClick(){
+        document.getElementById('userSeg').classList.remove('activated');
+        console.log('class remove successfullly');
+
+
+  }
+  
+
+//======================= END ==============================//
 
 }

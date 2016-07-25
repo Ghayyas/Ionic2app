@@ -128,7 +128,7 @@ export class AuthService {
                  let token = window.localStorage.clear();
                 if (token){   
                    AuthService.isLoggedin = false;
-                   this.menu.close;
+                   this.menu.close();
                    resolve(true);    
                 }
                 else{

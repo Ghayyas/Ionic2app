@@ -43,8 +43,9 @@ export class profile {
 //=============================//
 
  uploadFile() {
+  return new Promise((resolve)=>{
 
-   if(this.FileUrlAddress !== undefined){
+    if(this.FileUrlAddress !== undefined){
     var fileURL = this.FileUrlAddress;
    console.log('fileUrl',fileURL)
    var uri = encodeURI("http://lilanisoft.com/hotworks/api/index.php/uploadImage");
@@ -56,33 +57,49 @@ export class profile {
    
       
    options.fileName =  array[0];  
-   options.mimeType = "image/jpg";
+   options.mimeType = "image/jpeg";
 console.log('options',options);
 
    var ft = new FileTransfer();
 
-   ft.upload(array[0], uri, suc, err, options);
-   console.log('arra',array[0],"fileUrl",fileURL);
-   var suc = function onSuccess(r) {
+   ft.upload(array[0], uri, function onSuccess(r) {
+
       console.log("Code = " + r.responseCode);
       console.log("Response = " + r.response);
       let photoParse = JSON.parse(r.response);
       DataService.dataArray[0].photo = photoParse.image;
-     
       console.log("Sent = " + r.bytesSent);
-   }
-
- var err =   function onError(error) {
+      // window.alert('Image upload Success..');
+   }, function onError(error) {
       alert("An error has occurred: Code = " + error.code);
       console.log("upload error source " + error.source);
       console.log("upload error target " + error.target);
-   }
+   }, options);
+   console.log('arra',array[0],"fileUrl",fileURL);
+     }
+     resolve(true);
+  })
+   
+  //  var suc = function onSuccess(r) {
+  //     console.log("Code = " + r.responseCode);
+  //     console.log("Response = " + r.response);
+  //     let photoParse = JSON.parse(r.response);
+  //     DataService.dataArray[0].photo = photoParse.image;
+     
+  //     console.log("Sent = " + r.bytesSent);
+  //  }
+
+//  var err =   function onError(error) {
+//       alert("An error has occurred: Code = " + error.code);
+//       console.log("upload error source " + error.source);
+//       console.log("upload error target " + error.target);
+//    }
 	
- }
+ 
 }
 
     //=====================================//
-upload():void {
+upload(){
   let actionSheet = ActionSheet.create({
     title: 'Select from Camera',
     buttons: [
@@ -172,14 +189,31 @@ upload():void {
   }
   
   uploadSelectedImage(){
-   
-   let loading = Loading.create({
+  let loading = Loading.create({
 		  content: "Please wait...",
 		  duration: 6000,
 		  // dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
+         
+   this.uploadFile().then((suc)=>{
+   console.log('image success',suc);
+       this.nav.push(locationPage);
+   },(err)=>{
+     window.alert('Image not Uploaded');
+     console.log('err on profile image upload ', err);
+    //     let loading = Loading.create({
+		//   content: "Please wait...",
+		//   duration: 6000,
+		//   // dismissOnPageChange: true
+	  // });
+	  // this.nav.present(loading);
           this.nav.push(locationPage);
+
+   })
+
+   
+ 
         
     // }
     // else{

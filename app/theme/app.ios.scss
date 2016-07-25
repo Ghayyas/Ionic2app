@@ -30,8 +30,19 @@
 // App iOS Only Sass
 // --------------------------------------------------
 // CSS that should only apply to the iOS app
-ion-segment.tab-ion-segment .tab-segment.segment-button {
-    border-bottom: 1px solid blue;
+// ion-segment.tab-ion-segment .tab-segment.segment-button {
+//     // border-bottom: 1px solid blue;
+//     // border-bottom-width: 1px;
+//     overflow: visible;
+//     text-transform: capitalize;
+//     font-size: 17px;
+// }
+ .activated{
+    border: none;
+    border-bottom: 1px solid white !important;
+}
+.segment-activated{
+  border-bottom: 1px solid blue !important;
     border-bottom-width: 1px;
     overflow: visible;
     text-transform: capitalize;
@@ -61,6 +72,9 @@ height: 2.6rem;
 font-size: 1.2rem;
 line-height: 2.5rem;
 border-bottom: 1px solid white;
+border-right: 1px solid white;
+border-left: 1px solid white;
+border-top: 1px solid white;
 }
 .button-small{
     padding: 0 0.9px !important;

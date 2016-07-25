@@ -81,8 +81,8 @@ export class CreateEventPage {
       this.empty = function(){
         this.params.photo = "";    
         this.params.name = '';  //required
-        this.params.type = '';  //required
-        // this.params.location = ''; //required
+        // this.params.type = '';  //required
+        this.params.location = ''; //required
         this.params.start_date = '';//required
         this.params.end_date = ''; //required
         this.params.description = '';
