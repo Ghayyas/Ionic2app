@@ -1,0 +1,112 @@
+
+
+
+  <style>
+    .card-background-page{
+    margin-top: 0;
+    margin-bottom: 0;
+    }
+    .background-image-color{
+      position: absolute;
+    background: rgb(47, 116, 245);
+    opacity: 0.8;
+    top: 0px;
+    height: 88%;
+    width: 56%;
+    text-align: right;
+    float: right;
+    right: 0;
+    }
+  </style>
+
+
+
+  <ion-navbar primary hideBackButton="false" *navbar>
+ 
+    <ion-title>My Events</ion-title>
+    <ion-buttons end>
+    <button royal (click)="createEvent()">
+       <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+  </ion-buttons>
+  </ion-navbar>
+
+
+
+   <ion-content>
+     <div class="card-background-page"> 
+    <ion-card (click)="newTabs(arr.id)">
+    <div class="imgBlack">
+      <!--img/stub_profile.png-->
+      <!--img/comp-detail.jpg-->
+      <div class="background-image-color">
+    <img src="img/subscription-banner.jpg"/>
+    </div>
+    </div>
+    
+   <div class="">
+     <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
+     <div class="card-title"><!--{{arr.description}}--><span style="float: right;">My event</span></div>
+    <div class="card-time"> <!-- {{arr.end_date}}--><span style="float: right;">My event</span></div>
+    </div>
+    <ion-row no-padding>
+      <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
+        <!--<button clear small (click)="btn()">-->
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; My event
+        <!--</button>-->
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</div>
+   <div class="card-background-page"> 
+    <ion-card (click)="newTabs(arr.id)">
+    <div class="imgBlack">
+      <!--img/stub_profile.png-->
+      <!--img/comp-detail.jpg-->
+    <img src="img/subscription-banner.jpg"/>
+    </div>
+   <div class="card-middle">
+     <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: left;"> My event</span></div>
+     <div class="card-title"><!--{{arr.description}}--><span style="float: left;">My event</span></div>
+    <div class="card-time"> <!-- {{arr.end_date}}--><span style="float: left;">My event</span></div>
+    </div>
+    <ion-row no-padding>
+      <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
+        <!--<button clear small (click)="btn()">-->
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          &nbsp; My event
+        <!--</button>-->
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</div>
+   </ion-content>
+
+  
+
+   <!--<ion-tabs class="foo-tabs" tabbarplacement="bottom">
+  <ion-tab [root]="tab1" tabTitle="Home" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2" tabTitle="Deals" tabIcon="pricetags"></ion-tab>
+  <ion-tab [root]="tab3" tabTitle="Events" tabIcon="calendar"></ion-tab>
+  <ion-tab [root]="tab4" tabTitle="Companies" tabIcon="grid"></ion-tab>
+</ion-tabs>
+<style type="text/css">
+ion-icon.tab-button{
+	font-size: 14px;
+    text-transform: capitalize;
+}
+span.tab-button-text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    font-size: 10px;
+}
+ion-tabs.foo-tabs ion-tabbar-section{
+    position: fixed;
+    z-index: 9999999;
+    bottom: 0px;
+}
+</style>-->

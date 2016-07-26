@@ -46,7 +46,7 @@
 	height: 100px;
 	-moz-border-radius: 50px;
 	-webkit-border-radius: 50px;
-	border-radius: 50px;;margin-left: 104px;" src="img/company1.jpg">
+	border-radius: 50px;margin-left: 104px;" src="img/company1.jpg">
     <!--</ion-avatar>-->
     <h5 style="color:white; text-align:center;">Marty McFly</h5>
     <p style="text-align: center;color: rgba(255, 255, 255, 0.57);">abc@hotmail.com</p>
@@ -56,28 +56,31 @@
         <div class="profiletab">
           <!--<ion-icon ios="ios-person" md="md-person"></ion-icon>-->
           <img src="./img/profile.png" alt="Profile Picture" class="imagePic">
-        &nbsp;<span class="myspan"><a href="#" class="menuspan">Profile</a></span>
+        &nbsp;<span class="myspan">
+          <a menuClose class="menuspan">Profile</a></span>
        </div>
         <div class="profiletab">
           <img src="./img/my_events.png" alt="my events" class="imagePic">
           <!--<ion-icon ios="ios-keypad" md="md-keypad"></ion-icon>-->
-         &nbsp;<span class="myspan"><a href="#" class="menuspan">My Events</a></span> 
+         &nbsp;<span class="myspan">
+           <a (click)="goEvents()" menuClose class="menuspan">My Events</a></span> 
         </div>
                 <div class="profiletab">
             <!--<ion-icon ios="ios-send" md="md-send"></ion-icon>-->
            <img src="./img/subscribed_companies.png" alt="subscribe Company" class="imagePic">
-           &nbsp;<span class="myspan"><a href="#" class="menuspan">Subscribed Companies</a></span> 
+           &nbsp;<span class="myspan">
+             <a menuClose class="menuspan">Subscribed Companies</a></span> 
         </div>
             <div class="profiletab">
             
             <!--<ion-icon ios="ios-exit" md="md-exit"></ion-icon>-->
             <img src="./img/logout.png" alt="logOut" class="imagePic">
-             &nbsp;<span href="#" class="menuspan logout" (click)="logout()">Log Out</span>
+             &nbsp;<span menuClose class="menuspan logout" (click)="logout()">Log Out</span>
        
         </div>
     </div>
   </ion-content>
 
 </ion-menu>
-<!--<ion-overlay></ion-overlay>-->
+<!--<ion-reveal></ion-reveal>-->
 <ion-nav id="nav" #content [root]="rootPage" swipeBackEnabled="false"></ion-nav>

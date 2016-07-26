@@ -4,7 +4,7 @@ import {Http, Headers} from '@angular/http';
 import {NavController,Alert,Loading, MenuController} from 'ionic-angular';
 import {SigninPage} from './signin';
 import {SERVER_NAME} from '../../service/dataService/dataService'
-
+import {myEvents} from '../myEvents/myEvents';
 
 
 @Injectable()
@@ -126,24 +126,20 @@ export class AuthService {
 
         return new Promise((resolve) => {
                  let token = window.localStorage.clear();
+                //  let close = AuthService.menu.close();
                 if (token){   
+                    AuthService.menu.close();
                    AuthService.isLoggedin = false;
-                   this.menu.close();
+                //    window.localStorage.clear();
                    resolve(true);    
                 }
                 else{
                     resolve(false);
                 }
             })
-            
-                
-
-                //   resolve(false);
-               
-
-
-    
     }
+
+   
 
     
 }

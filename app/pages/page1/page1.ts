@@ -1,6 +1,7 @@
 import {Component,OnInit} from "@angular/core";
 import {MenuController, NavController} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
+import {myEvents} from '../myEvents/myEvents';
 
 
 @Component({
@@ -9,12 +10,13 @@ import {SigninPage} from '../signin/signin';
 export class Page1 {
   
   public pet: string;
+  static nav: NavController;
   
   constructor(private menu:MenuController,public nav: NavController) {
   this.pet = 'public';
   let token =  window.localStorage.getItem('ecnob.token');
   if(token){
- this.menu.enable(true);
+      this.menu.enable(true);
   }
  
   // if(SigninPage.isLoggedin == false){
@@ -22,7 +24,9 @@ export class Page1 {
   // }
    
   }
-
+  ionViewWillLeave(){
+    this.menu.close();
+  }
 
   
   myclick(param){

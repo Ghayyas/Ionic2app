@@ -25,10 +25,14 @@ export class EventDetailsPage {
   constructor(public nav: NavController, public http:Http, private params:NavParams) {
     // this.nav.viewDidEnter.subscribe((view) => { 
     this.http = http;
+    this.nav = nav;
     
       
     // });
   }
+  goBack(){
+		this.nav.pop();
+	}
   ionViewWillEnter(){
   let loading = Loading.create({
            content: "Please wait...",

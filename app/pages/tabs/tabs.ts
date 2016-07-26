@@ -29,12 +29,12 @@ export class TabsPage {
   
   constructor(public nav:NavController){
     // selectTab(index: number) {
-      console.log('nav',this.nav);
+      // console.log('nav',this.nav);
   // ngAfterViewInit(){
   
   // }
       
-      DataService.getData();
+      // DataService.getData();
       // console.log('event',EventDetailsPage.tabbers);
       // TabsPage.tabsActivted.push(this.mytabObj.x)
       // console.log('x',TabsPage.tabsActivted);
