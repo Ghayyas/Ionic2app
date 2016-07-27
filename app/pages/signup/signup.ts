@@ -39,7 +39,8 @@ export class SignupPage {
   public emailExist:boolean
   static clickLength : number;
   static userClickLength: number
- 
+  static lat:number;
+  static long: number
   token = null;
 
   
@@ -66,6 +67,25 @@ export class SignupPage {
 	  this.nav = nav;
     SignupPage.clickLength = 1;
     SignupPage.userClickLength = 1;
+  //   Geolocation.getCurrentPosition().then((resp) => {
+  //    SignupPage.lat  = resp.coords.latitude;
+  //    SignupPage.long =  resp.coords.longitude;
+  //    console.log('cordova latitude',SignupPage.lat);
+  //   console.log('cordova longitude',SignupPage.long);
+
+
+    
+  //   },(err)=>{
+  // if(err.code === 1){
+  //   window.alert('we need to access your Location in order to access this app');
+  //   // platform.exitApp()
+  //   //return;
+  // }
+  // else{
+  //     window.alert('Could not fetch you location please check your Internet connection and try again');
+  // }
+  // console.log('reciveing error ',err);
+// }) 
     this.emailExist = false;
 	  this.token = window.localStorage.getItem('ecnob.token');
 	  if (this.token != null) {
@@ -101,30 +121,36 @@ export class SignupPage {
     this.http.post(SERVER_NAME+'auth/checkemail',creds, { headers: headers }).subscribe((data)=>{
         console.log('email found',data.json());
         let success = data.json().success;
-        loading.dismiss()
+        loading.dismiss();
         if(success !== true){
+          let loading = Loading.create({
+		  content: "Please wait...",
+		  //  duration: 300,
+		  dismissOnPageChange: true
+	  });
+	  this.nav.present(loading);
           var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.latitude,this.usercreds.longitude,this.usercreds.radius);
+ 
           DataService.pushData(obj).then((data)=>{
-           console.log('reciveing data',data);
+      loading.dismiss();
+               console.log('reciveing data',data);
        
-       if(data == true){
+               if(data == true){
 
-    //       let alert = Alert.create({
-    //   title: 'success !',
-    //   subTitle: 'Make Sure you have working internet connection',
-    //   buttons: ['OK']
-    // });
-    //    this.nav.present(alert);
-
-         this.nav.push(profile);
+                this.nav.push(profile);
        }
      else{
-       alert('Oppss! Something went wrong. Make sure you allows Geolocation from your device and try again')
+    loading.dismiss();
+        let alert = Alert.create({
+         title: 'ERROR !',
+         subTitle: 'Oppss! Something went wrong. Make sure you allows Geolocation from your device and try again',
+         buttons: ['OK']
+      });
+       this.nav.present(alert);
+      //  alert('Oppss! Something went wrong. Make sure you allows Geolocation from your device and try again')
      }
-   },(err)=>{
-     console.log('reciveing error',err)
    });
-        }
+      }
         else{
           this.emailExist = true;
         }

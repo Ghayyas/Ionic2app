@@ -9,11 +9,20 @@
   .create-event label.radiolabel{
     display: inline !important;
   }
-
+  ion-title{
+    padding: 0;
+  }
+input[type="date"], 
+input[type="datetime-local"], 
+input[type="month"], 
+input[type="time"], 
+input[type="week"] {
+  -webkit-appearance: none !important;
+  }
 </style>
 
 
- <ion-navbar primary hideBackButton *navbar>
+ <ion-navbar primary hideBackButton *navbar align-title="center">
    <ion-title>
      Create Events
     </ion-title>
@@ -101,7 +110,7 @@
      <div class="fullwidthrow">
      <div class="fieldgroup">
   
-     <input type="text" readonly value="{{fileUrl || 'myImage.png'}}" (click)="presentActionSheet()"> 
+     <input type="text" readonly value="{{fileUrl || 'Event Image'}}" (click)="presentActionSheet()"> 
      <ion-icon ios="ios-attach" md="md-attach"></ion-icon>
      </div>
     </div>

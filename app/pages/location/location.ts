@@ -266,15 +266,15 @@ export class locationPage{
             headers.append('Content-Type', 'application/x-www-form-urlencoded');
             this.http.post(SERVER_NAME + 'auth/signup', creds, { headers: headers })
             .subscribe(data => {
-            //  console.log('data',data.json());
+             console.log('data',data.json());
             loading.dismiss(true);
               if (data.json().token){
-           let alert = Alert.create({
-               title: 'success !',
-               subTitle: 'successfully signup',
-               buttons: ['OK']
-           });
-             this.nav.present(alert);
+        //    let alert = Alert.create({
+        //        title: 'success !',
+        //        subTitle: 'successfully signup',
+        //        buttons: ['OK']
+        //    });
+        //      this.nav.present(alert);
                 window.localStorage.setItem('ecnob.token',data.json().token);
                 this.nav.setRoot(TabsPage);
               }
@@ -287,7 +287,7 @@ export class locationPage{
                buttons: ['OK']
            });
        this.nav.present(alert);
-            //   console.log('err',err);
+              console.log('err',err);
             });
         
         

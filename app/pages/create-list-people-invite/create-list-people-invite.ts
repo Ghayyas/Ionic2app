@@ -41,6 +41,16 @@ export class CreateListPeopleInvitePage {
 
  }
  sendInvites(){
-   this.nav.push(TabsPage)
+  let alert = Alert.create({
+                      title: 'Sucess !',
+                      subTitle: 'Invites Send..',
+                      buttons: ['OK']
+                });
+                      this.nav.present(alert).then((succ)=>{
+                       this.nav.push(TabsPage)
+                      },(err)=>{
+                            console.log('gettitng error');
+                      })
+
 }
 }

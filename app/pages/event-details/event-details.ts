@@ -3,7 +3,7 @@ import {NavController,NavParams,Loading,Alert} from 'ionic-angular';
 import { DataService } from '../../service/dataService/dataService';
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService';
-
+import {AllEventsPage} from '../all-events/all-events';
 
 
 
@@ -16,31 +16,39 @@ import {SERVER_NAME} from '../../service/dataService/dataService';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
+//  declare var name:any;
+
 @Component({
   templateUrl: 'build/pages/event-details/event-details.html',
 })
 export class EventDetailsPage {
  public eventDetailArray: any;
  public myArray = [];
+ public loading: any;
   constructor(public nav: NavController, public http:Http, private params:NavParams) {
     // this.nav.viewDidEnter.subscribe((view) => { 
     this.http = http;
     this.nav = nav;
-    
+     this.loading = Loading.create({
+           content: "Please wait...",
+          //  duration: 300,
+           dismissOnPageChange: true
+            
+        });
+  this.nav.present(this.loading);
       
     // });
   }
   goBack(){
 		this.nav.pop();
 	}
+  
   ionViewWillEnter(){
-  let loading = Loading.create({
-           content: "Please wait...",
-          //  duration: 300,
-           dismissOnPageChange: true
-            
-        });
-  this.nav.present(loading);
+
+  
+  // console.log('events detail', AllEventsPage.allEventsArray);
+  // loading.dismiss(true);
     let headers = new Headers();
      headers.append('Content-Type', 'application/json');
      let ecnobToken = window.localStorage.getItem('ecnob.token');
@@ -57,11 +65,11 @@ export class EventDetailsPage {
                 this.eventDetailArray = dataJson[i];
                 this.myArray.push(this.eventDetailArray);
                  console.log('array',this.myArray);
-                 loading.dismiss(true);
+                 this.loading.dismiss(true);
               }
             }
         },(err)=>{
-           loading.dismiss(true);
+           this.loading.dismiss(true);
       let alert = Alert.create({
       title: 'Error !',
       subTitle: 'Error in getting response Please Check if you have working internet connection and Valid Token.',
@@ -71,5 +79,8 @@ export class EventDetailsPage {
         console.log('error recing',err);
         console.log('err Josn',err.json());
         })
+  }
+  pop(){
+    this.nav.pop();
   }
 }

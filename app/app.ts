@@ -11,7 +11,7 @@ import {AuthService} from "./pages/signin/authservice";
 import {myEvents} from "./pages/myEvents/myEvents";
 import {Page1} from './pages/page1/page1';
 
-// import {Geolocation} from 'ionic-native';
+import {Geolocation} from 'ionic-native';
 
 
 
@@ -55,6 +55,23 @@ public local = null;
       // Here you can do any higher level native things you might need.
       // Keyboard.disableScroll(true);
       // Keyboard.
+//        Geolocation.getCurrentPosition().then((resp) => {
+//       var lat = resp.coords.latitude;
+//        var long =  resp.coords.longitude;
+//        console.log('cordova latitude',lat)
+//        console.log('cordova longitude',long);
+// },(err)=>{
+//   if(err.code === 1){
+//     window.alert('we need to access your Location in order to access this app');
+//     platform.exitApp();
+//     //return;
+//   }
+//   else{
+//       window.alert('Could not fetch you location please check your Internet connection and try again');
+//       platform.exitApp();
+//   }
+//   console.log('reciveing error ',err);
+// })  
       StatusBar.styleDefault();
      
 

@@ -11,17 +11,22 @@
     background: rgb(47, 116, 245);
     opacity: 0.8;
     top: 0px;
-    height: 88%;
+    height: 100%;
     width: 56%;
     text-align: right;
     float: right;
     right: 0;
+    z-index: 3;
     }
+   /*.card-background-page .card-name{
+     width: inherit;
+   }*/
+ 
   </style>
 
 
 
-  <ion-navbar primary hideBackButton="false" *navbar>
+  <ion-navbar primary hideBackButton="false" *navbar align-title="center">
  
     <ion-title>My Events</ion-title>
     <ion-buttons end>
@@ -35,20 +40,23 @@
 
    <ion-content>
      <div class="card-background-page"> 
-    <ion-card (click)="newTabs(arr.id)">
-    <div class="imgBlack">
+    <ion-card>
+    
+    <div class="imgBlack" style="position:relative;">
       <!--img/stub_profile.png-->
       <!--img/comp-detail.jpg-->
-      <div class="background-image-color">
-    <img src="img/subscription-banner.jpg"/>
+        <div class="background-image-color">
     </div>
-    </div>
-    
+    <img src="img/subscription-banner.jpg" style="position: relative;"/>
+
+        </div>
    <div class="">
-     <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
-     <div class="card-title"><!--{{arr.description}}--><span style="float: right;">My event</span></div>
-    <div class="card-time"> <!-- {{arr.end_date}}--><span style="float: right;">My event</span></div>
-    </div>
+     <div class="card-name" style="z-index: 5; padding-right: 5%; padding-left: 49%;   width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
+     <div class="card-title" style="z-index: 5; padding-right: 5%; padding-left: 49%;   width: inherit;"><!--{{arr.description}}--><span style="float: right;">My Event (By List)</span></div>
+     <div class="card-time" style="z-index: 5; padding-right: 5%; padding-left: 49%;   width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
+     <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"><span style="float:right"><ion-icon style="font-size: xx-large;" name="trash"></ion-icon></span></div>
+     <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="" name="create"></ion-icon></span> </div>
+   </div>
     <ion-row no-padding>
       <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
         <!--<button clear small (click)="btn()">-->
@@ -61,7 +69,7 @@
 
 </div>
    <div class="card-background-page"> 
-    <ion-card (click)="newTabs(arr.id)">
+    <ion-card>
     <div class="imgBlack">
       <!--img/stub_profile.png-->
       <!--img/comp-detail.jpg-->

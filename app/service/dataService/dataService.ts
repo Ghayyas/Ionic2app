@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
-import {Platform} from "ionic-angular"
+import {Platform, Alert, NavController} from "ionic-angular"
 import {Geolocation} from 'ionic-native';
 import {SignupPage} from "../../pages/signup/signup";
 
@@ -12,7 +12,7 @@ export let SERVER_NAME = 'http://ecnobapi.herokuapp.com/api/';
 @Injectable()
 export class DataService {
 
-
+static success:boolean;
 static dataArray : Array<usercreds> = new Array();
        
   constructor() {
@@ -26,14 +26,16 @@ static dataArray : Array<usercreds> = new Array();
       return new Promise(resolve=>{
         DataService.dataArray.push(key);
         console.log('data Service',DataService.dataArray[0]);
-        if(DataService.dataArray[0] !==null){
-            resolve(true)
-
-            
-        }
+        setTimeout(function() {
+        if(DataService.dataArray[0].latitude == null){
+            // window.alert('Could Not fetch your Location.. try again');
+            resolve(false);
+   }
         else{
-            resolve(false)
+            resolve(true);
         }
+        }, 4000);
+    
       })
       
   }
@@ -55,7 +57,7 @@ export class usercreds{
     public longitude:number;
     public latitude: number;
     public  radius:number;
-    
+    // public nav: NavController
 
     constructor(email1:string,
      password1: string,
@@ -69,19 +71,25 @@ export class usercreds{
     
     // location:any
     ){
+       
+        // this.longitude = SignupPage.long;
+        // this.latitude = SignupPage.lat;
  Geolocation.getCurrentPosition().then((resp) => {
      this.latitude  = resp.coords.latitude;
-    this.longitude =  resp.coords.longitude;
- console.log('cordova latitude',this.latitude)
- console.log('cordova longitude',this.longitude)
+     this.longitude =  resp.coords.longitude;
+     console.log('cordova latitude',this.latitude)
+    console.log('cordova longitude',this.longitude)
+    DataService.success = true;
 },(err)=>{
   if(err.code === 1){
-    window.alert('we need to access your Location in order to access this app');
+
+  DataService.success = false;;
+    // window.alert('we need to access your Location in order to access this app');
     // platform.exitApp()
     //return;
   }
   else{
-      window.alert('Could not fetch you location please check your Internet connection and try again');
+    //   window.alert('Could not fetch you location please check your Internet connection and try again');
   }
   console.log('reciveing error ',err);
 })  
