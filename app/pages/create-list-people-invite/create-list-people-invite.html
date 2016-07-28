@@ -26,7 +26,7 @@
 <ion-content padding class="create-list-people-invite ecnob-fields">
   
 
-  <ion-grid>
+  <ion-grid style="max-height: 65%; overflow: auto;">
     <div *ngFor="let email of emailArray; let i = index">
   <ion-row>
     <ion-col width-90>
@@ -97,29 +97,41 @@
     </ion-col>
     <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
   </ion-row>-->
+  </ion-grid>
 <div style="position:fixed; bottom: 0; right: 0; left: 0;background: white;opacity: 2;">
   <form #emailForm="ngForm">
     <div style=" padding: 10px 7px;font-size: 20px;">Add Recipient Email</div>
     <ion-row>
-    <ion-col width-80>
+    <ion-col width-85>
     <div class="fullwidthrow">
     
      <div class="fieldgroup" style="margin-bottom: 0px;">
      
      <input type="email" required name="sendmail" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{1,2})?" [(ngModel)]="senderEmail" #useremail="ngModel" placeholder="Enter Email Address">
-     <div [hidden]="useremail.valid || useremail.pristine" style="color:red;">
+     <div [hidden]="useremail.valid || useremail.pristine || whenClick" style="color:red;">
     <small>Valid Email is Required</small>
      </div>
      </div>
     </div>
     </ion-col>
-    <ion-col width-15>
-      <button class="button button-block button-positive" style="font-size: 16px; height: 40px; margin-top: 0px;" [disabled]="!emailForm.form.valid" (click)="add(useremail)">ADD</button></ion-col>
+    <ion-col width-10 style="text-align: center;
+    margin-top: -10px;
+    background: white;
+    font-size: 30px;
+    margin-right: 9px;">
+    <!--<ion-buttons>-->
+      <!--<button class="button button-block button-positive" style="font-size: 16px; height: 40px; margin-top: 0px;" [disabled]="!emailForm.form.valid" (click)="add(useremail)"> -->
+        <button style="border: none; background: white; box-shadow: none" (click)="add(useremail)" [disabled]="!emailForm.form.valid">
+         <ion-icon ios="ios-add" md="md-add" style="margin-left: -11px; font-size: 32px;"></ion-icon>
+         </button>
+<!--</ion-buttons>-->
+<!--</button>-->
+</ion-col>
   </ion-row>
 </form>
    <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" (click)="sendInvites()">Send Invites</button>
 
 </div>
-</ion-grid>
+
 
 </ion-content>

@@ -25,7 +25,7 @@
   </style>
 <ion-content padding class="broadcast-event ecnob-fields">
   
-  <ion-grid>
+  <ion-grid style="max-height: 65%; overflow: auto;"> 
     <div *ngFor="let reg of region_arr; let i = index">
   <ion-row>
     <ion-col width-90>
@@ -40,6 +40,7 @@
       <ion-icon (click)="delete(i)" style="font-size: 31px; margin-top: 6px;;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
   </ion-row>
     </div>
+    </ion-grid>
 <!--<ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
@@ -99,7 +100,7 @@
     <div style="position: fixed !important;bottom: 0 !important;left: 0;right: 0;background: white; opacity: 2;">
     <div style=" padding: 10px 7px;font-size: 20px;">Select Region</div>
     <ion-row>
-    <ion-col width-80>
+    <ion-col width-85>
     <div class="fullwidthrow">
     
      <div class="fieldgroup" style="margin-bottom: 0px;">
@@ -109,13 +110,24 @@
      </div>
     </div>
     </ion-col>
-    <ion-col width-20>
-      <button class="button button-block button-positive" style="font-size: 16px; height: 40px;margin-top: 0px;" [disabled]="!regionForm.form.valid" (click)="add(user)">ADD</button></ion-col>
+      <ion-col width-10 style="text-align: center;
+    margin-top: -10px;
+    background: white;
+    font-size: 30px;
+    margin-right: 9px;">
+      <!--<button class="button button-block button-positive" style="font-size: 16px; height: 40px;margin-top: 0px;" [disabled]="!regionForm.form.valid" (click)="add(user)">ADD</button>-->
+            
+          <button style="border: none; background: white; box-shadow: none" (click)="add(user)" [disabled]="!regionForm.form.valid">
+              <ion-icon ios="ios-add" md="md-add" style="margin-left: -11px;
+    font-size: 32px;"></ion-icon>
+</button> 
+
+      </ion-col>
   </ion-row>
 
    <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" (click)="sendInvites()">Send Invites</button>
     </div>
     </form>
-</ion-grid>
+
 
 </ion-content>

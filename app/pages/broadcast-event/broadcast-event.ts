@@ -51,7 +51,12 @@ export class BroadcastEventPage {
             var bounds = new google.maps.LatLngBounds();
             var i, place;
             for( i = 0; place=places[i]; i++){
-            console.log('place', place.geometry.location);
+             if(place.geometry.location == undefined){
+              window.alert('You cant get your Location');
+            }
+            
+             console.log('place', place.geometry.location);
+           
              
               //  let lat = place.geometry.location.lat();
              this.myLat = place.geometry.location.lat();

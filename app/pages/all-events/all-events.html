@@ -25,7 +25,13 @@
 ion-title{
   padding: 0 0 0 25px;
 }
-  
+  /*ion-card{
+    max-height: 200px !important;
+    text-align: center !important;
+  }*/
+  img{
+     max-height: 200px;;
+  }
 </style>
 
 
@@ -74,7 +80,8 @@ ion-title{
     <h3>No New Events Avalible</h3>
   </div>
   <div *ngIf="error == true">
-    <h3>Error in Fetching new results form server. </h3>
+    <h3>Make sure you have Valid Token</h3>
+    <!--<h3>Error in Fetching new results form server. </h3>
       <ul>
         <li>
           1. Please make sure you have working internet connection.
@@ -82,7 +89,7 @@ ion-title{
         <li>2.Please make sure you have valid access token.
           </li>
           <li>3. sign out and sign in again</li>
-          <li>4. If every thing is working fine. Please contact application Developer for support.</li></ul>
+          <li>4. If every thing is working fine. Please contact application Developer for support.</li></ul>-->
     
   </div>
   <!--*ngFor = "let arr of event" -->
@@ -101,7 +108,7 @@ ion-title{
     <div class="imgBlack">
       <!--img/stub_profile.png-->
       <!--img/comp-detail.jpg-->
-    <img src="{{arr.photo || 'img/comp-detail.jpg'}}"/>
+    <img src="{{arr.photo || ' ./img/stub_events.png'}}"/>
     </div>
    <div class="card-middle">
      <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: left;">{{arr.name}} PRivate</span></div>

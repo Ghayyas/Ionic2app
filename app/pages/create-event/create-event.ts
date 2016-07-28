@@ -169,14 +169,15 @@ console.log('options',options);
    var ft = new FileTransfer();
 
    ft.upload(array[0], uri, function onSuccess(r) {
-      // console.log("Code = " + r.responseCode);
-      // console.log("Response = " + r.response);
+     loading.dismiss(true);
+      console.log("Code = " + r.responseCode);
+      console.log("Response = " + r.response);
       let photoParse = JSON.parse(r.response);
       // alert('Image Caputured Successs');
        CreateEventPage.myImage  = photoParse.image;
         console.log('Create Event Page Image',CreateEventPage.myImage);
       // console.log("Sent = " + r.bytesSent);
-      loading.dismiss(true)
+      
    },  function onError(error) {
      loading.dismiss(true);
      let alert = Alert.create({
@@ -242,10 +243,7 @@ presentActionSheet():void {
         }).then(imageData => {
             this.zone.run(() => {
                  this.fileUrl  =  imageData;
-                var str =  this.fileUrl;
-                  let array = str.split("?");
-                   console.log('image Data', this.fileUrl);
-                   this.uploadFile();
+                  this.uploadFile();
             });
             
         }, error => {
@@ -275,11 +273,8 @@ presentActionSheet():void {
         }).then(imageData => {
             this.zone.run(() => {
                 this.fileUrl =  imageData;
-                var str =  this.fileUrl
-                  let array = str.split("?")
-                  console.log('image Data', this.fileUrl);
-                    this.uploadFile();
-        });
+                 this.uploadFile();
+            });
       
         }, error => {
       
@@ -316,12 +311,21 @@ presentActionSheet():void {
 
 submit(params)
   {
+   
     this.params.latitude = CreateEventPage.myLat;
     this.params.longitude = CreateEventPage.myLong;
     this.params.photo = CreateEventPage.myImage;
-
-  
-  console.log('params',params)
+     console.log('params',params)
+// if(this.params.photo == undefined ){
+//       let alert = Alert.create({
+//       title: 'Error !',
+//       subTitle: 'Event Picture is Required',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert);
+// }
+  // else{
+ 
     this.loading = Loading.create({
            content: "Please wait...",
           //  duration: 300,
@@ -395,4 +399,5 @@ submit(params)
 
 }
   }
+  // }
 

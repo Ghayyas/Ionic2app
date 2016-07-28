@@ -21,6 +21,7 @@ export class CreateListPeopleInvitePage {
   page1= AllEventsPage;
   eventsPage: AllEventsPage;
   public emailArray = [];
+  public whenClick :boolean;
   public senderEmail: string;
   constructor(public nav: NavController) {
     
@@ -33,6 +34,7 @@ export class CreateListPeopleInvitePage {
     console.log('array',this.emailArray);
     useremail = '';
         this.senderEmail = '';
+        this.whenClick = true;
 }
  delete(event){
 

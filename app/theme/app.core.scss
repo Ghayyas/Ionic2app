@@ -41,13 +41,11 @@ tabbar .tab-button {
     background: #3191f6;
     }
 
-    scroll-content{
+scroll-content{
       overflow-x: hidden !important;
       overflow-y: auto !important;
     }
-    ion-navbar-section{
-          padding: 30px ;
-    }
+
 
    ion-title {
   position: relative;

@@ -30,13 +30,7 @@ export class EventDetailsPage {
     // this.nav.viewDidEnter.subscribe((view) => { 
     this.http = http;
     this.nav = nav;
-     this.loading = Loading.create({
-           content: "Please wait...",
-          //  duration: 300,
-           dismissOnPageChange: true
-            
-        });
-  this.nav.present(this.loading);
+  
       
     // });
   }
@@ -45,7 +39,13 @@ export class EventDetailsPage {
 	}
   
   ionViewWillEnter(){
-
+   this.loading = Loading.create({
+           content: "Please wait...",
+          //  duration: 300,
+           dismissOnPageChange: true
+            
+        });
+  this.nav.present(this.loading);
   
   // console.log('events detail', AllEventsPage.allEventsArray);
   // loading.dismiss(true);

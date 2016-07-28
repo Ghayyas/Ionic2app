@@ -34,7 +34,7 @@ static dataArray : Array<usercreds> = new Array();
         else{
             resolve(true);
         }
-        }, 4000);
+        }, 6000);
     
       })
       
