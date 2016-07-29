@@ -57,9 +57,9 @@ max-height: 100px !important; //any size
 
         </div>
    <div class="">
-     <div class="card-name" style="z-index: 5; padding-right: 5%; padding-left: 49%;   width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
-     <div class="card-title" style="z-index: 5; padding-left: 49%;   width: inherit;"><!--{{arr.description}}--><span style="float: right;">My Event (By List)</span></div>
-     <div class="card-time" style="z-index: 5; padding-right: 5%; padding-left: 49%;   width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
+     <div class="card-name" style="z-index: 5; padding-right: 5%; padding-left: 49%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
+     <div class="card-title" style="z-index: 5; padding-left: 49%; padding-right:15px; width: inherit;"><!--{{arr.description}}--><span style="float: right;">My Event (By List)</span></div>
+     <div class="card-time" style="z-index: 5; padding-right: 5%; padding-left: 49%; width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"><span style="float:right"><ion-icon style="font-size: 32px;
     margin-top: -10px; color: white;" name="trash"></ion-icon></span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="font-size: 32px;
@@ -71,10 +71,10 @@ max-height: 100px !important; //any size
       <ion-row style="position: relative;font-size: smaller;padding-left: 7px;padding-top: 12px; padding-bottom:10px;">
         <div *ngFor="let image of myImg; let i = index">
         <ion-avatar *ngIf="i < totalAttendents">
-          <img src="{{image.img}}" alt="Event Image"> 
+          <img src="{{image.img}}" style="margin-left: 2px;" alt="Event Image"> 
        </ion-avatar>
       </div>
-        <div style="background:rgb(47, 116, 245); border-radius: 81px; width: 39px;">
+        <div style="background:rgb(47, 116, 245); border-radius: 24px; width: 36px; margin-left: 2px;">
         <p style="color:white; margin-top: 9px;">+{{remaining}}</p> 
          </div>
     </ion-row>

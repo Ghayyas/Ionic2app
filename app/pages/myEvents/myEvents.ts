@@ -28,9 +28,10 @@ export class myEvents{
   innerWidth: number;
   public width;
   public height;
-  private remaining;
+  private remaining : number;
   public wid;
-  public totalAttendents;
+  public person;
+  public totalAttendents: number;
     constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone){
      this.myImg = [
        {img: './img/event1.jpg'},
@@ -54,7 +55,12 @@ export class myEvents{
        {img: './img/event1.jpg'},
        {img: './img/event1.jpg'}   
     ];
-    // this.width = parseInt(this.wid);
+    
+    //  ngZone.run(() => {
+    //         this.width = window.innerWidth;
+            
+    //         this.height = window.innerHeight;
+    //     });        
     // window.onresize = (e) =>
     // {
         ngZone.run(() => {
@@ -63,7 +69,11 @@ export class myEvents{
             this.height = window.innerHeight;
         });
         console.log('width',this.width,'Height',this.height);
+        
+        
     // };
+
+
 
     //  this.getTotal();
 
@@ -71,26 +81,57 @@ export class myEvents{
     }
     
     ionViewWillEnter(){
-     if(this.width > 360){
+      if(this.width == 320){
+       this.totalAttendents = 7 ;
+     }
+      
+     else if(this.width == 360){
        this.totalAttendents = 7;
      }
-      if(this.width > 411){
+    else if(this.width == 375){
        this.totalAttendents = 8;
      }
-     if(this.width > 435){
+    else if(this.width == 411){
+       this.totalAttendents = 8;
+     }
+    else if(this.width == 435){
        this.totalAttendents = 10;
      }
-      if(this.width > 320){
+    else if(this.width == 480){
+       this.totalAttendents = 10;
+     }
+    else if(this.width == 600){
        this.totalAttendents = 9;
      }
-       if(this.width > 375){
-       this.totalAttendents = 9;
+    else if(this.width == 640){
+       this.totalAttendents = 14;
      }
-      if(this.width > 768){
+    else if(this.width == 639){
+       this.totalAttendents = 14;
+     }
+    else if(this.width == 720){
+       this.totalAttendents = 13;
+     }
+     else if(this.width == 768){
        this.totalAttendents = 18;
      }
-      this.remaining = this.myImg.length - parseInt(this.totalAttendents);
+    else if(this.width == 800){
+       this.totalAttendents = 17;
+     }
+    else if(this.width == 801){
+       this.totalAttendents = 17;
+     }
+     else{
+       this.totalAttendents = 6;
+     }
+      this.person = this.totalAttendents;
+      if(this.myImg.length <= 6){
+        this.remaining = 0;
+      }
+   else{
+      this.remaining = this.myImg.length - this.person;
       console.log('length',this.remaining);
+   }
         // let total = 0;
         // for(var i =0; i < this.myImg.length; i++){
         //  var product = this.myImg[i];
