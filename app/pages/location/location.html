@@ -16,14 +16,14 @@
   <!--</ion-toolbar>
 </ion-header>-->
 
-
-<ion-navbar *navbar primary align-title="center">
+ <ion-header>
+<ion-navbar primary align-title="center">
   <!--<ion-title>signup</ion-title>-->
 
   <ion-title><span class="ionTitle">Profile</span></ion-title>
 
 </ion-navbar>
-
+ </ion-header>
 <ion-content>
   
   <!--<div class="wrapper">-->
@@ -58,7 +58,8 @@
 <!--</div>-->
 </div>
     </ion-content>
-       <ion-toolbar position="bottom">
+    <ion-footer>
+       <ion-toolbar>
      <ion-buttons>
          <button royal (click)="updateProfile()">
            <span style="text-transform: capitalize !important;">Done</span> 
@@ -66,4 +67,4 @@
         </button>
   </ion-buttons>
 </ion-toolbar>
-   
+   </ion-footer>

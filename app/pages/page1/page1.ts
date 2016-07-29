@@ -14,6 +14,11 @@ export class Page1 {
   
   constructor(private menu:MenuController,public nav: NavController) {
   this.pet = 'public';
+
+   var tab = document.getElementsByTagName("ion-tabs")[0];
+   var att = document.createAttribute("tabbarplacement");
+    att.value = "bottom";
+    tab.setAttributeNode(att);
   let token =  window.localStorage.getItem('ecnob.token');
   if(token){
       this.menu.enable(true);

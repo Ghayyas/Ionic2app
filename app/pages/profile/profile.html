@@ -34,14 +34,14 @@
     </ion-buttons>-->
   <!--</ion-toolbar>
 </ion-header>-->
-
-<ion-navbar *navbar primary align-title="center">
+ <ion-header>
+<ion-navbar primary align-title="center">
   <!--<ion-title>signup</ion-title>-->
 
   <ion-title><span class="ionTitle">Profile</span></ion-title>
 
 </ion-navbar>
-
+ </ion-header>
 
 <ion-content padding>
   <style type="text/css">
@@ -239,13 +239,15 @@ left: 35%;-->
 </button>-->
 <!--<button full class="lastbutton" (click)="uploadSelectedImage()" >Next</button>-->
 </ion-content>
-   <ion-toolbar position="bottom">
+<ion-footer>
+   <ion-toolbar>
      <ion-buttons>
          <button royal (click)="uploadSelectedImage()">
              <span style="text-transform: capitalize !important;">Next</span> 
         </button>
   </ion-buttons>
 </ion-toolbar>
+</ion-footer>
 <!--<ion-toolbar position="bottom">
   <ion-title>
     <button>Next</button></ion-title>

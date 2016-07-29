@@ -19,9 +19,9 @@
     margin-top: 2% !important;
     margin-bottom: 0 !important;
   }
-  ion-title{
-    padding: 0;
-  }
+ion-title{
+  padding: 0  !important;
+}
 
 </style>
 
@@ -29,8 +29,8 @@
 
 
 
-
-<ion-navbar primary hideBackButton *navbar align-title="center">
+ <ion-header>
+<ion-navbar primary hideBackButton align-title="center">
 <!--<ion-navbar id="nav" [root]="myRoot" #content swipe-back-enabled="false">-->
     <button menuToggle>
       <ion-icon name='menu'></ion-icon>
@@ -51,14 +51,14 @@
     </button>
   </ion-buttons>-->
    </ion-navbar>
-
+ </ion-header>
 <ion-content class="deals">
   
   
   <div class="card-background-page"> 
     <ion-card (click)="dealsDetailsPage()">
     <div class="imgBlack">
-    <img src="img/comp-detail.jpg"/>
+    <img src="./img/stub_events.png"/>
     </div>
     <div class="card-middle">
      <div class="card-name"> <!--{{arr.name}}--><span  style="float: left;">Amazon Web Service</span></div>
@@ -88,7 +88,7 @@
   <div class="card-background-page"> 
     <ion-card (click)="dealsDetailsPage()">
     <div class="imgBlack">
-    <img src="img/comp-detail.jpg"/>
+    <img src="./img/stub_events.png"/>
     </div>
     <div class="card-middle">
      <div class="card-name"> <!--{{arr.name}}--><span  style="float: left;">Amazon Web Service</span></div>

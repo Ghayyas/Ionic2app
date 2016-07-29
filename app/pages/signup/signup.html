@@ -4,12 +4,13 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-navbar *navbar primary>
+ <ion-header>
+<ion-navbar primary>
 
   <ion-title><span class="ionTitle">Registration</span></ion-title>
 
 </ion-navbar>
-
+ </ion-header>
 
 
 
@@ -230,10 +231,12 @@ ion-segment.tab-ion-segment .tab-segment.segment-button {
 </form>
 
 </ion-content>
-   <ion-toolbar position="bottom">
+<ion-footer>
+   <ion-toolbar>
      <ion-buttons>
          <button  royal (click)="signup()" [disabled]="!signupForm.form.valid">
             <span style="text-transform: capitalize !important;">Next</span> 
         </button>
   </ion-buttons>
 </ion-toolbar>
+</ion-footer>

@@ -34,9 +34,6 @@ export class EventDetailsPage {
       
     // });
   }
-  goBack(){
-		this.nav.pop();
-	}
   
   ionViewWillEnter(){
    this.loading = Loading.create({

@@ -316,15 +316,15 @@ submit(params)
     this.params.longitude = CreateEventPage.myLong;
     this.params.photo = CreateEventPage.myImage;
      console.log('params',params)
-// if(this.params.photo == undefined ){
-//       let alert = Alert.create({
-//       title: 'Error !',
-//       subTitle: 'Event Picture is Required',
-//       buttons: ['OK']
-//     });
-//        this.nav.present(alert);
-// }
-  // else{
+if(this.params.photo == undefined ){
+      let alert = Alert.create({
+      title: 'Error !',
+      subTitle: 'Event Picture is Required',
+      buttons: ['OK']
+    });
+       this.nav.present(alert);
+}
+  else{
  
     this.loading = Loading.create({
            content: "Please wait...",
@@ -399,5 +399,5 @@ submit(params)
 
 }
   }
-  // }
+  }
 

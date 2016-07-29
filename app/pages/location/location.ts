@@ -36,6 +36,8 @@ export class locationPage{
     public cityCircle;   //Circle Map
     public Radius;      ///Radius of the Map
     public kmConverter;   //to Convert Meters in Kilometer
+    public myLati;
+    public mylongi;
     constructor(public data:DataService,public http:Http, public nav: NavController){
        
 //   this.loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places",
@@ -44,7 +46,8 @@ export class locationPage{
 //     });
         //    this.callgoogleMap();
 
-
+       this.myLati = DataService.dataArray[0].latitude;
+       this.mylongi = DataService.dataArray[0].longitude;
       setTimeout(()=>{
     //    this.authservice = auth
 //     this.http.get("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places")
@@ -107,13 +110,13 @@ export class locationPage{
      initMap() {
 
 
-         let conLat = Number(DataService.dataArray[0].latitude);
-         let conlog = Number(DataService.dataArray[0].longitude);
+         let conLat = Number(this.myLati);
+         let conlog = Number(this.mylongi);
          let lati = typeof(conLat);
          let logi = typeof(conlog);
          console.log('lati',lati,'logi',logi,'conlat',conLat,'conlog',conlog);
-        var myLatLng = {lat: DataService.dataArray[0].latitude, lng: DataService.dataArray[0].longitude};
-       console.log('latitude',DataService.dataArray[0].latitude,'longitude',DataService.dataArray[0].longitude);
+        var myLatLng = {lat: this.myLati, lng: this.mylongi};
+       console.log('latitude',this.myLati,'longitude',this.mylongi);
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
           zoom: 12,
           center: myLatLng,

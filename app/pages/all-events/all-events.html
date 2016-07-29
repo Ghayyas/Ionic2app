@@ -23,7 +23,7 @@
    border-bottom: 1px  solid white !important;
 }
 ion-title{
-  padding: 0 0 0 25px;
+  padding: 0 0 0 25px !important;
 }
   /*ion-card{
     max-height: 200px !important;
@@ -37,8 +37,8 @@ ion-title{
 
 
 
-
-    <ion-navbar primary  *navbar align-title="center">
+<ion-header>
+    <ion-navbar primary align-title="center">
 <!--<ion-navbar id="nav" [root]="myRoot" #content swipe-back-enabled="false">-->
     <button menuToggle>
       <ion-icon name='menu'></ion-icon>
@@ -57,7 +57,7 @@ ion-title{
     </button>
   </ion-buttons>
    </ion-navbar>
-   
+  
    <!--[attr.primary]="isAndroid ? '' : null" no-border-top-->
    <!--[attr.light]="isAndroid ? '' : null"-->
    
@@ -71,9 +71,9 @@ ion-title{
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-   
+    </ion-header>
    <!--</ion-header>-->
-<ion-page>
+<!--<ion-page>-->
 <ion-content class="all-events">
   <div class="from-top"></div>
   <div *ngIf="definedError == true">
@@ -111,7 +111,7 @@ ion-title{
     <img src="{{arr.photo || ' ./img/stub_events.png'}}"/>
     </div>
    <div class="card-middle">
-     <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: left;">{{arr.name}} PRivate</span></div>
+     <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: left;">{{arr.name}}</span></div>
      <div class="card-title"><!--{{arr.description}}--><span style="float: left;">{{arr.description}}</span></div>
     <div class="card-time"> <!-- {{arr.end_date}}--><span style="float: left;">{{arr.end_date}}</span></div>
     </div>
@@ -163,9 +163,9 @@ ion-title{
   <div class="card-background-page"> 
     <ion-card (click)="newTabs(arr.id)">
     
-    <img src="{{arr.photo || 'img/comp-detail.jpg'}}"/>
+    <img src="{{arr.photo || './img/stub_events.png'}}"/>
      <div class="card-middle">
-     <div class="card-name"> <!--{{arr.name}}--><span style="float: left;">{{arr.name}} public</span></div>
+     <div class="card-name"> <!--{{arr.name}}--><span style="float: left;">{{arr.name}} </span></div>
      <div class="card-title"><!--{{arr.description}}--><span  style="float: left;">{{arr.description}}</span></div>
     <div class="card-time"> <!-- {{arr.end_date}}--><span  style="float: left;">{{arr.end_date}}</span></div>
     </div>
@@ -200,4 +200,4 @@ ion-title{
   </div>
 
 </ion-content>
-</ion-page>
+<!--</ion-page>-->

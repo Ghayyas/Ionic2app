@@ -33,6 +33,15 @@ export class TabsPage {
   // ngAfterViewInit(){
   
   // }
+
+  // var myID = <HTMLInputElement>document.getElementsByTagName("ion-tabs")[0];
+  // console.log('myID',myID.value);
+  // myID.setAttribute('tabbarplacement','bottom');
+  //  var tab = document.getElementsByTagName("ion-tabs")[0];
+  //  var att = document.createAttribute("tabbarplacement");
+  //   att.value = "bottom";
+  //   tab.setAttributeNode(att);
+//  .setAttribute('tabbarplacement','bottom')
       
       // DataService.getData();
       // console.log('event',EventDetailsPage.tabbers);
@@ -40,6 +49,7 @@ export class TabsPage {
       // console.log('x',TabsPage.tabsActivted);
        
         // t.select(index);
+        
     // } 
  }
  
@@ -56,4 +66,5 @@ export class TabsPage {
 //           // DataService.getData();
 
 //   }
+
 }

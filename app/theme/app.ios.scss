@@ -62,9 +62,8 @@
     text-align: center;
 }
 ion-content-section{
-    margin-top: -10px !important;
+  margin-top: -2px !important;
 }
-
 
 .toolbar .segment-button{
  max-width: 45%;
@@ -79,3 +78,6 @@ border-top: 1px solid white;
 .button-small{
     padding: 0 0.9px !important;
 }
+// ion-navbar-section.statusbar-padding > .toolbar ion-segment, ion-navbar-section.statusbar-padding > .toolbar ion-title{
+//     padding: 0 !important;
+// }

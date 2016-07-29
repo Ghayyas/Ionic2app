@@ -102,8 +102,10 @@ ion-title{
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>-->
-<ion-navbar primary hideBackButton *navbar align-title="center">
-<!--<ion-navbar id="nav" [root]="myRoot" #content swipe-back-enabled="false">-->
+
+
+  <!--<ion-header>
+<ion-navbar primary hideBackButton align-title="center">
     <button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
@@ -111,9 +113,18 @@ ion-title{
           Home
     </ion-title>
    </ion-navbar>
-   
-   <!--[attr.primary]="isAndroid ? '' : null" no-border-top-->
-   <!--[attr.light]="isAndroid ? '' : null"-->
+   </ion-header>-->
+<ion-header>
+ <ion-navbar primary hideBackButton align-title="center">
+    <button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+          Home
+    </ion-title>
+   </ion-navbar>
+
+
    
      <ion-toolbar primary>
     <ion-segment>
@@ -125,7 +136,7 @@ ion-title{
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-
+  </ion-header>
 <ion-content class="page1">
 
 
