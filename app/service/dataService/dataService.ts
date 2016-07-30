@@ -14,6 +14,7 @@ export class DataService {
 
 static success:boolean;
 static dataArray : Array<usercreds> = new Array();
+static code;
        
   constructor() {
   }
@@ -25,11 +26,15 @@ static dataArray : Array<usercreds> = new Array();
   static pushData(key){
       return new Promise(resolve=>{
         DataService.dataArray.push(key);
-        console.log('data Service',DataService.dataArray[0]);
+        // console.log('data Service',DataService.dataArray[0]);
         setTimeout(function() {
         if(DataService.dataArray[0].latitude == null){
             // window.alert('Could Not fetch your Location.. try again');
             resolve(false);
+
+
+            // alert('code'+ this.code);
+            
    }
         else{
             resolve(true);
@@ -74,7 +79,7 @@ export class usercreds{
        
         // this.longitude = SignupPage.long;
         // this.latitude = SignupPage.lat;
- Geolocation.getCurrentPosition().then((resp) => {
+ Geolocation.getCurrentPosition({enableHighAccuracy:true,timeout:5000,maximumAge:3000}).then((resp) => {
      this.latitude  = resp.coords.latitude;
      this.longitude =  resp.coords.longitude;
      console.log('cordova latitude',this.latitude)
@@ -92,7 +97,8 @@ export class usercreds{
     //   window.alert('Could not fetch you location please check your Internet connection and try again');
   }
   console.log('reciveing error ',err);
-})  
+  DataService.code = err.code;
+})
        this.email = email1;
        this.password = password1;
        this.name = name1;

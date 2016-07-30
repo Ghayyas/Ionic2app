@@ -48,15 +48,8 @@ export class locationPage{
 
        this.myLati = DataService.dataArray[0].latitude;
        this.mylongi = DataService.dataArray[0].longitude;
+      this.callgoogleMap();
       setTimeout(()=>{
-    //    this.authservice = auth
-//     this.http.get("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places")
-// //   .map(res => res.json())
-//   .subscribe(
-//     data => console.log('receving maps',data),
-//     err => console.log('getting error from maps',err),
-//     () => console.log('yay')
-//   );
          this.map = null;
          this.nav = nav;
          this.initMap();
@@ -73,31 +66,30 @@ export class locationPage{
 //=========== Loading Script ==============//
 
 
-//     loadScript(src,callback){
+    loadScript(src,callback){
   
-//     var script = document.createElement("script");
-//     script.type = "text/javascript";
-//     if(callback)script.onload=callback;
-//     document.getElementsByTagName("head")[0].appendChild(script);
-//     script.src = src;
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    if(callback)script.onload=callback;
+    document.getElementsByTagName("head")[0].appendChild(script);
+    script.src = src;
  
-//   }
+  }
 
 // public urlFetchApp:any;
 
-//  callgoogleMap() {
-//   try {
-//     var response = UrlFetchApp.fetch("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places"); 
-//     console.log('Response Code: ' + response.getResponseCode());
-
-//     if(response.getResponseCode() === 200) {
-//     console.log('working...!!');
-//     }
-//   } catch (err) {
-//       console.log('Need working Internet Connection');
-//       // handle the error here
-//   }
-// }
+ callgoogleMap() {
+  try {
+   this.loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places",
+  function(){
+      console.log('google-loader has been loaded, but not the maps-API ');
+    });
+  } catch (err) {
+      alert('Map could not be loaded..');
+      console.log('Need working Internet Connection',err);
+      // handle the error here
+  }
+}
   
 
 

@@ -74,7 +74,7 @@ max-height: 100px !important; //any size
           <img src="{{image.img}}" style="margin-left: 2px;" alt="Event Image"> 
        </ion-avatar>
       </div>
-        <div style="background:rgb(47, 116, 245); border-radius: 24px; width: 36px; margin-left: 2px;">
+        <div *ngIf="remaining !== 0" style="background:rgb(47, 116, 245); border-radius: 24px; width: 36px; margin-left: 2px;">
         <p style="color:white; margin-top: 9px;">+{{remaining}}</p> 
          </div>
     </ion-row>

@@ -124,29 +124,43 @@ export class SignupPage {
         loading.dismiss();
         if(success !== true){
           let loading = Loading.create({
-		  content: "Please wait...",
+		        content: "Please wait...",
 		  //  duration: 300,
-		  dismissOnPageChange: true
+		        dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
           var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.latitude,this.usercreds.longitude,this.usercreds.radius);
  
           DataService.pushData(obj).then((data)=>{
-      loading.dismiss();
+           loading.dismiss();
                console.log('reciveing data',data);
        
-               if(data == true){
+               if(data){
 
                 this.nav.push(profile);
-       }
-     else{
-    loading.dismiss();
-        let alert = Alert.create({
-         title: 'ERROR !',
-         subTitle: 'Oppss! Something went wrong. Make sure you allows Geolocation from your device and try again',
-         buttons: ['OK']
+               }
+             else{
+               
+               loading.dismiss();
+    
+                if(DataService.code == 2){
+               let alert = Alert.create({
+                     title: 'ERROR !',
+                     subTitle: 'Could not fetch your location. Make sure you have working internet connection',
+                     buttons: ['OK']
       });
-       this.nav.present(alert);
+                     this.nav.present(alert);
+                // window.alert('Could Not Fetch Your location. Make Sure you have Working Internet Connection')
+            }
+           if(DataService.code == 1){
+                    let alert = Alert.create({
+                     title: 'ERROR !',
+                     subTitle: 'GPS must enable in order to perform action',
+                     buttons: ['OK']
+      });
+                     this.nav.present(alert);
+            }
+
       //  alert('Oppss! Something went wrong. Make sure you allows Geolocation from your device and try again')
      }
    });
