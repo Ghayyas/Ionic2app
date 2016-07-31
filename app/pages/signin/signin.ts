@@ -36,32 +36,33 @@ export class SigninPage {
     this.authservice = auth;
 	   this.nav = nav;
 	   this.token= window.localStorage.getItem('ecnob.token');
-   }
-
-
-ngOnInit(){
- this.menu.enable(false);
- console.log('menu false');
-}
-
-
-//============ VIEW ENTER ==========//
-
-ionViewWillEnter(){
-
-    let loading = Loading.create({
-		   content: "Please wait...",
-		  //  duration: 3000,
-		   dismissOnPageChange: true
-	   });
-	   this.nav.present(loading);
-  if(this.token !== null)
+       if(this.token !== null)
 	   {
       // this.menu.enable(true);
 		   this.nav.setRoot(TabsPage);
         
        
 	   }   
+
+   }
+
+
+ionViewWillEnter(){
+ this.menu.enable(false);
+ console.log('menu false');
+// }
+
+
+//============ VIEW ENTER ==========//
+
+// ionViewWillEnter(){
+
+    // let loading = Loading.create({
+		//    content: "Please wait...",
+		//   //  duration: 3000,
+		//    dismissOnPageChange: true
+	  //  });
+	  //  this.nav.present(loading);
 
 }
 

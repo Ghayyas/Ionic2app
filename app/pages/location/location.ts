@@ -48,7 +48,8 @@ export class locationPage{
 
        this.myLati = DataService.dataArray[0].latitude;
        this.mylongi = DataService.dataArray[0].longitude;
-      this.callgoogleMap();
+    //    DataService.mapService();
+    //   this.callgoogleMap();
       setTimeout(()=>{
          this.map = null;
          this.nav = nav;
@@ -66,30 +67,30 @@ export class locationPage{
 //=========== Loading Script ==============//
 
 
-    loadScript(src,callback){
+//     loadScript(src,callback){
   
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    if(callback)script.onload=callback;
-    document.getElementsByTagName("head")[0].appendChild(script);
-    script.src = src;
+//     var script = document.createElement("script");
+//     script.type = "text/javascript";
+//     if(callback)script.onload=callback;
+//     document.getElementsByTagName("head")[0].appendChild(script);
+//     script.src = src;
  
-  }
+//   }
 
 // public urlFetchApp:any;
 
- callgoogleMap() {
-  try {
-   this.loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places",
-  function(){
-      console.log('google-loader has been loaded, but not the maps-API ');
-    });
-  } catch (err) {
-      alert('Map could not be loaded..');
-      console.log('Need working Internet Connection',err);
-      // handle the error here
-  }
-}
+//  callgoogleMap() {
+//   try {
+//     var script = document.createElement("script");
+//     script.type = "text/javascript";
+//     document.getElementsByTagName("head")[0].appendChild(script);
+//     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places';
+//   } catch (err) {
+//       alert('Map could not be loaded..');
+//       console.log('Need working Internet Connection',err);
+//       // handle the error here
+//   }
+// }
   
 
 

@@ -2,6 +2,7 @@ import {Component,OnInit} from "@angular/core";
 import {MenuController, NavController} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
 import {myEvents} from '../myEvents/myEvents';
+import {AuthService} from '../signin/authservice';
 
 
 @Component({
@@ -21,11 +22,19 @@ export class Page1 {
     tab.setAttributeNode(att);
   let token =  window.localStorage.getItem('ecnob.token');
   if(token){
-      this.menu.enable(true);
+    this.menu.enable(true);
+    // this.nav.rootNav.push(SigninPage)
+  }
+  else{
+    this.nav.setRoot(SigninPage).then((suc)=>{
+      console.log("Root Nav Successs");
+      this.nav.rootNav.push(SigninPage);
+
+    })
   }
  
-  // if(SigninPage.isLoggedin == false){
-  //   this.nav.push(SigninPage)
+  // if(AuthService.isLoggedin == false){
+  //   this.nav.rootNav.push(SigninPage)
   // }
    
   }

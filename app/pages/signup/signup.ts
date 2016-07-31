@@ -142,6 +142,14 @@ export class SignupPage {
              else{
                
                loading.dismiss();
+               if(DataService.code == 1){
+                    let alert = Alert.create({
+                     title: 'ERROR !',
+                     subTitle: 'GPS must enable in order to perform action',
+                     buttons: ['OK']
+      });
+                     this.nav.present(alert);
+            }
     
                 if(DataService.code == 2){
                let alert = Alert.create({
@@ -152,14 +160,16 @@ export class SignupPage {
                      this.nav.present(alert);
                 // window.alert('Could Not Fetch Your location. Make Sure you have Working Internet Connection')
             }
-           if(DataService.code == 1){
-                    let alert = Alert.create({
+                 if(DataService.code == 3){
+               let alert = Alert.create({
                      title: 'ERROR !',
-                     subTitle: 'GPS must enable in order to perform action',
+                     subTitle: 'Slow Internet Connection make sure your GPS in enable and try again..',
                      buttons: ['OK']
       });
                      this.nav.present(alert);
+                // window.alert('Could Not Fetch Your location. Make Sure you have Working Internet Connection')
             }
+     
 
       //  alert('Oppss! Something went wrong. Make sure you allows Geolocation from your device and try again')
      }

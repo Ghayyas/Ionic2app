@@ -32,7 +32,7 @@ export class myEvents{
   public wid;
   public person;
   public totalAttendents: number;
-    constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone){
+    constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone,public http: Http){
      this.myImg = [
        {img: './img/event1.jpg'},
        {img: './img/event1.jpg'},
@@ -81,6 +81,32 @@ export class myEvents{
     }
     
     ionViewWillEnter(){
+    let loading = Loading.create({
+           content: "Please wait...",
+          //  duration: 300,
+           dismissOnPageChange: true
+            
+        });
+  this.nav.present(loading);
+   let headers = new Headers();
+     headers.append('Content-Type', 'application/json');
+     let ecnobToken = window.localStorage.getItem('ecnob.token');
+      headers.append('Authorization', `Bearer ${ecnobToken}`)
+        this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
+        .subscribe((data)=>{
+          loading.dismiss(true);
+            console.log('data recivng',data);
+            console.log('dataJson',data.json());
+          
+           
+            
+        },(err)=>{
+          loading.dismiss(true);
+        console.log('error recing',err);
+        console.log('err Josn',err.json());
+        })
+        
+        
       if(this.width == 320){
        this.totalAttendents = 7 ;
      }
@@ -132,18 +158,12 @@ export class myEvents{
       this.remaining = this.myImg.length - this.person;
       console.log('length',this.remaining);
    }
-        // let total = 0;
-        // for(var i =0; i < this.myImg.length; i++){
-        //  var product = this.myImg[i];
-        //  console.log('total Images',product);
-        // // total += product * product;
-        // }
-        // return total;
+   
     }
 
     toogle(){
       console.log('toogle clicked');
-      this.menu.toggle()
+      this.menu.toggle();
     }
     createEvent(){
       

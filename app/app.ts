@@ -2,7 +2,7 @@ import {Component,Inject, ViewChild} from "@angular/core";
 // import {Inject, ViewChild} from 'angular2/core';
 
 import {Platform, ionicBootstrap,MenuController, NavController,Keyboard} from 'ionic-angular';
-import {StatusBar} from 'ionic-native';
+import {StatusBar, Splashscreen} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {SigninPage} from './pages/signin/signin';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
@@ -13,7 +13,7 @@ import {Page1} from './pages/page1/page1';
 
 import {Geolocation} from 'ionic-native';
 
-
+declare var navigator:any;
 
 @Component({
   templateUrl: 'build/app.html',
@@ -51,19 +51,40 @@ public local = null;
     platform.ready().then(() => {
       console.log('platform works..');
       StatusBar.styleDefault();
+      console.log("hidding Splash screen...");
+      this.hideSplashScreen();
+      console.log("hide splash screen");
+        let local =  window.localStorage.getItem('ecnob.token');
+         if(local == null){
+           this.nav.setRoot(SigninPage).then((suc)=>{
+             console.log("app ts root Nav");
+                       this.menu.enable(false);
+
+            //  this.nav.rootNav.push(SigninPage);
+
+           })
+      }
+      
     }
 
     )}
      
 ngAfterViewInit(){
+     console.log('platform works before')
      
-       let local =  window.localStorage.getItem('ecnob.token');
-         if(local == null){
-          this.nav.rootNav.push(SigninPage);
-          this.menu.enable(false);
-      }
 }
-
+  
+  hideSplashScreen(){
+    if(Splashscreen){
+       setTimeout(()=>{
+         Splashscreen.hide();
+       },700)
+    }
+      
+    console.log('hello splash');
+    
+  }
+  
     goEvents(){
     //  this.rootPage = page;
 
