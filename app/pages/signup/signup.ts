@@ -87,10 +87,10 @@ export class SignupPage {
   // console.log('reciveing error ',err);
 // }) 
     this.emailExist = false;
-	  this.token = window.localStorage.getItem('ecnob.token');
-	  if (this.token != null) {
-		  this.nav.setRoot(TabsPage);
-	  }   
+	  // this.token = window.localStorage.getItem('ecnob.token');
+	  // if (this.token != null) {
+		//   this.nav.setRoot(TabsPage);
+	  // }   
 
   }
 

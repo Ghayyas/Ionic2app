@@ -81,3 +81,7 @@ border-top: 1px solid white;
 // ion-navbar-section.statusbar-padding > .toolbar ion-segment, ion-navbar-section.statusbar-padding > .toolbar ion-title{
 //     padding: 0 !important;
 // }
+.toolbar {
+padding: 0px;
+min-height: 62px !important;
+}

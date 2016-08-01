@@ -7,12 +7,12 @@
     margin-bottom: 0;
     }
     .background-image-color{
-      position: absolute;
+   position: absolute;
     background: rgb(47, 116, 245);
     opacity: 0.8;
     top: 0px;
     height: 100%;
-    width: 56%;
+    width: 59%;
     text-align: right;
     float: right;
     right: 0;
@@ -21,19 +21,24 @@
 .item-avatar  {     
 width:100% !important;  
 height : 100% !important;  
-max-width: 100px !important;  //any size
-max-height: 100px !important; //any size 
+max-width: 100px !important;  
+max-height: 100px !important; 
 }
-   /*.card-background-page .card-name{
-     width: inherit;
-   }*/
+.card-background-page .card-title {
+   top: 14% !important;
+}
+
  
   </style>
 
 
  <ion-header>
   <ion-navbar primary hideBackButton="false" align-title="center">
- 
+  <!--<ion-buttons start>
+    <button royal menuToggle>
+       <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+  </ion-buttons>-->
     <ion-title>My Events</ion-title>
     <ion-buttons end>
     <button royal (click)="createEvent()">
@@ -53,67 +58,112 @@ max-height: 100px !important; //any size
       <!--img/comp-detail.jpg-->
         <div class="background-image-color">
     </div>
+       <div class="image-style">
+    </div>
     <img src="img/subscription-banner.jpg" style="position: relative;"/>
 
         </div>
    <div class="">
-     <div class="card-name" style="z-index: 5; padding-right: 5%; padding-left: 49%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
-     <div class="card-title" style="z-index: 5; padding-left: 49%; padding-right:15px; width: inherit;"><!--{{arr.description}}--><span style="float: right;">My Event (By List)</span></div>
-     <div class="card-time" style="z-index: 5; padding-right: 5%; padding-left: 49%; width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
+     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
+     <div class="card-title" style="z-index: 5; padding-left: 45%; width: inherit;"><!--{{arr.description}}--><span style="float: right; font-size:14px;">My Event (By List)</span></div>
+     <div class="card-time" style="z-index: 5; padding-left: 45%; width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"><span style="float:right"><ion-icon style="font-size: 32px;
     margin-top: -10px; color: white;" name="trash"></ion-icon></span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="font-size: 32px;
-    margin-right: 26px;
-    margin-top: -10px; color:white" name="create"></ion-icon></span> </div>
+    margin-right: 22px;margin-top: -10px; color:white" name="create"></ion-icon></span> </div>
    </div>
     <!--<ion-row no-padding>-->
-      <div style="float: left;margin-left: 14px;margin-top: 10px;font-size: 15px;">Attendees </div>
-      <ion-row style="position: relative;font-size: smaller;padding-left: 7px;padding-top: 12px; padding-bottom:10px;">
+      <div style="float: left;margin-left: 14px;margin-top: 10px;font-size: 15px;color: gray;">Attendees </div>
+      <ion-row style="position: relative;font-size: smaller;padding-right: 4px; padding-left: 2px;padding-top: 12px; padding-bottom:10px;">
         <div *ngFor="let image of myImg; let i = index">
-        <ion-avatar *ngIf="i < totalAttendents">
+        <ion-avatar *ngIf="i < totalAttendents" style="padding-right:2px;">
           <img src="{{image.img}}" style="margin-left: 2px;" alt="Event Image"> 
        </ion-avatar>
       </div>
-        <div *ngIf="remaining !== 0" style="background:rgb(47, 116, 245); border-radius: 24px; width: 36px; margin-left: 2px;">
+        <div *ngIf="remaining !== 0" style="background: rgb(47, 116, 245);border-radius: 24px;width: 42px;height: 40px;margin-left: 3px;padding-top: 1px;">
         <p style="color:white; margin-top: 9px;">+{{remaining}}</p> 
          </div>
     </ion-row>
   </ion-card>
 
 </div>
-   <div class="card-background-page"> 
+
+
+
+
+
+
+
+
+
+ 
+    <!--ion comments-->
+
+
+
+
+
+
+
+<div class="card-background-page"> 
     <ion-card>
-    <div class="imgBlack">
+    
+    <div class="imgBlack" style="position:relative;">
       <!--img/stub_profile.png-->
       <!--img/comp-detail.jpg-->
-    <img src="img/subscription-banner.jpg"/>
+        <div class="background-image-color">
     </div>
-   <div class="card-middle">
-     <div class="card-name"> <!--{{arr.name}}-->  <span  style="float: left;"> My event</span></div>
-     <div class="card-title"><!--{{arr.description}}--><span style="float: left;">My event</span></div>
-    <div class="card-time"> <!-- {{arr.end_date}}--><span style="float: left;">My event</span></div>
+       <div class="image-style">
     </div>
-    <ion-row no-padding>
-      <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
-        <!--<button clear small (click)="btn()">-->
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          &nbsp; My event
-        <!--</button>-->
-      </ion-col>
+    <img src="img/subscription-banner.jpg" style="position: relative;"/>
+
+        </div>
+   <div class="">
+     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
+     <div class="card-title" style="z-index: 5; padding-left: 45%; width: inherit;"><!--{{arr.description}}--><span style="float: right; font-size:14px;">My Event (By List)</span></div>
+     <div class="card-time" style="z-index: 5; padding-left: 45%; width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
+     <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"><span style="float:right"><ion-icon style="font-size: 32px;
+    margin-top: -10px; color: white;" name="trash"></ion-icon></span></div>
+     <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="font-size: 32px;
+    margin-right: 22px;margin-top: -10px; color:white" name="create"></ion-icon></span> </div>
+   </div>
+    <!--<ion-row no-padding>-->
+      <div style="float: left;margin-left: 14px;margin-top: 10px;font-size: 15px;color: gray;">Attendees </div>
+      <ion-row style="position: relative;font-size: smaller;padding-right: 4px; padding-left: 2px;padding-top: 12px; padding-bottom:10px;">
+        <div *ngFor="let image of myImg; let i = index">
+        <ion-avatar *ngIf="i < totalAttendents" style="padding-right:2px;">
+          <img src="{{image.img}}" style="margin-left: 2px;" alt="Event Image"> 
+       </ion-avatar>
+      </div>
+        <div *ngIf="remaining !== 0" style="background: rgb(47, 116, 245);border-radius: 24px;width: 42px;height: 40px;margin-left: 3px;padding-top: 1px;">
+        <p style="color:white; margin-top: 9px;">+{{remaining}}</p> 
+         </div>
     </ion-row>
   </ion-card>
 
 </div>
+
+
+
+
+
+   <!--ion comments end-->
+
+
+
+
+
    </ion-content>
 
   
-
-   <!--<ion-tabs class="foo-tabs" tabbarplacement="bottom">
+ <!--<ion-footer>
+   <ion-tabs class="foo-tabs">
   <ion-tab [root]="tab1" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2" tabTitle="Deals" tabIcon="pricetags"></ion-tab>
   <ion-tab [root]="tab3" tabTitle="Events" tabIcon="calendar"></ion-tab>
   <ion-tab [root]="tab4" tabTitle="Companies" tabIcon="grid"></ion-tab>
 </ion-tabs>
+</ion-footer>
 <style type="text/css">
 ion-icon.tab-button{
 	font-size: 14px;

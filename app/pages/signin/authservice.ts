@@ -127,7 +127,12 @@ export class AuthService {
         return new Promise((resolve) => {
                  let token = window.localStorage.clear();
                 //  let close = AuthService.menu.close();
-                if (token){   
+                if (token){  
+            var tab = document.getElementsByTagName("ion-tabs")[0];
+       var att = document.createAttribute("tabbarplacement");
+    att.value = "bottom";
+    tab.setAttributeNode(att);
+    console.log('page1 done'); 
                     AuthService.menu.close();
                    AuthService.isLoggedin = false;
                 //    window.localStorage.clear();

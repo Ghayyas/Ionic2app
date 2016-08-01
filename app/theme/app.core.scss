@@ -27,14 +27,16 @@
 @import "../pages/deals-detail/deals-detail";
 @import "../pages/create-deal/create-deal";
 @import "../pages/location/location";
+@import "../pages/myEvents/myEvents";
+
 
   .toolbar-content{
     margin-left: 0 !important;
   }
-  .toolbar {
-padding: 0px;
-min-height: 12%;
-}
+//   .toolbar {
+// padding: 0px;
+// min-height: 12%;
+// }
 
 tabbar .tab-button {
     color: white !important;

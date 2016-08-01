@@ -31,7 +31,7 @@ export class AllEventsPage {
   alleventformscreen = AllEventFormPage;
   createEvent = CreateEventPage;
   public pet: string;
-  static allEventsArray = [];
+  public allEventsArray = [];
 
   // ============== Constructor =============//
 
@@ -122,8 +122,8 @@ ionViewWillEnter(){
          this.definedError = true;         //IF DATA FROM SERVER IS UNDEFINED
 
         }
-        AllEventsPage.allEventsArray.push(this.event);
-        console.log('events Array',AllEventsPage.allEventsArray);
+        this.allEventsArray.push(this.event);
+        console.log('events Array',this.allEventsArray);
         console.log('data',this.event);
       
      
@@ -182,13 +182,7 @@ ionViewWillEnter(){
      console.log('my btn');
    }
   newTabs(i){
-    // this.nav.setRoot(EventDetailsPage).then((data)=>{
-    //   console.log('setting root',data)
-    //   this.nav.rootNav.push(data)
-    // },(err)=>{
-    //   console.log('gettomg err');
-    // })
-    //  this.nav.setRoot(EventDetailsPage);
+    console.log('getting array',this.allEventsArray);
     
       let loading = Loading.create({
            content: "Please wait...",
@@ -197,8 +191,8 @@ ionViewWillEnter(){
             
         });
   
-    console.log('index',i);
-    this.nav.rootNav.push(EventDetailsPage,{ paramUser: i });    
+    console.log('index');
+    this.nav.rootNav.push(EventDetailsPage,{ paramUser: this.allEventsArray, paramID: i});    
     this.nav.present(loading);  
 }
 

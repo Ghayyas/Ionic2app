@@ -99,15 +99,17 @@ ion-title{
   
   
   
-  <div [ngSwitch]="pet" *ngFor = "let arr of event">
+  <div [ngSwitch]="pet" *ngFor = "let arr of event;">
     <div *ngIf="arr.type == 1">
       <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
 
 <div class="card-background-page"> 
     <ion-card (click)="newTabs(arr.id)">
-    <div class="imgBlack">
+    <div class="imgBlack" style="position:relative;">
       <!--img/stub_profile.png-->
       <!--img/comp-detail.jpg-->
+       <div class="image-style">
+    </div>
     <img src="{{arr.photo || ' ./img/stub_events.png'}}"/>
     </div>
    <div class="card-middle">
@@ -162,8 +164,11 @@ ion-title{
 
   <div class="card-background-page"> 
     <ion-card (click)="newTabs(arr.id)">
-    
+      <div class="imgBlack" style="position:relative;">
+     <div class="image-style">
+    </div>
     <img src="{{arr.photo || './img/stub_events.png'}}"/>
+      </div>
      <div class="card-middle">
      <div class="card-name"> <!--{{arr.name}}--><span style="float: left;">{{arr.name}} </span></div>
      <div class="card-title"><!--{{arr.description}}--><span  style="float: left;">{{arr.description}}</span></div>

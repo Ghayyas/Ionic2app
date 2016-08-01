@@ -67,6 +67,7 @@
     
     <preference name="loadUrlTimeoutValue" value="700000"/>
    <preference name="webviewbounce" value="false"/>
+  <preference name="Orientation" value="portrait"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
@@ -76,6 +77,8 @@
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="FadeSplashScreen" value="false"/>
+    <preference name="ShowSplashScreenSpinner" value="true"/>
+
     <preference name="AutoHideSplashScreen" value="true"/>
     <feature name="SplashScreen">
 <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen"/>

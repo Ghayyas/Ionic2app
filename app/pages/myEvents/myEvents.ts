@@ -25,6 +25,7 @@ export class myEvents{
   tab3: any = AllEventsPage;
   tab4: any = AllCompaniesPage;
   myImg: [Object];
+  response:any;
   innerWidth: number;
   public width;
   public height;
@@ -95,6 +96,7 @@ export class myEvents{
         this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
         .subscribe((data)=>{
           loading.dismiss(true);
+           this.response = data.json();
             console.log('data recivng',data);
             console.log('dataJson',data.json());
           
@@ -111,51 +113,54 @@ export class myEvents{
        this.totalAttendents = 7 ;
      }
       
-     else if(this.width == 360){
+      else if(this.width == 360){
        this.totalAttendents = 7;
      }
-    else if(this.width == 375){
+    else  if(this.width == 375){
        this.totalAttendents = 8;
      }
     else if(this.width == 411){
        this.totalAttendents = 8;
      }
-    else if(this.width == 435){
-       this.totalAttendents = 10;
-     }
-    else if(this.width == 480){
-       this.totalAttendents = 10;
-     }
-    else if(this.width == 600){
+      else if(this.width == 414){
        this.totalAttendents = 9;
      }
-    else if(this.width == 640){
+     else if(this.width == 435){
+       this.totalAttendents = 10;
+     }
+     else if(this.width == 480){
+       this.totalAttendents = 10;
+     }
+     else if(this.width == 600){
+       this.totalAttendents = 9;
+     }
+     else if(this.width == 640){
        this.totalAttendents = 14;
      }
-    else if(this.width == 639){
+     else if(this.width == 639){
        this.totalAttendents = 14;
      }
-    else if(this.width == 720){
+     else if(this.width == 720){
        this.totalAttendents = 13;
      }
      else if(this.width == 768){
        this.totalAttendents = 18;
      }
-    else if(this.width == 800){
+     else if(this.width == 800){
        this.totalAttendents = 17;
      }
-    else if(this.width == 801){
+     else if(this.width == 801){
        this.totalAttendents = 17;
      }
-     else{
+    else {
        this.totalAttendents = 6;
      }
-      this.person = this.totalAttendents;
+      // this.person = this.totalAttendents;
       if(this.myImg.length <= 6){
         this.remaining = 0;
       }
-   else{
-      this.remaining = this.myImg.length - this.person;
+   else {
+      this.remaining = this.myImg.length - this.totalAttendents;
       console.log('length',this.remaining);
    }
    

@@ -4,61 +4,23 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
- <ion-header>
+<ion-header>
 <ion-navbar primary>
-<!--<ion-toolbar primary>-->
-<!--<ion-nav id="nav" [root]="page" #content swipe-back-enabled="false"></ion-nav>-->
-<!--<ion-buttons style="float: left;">
-  <button royal (click)="pop()">
-      <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> Back
- </button>
-</ion-buttons>-->
+
   <ion-title>Event's Details</ion-title>
-  <!--<ion-buttons start>
-    <button royal>
-      <ion-icon name="search"></ion-icon>
-    </button> 
-  </ion-buttons>-->
-<!--</ion-toolbar>-->
+ 
 </ion-navbar>
  </ion-header>
 
-<style>
-  /*ion-tabs.myfoo ion-tabbar-section{
-    position: fixed;
-    z-index: 9999999;
-    bottom: 0px;
-}*/
 
-button.back-button.disable-hover.bar-button.bar-button-default.show-back-button{
-  margin-top: 15px !important;
-}
-  .markerblack{
-    color:rgba(0, 0, 0, 0.37) !important;
-  }
-  span .button-inner{
-        margin-right: 76px !important;
-  }
-  ion-buttons{
-    display: inline !important;
-    /*padding-left: 40% !important;*/
-    /*padding-left: 26% !important;
-    padding-right: 6% !important;*/
-  }
-  /*.button{
-    margin-right: 46px;
-  }*/
-
-  
-</style>
 <!--*ngFor="let detail of eventDetailArray"-->
-<ion-content class="" *ngFor="let detail of myArray">
+<ion-content *ngFor="let detail of allEventsArray">
   
 
   
   <ion-list class="eventlist even-detail-list">
 
-	  <ion-item style="padding-top:72px; position:relative;">
+	  <ion-item style="position:relative;">
     <div class="coverphoto">
       <!--{{ detail.photo ||'img/evenbanner.jpg'}}-->
 	     <img src="{{ detail.photo ||' ./img/stub_events.png'}}" style="border-radius: 12px;">
@@ -120,7 +82,6 @@ button.back-button.disable-hover.bar-button.bar-button-default.show-back-button{
   </ion-buttons>
 </ion-toolbar>
 </ion-footer>
-
 
 
   <!--<ion-tab [root]="tab5Root" tabTitle="More" tabIcon="md-add"></ion-tab>-->

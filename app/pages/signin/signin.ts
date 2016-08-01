@@ -35,14 +35,14 @@ export class SigninPage {
    this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
-	   this.token= window.localStorage.getItem('ecnob.token');
-       if(this.token !== null)
-	   {
-      // this.menu.enable(true);
-		   this.nav.setRoot(TabsPage);
+	  //  this.token= window.localStorage.getItem('ecnob.token');
+    //    if(this.token !== null)
+	  //  {
+    //   // this.menu.enable(true);
+		//    this.nav.setRoot(TabsPage);
         
        
-	   }   
+	  //  }   
 
    }
 

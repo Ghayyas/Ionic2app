@@ -36,7 +36,7 @@ declare var navigator:any;
   
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any;
   userEvents: any = myEvents;
   // pages: Array<{title: string, component: any}>
  @ViewChild('content') nav: NavController;
@@ -47,22 +47,30 @@ public local = null;
  
   constructor(platform: Platform, public menu: MenuController) {
           // this.nav = nav;
-  
+   
     platform.ready().then(() => {
       console.log('platform works..');
       StatusBar.styleDefault();
+      Splashscreen.hide();
       console.log("hidding Splash screen...");
-      this.hideSplashScreen();
+      // this.hideSplashScreen();
       console.log("hide splash screen");
         let local =  window.localStorage.getItem('ecnob.token');
          if(local == null){
-           this.nav.setRoot(SigninPage).then((suc)=>{
+           this.rootPage = SigninPage;
+          //  this.nav.setRoot(SigninPage).then((suc)=>{
              console.log("app ts root Nav");
-                       this.menu.enable(false);
+            this.menu.enable(false);
 
             //  this.nav.rootNav.push(SigninPage);
 
-           })
+          //  })
+
+      }
+      else{
+        this.menu.enable(true);
+        this.rootPage  = TabsPage;
+        // this.nav.setRoot(TabsPage);
       }
       
     }
@@ -74,16 +82,16 @@ ngAfterViewInit(){
      
 }
   
-  hideSplashScreen(){
-    if(Splashscreen){
-       setTimeout(()=>{
-         Splashscreen.hide();
-       },700)
-    }
+  // hideSplashScreen(){
+  //   if(Splashscreen){
+  //      setTimeout(()=>{
+  //        Splashscreen.hide();
+  //      },700)
+  //   }
       
-    console.log('hello splash');
+  //   console.log('hello splash');
     
-  }
+  // }
   
     goEvents(){
     //  this.rootPage = page;
@@ -113,7 +121,8 @@ ngAfterViewInit(){
       console.log('loogin out');
       //  this.menu.close();
       this.menu.enable(false);
-      this.nav.rootNav.push(SigninPage)       
+      this.nav.setRoot(SigninPage);
+      // this.nav.rootNav.push(SigninPage)       
      },(err)=>{
        console.log('getting error',err);
        window.alert('Something went wrong.. Please try again');
@@ -130,4 +139,4 @@ ngAfterViewInit(){
 ionicBootstrap(MyApp, [
   disableDeprecatedForms(),
   provideForms()
- ])
+ ],{tabbarPlacement: "bottom"})
