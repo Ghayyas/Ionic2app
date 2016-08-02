@@ -38,6 +38,7 @@ declare var navigator:any;
 export class MyApp {
   rootPage: any;
   userEvents: any = myEvents;
+  static companyLogin:boolean;
   // pages: Array<{title: string, component: any}>
  @ViewChild('content') nav: NavController;
 
@@ -56,22 +57,32 @@ public local = null;
       // this.hideSplashScreen();
       console.log("hide splash screen");
         let local =  window.localStorage.getItem('ecnob.token');
+         let getType = window.localStorage.getItem('type');
          if(local == null){
+           
+        
            this.rootPage = SigninPage;
-          //  this.nav.setRoot(SigninPage).then((suc)=>{
+         
              console.log("app ts root Nav");
             this.menu.enable(false);
 
-            //  this.nav.rootNav.push(SigninPage);
-
-          //  })
 
       }
       else{
+        if(getType == 1){
+          console.log('type value',getType);
+          MyApp.companyLogin = true;
+         }
+       else{
+          MyApp.companyLogin = false;
+         console.log('type value',getType);
+          }
         this.menu.enable(true);
-        this.rootPage  = TabsPage;
+       this.rootPage  = TabsPage;
         // this.nav.setRoot(TabsPage);
+    console.log('company login',MyApp.companyLogin);
       }
+     
       
     }
 

@@ -174,7 +174,7 @@ ionViewWillEnter(){
     )
 }
   
-   myclick(param){
+ myclick(param){
      this.pet = param;
      console.log('params',this.pet);
    }
@@ -191,9 +191,13 @@ ionViewWillEnter(){
             
         });
   
-    console.log('index');
+    console.log('index',i);
     this.nav.rootNav.push(EventDetailsPage,{ paramUser: this.allEventsArray, paramID: i});    
     this.nav.present(loading);  
+}
+    ionViewWillLeave(){
+      this.allEventsArray = [];
+      console.log('events array',this.allEventsArray);
 }
 
     // console.log('params',this.parameters);

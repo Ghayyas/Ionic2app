@@ -56,6 +56,10 @@ export class EventDetailsPage {
     // });
   // }
   }
+  ionViewWillLeave(){
+    this.allEventsArray = [];
+    console.log('events array',this.allEventsArray);
+  }
   ionViewWillEnter(){
   //  this.loading = Loading.create({
   //          content: "Please wait...",

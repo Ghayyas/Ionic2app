@@ -45,11 +45,11 @@ ion-title{
       <ion-icon name="search"></ion-icon>
     </button>
   </ion-buttons>
-      <!--<ion-buttons end>
-    <button royal [navPush]="createEvent">
+       <ion-buttons end *ngIf="enable || isenable">
+    <button royal>
        <ion-icon ios="ios-add" md="md-add"></ion-icon>
     </button>
-  </ion-buttons>-->
+  </ion-buttons>
    </ion-navbar>
  </ion-header>
 <ion-content class="deals">

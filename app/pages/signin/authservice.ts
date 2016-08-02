@@ -5,7 +5,7 @@ import {NavController,Alert,Loading, MenuController} from 'ionic-angular';
 import {SigninPage} from './signin';
 import {SERVER_NAME} from '../../service/dataService/dataService'
 import {myEvents} from '../myEvents/myEvents';
-
+import {MyApp} from '../../app';
 
 @Injectable()
 export class AuthService {
@@ -35,7 +35,7 @@ export class AuthService {
                    subTitle: msg,
                    buttons: ['OK']
                  });
-                      AuthService.nav.present(alert);
+         AuthService.nav.present(alert);
      }
   
   //================= Alert END =============//
@@ -50,9 +50,19 @@ export class AuthService {
         return new Promise((resolve) => {
 
             this.http.post(SERVER_NAME +'auth/login', creds, { headers: headers }).subscribe(data => {
-
+               
                 if (data.json().token) {
                     window.localStorage.setItem('ecnob.token', data.json().token);
+                    window.localStorage.setItem('type',data.json().type);
+    //             let getType = window.localStorage.getItem('type');
+    //                  if(getType === 1){
+    //                     console.log('type value',getType);
+    //                        MyApp.companyLogin = true;
+    //         }
+    //                  else{
+    //                      MyApp.companyLogin = false;
+    //                      console.log('type value',getType);
+    //   }
                     AuthService.isLoggedin = true;
                    resolve(true);    
             }
@@ -61,16 +71,16 @@ export class AuthService {
 
             },(err)=>{
                            
-                  console.log('error getting',err,'err json',err.json());       
+                  console.log('error getting',err,'err json',err.json());    
+              
                   let error = err.json();
-                  this.getalert('Error',"No Internet Access!");
                   if(error.status_code === 401){
                       this.getalert('Error','Email Or password Not matched')
                       console.log('Email or Password Not found on server');
                   }
-                //   else{
-                //       this.getalert('Error',"Make Sure you have Connected to Internet");
-                //   }  
+                  else{
+                      this.getalert('Error','Make Sure you have Connected to Internet');
+                  }  
                   resolve(false);
                 
             });
@@ -128,11 +138,11 @@ export class AuthService {
                  let token = window.localStorage.clear();
                 //  let close = AuthService.menu.close();
                 if (token){  
-            var tab = document.getElementsByTagName("ion-tabs")[0];
-       var att = document.createAttribute("tabbarplacement");
-    att.value = "bottom";
-    tab.setAttributeNode(att);
-    console.log('page1 done'); 
+    //         var tab = document.getElementsByTagName("ion-tabs")[0];
+    //    var att = document.createAttribute("tabbarplacement");
+    // att.value = "bottom";
+    // tab.setAttributeNode(att);
+    // console.log('page1 done'); 
                     AuthService.menu.close();
                    AuthService.isLoggedin = false;
                 //    window.localStorage.clear();

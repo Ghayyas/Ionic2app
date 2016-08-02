@@ -5,6 +5,8 @@ import {Http, Headers } from '@angular/http';
 import {DataService, SERVER_NAME} from '../../service/dataService/dataService';
 import {TabsPage} from '../tabs/tabs';
 import 'rxjs/add/operator/catch';
+import {MyApp} from '../../app';
+
 
 // import {Server_Name} from '../../service/data'
 
@@ -310,8 +312,7 @@ export class locationPage{
 		dismissOnPageChange: true
 	  });
 	  this.nav.present(loading);
-    //   DataService.getData();
-                          // all data array;
+ 
                           
          var creds =  "email=" + DataService.dataArray[0].email + "&name="+DataService.dataArray[0].name 
          + "&password=" +DataService.dataArray[0].password + "&longitude="+DataService.dataArray[0].longitude
@@ -325,13 +326,8 @@ export class locationPage{
              console.log('data',data.json());
             loading.dismiss(true);
               if (data.json().token){
-        //    let alert = Alert.create({
-        //        title: 'success !',
-        //        subTitle: 'successfully signup',
-        //        buttons: ['OK']
-        //    });
-        //      this.nav.present(alert);
                 window.localStorage.setItem('ecnob.token',data.json().token);
+                window.localStorage.setItem('type',data.json().type);
                 this.nav.setRoot(TabsPage);
               }
              
@@ -343,6 +339,14 @@ export class locationPage{
                buttons: ['OK']
            });
        this.nav.present(alert);
+         if(err.json().status == 422){
+             let alert = Alert.create({
+               title: 'Error !',
+               subTitle: 'Email Already Taken',
+               buttons: ['OK']
+           });
+       this.nav.present(alert);
+         }
               console.log('err',err);
             });
         

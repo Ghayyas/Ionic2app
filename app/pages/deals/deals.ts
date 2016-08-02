@@ -4,6 +4,7 @@ import {DealsDetailPage} from '../deals-detail/deals-detail';
 import {searchDeals} from '../searchDeals/searchDeals';
 import {SigninPage} from '../signin/signin';
 import {limit} from '../limit';
+import {MyApp} from '../../app';
 /*
   Generated class for the DealsPage page.
 
@@ -18,8 +19,24 @@ import {limit} from '../limit';
 export class DealsPage {
    search = searchDeals;
    public location;
+   enable:boolean;
+   isenable:boolean;
   constructor(public nav: NavController) {
     this.location = 'New York, USA ';
+   this.enable = MyApp.companyLogin;
+   console.log('enable',this.enable);
+   let getFromLocal = window.localStorage.getItem('type');
+   if(getFromLocal == 1){
+     this.isenable =true;
+     console.log('isenable',this.isenable);
+     
+   }
+   else{
+     this.isenable =false;
+     console.log('isenable',this.isenable);
+
+   }
+
   }
    //=========Pipe Limit =======//
   //  transform(value: string, args: string[]) : string {

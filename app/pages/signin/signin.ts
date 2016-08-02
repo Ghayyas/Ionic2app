@@ -4,6 +4,7 @@ import {SignupPage} from '../signup/signup';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
 import {profile} from "../profile/profile";
+import {MyApp} from '../../app';
 
 
 /*
@@ -35,6 +36,7 @@ export class SigninPage {
    this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
+      
 	  //  this.token= window.localStorage.getItem('ecnob.token');
     //    if(this.token !== null)
 	  //  {
@@ -94,13 +96,13 @@ ionViewWillEnter(){
 		   dismissOnPageChange: true
 	   });
 	   this.nav.present(loading);
-
-	   this.authservice.login(usercreds).then(data => {
-		  
-       loading.dismiss(true);
+      //  let getType = window.localStorage.getItem('type');
+	    this.authservice.login(usercreds).then(data => {
+		   loading.dismiss(true);
        if (data){
-			   this.nav.setRoot(TabsPage);
+        this.nav.setRoot(TabsPage);
 		   }
+     
       
 	   })
    }
