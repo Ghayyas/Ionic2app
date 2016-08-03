@@ -28,8 +28,8 @@
 <ion-content padding class="create-list-people-invite ecnob-fields">
   
 
-  <ion-grid style="max-height: 65%; overflow: auto;">
-    <div *ngFor="let email of emailArray; let i = index">
+  <ion-grid>
+    <div style="max-height: 100%; overflow: auto;" *ngFor="let email of emailArray; let i = index">
   <ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
@@ -45,62 +45,13 @@
        </ion-col>
      </ion-row>
 </div>
-<!--<ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
 
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="" placeholder="email@test.com">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>-->
   </ion-grid>
-<div style="position:fixed; bottom: 0; right: 0; left: 0;background: white;opacity: 2;">
+
+
+
+<!--position:fixed; bottom: 0; right: 0; left: 0;background: white;opacity: 2;-->
+<div class="fixed-outside">
   <form #emailForm="ngForm">
     <div style=" padding: 10px 7px;font-size: 20px;">Add Recipient Email</div>
     <ion-row>

@@ -315,8 +315,10 @@ submit(params)
     this.params.latitude = CreateEventPage.myLat;
     this.params.longitude = CreateEventPage.myLong;
     this.params.photo = CreateEventPage.myImage;
-     console.log('params',params)
-if(this.params.photo == undefined ){
+     
+      console.log('params',this.params,'submit parms',params);    
+
+   if(this.params.photo == undefined ){
       let alert = Alert.create({
       title: 'Error !',
       subTitle: 'Event Picture is Required',
@@ -339,7 +341,7 @@ if(this.params.photo == undefined ){
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
    headers.append('Authorization', `Bearer ${ecnobToken}`)
-    this.http.post(SERVER_NAME + 'events/create',data,{headers:headers})
+    this.http.post(SERVER_NAME + 'event/create',data,{headers:headers})
     .subscribe(
       (data) => {
           this.loading.dismiss(true);

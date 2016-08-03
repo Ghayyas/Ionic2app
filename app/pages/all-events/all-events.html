@@ -32,6 +32,11 @@ ion-title{
   img{
      max-height: 200px;;
   }
+  .selectedTrue{
+    border: 1px solid #3390f6;
+    color: white;
+    background: #3390f6;
+  }
 </style>
 
 
@@ -104,8 +109,8 @@ ion-title{
   <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
 
 <div class="card-background-page"> 
-    <ion-card (click)="newTabs(i)">
-    <div class="imgBlack" style="position:relative;">
+    <ion-card>
+    <div class="imgBlack" style="position:relative;" (click)="newTabs(i)">
       <!--img/stub_profile.png-->
       <!--img/comp-detail.jpg-->
        <div class="image-style">
@@ -126,16 +131,24 @@ ion-title{
       </ion-col>
      <ion-item>
  
-    <button primary clear item-right class="button-blue" (click)="btn()">
- 
-     Yes
+   <button *ngIf="selectedYes==false" primary clear item-right class="button-blue" (click)="selectedBtn(i,arr.id,'yes')">
+      Yes
     </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
+     <button *ngIf="selectedYes==true" class="selectedTrue" primary clear item-right (click)="selectedBtn(i,arr.id,'yes')">
+      Yes
+    </button>
    
+    <button *ngIf="selectedNo==false"  primary clear item-right class="button-blue" (click)="selectedBtn(i,arr.id,'no')">
+  
       No
     </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-
+       <button *ngIf="selectedNo==true" class="selectedTrue" primary clear item-right (click)="selectedBtn(i,arr.id,'no')">
+      No
+    </button>
+    <button *ngIf="selectedMaybe==false"  primary clear item-right class="button-blue" (click)="selectedBtn(i,arr.id,'maybe')">
+      MayBe
+    </button>
+       <button *ngIf="selectedMaybe==true" class="selectedTrue" primary clear item-right  (click)="selectedBtn(i,arr.id, 'maybe')">
       MayBe
     </button>
   </ion-item>
@@ -163,43 +176,126 @@ ion-title{
   <div *ngSwitchCase="'public'">
 
   <div class="card-background-page"> 
-    <ion-card (click)="newTabs(i)">
-      <div class="imgBlack" style="position:relative;">
+    <ion-card >
+      <div class="imgBlack" style="position:relative;" (click)="newTabs(i)">
      <div class="image-style">
     </div>
-    <img src="{{arr.photo || './img/stub_events.png'}}"/>
+    <img src="{{arr.photo || './img/stub_events.png'}}" />
       </div>
      <div class="card-middle">
-     <div class="card-name"> <!--{{arr.name}}--><span style="float: left;">{{arr.name}} </span></div>
-     <div class="card-title"><!--{{arr.description}}--><span  style="float: left;">{{arr.description}}</span></div>
-    <div class="card-time"> <!-- {{arr.end_date}}--><span  style="float: left;">{{arr.end_date}}</span></div>
+     <div class="card-name"><span style="float: left;">{{arr.user.name}} </span></div>
+     <div class="card-title"><span  style="float: left;">{{arr.name}}</span></div>
+    <div class="card-time"> <span  style="float: left;">{{arr.end_date}}</span></div>
     </div>
     <ion-row no-padding>
       <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
-        <!--<button clear small (click)="btn()">-->
+      
           <i class="fa fa-map-marker" aria-hidden="true"></i>
          {{arr.location | limitTo: 6}}
-        <!--</button>-->
+       
       </ion-col>
-     <ion-item>
-
-    <button primary clear item-right class="button-blue" (click)="btn()">
-
-     Yes
+     <ion-item> 
+   <!--<div *ngIf="myarray.indexOf(i) !== -1">-->
+    <button *ngIf="selectedYes==false" primary clear item-right class="button-blue" (click)="selectedBtn(i,'yes')">
+      Yes
     </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
+    <!--</div>
+    <div *ngIf="myarray.indexOf(i) == -1">-->
+     <button *ngIf="selectedYes==true" class="selectedTrue" primary clear item-right (click)="selectedBtn(i,'yes')">
+      Yes
+    </button>
+    <!--</div>
+   <div *ngIf="myarray.indexOf(i) !== -1">-->
+    <button *ngIf="selectedNo==false"  primary clear item-right class="button-blue" (click)="selectedBtn(i,'no')">
   
       No
     </button>
-    <button primary clear item-right class="button-blue" (click)="btn()">
-   
+    <!--</div>
+    <div *ngIf="myarray.indexOf(i) == -1">-->
+       <button *ngIf="selectedNo==true" class="selectedTrue" primary clear item-right (click)="selectedBtn(i,'no')">
+      No
+    </button>
+    <!--</div>
+    <div *ngIf="myarray.indexOf(i) !== -1">-->
+    <button *ngIf="selectedMaybe==false"  primary clear item-right class="button-blue" (click)="selectedBtn(i,'maybe')">
       MayBe
     </button>
+    <!--</div>
+    <div *ngIf="myarray.indexOf(i) == -1">-->
+       <button *ngIf="selectedMaybe==true" class="selectedTrue" primary clear item-right  (click)="selectedBtn(i,'maybe')">
+      MayBe
+    </button>
+    <!--</div>-->
   </ion-item>
+  
     </ion-row>
   </ion-card>
 
 </div>
+
+
+
+
+
+
+
+
+<!--<div class="card-background-page"> 
+    <ion-card >
+      <div class="imgBlack" style="position:relative;" (click)="newTabs(i)">
+     <div class="image-style">
+    </div>
+    <img src="./img/stub_events.png" />
+      </div>
+     <div class="card-middle">
+     <div class="card-name"><span style="float: left;">{{arr.name}} </span></div>
+     <div class="card-title"><span  style="float: left;">{{arr.title}}</span></div>
+    <div class="card-time"> <span  style="float: left;">{{arr.end_date}}</span></div>
+    </div>
+    <ion-row no-padding>
+      <ion-col style="font-size: smaller;padding-left: 7px;padding-top: 12px;">
+      
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+         {{arr.location | limitTo: 6}}
+       
+      </ion-col>
+     <ion-item> 
+   
+    <button *ngIf="selectedYes==false" primary clear item-right class="button-blue" (click)="selectedBtn(i,arr.id,'yes')">
+      Yes
+    </button>
+     <button *ngIf="selectedYes==true" class="selectedTrue" primary clear item-right (click)="selectedBtn(i,arr.id,'yes')">
+      Yes
+    </button>
+   
+    <button *ngIf="selectedNo==false"  primary clear item-right class="button-blue" (click)="selectedBtn(i,arr.id,'no')">
+  
+      No
+    </button>
+       <button *ngIf="selectedNo==true" class="selectedTrue" primary clear item-right (click)="selectedBtn(i,arr.id,'no')">
+      No
+    </button>
+    <button *ngIf="selectedMaybe==false"  primary clear item-right class="button-blue" (click)="selectedBtn(i,arr.id,'maybe')">
+      MayBe
+    </button>
+       <button *ngIf="selectedMaybe==true" class="selectedTrue" primary clear item-right  (click)="selectedBtn(i,arr.id,'maybe')">
+      MayBe
+    </button>
+  </ion-item>
+  
+    </ion-row>
+  </ion-card>
+
+</div>-->
+
+
+
+
+
+
+
+
+
   </div>
 </div>
   </div>

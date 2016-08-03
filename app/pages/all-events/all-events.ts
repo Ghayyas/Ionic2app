@@ -15,10 +15,18 @@ import {limit} from '../limit';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
+export interface inter {
+     id: any;
+  }
+
+
 @Component({
   templateUrl: 'build/pages/all-events/all-events.html',
    pipes: [limit]
 })
+
+
 export class AllEventsPage {
   eventDetailPage = EventDetailsPage;
   event: [Object];
@@ -32,6 +40,10 @@ export class AllEventsPage {
   createEvent = CreateEventPage;
   public pet: string;
   public allEventsArray = [];
+  public selectedYes: boolean;
+  public selectedNo: boolean;
+  public selectedMaybe: boolean;
+  public myarray = [];
 
   // ============== Constructor =============//
 
@@ -44,10 +56,16 @@ export class AllEventsPage {
     this.type = '1';
     this.error = false;
     this.definedError = false;
+    this.selectedYes = false;
+    this.selectedNo = false;
+    this.selectedMaybe = false;
+    //  this.event = [{name:'admin',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0,id:0},
+    //  {name:'Ghayyas',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0, id:1},
+    //  {name:'admin12',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0, id:2}]
     
          this.loading = Loading.create({
            content: "Please wait...",
-          //  duration: 300,
+           duration: 300,
            dismissOnPageChange: true
             
         });
@@ -110,7 +128,7 @@ ionViewWillEnter(){
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
    headers.append('Authorization', `Bearer ${ecnobToken}`)
-    this.http.get( SERVER_NAME +'events/eventlist',{headers:headers})
+    this.http.get( SERVER_NAME +'event/list',{headers:headers})
     .subscribe(
       (data)=>{
         console.log('data',data);
@@ -178,9 +196,43 @@ ionViewWillEnter(){
      this.pet = param;
      console.log('params',this.pet);
    }
-   btn(){
-     console.log('my btn');
+
+
+
+    selectedBtn(i,selected){
+
+      let id;
+
+      let e = Object.keys(this.event);
+      let index  = e.indexOf(i);
+ 
+      console.log('list',i == index);
+      
+
+
+    
+    if (selected == 'yes'){
+        this.selectedYes = true;
+        this.selectedNo = false;
+        this.selectedMaybe = false;
+     }
+     if(selected == 'no'){
+       this.selectedNo = true;
+       this.selectedMaybe = false;
+       this.selectedYes =false;
+     }
+     if(selected == 'maybe'){
+       this.selectedMaybe = true;
+       this.selectedNo = false;
+        this.selectedYes =false;
+     }
+     console.log('my btn',selected,i); //,selectedButtonIndex);
    }
+
+
+
+
+
   newTabs(i){
     console.log('getting array',this.allEventsArray);
     
@@ -203,3 +255,5 @@ ionViewWillEnter(){
     // console.log('params',this.parameters);
     
 }
+
+  

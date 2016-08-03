@@ -65,8 +65,9 @@
     <icon src="resources\ios\icon\icon-small@3x.png" width="87" height="87"/>
   </platform>
     
-  <preference name="loadUrlTimeoutValue" value="700000"/>
+  <preference name="loadUrlTimeoutValue" value="70000"/>
   <preference name="webviewbounce" value="false"/>
+  <!--<preference name="Fullscreen" value="true" />-->
   <preference name="Orientation" value="portrait"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
