@@ -136,9 +136,23 @@ ionViewWillEnter(){
        this.event = data.json().events;
         if(this.event == undefined){
 
+       let alert = Alert.create({
+          title: 'Sorry',
+          subTitle: 'No New Events Avalible!',
+          buttons: ['OK']
+     });
+       this.nav.present(alert);
+        //  this.definedError = true;         //IF DATA FROM SERVER IS UNDEFINED
 
-         this.definedError = true;         //IF DATA FROM SERVER IS UNDEFINED
-
+        }
+        else if(this.event.length == 0){
+        let alert = Alert.create({
+          title: 'Sorry',
+          subTitle: 'No New Events Avalible!',
+          buttons: ['OK']
+     });
+       this.nav.present(alert);
+          // this.definedError = true;
         }
         this.allEventsArray.push(this.event);
         console.log('events Array',this.allEventsArray);
