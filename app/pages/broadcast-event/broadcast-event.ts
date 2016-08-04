@@ -1,5 +1,5 @@
 import {Component,OnInit} from '@angular/core';
-import {NavController,Alert,Loading} from 'ionic-angular';
+import {NavController,Alert,Loading,Toast} from 'ionic-angular';
 import {SubscriptionPage} from '../subscription/subscription';
 import {AllEventsPage} from '../all-events/all-events';
 import {Page1} from '../page1/page1';
@@ -29,11 +29,13 @@ export class BroadcastPage {
 
   public region_arr = [];
   public region: string;
-  public myLat:any;
-  public myLong:any;
+  public region_value_arr = [];
+  static myLat:any;
+  static myLong:any;
+  
   
   constructor(public nav: NavController,private http:Http) {
-    console.log('nav works')
+   console.log('nav works')
   this.region = '';
   console.log('from broadcast event',CreateEventPage.arraytoSend[0]);
   
@@ -62,11 +64,12 @@ export class BroadcastPage {
             
              console.log('place', place.geometry.location);
            
-             
-             this.myLat = place.geometry.location.lat();
+             console.log('latitude',place.geometry.location.lat())
+             BroadcastPage.myLat = place.geometry.location.lat();
               // let long = place.geometry.location.lng();
-              this.myLong = place.geometry.location.lng();
-             console.log('lat',this.myLat,'long', this.myLong);
+              BroadcastPage.myLong = place.geometry.location.lng();
+              console.log('longitude',place.geometry.location.lng())
+            //  console.log('lat',this.myLat,'long', this.myLong);
             }
      
         })
@@ -81,20 +84,39 @@ export class BroadcastPage {
 
   add(region){
     console.log('userRegion',region.value);
+    console.log('lat long',BroadcastPage.myLat,BroadcastPage.myLong);
     let region_val = this.region;
+    let region_lat = BroadcastPage.myLat;
+    let region_long = BroadcastPage.myLong;
     this.region_arr.push(region_val);
+    this.region_value_arr.push({'lat': BroadcastPage.myLat, 'long': BroadcastPage.myLong})
     console.log('regionarr',this.region_arr);
-  
+    console.log('latitude Array',this.region_value_arr);
+    // BroadcastPage.myLat = '';
+    // BroadcastPage.myLong = '';
     this.region = '';
     region = "";
   }
   delete(i){
     this.region_arr.splice(i,1);
+    this.region_value_arr.splice(i,1);
   }
+  
+  
+    showToast(message: string) {
+    let toast = Toast.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    this.nav.present(toast);
+         }
+  
  sendInvites(){
    console.log("send Invites Works");
    
-   let jsonS = JSON.stringify(this.region_arr);
+   let jsonS = JSON.stringify(this.region_value_arr);
    console.log('log',jsonS);
   //  for (let i = 0 ; i < jsonS.length ; i++){
   CreateEventPage.arraytoSend[0]['origins'] = jsonS;
@@ -103,7 +125,7 @@ export class BroadcastPage {
 //  }
 let loading = Loading.create({
            content: "Please wait...",
-          //  duration: 300,
+           duration: 3000,
            dismissOnPageChange: true
            
         });
@@ -116,16 +138,23 @@ let loading = Loading.create({
     this.http.post(SERVER_NAME + 'event/create',data,{headers:headers})
     .subscribe(
       (data) => {
-         loading.dismiss(true);
-
-       console.log('data send',data.json()); 
-
-      //  console.log('parameters',params);
-      },(err)=>{
-        loading.dismiss(true);
+        // loading.dismiss();
+        CreateEventPage.arraytoSend[0] = '';
+        this.showToast('Success !');
+        console.log('data send',data.json()); 
+         },(err)=>{
+        // loading.dismiss();
          console.log('err',err);
          let error = err.json();
          console.log('getting error',error);
+          this.showToast('Error Data not Send to server !');
+          let str = JSON.parse(err._body);
+          if(str.status_code == 422){
+          this.showToast('Fileds Missing !');
+          }
+          if(str.status_code == 401){
+           this.showToast('Your Token is Expire !');
+          }
       })
 
 // this.nav.push(TabsPage)

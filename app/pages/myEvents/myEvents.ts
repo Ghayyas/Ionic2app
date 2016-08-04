@@ -116,6 +116,9 @@ export class myEvents{
       else if(this.width == 360){
        this.totalAttendents = 7;
      }
+     else if(this.width == 366){
+       this.totalAttendents = 7;
+     }
     else  if(this.width == 375){
        this.totalAttendents = 8;
      }
