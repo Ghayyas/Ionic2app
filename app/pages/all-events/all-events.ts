@@ -44,6 +44,7 @@ export class AllEventsPage {
   public selectedNo: boolean;
   public selectedMaybe: boolean;
   public myarray = [];
+  public myLocalArray = [];
 
   // ============== Constructor =============//
 
@@ -165,7 +166,7 @@ ionViewWillEnter(){
     console.log('err',err);
         if (err){
           this.loading.dismiss(true);
-          this.error = true;
+          // this.error = true;
           let alert = Alert.create({
           title: 'Error !',
           subTitle: 'Something went wrong!',
@@ -213,38 +214,35 @@ ionViewWillEnter(){
 
 
 
-    selectedBtn(i,selected){
+    // selectedBtn(i,selected){
+  
+    //   console.log('array',this.myLocalArray);
+    //   let id;
 
-      let id;
-
-      let e = Object.keys(this.event);
-      let index  = e.indexOf(i);
- 
-      console.log('list',i == index);
-      
-
+   
 
     
-    if (selected == 'yes'){
-        this.selectedYes = true;
-        this.selectedNo = false;
-        this.selectedMaybe = false;
-     }
-     if(selected == 'no'){
-       this.selectedNo = true;
-       this.selectedMaybe = false;
-       this.selectedYes =false;
-     }
-     if(selected == 'maybe'){
-       this.selectedMaybe = true;
-       this.selectedNo = false;
-        this.selectedYes =false;
-     }
-     console.log('my btn',selected,i); //,selectedButtonIndex);
-   }
+    // if (selected == 'yes'){
+    //     this.selectedYes = true;
+    //     this.selectedNo = false;
+    //     this.selectedMaybe = false;
+    //  }
+    //  if(selected == 'no'){
+    //    this.selectedNo = true;
+    //    this.selectedMaybe = false;
+    //    this.selectedYes =false;
+    //  }
+    //  if(selected == 'maybe'){
+    //    this.selectedMaybe = true;
+    //    this.selectedNo = false;
+    //     this.selectedYes =false;
+    //  }
+    //  console.log('my btn',selected,i);
+    // }
 
-
-
+myClick(){
+  console.log('clicked me...!!')
+}
 
 
   newTabs(i){

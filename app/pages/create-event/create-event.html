@@ -26,9 +26,7 @@ input[type="week"] {
   img{
      max-height: 200px;;
   }
-  /*ion-title{
-    padding:0 !important;
-  }*/
+ 
 </style>
 
  <ion-header>
@@ -48,28 +46,23 @@ input[type="week"] {
 <div radio-group [(ngModel)]="params.type" name="radioGroup">
 
 <ion-item>
-       	<!--<label class="radiolabel" for="radio-one">-->
               <ion-label>By list</ion-label>
     <ion-radio value="0" ></ion-radio>
 </ion-item>
-		<!--<input type="radio" value="0" name="type" id="radio-one" checked> <span>By list</span>-->
-		<!--</label>-->
+
     <ion-item>
         <ion-label>By General Invitaion</ion-label>
     <ion-radio value="1"></ion-radio>
     </ion-item>
-		<!--<label class="radiolabel" for="radio-two">  
-		<input type="radio" value="1" name="type" id="radio-two"> <span>By Genral invitation</span>
-		</label>-->
+
        </div>
-                     <!--<span style="color:red;" [hidden]="!typeField">This field Required</span>-->
      </div>
 
      </div>
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" required name="Event name" [(ngModel)]="params.name" placeholder="Event Name"  #name="ngModel">
+     <input type="text" required name="Event name" minlength="6" maxlength="13" [(ngModel)]="params.name" placeholder="Event Name"  #name="ngModel">
                <!--<span style="color:red;" *ngIf="nameField == true">This field Required</span>-->
   <div [hidden]="name.valid || name.pristine" style="color:red">
          <small>*Required</small>
