@@ -1,9 +1,10 @@
 import {Component,OnInit} from "@angular/core";
 import {NavController,Page,ActionSheet,Alert, Loading} from 'ionic-angular';
+import {DealsPage} from '../deals/deals';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
 import {NgZone} from "@angular/core";
-import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
+import {BroadcastPage} from '../broadcast-event/broadcast-event';
 import {CreateListPeopleInvitePage} from '../create-list-people-invite/create-list-people-invite';
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService'
@@ -33,7 +34,7 @@ declare var FileTransfer :any;
 
 })
 
-export class CreateEventPage {
+export class CreateEventPage{
  
     params = {
       photo : '',  
@@ -59,10 +60,16 @@ export class CreateEventPage {
   static myLat : any;
   static myLong : any;
   static myImage:any; 
-   
-   
-   
-    public cityCircle;
+  static arraytoSend = [];
+  // static start_date:any;
+  // static end_date:any;
+  // static description:any;
+  // static name:any;
+  // static created_at:any;
+  // static type1:number;
+  public cityCircle;
+
+
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http) {
     this.http = http;
@@ -73,6 +80,7 @@ export class CreateEventPage {
         this.params.start_date = '';//required
         this.params.end_date = ''; //required
         this.params.description = '';
+     
             
         let loading = Loading.create({
            content: "Please wait...",
@@ -102,7 +110,7 @@ export class CreateEventPage {
    
 
      ngOnInit() {
-      // this.myval = 'hello ghayyas'
+    
 
         console.log('hello world');
       //  this.params.location = '';
@@ -191,21 +199,7 @@ console.log('options',options);
       // console.log("upload error target " + error.target);
    }, options);
    console.log('arra',array[0],"fileUrl",fileURL);
-//    var suc = function onSuccess(r) {
-//       console.log("Code = " + r.responseCode);
-//       console.log("Response = " + r.response);
-//       let photoParse = JSON.parse(r.response);
-//       alert('Image Caputured Successs');
-//        this.params.photo  = photoParse.image;
-     
-//       console.log("Sent = " + r.bytesSent);
-//    }
 
-//  var err =   function onError(error) {
-//       alert("An error has occurred: Code = " + error.code);
-//       console.log("upload error source " + error.source);
-//       console.log("upload error target " + error.target);
-//    }
 	
  }
 }
@@ -254,7 +248,6 @@ presentActionSheet():void {
                       buttons: ['OK']
                 });
                       this.nav.present(alert);
-            // console.log("ERROR -> " + JSON.stringify(error));
       });
         }
       },
@@ -265,7 +258,6 @@ presentActionSheet():void {
             quality : 45,
             destinationType : navigator.camera.DestinationType.FILE_URI,    //File URI only for Android  to use for IOS type NATIVE_URI	instead of FILE_URI
             sourceType : navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
-            // allowEdit : true,
             encodingType: navigator.camera.EncodingType.JPEG,
             targetWidth: 300,
             targetHeight: 300,
@@ -285,7 +277,7 @@ presentActionSheet():void {
                 });
                       this.nav.present(alert);
         });
-          // console.log('Archive clicked');
+         
         }
       },
       {
@@ -306,98 +298,126 @@ presentActionSheet():void {
 //============== Picture Taken END  =====================//
 
 
+   //Static Values Must be Empty After data send.. 
 
 
 
+//=========================  Submit Funtion ================//
 submit(params)
   {
-   
+    console.log('params1',this.params,'submit parms2',params);   
     this.params.latitude = CreateEventPage.myLat;
     this.params.longitude = CreateEventPage.myLong;
     this.params.photo = CreateEventPage.myImage;
+    this.params.name = params.name;
+    this.params.created_at = params.created_at;
+    this.params.description = params.description;
+    this.params.start_date = params.start_date;
+    this.params.end_date = params.end_date;
+    this.params.type = params.type;
      
-      console.log('params',this.params,'submit parms',params);    
+      console.log('params',this.params.type,'submit parms',params.type);    
 
-   if(this.params.photo == undefined ){
-      let alert = Alert.create({
-      title: 'Error !',
-      subTitle: 'Event Picture is Required',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-}
-  else{
+//    if(this.params.photo == undefined ){
+//       let alert = Alert.create({
+//       title: 'Error !',
+//       subTitle: 'Event Picture is Required',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert);
+// }
+//   else if(this.params.latitude == undefined){
+//        let alert = Alert.create({
+//       title: 'Error !',
+//       subTitle: 'Enable to get your Location try again',
+//       buttons: ['OK']
+//     });
+//        this.nav.present(alert);
+//   }
+//   else{
  
-    this.loading = Loading.create({
-           content: "Please wait...",
-          //  duration: 300,
-           dismissOnPageChange: true
+  //   this.loading = Loading.create({
+  //          content: "Please wait...",
+  //          duration: 300,
+  //          dismissOnPageChange: true
            
-        });
-  this.nav.present(this.loading);
+  //       });
+  // this.nav.present(this.loading);
  
-    var headers = new Headers();
-    var data  = this.params;
-   headers.append('Content-Type', 'application/json');
-   let ecnobToken = window.localStorage.getItem('ecnob.token');
-   headers.append('Authorization', `Bearer ${ecnobToken}`)
-    this.http.post(SERVER_NAME + 'event/create',data,{headers:headers})
-    .subscribe(
-      (data) => {
-          this.loading.dismiss(true);
+  //   var headers = new Headers();
+  //   var data  = this.params;
+  //  headers.append('Content-Type', 'application/json');
+  //  let ecnobToken = window.localStorage.getItem('ecnob.token');
+  //  headers.append('Authorization', `Bearer ${ecnobToken}`)
+  //   this.http.post(SERVER_NAME + 'event/create',data,{headers:headers})
+  //   .subscribe(
+  //     (data) => {
+  //         this.loading.dismiss(true);
 
-       console.log('data send',data.json()); 
+  //      console.log('data send',data.json()); 
 
-       console.log('parameters',params);
-    if(params.type == '1'){
-    this.nav.rootNav.push(BroadcastEventPage);
-         this.loading.dismiss(true);
+  //      console.log('parameters',params);
+   if(params.type == '0'){
+     this.nav.push(CreateListPeopleInvitePage);
+     CreateEventPage.arraytoSend.push(this.params);
+      console.log('from create events param type 2',CreateEventPage.arraytoSend);
+
+
+        // this.loading.dismiss(true);
 
     }
-    else if(params.type == '0'){
-    this.nav.rootNav.push(CreateListPeopleInvitePage);
-        this.loading.dismiss(true);
+
+  else if(params.type == '1'){
+    console.log('working else');
+    this.nav.push(BroadcastPage);
+// BEvent
+    CreateEventPage.arraytoSend.push(this.params);
+    console.log('from create events param type 1',CreateEventPage.arraytoSend);
+    
+        //  this.loading.dismiss(true);
 
     }
-
+    
      
         //  this.empty();
-    },
-    (err) =>{
-      console.log('parameters',params);
+    // // },
+    // // (err) =>{
+    // //   console.log('parameters',params);
 
-                this.loading.dismiss(true);
-     let alert = Alert.create({
-      title: 'Error !',
-      subTitle: 'Data has not been sent Please Reset All Fieds',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-      let str = JSON.parse(err._body);
-      if(str.status_code == 422){
-              let alert = Alert.create({
-      title: 'Error !',
-      subTitle: 'Make sure you have filled all required Fields',
-      buttons: ['OK']
-    });
-       this.nav.present(alert);
-      }
-       if(str.status_code == 401){
-        let alert = Alert.create({
-          title: "Error !",
-          subTitle: "Your Token is Expire Please logout and signin again",
-          buttons : ['OK']
-        })
-        this.nav.present(alert);
-      }
-      // this.empty();
+    // //             this.loading.dismiss(true);
+    // //  let alert = Alert.create({
+    // //   title: 'Error !',
+    // //   subTitle: 'Data has not been sent Please Reset All Fieds',
+    // //   buttons: ['OK']
+    // // });
+    // //    this.nav.present(alert);
+    // //   let str = JSON.parse(err._body);
+    // //   if(str.status_code == 422){
+    // //           let alert = Alert.create({
+    // //   title: 'Error !',
+    // //   subTitle: 'Make sure you have filled all required Fields',
+    // //   buttons: ['OK']
+    // // });
+    // //    this.nav.present(alert);
+    // //   }
+    // //    if(str.status_code == 401){
+    // //     let alert = Alert.create({
+    // //       title: "Error !",
+    // //       subTitle: "Your Token is Expire Please logout and signin again",
+    // //       buttons : ['OK']
+    // //     })
+    // //     this.nav.present(alert);
+    // //   }
+    // //   // this.empty();
       
-      console.log('Error',err.json())
+    // //   console.log('Error',err.json())
              
-    }
-    )
+    // // }
+    // )
 
-}
+// }
   }
+
+  //========================= SUBMIT FUNCTION END ================//
   }
 

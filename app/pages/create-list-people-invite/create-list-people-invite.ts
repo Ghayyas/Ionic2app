@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
 import {NavController,Alert} from 'ionic-angular';
-import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
+// import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
 import {AllEventsPage} from '../all-events/all-events';
 import {Page1} from '../page1/page1';
 import {SigninPage} from '../signin/signin';
 import {TabsPage} from '../tabs/tabs';
+import {CreateEventPage} from '../create-event/create-event';
 
 
 /*
@@ -17,15 +18,16 @@ import {TabsPage} from '../tabs/tabs';
   templateUrl: 'build/pages/create-list-people-invite/create-list-people-invite.html',
 })
 export class CreateListPeopleInvitePage {
-  broadcastEvent = BroadcastEventPage;
+  // broadcastEvent = BroadcastEventPage;
   page1= AllEventsPage;
   eventsPage: AllEventsPage;
   public emailArray = [];
   public whenClick :boolean;
   public senderEmail: string;
   constructor(public nav: NavController) {
-    
-  }x  
+      console.log('from list event',CreateEventPage.arraytoSend);
+
+  }
   
   add(useremail){
     console.log('emai',useremail.value);

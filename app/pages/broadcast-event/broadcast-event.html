@@ -1,14 +1,9 @@
-<!--
-  Generated template for the BroadcastEventPage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
  <ion-header>
 <ion-navbar primary align-title="center">
-   <!--<ion-toolbar primary>-->
+
   <ion-title>BROADCAST EVENT</ion-title>
-<!--</ion-toolbar>-->
+
 </ion-navbar> 
  </ion-header>
   <style>
@@ -25,6 +20,8 @@
     margin-left: -3px;
   }
   </style>
+
+ 
 <ion-content padding class="broadcast-event ecnob-fields">
   
   <ion-grid style="max-height: 65%; overflow: auto;"> 
@@ -43,63 +40,9 @@
   </ion-row>
     </div>
     </ion-grid>
-<!--<ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 2">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
 
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 3">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 4">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="region" value="{{reg}}" placeholder="Region 5">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col width-90>
-    <div class="fullwidthrow">
-     <div class="fieldgroup" style="margin-bottom: 0px;">
-      <input type="text" readonly name="region" value="{{region}}" placeholder="Region 6">
-     </div>
-    </div>
-    </ion-col>
-    <ion-col width-10>  <ion-icon style="font-size:40px;" ios="ios-trash" md="ios-trash"></ion-icon> </ion-col>
-  </ion-row>
-    </div>-->
-    <div class="fixed-outside">
-    <form #regionForm="ngForm">
+   <!--<div class="fixed-outside">-->
+  <form #regionForm="ngForm">
     <div style=" padding: 10px 7px;font-size: 20px;">Select Region</div>
     <ion-row>
     <ion-col width-85>
@@ -117,7 +60,6 @@
     background: white;
     font-size: 30px;
     margin-right: 9px;">
-      <!--<button class="button button-block button-positive" style="font-size: 16px; height: 40px;margin-top: 0px;" [disabled]="!regionForm.form.valid" (click)="add(user)">ADD</button>-->
             
           <button style="border: none; background: white; box-shadow: none" (click)="add(user)" [disabled]="!regionForm.form.valid">
               <ion-icon ios="ios-add" md="md-add" style="margin-left: -11px;
@@ -126,10 +68,12 @@
 
       </ion-col>
   </ion-row>
-
-   <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" (click)="sendInvites()">Send Invites</button>
-    </div>
     </form>
+   <button class="button button-block button-positive" style="font-size: 20px; height: 50px; margin-top: 30px;" (click)="sendInvites()">Send Invites</button>
+    <!--</div>-->
+
 
 
 </ion-content>
+
+

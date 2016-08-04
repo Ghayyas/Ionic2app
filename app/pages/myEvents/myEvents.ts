@@ -84,29 +84,29 @@ export class myEvents{
     ionViewWillEnter(){
     let loading = Loading.create({
            content: "Please wait...",
-          //  duration: 300,
+           duration: 300,
            dismissOnPageChange: true
             
         });
   this.nav.present(loading);
-   let headers = new Headers();
-     headers.append('Content-Type', 'application/json');
-     let ecnobToken = window.localStorage.getItem('ecnob.token');
-      headers.append('Authorization', `Bearer ${ecnobToken}`)
-        this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
-        .subscribe((data)=>{
-          loading.dismiss(true);
-           this.response = data.json();
-            console.log('data recivng',data);
-            console.log('dataJson',data.json());
+  //  let headers = new Headers();
+  //    headers.append('Content-Type', 'application/json');
+  //    let ecnobToken = window.localStorage.getItem('ecnob.token');
+  //     headers.append('Authorization', `Bearer ${ecnobToken}`)
+  //       this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
+  //       .subscribe((data)=>{
+  //         loading.dismiss(true);
+  //          this.response = data.json();
+  //           console.log('data recivng',data);
+  //           console.log('dataJson',data.json());
           
            
             
-        },(err)=>{
-          loading.dismiss(true);
-        console.log('error recing',err);
-        console.log('err Josn',err.json());
-        })
+  //       },(err)=>{
+  //         loading.dismiss(true);
+  //       console.log('error recing',err);
+  //       console.log('err Josn',err.json());
+  //       })
         
         
       if(this.width == 320){

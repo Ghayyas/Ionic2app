@@ -169,7 +169,7 @@ ionViewWillEnter(){
           // this.error = true;
           let alert = Alert.create({
           title: 'Error !',
-          subTitle: 'Something went wrong!',
+          subTitle: 'Make Sure you are connected to internet',
           buttons: ['OK']
      });
        this.nav.present(alert);
@@ -183,7 +183,7 @@ ionViewWillEnter(){
         
       let alert = Alert.create({
       title: 'Error !',
-      subTitle: 'Internal Server Error Please Contact Application Developer to resolve',
+      subTitle: 'Internal Server Error',
       buttons: ['OK']
     });
     this.nav.present(alert);

@@ -1,11 +1,9 @@
 import {Component,Inject, ViewChild} from "@angular/core";
-// import {Inject, ViewChild} from 'angular2/core';
-
 import {Platform, ionicBootstrap,MenuController, NavController,Keyboard} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {SigninPage} from './pages/signin/signin';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import { disableDeprecatedForms, provideForms} from '@angular/forms';
 import {EventDetailsPage} from './pages/event-details/event-details'; 
 import {AuthService} from "./pages/signin/authservice";
 import {myEvents} from "./pages/myEvents/myEvents";
@@ -42,9 +40,6 @@ public local = null;
   
       Splashscreen.hide();
      
-      // console.log("hidding Splash screen...");
-      // this.hideSplashScreen();
-      // console.log("hide splash screen");
         let local =  window.localStorage.getItem('ecnob.token');
          let getType = window.localStorage.getItem('type');
          if(local == null){
@@ -68,7 +63,6 @@ public local = null;
           }
         this.menu.enable(true);
        this.rootPage  = TabsPage;
-        // this.nav.setRoot(TabsPage);
     console.log('company login',MyApp.companyLogin);
       }
      
@@ -85,7 +79,6 @@ ngAfterViewInit(){
 
   
     goEvents(){
-    //  this.rootPage = page;
 
       this.nav.push(myEvents);
 
@@ -95,18 +88,18 @@ ngAfterViewInit(){
      //======================== LOG OUT FUNCTION ===================///
     logout(){
      AuthService.logout().then((succ)=>{
-      // window.localStorage.clear();
+    
       console.log('loogin out');
-      //  this.menu.close();
+ 
       this.menu.enable(false);
       this.nav.setRoot(SigninPage);
-      // this.nav.rootNav.push(SigninPage)       
+    
      },(err)=>{
        console.log('getting error',err);
        window.alert('Something went wrong.. Please try again');
      })
 
-    //  AuthService.logout();
+
 
     
     }
