@@ -345,9 +345,7 @@ submit(params)
     .subscribe(
       (data) => {
           this.loading.dismiss(true);
-    // CreateEventPage.myImage = '';
-    // CreateEventPage.myLat = '';
-    // CreateEventPage.myLong = '';
+
        console.log('data send',data.json()); 
 
        console.log('parameters',params);
