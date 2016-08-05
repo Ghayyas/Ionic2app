@@ -32,8 +32,10 @@ export class myEvents{
   private remaining : number;
   public wid;
   public person;
+  public nexsusP: boolean;
   public totalAttendents: number;
     constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone,public http: Http){
+      this.nexsusP = false; 
      this.myImg = [
        {img: './img/event1.jpg'},
        {img: './img/event1.jpg'},
@@ -110,50 +112,57 @@ export class myEvents{
         
         
       if(this.width == 320){
-       this.totalAttendents = 7 ;
+       this.totalAttendents = 5;
+     }
+      else if(this.width == 350){
+       this.totalAttendents = 6;
      }
       
       else if(this.width == 360){
-       this.totalAttendents = 7;
+       this.totalAttendents = 6;
      }
      else if(this.width == 366){
-       this.totalAttendents = 7;
+       this.totalAttendents = 6;
      }
     else  if(this.width == 375){
-       this.totalAttendents = 8;
+       this.totalAttendents = 6;
+     }
+     else  if(this.width == 390){
+       this.totalAttendents = 6;
      }
     else if(this.width == 411){
-       this.totalAttendents = 8;
+       this.totalAttendents = 7;
      }
       else if(this.width == 414){
-       this.totalAttendents = 9;
+       this.totalAttendents = 7;
      }
      else if(this.width == 435){
-       this.totalAttendents = 10;
+       this.totalAttendents = 7;
+       this.nexsusP = true;
      }
      else if(this.width == 480){
-       this.totalAttendents = 10;
+       this.totalAttendents = 9;
      }
      else if(this.width == 600){
        this.totalAttendents = 9;
      }
      else if(this.width == 640){
-       this.totalAttendents = 14;
-     }
-     else if(this.width == 639){
-       this.totalAttendents = 14;
-     }
-     else if(this.width == 720){
        this.totalAttendents = 13;
      }
+     else if(this.width == 639){
+       this.totalAttendents = 13;
+     }
+     else if(this.width == 720){
+       this.totalAttendents = 12;
+     }
      else if(this.width == 768){
-       this.totalAttendents = 18;
+       this.totalAttendents = 14;
      }
      else if(this.width == 800){
-       this.totalAttendents = 17;
+       this.totalAttendents = 16;
      }
      else if(this.width == 801){
-       this.totalAttendents = 17;
+       this.totalAttendents = 16;
      }
     else {
        this.totalAttendents = 6;

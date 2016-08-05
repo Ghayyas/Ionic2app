@@ -8,7 +8,7 @@
     }
     .background-image-color{
    position: absolute;
-    background: rgb(47, 116, 245);
+    background: #2E65DF;
     opacity: 0.8;
     top: 0px;
     height: 100%;
@@ -18,7 +18,12 @@
     right: 0;
     z-index: 3;
     }
-.item-avatar  {     
+ ion-avatar {
+    min-width: 5rem;
+    min-height: 4rem;
+}  
+.item-avatar  {   
+
 width:100% !important;  
 height : 100% !important;  
 max-width: 100px !important;  
@@ -64,31 +69,45 @@ max-height: 100px !important;
 
         </div>
    <div class="">
-     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right;"> July 27,2016</span></div>
-     <div class="card-title" style="z-index: 5; padding-left: 45%; width: inherit;"><!--{{arr.description}}--><span style="float: right; font-size:14px;">My Event (By List)</span></div>
-     <div class="card-time" style="z-index: 5; padding-left: 45%; width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
+      <!--font-size:14px;-->
+     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right; color: #81A1E3;"> July 27,2016</span></div>
+     <div class="card-title" style="z-index: 5;padding-left: 45%;width: inherit;font-size: large;"><!--{{arr.description}}--><span >My Event</span><span style="padding-left: 10px; font-size: initial;">(By List)</span></div>
+     <!--<div class="card-title" style="z-index: 5;padding-left: 261px;margin-top: 7px;width: inherit;"><span style="float: right;">(By List)</span></div>-->
+     <div class="card-time" style="padding-top: 14px; z-index: 5;padding-left: 45%;width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"><span style="float:right"><ion-icon style="font-size: 32px;
     margin-top: -10px; color: white;" name="trash"></ion-icon></span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="font-size: 32px;
     margin-right: 22px;margin-top: -10px; color:white" name="create"></ion-icon></span> </div>
    </div>
     <!--<ion-row no-padding>-->
-      <div style="float: left;margin-left: 14px;margin-top: 10px;font-size: 15px;color: gray;">Attendees </div>
-      <ion-row style="position: relative;font-size: smaller;padding-right: 4px; padding-left: 2px;padding-top: 12px; padding-bottom:10px;">
+      <div style="float: left;margin-left: 11px;margin-top: 10px;font-size: 15px;color: gray;">Attendees </div>
+      <ion-row style="position: relative;font-size: smaller;padding-top: 12px; padding-left: 4px; padding-bottom:10px;">
         <div *ngFor="let image of myImg; let i = index">
-        <ion-avatar *ngIf="i < totalAttendents" style="padding-right:2px;">
-          <img src="{{image.img}}" style="margin-left: 2px;" alt="Event Image"> 
+        <ion-avatar *ngIf="i < totalAttendents" style="padding-right:6px;">
+          <img src="{{image.img}}" alt="Event Image"> 
        </ion-avatar>
       </div>
-        <div *ngIf="remaining !== 0" style="background: rgb(47, 116, 245);
+        <div *ngIf="remaining !== 0 && !nexsusP" style="background: rgb(47, 116, 245);
     border-radius: 50%;
-    width: 40px;
-    height: 38px;
-    padding-right: 13px;
-    margin-left: 3px;
-    margin-top: 2px;">
-        <p style="color: white;margin-top: 8px;margin-right: -11px;">+{{remaining}}</p> 
+    width: 37px;
+    height: 37px;
+    padding-right: 12px;
+    margin-left: -5px;
+    margin-top: 1px;">
+ 
+   <p style="color: white;margin-top: 8px;margin-right: -11px;">+{{remaining}}</p> 
          </div>
+    <div *ngIf="remaining !== 0 && nexsusP" style="background: rgb(47, 116, 245);
+    border-radius: 50%;
+    width: 42px;
+    height: 41px;
+    padding-right: 18px;
+    margin-left: 1px;
+    margin-top: 0px">
+ 
+        <p style="color: white;margin-top: 9px;margin-right: -15px;">+{{remaining}}</p> 
+         </div>
+        
     </ion-row>
   </ion-card>
 

@@ -34,7 +34,7 @@
     <ion-col width-90>
     <div class="fullwidthrow">
      <div   class="fieldgroup" style="margin-bottom: 0px;">
-     <input type="text" readonly name="email" value="{{email}}" placeholder="email@test.com">
+     <input type="text" readonly name="email" value="{{email.email}}" placeholder="email@test.com">
      </div>
     </div>
     </ion-col>
@@ -61,9 +61,9 @@
      <div class="fieldgroup" style="margin-bottom: 0px;">
      
      <input type="email" required name="sendmail" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]{1,2})?" [(ngModel)]="senderEmail" #useremail="ngModel" placeholder="Enter Email Address">
-     <div [hidden]="useremail.valid || useremail.pristine || whenClick" style="color:red;">
+     <!--<div [hidden]="useremail.valid || useremail.pristine || whenClick" style="color:red; text-align:left;">
     <small>Valid Email is Required</small>
-     </div>
+     </div>-->
      </div>
     </div>
     </ion-col>

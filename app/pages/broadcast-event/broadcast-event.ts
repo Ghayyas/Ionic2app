@@ -32,6 +32,7 @@ export class BroadcastPage {
   public region_value_arr = [];
   static myLat:any;
   static myLong:any;
+  static gettingPlaces: any;
   
   
   constructor(public nav: NavController,private http:Http) {
@@ -45,35 +46,51 @@ export class BroadcastPage {
 
  //============= google map location api =========//
 
-   
+  
 
      ngOnInit() {
  
-       
-        var input = new google.maps.places.SearchBox(document.getElementById('region'));
-
+     
+          var input = new google.maps.places.SearchBox(document.getElementById('region'));
+      //  document.getElementById('region').addEventListener('keydown',this.keydownEvent,false);
+      // try{
         google.maps.event.addListener(input,'places_changed',function(){
             console.log("search",input.getPlaces());
             var places = input.getPlaces();
+            console.log('getting values',places);
+            BroadcastPage.gettingPlaces = input.getPlaces()[0].formatted_address;
             var bounds = new google.maps.LatLngBounds();
             var i, place;
+          try {
             for( i = 0; place=places[i]; i++){
-             if(place.geometry.location == undefined){
-              window.alert('You cant get your Location');
-            }
+          
+            //  if(place.geometry.location == undefined){
+            //   window.alert('You cant get your Location');
+            // }
             
-             console.log('place', place.geometry.location);
+            //  console.log('place', place.geometry.location);
            
-             console.log('latitude',place.geometry.location.lat())
+            //  console.log('latitude',place.geometry.location.lat())
              BroadcastPage.myLat = place.geometry.location.lat();
               // let long = place.geometry.location.lng();
               BroadcastPage.myLong = place.geometry.location.lng();
-              console.log('longitude',place.geometry.location.lng())
+              // console.log('longitude',place.geometry.location.lng())
             //  console.log('lat',this.myLat,'long', this.myLong);
             }
+          }
+    catch(err) {
+          //  console.log('getting error from catch',err);
+          this.showToast('Can not get your location !');
+   }
      
         })
-     }
+    //  }
+    //  catch(err){
+    //    console.log('getting errror from catching',err);
+       
+    //    this.showToast('Internet Disconnected !');
+    //  }
+    }
 
 
 
@@ -85,7 +102,7 @@ export class BroadcastPage {
   add(region){
     console.log('userRegion',region.value);
     console.log('lat long',BroadcastPage.myLat,BroadcastPage.myLong);
-    let region_val = this.region;
+    let region_val = BroadcastPage.gettingPlaces;
     let region_lat = BroadcastPage.myLat;
     let region_long = BroadcastPage.myLong;
     this.region_arr.push(region_val);
@@ -102,7 +119,12 @@ export class BroadcastPage {
     this.region_value_arr.splice(i,1);
   }
   
-  
+   ionViewWillLeave(){
+     console.log('leaving');
+     BroadcastPage.gettingPlaces = "";
+     BroadcastPage.myLat = '';
+     BroadcastPage.myLong = '';
+   }
     showToast(message: string) {
     let toast = Toast.create({
       message: message,
@@ -113,8 +135,8 @@ export class BroadcastPage {
     this.nav.present(toast);
          }
   
- sendInvites(){
-   console.log("send Invites Works");
+ sendBroadCast(){
+  //  console.log("BroadCast Event Works");
    
    let jsonS = JSON.stringify(this.region_value_arr);
    console.log('log',jsonS);
@@ -125,7 +147,7 @@ export class BroadcastPage {
 //  }
 let loading = Loading.create({
            content: "Please wait...",
-           duration: 3000,
+          //  duration: 3000,
            dismissOnPageChange: true
            
         });
@@ -138,16 +160,20 @@ let loading = Loading.create({
     this.http.post(SERVER_NAME + 'event/create',data,{headers:headers})
     .subscribe(
       (data) => {
-        // loading.dismiss();
-        CreateEventPage.arraytoSend[0] = '';
+        loading.dismiss(true);
+        for(var i = 0; i < CreateEventPage.arraytoSend.length; i++){
+           CreateEventPage.arraytoSend[i] = '';
+     }
         this.showToast('Success !');
         console.log('data send',data.json()); 
+        this.nav.push(TabsPage);
          },(err)=>{
-        // loading.dismiss();
+        loading.dismiss(true);
+        this.nav.push(TabsPage)
          console.log('err',err);
          let error = err.json();
          console.log('getting error',error);
-          this.showToast('Error Data not Send to server !');
+          this.showToast('Data not Send to server !');
           let str = JSON.parse(err._body);
           if(str.status_code == 422){
           this.showToast('Fileds Missing !');

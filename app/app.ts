@@ -3,7 +3,7 @@ import {Platform, ionicBootstrap,MenuController, NavController,Keyboard} from 'i
 import {StatusBar, Splashscreen} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {SigninPage} from './pages/signin/signin';
-import { disableDeprecatedForms, provideForms} from '@angular/forms';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {EventDetailsPage} from './pages/event-details/event-details'; 
 import {AuthService} from "./pages/signin/authservice";
 import {myEvents} from "./pages/myEvents/myEvents";
@@ -11,7 +11,8 @@ import {Page1} from './pages/page1/page1';
 
 import {Geolocation} from 'ionic-native';
 
-declare var navigator:any
+declare var navigator:any;
+declare var cordova:any;
 
 
 @Component({
@@ -31,26 +32,23 @@ export class MyApp {
 public local = null;
 
  
-  constructor(platform: Platform, public menu: MenuController) {
+  constructor(platform: Platform, public menu: MenuController, keyboard: Keyboard) {
  
    
     platform.ready().then(() => {
       console.log('platform works..');
-      StatusBar.styleDefault();
-  
       Splashscreen.hide();
-     
-        let local =  window.localStorage.getItem('ecnob.token');
-         let getType = window.localStorage.getItem('type');
-         if(local == null){
-           
-        
-           this.rootPage = SigninPage;
-         
-             console.log("app ts root Nav");
-            this.menu.enable(false);
+      StatusBar.styleDefault();
+      // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
-
+    // keyboard.disableScroll(true)
+    
+      let local =  window.localStorage.getItem('ecnob.token');
+      let getType = window.localStorage.getItem('type');
+       if(local == null){
+        this.rootPage = SigninPage;
+        //  console.log("app ts root Nav");
+        this.menu.enable(false);
       }
       else{
         if(getType == 1){
@@ -59,11 +57,11 @@ public local = null;
          }
        else{
           MyApp.companyLogin = false;
-         console.log('type value',getType);
+           console.log('type value',getType);
           }
-        this.menu.enable(true);
-       this.rootPage  = TabsPage;
-    console.log('company login',MyApp.companyLogin);
+          this.menu.enable(true);
+          this.rootPage  = TabsPage;
+       console.log('company login',MyApp.companyLogin);
       }
      
       
@@ -71,12 +69,9 @@ public local = null;
 
     )}
      
-ngAfterViewInit(){
-     console.log('platform works before')
-     
-}
-  
 
+  
+//================ MY Events Screen =============//
   
     goEvents(){
 
@@ -84,7 +79,11 @@ ngAfterViewInit(){
 
   
 }
-
+//================ MY Events Screen  END  =============//
+     
+     
+     
+     
      //======================== LOG OUT FUNCTION ===================///
     logout(){
      AuthService.logout().then((succ)=>{

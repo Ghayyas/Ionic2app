@@ -1,5 +1,5 @@
 import {Component,OnInit} from "@angular/core";
-import {NavController,Page,ActionSheet,Alert, Loading} from 'ionic-angular';
+import {NavController,Page,ActionSheet,Alert, Loading, Keyboard} from 'ionic-angular';
 import {DealsPage} from '../deals/deals';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
@@ -71,8 +71,9 @@ export class CreateEventPage{
 
 
    createListPeopleToInvite = CreateListPeopleInvitePage;
-  constructor(public nav: NavController, private http:Http) {
+  constructor(public nav: NavController, private http:Http, private keyboard: Keyboard) {
     this.http = http;
+    this.keyboard = keyboard;
         this.params.photo = "";    
         this.params.name = '';  //required
         // this.params.type = '';  //required
@@ -141,7 +142,9 @@ export class CreateEventPage{
 
 
 
-
+keyboardClose(){
+  this.keyboard.close();
+}
 
 
 
