@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {NavController,Alert,Loading,Toast} from 'ionic-angular';
+// import {Keyboard} from 'ionic-native';
+import {NavController,Alert,Loading,Toast,Keyboard} from 'ionic-angular';
 // import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
 import {AllEventsPage} from '../all-events/all-events';
 import {Page1} from '../page1/page1';
@@ -24,9 +25,13 @@ export class CreateListPeopleInvitePage {
   public emailArray = [];
   public whenClick :boolean;
   public senderEmail: string;
-  constructor(public nav: NavController, private http:Http) {
+  constructor(public nav: NavController, private http:Http, public keyboard:Keyboard) {
       console.log('from list event',CreateEventPage.arraytoSend);
 
+  }
+
+  keyboardClose(){
+    this.keyboard.close();
   }
   
   add(useremail){

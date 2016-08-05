@@ -12,6 +12,12 @@
   ion-title{
     padding: 0;
   }
+  .ecnob-fields .fieldgroup{
+    margin-bottom: 15px;
+  }
+  /*.ecnob-fields .fieldgroup ion-icon{
+    top: 14px;
+  }*/
 input[type="date"], 
 input[type="datetime-local"], 
 input[type="month"], 
@@ -66,6 +72,7 @@ input[type="week"] {
         <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="text" required name="Event name" minlength="6" maxlength="13" [(ngModel)]="params.name" placeholder="Event Name"  #name="ngModel">
+    
   <div [hidden]="name.valid || name.pristine" style="color:red">
          <small>*Required</small>
      </div>
@@ -75,7 +82,8 @@ input[type="week"] {
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="text"  id="locationINput" [(ngModel)]="params.location" #location="ngModel" name="myEventlocation" placeholder="Event Location" required>
-    <div [hidden]="location.valid || location.pristine" style="color:red">
+     
+   <div [hidden]="location.valid || location.pristine" style="color:red">
          <small>*Required</small>
      </div>
      </div>
@@ -88,6 +96,7 @@ input[type="week"] {
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="date" name="start_date" placeholder="20/5/2016"  required [(ngModel)]="params.start_date" #start_date="ngModel">
+     
        <div [hidden]="start_date.valid || start_date.pristine" style="color:red">
          <small>*Required</small>
      </div>
@@ -99,6 +108,7 @@ input[type="week"] {
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="date" name="end_date" placeholder="20/5/2016" required [(ngModel)]="params.end_date" #end_date="ngModel">
+     
   <div [hidden]="end_date.valid || end_date.pristine" style="color:red">
          <small>*Required</small>
      </div>
