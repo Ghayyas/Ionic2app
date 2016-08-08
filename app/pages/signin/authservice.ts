@@ -1,7 +1,7 @@
 
 import {Injectable, Inject} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {NavController,Alert,Loading, MenuController} from 'ionic-angular';
+import {NavController,AlertController,LoadingController, MenuController} from 'ionic-angular';
 import {SigninPage} from './signin';
 import {SERVER_NAME} from '../../service/dataService/dataService'
 import {myEvents} from '../myEvents/myEvents';
@@ -17,7 +17,7 @@ export class AuthService {
     static nav: NavController;
     static menu: MenuController
 
-    constructor(public http: Http ,nav:NavController, menu:MenuController) {
+    constructor(public http: Http ,nav:NavController, menu:MenuController, private alert: AlertController, private loading: LoadingController) {
         this.http = http;
         AuthService.nav = nav;
         AuthService.menu = menu;
@@ -30,12 +30,12 @@ export class AuthService {
 //=============== Alert Funciton =================//
    
      getalert(data,msg){
-       let alert = Alert.create({
+       let alert = this.alert.create({
                    title: data,
                    subTitle: msg,
                    buttons: ['OK']
                  });
-         AuthService.nav.present(alert);
+        alert.present();
      }
   
   //================= Alert END =============//

@@ -33,15 +33,15 @@
   <ion-row>
     <ion-col width-90>
     <div class="fullwidthrow">
-     <div   class="fieldgroup" style="margin-bottom: 0px;">
+     <div class="fieldgroup" style="margin-bottom: 0px;">
      <input (click)="keyboardClose()" type="text" readonly name="email" value="{{email.email}}" placeholder="email@test.com">
      </div>
     </div>
     </ion-col>
-    <ion-col width-10>
-      <button (click)="delete(i)">
-      <ion-icon style="font-size: 31px; margin-top: 6px;" ios="ios-trash" md="ios-trash"></ion-icon>
-      </button>
+    <ion-col width-50>
+      <!--<button (click)="delete(i)">-->
+      <ion-icon style="font-size: 31px; margin-top: 6px;" (click)="delete(i)" ios="ios-trash" md="ios-trash"></ion-icon>
+      <!--</button>-->
        </ion-col>
      </ion-row>
 </div>

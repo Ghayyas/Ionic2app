@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, App, Alert, Loading,MenuController} from 'ionic-angular';
+import {NavController, App, AlertController, LoadingController ,MenuController, ToastController} from 'ionic-angular';
 import {EventDetailsPage} from '../event-details/event-details';
 import {AllEventFormPage} from '../all-event-form/all-event-form';
 import {Http, Headers } from '@angular/http';
@@ -32,7 +32,7 @@ export class AllEventsPage {
   event: [Object];
   arr:[Object];
   public events: [Object];
-  public loading: Loading;
+  public load: any;
   public error: boolean;
   public definedError: boolean;
   public type:any;
@@ -49,7 +49,8 @@ export class AllEventsPage {
   // ============== Constructor =============//
 
 
-  constructor(public nav: NavController, public http:Http, menu: MenuController) {
+  constructor(public nav: NavController, public http:Http, menu: MenuController,public loading: LoadingController, private alertCtrl:AlertController,
+  private toast: ToastController) {
 
 
     this.pet = 'public';
@@ -60,17 +61,12 @@ export class AllEventsPage {
     this.selectedYes = false;
     this.selectedNo = false;
     this.selectedMaybe = false;
+  
     //  this.event = [{name:'admin',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0,id:0},
     //  {name:'Ghayyas',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0, id:1},
     //  {name:'admin12',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0, id:2}]
     
-         this.loading = Loading.create({
-           content: "Please wait...",
-           duration: 300,
-           dismissOnPageChange: true
-            
-        });
-  this.nav.present(this.loading);
+   
 
 
 
@@ -125,6 +121,13 @@ export class AllEventsPage {
   
 
 ionViewWillEnter(){
+  //     let load = this.loading.create({
+  //          content: "Please wait...",
+  //         //  duration: 300, 
+  //          dismissOnPageChange: true
+            
+  //       });
+  //  load.present();
     let headers = new Headers();
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
@@ -132,48 +135,77 @@ ionViewWillEnter(){
     this.http.get( SERVER_NAME +'event/list',{headers:headers})
     .subscribe(
       (data)=>{
-        console.log('data',data);
-       this.loading.dismiss(true);
+        // console.log('data',data);
+        // setTimeout(function() {
+        //   load.dismiss();
+        // }, 3000);
+      //  load.dismiss(true);
        this.event = data.json().events;
         if(this.event == undefined){
+    let toast = this.toast.create({
+      message: "Sorry no new Events Avalible",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
 
-       let alert = Alert.create({
-          title: 'Sorry',
-          subTitle: 'No New Events Avalible!',
-          buttons: ['OK']
-     });
-       this.nav.present(alert);
+    //    let alert = this.alertCtrl.create({
+    //       title: 'Sorry',
+    //       subTitle: 'No New Events Avalible!',
+    //       buttons: ['OK']
+    //  });
+    //    alert.present();
+      //  load.dismiss(true);
         //  this.definedError = true;         //IF DATA FROM SERVER IS UNDEFINED
 
         }
         else if(this.event.length == 0){
-        let alert = Alert.create({
-          title: 'Sorry',
-          subTitle: 'No New Events Avalible!',
-          buttons: ['OK']
-     });
-       this.nav.present(alert);
+           let toast = this.toast.create({
+      message: "Sorry no new Events Avalible",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
+    //     let alert = this.alertCtrl.create({
+    //       title: 'Sorry',
+    //       subTitle: 'No New Events Avalible!',
+    //       buttons: ['OK']
+    //  });
+    //    alert.present();
+      //  load.dismiss(true);
           // this.definedError = true;
         }
         this.allEventsArray.push(this.event);
         console.log('events Array',this.allEventsArray);
         console.log('data',this.event);
-      
+      // load.dismiss(true);
      
 
       },
       (err)=>{
     console.log('err',err);
-        if (err){
-          this.loading.dismiss(true);
-          // this.error = true;
-          let alert = Alert.create({
-          title: 'Error !',
-          subTitle: 'Make Sure you are connected to internet',
-          buttons: ['OK']
-     });
-       this.nav.present(alert);
-        }
+  //  setTimeout(function() {
+  //         load.dismiss();
+  //       }, 3000);
+     let toast = this.toast.create({
+      message: "Needs Internet Connection",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
+    // load.dismiss(true);
+    //     let alert = this.alertCtrl.create({
+    //       title: 'Error !',
+    //       subTitle: 'Make Sure you are connected to internet',
+    //       buttons: ['OK']
+    //  });
+    //   alert.present();
+      // load.dismiss(true);
+        // if (err){
+         
+        //   // this.error = true;
+      
+        // }
         console.log('err',err);
         let str = JSON.parse(err._body);
        
@@ -181,28 +213,43 @@ ionViewWillEnter(){
       
       if(str.status_code == 500){
         
-      let alert = Alert.create({
-      title: 'Error !',
-      subTitle: 'Internal Server Error',
-      buttons: ['OK']
-    });
-    this.nav.present(alert);
+      let toast = this.toast.create({
+      message: "Internal Server error",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
+    //   let alert = this.alertCtrl.create({
+    //   title: 'Error !',
+    //   subTitle: 'Internal Server Error',
+    //   buttons: ['OK']
+    // });
+    // alert.present();
+    // load.dismiss(true);
   
       }
      else if(str.status_code == 401){
-        let alert = Alert.create({
-          title: "Error !",
-          subTitle: "Your Token is Expire Please logout and signin again",
-          buttons : ['OK']
-        })
-        this.nav.present(alert);
-      }
+       let toast = this.toast.create({
+      message: "Your Token is Expire",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
+        // let alert = this.alertCtrl.create({
+        //   title: "Error !",
+        //   subTitle: "Your Token is Expire Please logout and signin again",
+        //   buttons : ['OK']
+        // })
+        // alert.present();
+        // load.dismiss(true);
+      // }
           
           
 
-     
+    //  load.dismiss(true);
       console.log('status code',str.status_code)
       console.log('error reciveing', str.message);
+      }
       }
     )
 }
@@ -248,16 +295,17 @@ myClick(){
   newTabs(i){
     console.log('getting array',this.allEventsArray);
     
-      let loading = Loading.create({
+      let loading = this.loading.create({
            content: "Please wait...",
            duration: 3000,
            dismissOnPageChange: true
             
         });
+        loading.present();
   
     console.log('index',i);
-    this.nav.rootNav.push(EventDetailsPage,{ paramUser: this.allEventsArray, paramID: i});    
-    this.nav.present(loading);  
+    this.nav.push(EventDetailsPage,{ paramUser: this.allEventsArray, paramID: i});    
+    loading.dismiss(true);  
 }
     ionViewWillLeave(){
       this.allEventsArray = [];

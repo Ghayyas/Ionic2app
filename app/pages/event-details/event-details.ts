@@ -38,7 +38,8 @@ export class EventDetailsPage {
     let para =  this.params.get('paramUser');
     let pramget = this.params.get('paramID');
     console.log('para',pramget);
-
+  let taber = document.getElementsByTagName("ion-tabbar")[0];
+   taber.setAttribute('class','hide-tabbar');
 
     console.log('events detail', para[0][pramget]);
   
@@ -59,6 +60,8 @@ export class EventDetailsPage {
   ionViewWillLeave(){
     this.allEventsArray = [];
     console.log('events array',this.allEventsArray);
+      let taber = document.getElementsByTagName("ion-tabbar")[0];
+   taber.setAttribute('class','show-tabbar');
   }
   ionViewWillEnter(){
   //  this.loading = Loading.create({

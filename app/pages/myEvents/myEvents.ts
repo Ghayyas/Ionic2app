@@ -1,5 +1,5 @@
 import {Component,NgZone} from '@angular/core';
-import {NavController,NavParams,Loading,Alert,MenuController} from 'ionic-angular';
+import {NavController,NavParams,LoadingController,AlertController,MenuController} from 'ionic-angular';
 // import { DataService } from '../../service/dataService/dataService';
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService';
@@ -34,7 +34,8 @@ export class myEvents{
   public person;
   public nexsusP: boolean;
   public totalAttendents: number;
-    constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone,public http: Http){
+    constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone,public http: Http,
+    private loading: LoadingController, private alert: AlertController){
       this.nexsusP = false; 
      this.myImg = [
        {img: './img/event1.jpg'},
@@ -84,13 +85,13 @@ export class myEvents{
     }
     
     ionViewWillEnter(){
-    let loading = Loading.create({
+    let loading = this.loading.create({
            content: "Please wait...",
-           duration: 300,
+           duration: 3000,
            dismissOnPageChange: true
             
         });
-  this.nav.present(loading);
+  loading.present();
   //  let headers = new Headers();
   //    headers.append('Content-Type', 'application/json');
   //    let ecnobToken = window.localStorage.getItem('ecnob.token');
@@ -183,8 +184,12 @@ export class myEvents{
       this.menu.toggle();
     }
     createEvent(){
-      
+        // this.nav.setRoot(TabsPage).then((data)=>{
          this.nav.push(CreateEventPage);
+        // },(err)=>{
+        //   console.log('getting error');
+        // })
+         
    
        
     }

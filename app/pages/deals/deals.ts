@@ -23,7 +23,7 @@ export class DealsPage {
    isenable:boolean;
   constructor(public nav: NavController) {
     this.location = 'New York, USA ';
-   this.enable = MyApp.companyLogin;
+  //  this.enable = MyApp.companyLogin;
    console.log('enable',this.enable);
    let getFromLocal = window.localStorage.getItem('type');
    if(getFromLocal == 1){
@@ -49,7 +49,7 @@ export class DealsPage {
 
 dealsDetailsPage(){
   console.log('Deals Page');
-  this.nav.rootNav.push(DealsDetailPage)    
+  this.nav.push(DealsDetailPage);    
 }
 
 

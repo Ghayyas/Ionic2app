@@ -1,5 +1,5 @@
 import {Component,Directive,Input,Output, EventEmitter} from '@angular/core';
-import {NavController, Page, Loading,Platform,Alert} from 'ionic-angular';
+import {NavController, Page, LoadingController,Platform,AlertController} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {NgZone} from "@angular/core";
@@ -61,7 +61,8 @@ export class SignupPage {
    * [constructor description]
    * @param {NavController} public nav [description]
    */
-  constructor(public auth: AuthService, public nav: NavController, public data: DataService,platform:Platform,public http:Http) {
+  constructor(public auth: AuthService, public nav: NavController, public data: DataService,platform:Platform,public http:Http,
+  private loading: LoadingController, private alert: AlertController) {
    this.http = http;
 	  // this.authservice = auth;
 	  this.nav = nav;
@@ -106,12 +107,12 @@ export class SignupPage {
   
   signup() {
      console.log('data',this.usercreds.email,this.usercreds.password,this.usercreds.type);
-	  let loading = Loading.create({
+	  let loading = this.loading.create({
 		  content: "Please wait...",
 		  //  duration: 300,
 		  dismissOnPageChange: true
 	  });
-	  this.nav.present(loading);
+	  loading.present(loading);
 
     var headers = new Headers();
         var creds = "email=" + this.usercreds.email;
@@ -123,12 +124,12 @@ export class SignupPage {
         let success = data.json().success;
         loading.dismiss();
         if(success !== true){
-          let loading = Loading.create({
+          let loading = this.loading.create({
 		        content: "Please wait...",
 		  //  duration: 300,
 		        dismissOnPageChange: true
 	  });
-	  this.nav.present(loading);
+	  loading.present(loading);
           var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.latitude,this.usercreds.longitude,this.usercreds.radius);
  
           DataService.pushData(obj).then((data)=>{
@@ -143,30 +144,30 @@ export class SignupPage {
                
                loading.dismiss();
                if(DataService.code == 1){
-                    let alert = Alert.create({
+                    let alert = this.alert.create({
                      title: 'ERROR !',
                      subTitle: 'GPS must enable in order to perform action',
                      buttons: ['OK']
       });
-                     this.nav.present(alert);
+                     alert.present();
             }
     
                 if(DataService.code == 2){
-               let alert = Alert.create({
+               let alert = this.alert.create({
                      title: 'ERROR !',
                      subTitle: 'Could not fetch your location. Make sure you have working internet connection',
                      buttons: ['OK']
       });
-                     this.nav.present(alert);
+                     alert.present();
                 // window.alert('Could Not Fetch Your location. Make Sure you have Working Internet Connection')
             }
                  if(DataService.code == 3){
-               let alert = Alert.create({
+               let alert = this.alert.create({
                      title: 'ERROR !',
                      subTitle: 'Slow Internet Connection make sure your GPS in enable and try again..',
                      buttons: ['OK']
       });
-                     this.nav.present(alert);
+                    alert.present();
                 // window.alert('Could Not Fetch Your location. Make Sure you have Working Internet Connection')
             }
      
@@ -180,12 +181,12 @@ export class SignupPage {
         }
     },(err)=>{
       loading.dismiss();
-      let alert = Alert.create({
+      let alert = this.alert.create({
       title: 'ERROR !',
       subTitle: 'Make Sure you have working internet connection',
       buttons: ['OK']
     });
-       this.nav.present(alert);
+       alert.present();
         // alert('Error Make Sure you have working internet connection');
       console.log('email not found',err.json());
     })

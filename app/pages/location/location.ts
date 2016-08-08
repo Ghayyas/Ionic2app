@@ -1,4 +1,4 @@
-import {NavController, Page, Loading,ActionSheet,Alert,Toast} from 'ionic-angular';
+import {NavController, Page, LoadingController,AlertController,ToastController} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component, EventEmitter, OnInit} from "@angular/core";
 import {Http, Headers } from '@angular/http';
@@ -40,7 +40,8 @@ export class locationPage{
     public kmConverter;   //to Convert Meters in Kilometer
     public myLati;
     public mylongi;
-    constructor(public data:DataService,public http:Http, public nav: NavController){
+    constructor(public data:DataService,public http:Http, public nav: NavController,
+    private loading: LoadingController, private alert: AlertController, toast: ToastController){
        
 //   this.loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places",
 //   function(){
@@ -306,12 +307,12 @@ export class locationPage{
       
       //==============Update Profile Function ==================//
       updateProfile(){
-          let loading = Loading.create({
+          let loading = this.loading.create({
 		  content: "Please wait...",
         //   duration: 3000,
 		dismissOnPageChange: true
 	  });
-	  this.nav.present(loading);
+	 loading.present();
  
                           
          var creds =  "email=" + DataService.dataArray[0].email + "&name="+DataService.dataArray[0].name 
@@ -333,19 +334,19 @@ export class locationPage{
              
               },(err)=>{
                    loading.dismiss(true);
-         let alert = Alert.create({
+         let alert = this.alert.create({
                title: 'Error !',
                subTitle: 'Make sure You have Working internet connection and GeoLocation is enable',
                buttons: ['OK']
            });
-       this.nav.present(alert);
+       alert.present();
          if(err.json().status == 422){
-             let alert = Alert.create({
+             let alert = this.alert.create({
                title: 'Error !',
                subTitle: 'Email Already Taken',
                buttons: ['OK']
            });
-       this.nav.present(alert);
+       alert.present();
          }
               console.log('err',err);
             });

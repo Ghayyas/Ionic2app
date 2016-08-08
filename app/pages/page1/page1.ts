@@ -24,7 +24,7 @@ export class Page1 {
   else{
     this.nav.setRoot(SigninPage).then((suc)=>{
       console.log("Root Nav Successs");
-      this.nav.rootNav.push(SigninPage);
+      this.nav.push(SigninPage);
 
     })
   }

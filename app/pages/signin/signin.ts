@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Page, Loading,Alert,MenuController} from 'ionic-angular';
+import {NavController, Page, LoadingController,AlertController,MenuController} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
@@ -32,7 +32,8 @@ export class SigninPage {
 
 
 
-   constructor(public auth: AuthService, public nav: NavController, public menu: MenuController) { 
+   constructor(public auth: AuthService, public nav: NavController, public menu: MenuController,
+   private alert: AlertController, private loading: LoadingController) { 
    this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
@@ -74,12 +75,12 @@ ionViewWillEnter(){
    //=============== Alert Funciton =================//
    
      getalert(data,msg){
-       let alert = Alert.create({
+       let alert = this.alert.create({
                    title: data,
                    subTitle: msg,
                    buttons: ['OK']
                  });
-                      this.nav.present(alert);
+                      alert.present(alert);
      }
   
   //================= Alert END =============//
@@ -90,21 +91,25 @@ ionViewWillEnter(){
     */
    login(usercreds) {
               //  console.log('users',usercreds)
-	   let loading = Loading.create({
+	   let loading = this.loading.create({
 		   content: "Please wait...",
 		  //  duration: 3000,
 		   dismissOnPageChange: true
 	   });
-	   this.nav.present(loading);
+	   loading.present(loading);
       //  let getType = window.localStorage.getItem('type');
 	    this.authservice.login(usercreds).then(data => {
-		   loading.dismiss(true);
+		   
        if (data){
         this.nav.setRoot(TabsPage);
-		   }
-     
-      
-	   })
+       setTimeout(() => {
+           loading.dismiss();
+         }, 3000);
+ }
+		   })
    }
+      
+	  //  })
+  //  }
 
 }

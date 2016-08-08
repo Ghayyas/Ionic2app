@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 // import {Keyboard} from 'ionic-native';
-import {NavController,Alert,Loading,Toast,Keyboard} from 'ionic-angular';
+import {NavController,AlertController,LoadingController,ToastController,Keyboard} from 'ionic-angular';
 // import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
 import {AllEventsPage} from '../all-events/all-events';
 import {Page1} from '../page1/page1';
@@ -25,7 +25,8 @@ export class CreateListPeopleInvitePage {
   public emailArray = [];
   public whenClick :boolean;
   public senderEmail: string;
-  constructor(public nav: NavController, private http:Http, public keyboard:Keyboard) {
+  constructor(public nav: NavController, private http:Http, public keyboard:Keyboard,
+ private loading:LoadingController, private alert: AlertController, private toast: ToastController) {
       console.log('from list event',CreateEventPage.arraytoSend);
 
   }
@@ -53,13 +54,13 @@ export class CreateListPeopleInvitePage {
 
 
    showToast(message: string) {
-    let toast = Toast.create({
+    let toast = this.toast.create({
       message: message,
       duration: 2000,
       position: 'bottom'
     });
 
-    this.nav.present(toast);
+    toast.present();
    }
 
 
@@ -74,13 +75,13 @@ export class CreateListPeopleInvitePage {
   CreateEventPage.arraytoSend[0]['emails'] = jsonEmail; //push('email',jsonS);
   console.log('getting array',CreateEventPage.arraytoSend[0]);
 
-let loading = Loading.create({
+let loading = this.loading.create({
            content: "Please wait...",
           //  duration: 3000,
            dismissOnPageChange: true
            
         });
-  this.nav.present(loading);
+  loading.present();
   var headers = new Headers();
   var data  = CreateEventPage.arraytoSend[0];
    headers.append('Content-Type', 'application/json');

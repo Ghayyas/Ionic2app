@@ -11,7 +11,12 @@
  
 </ion-navbar>
  </ion-header>
+ <style>
 
+   .bottom0{
+     bottom: 0 !important;
+   }
+ </style>
 
 <!--*ngFor="let detail of eventDetailArray"-->
 <ion-content *ngFor="let detail of allEventsArray">
@@ -60,7 +65,7 @@
   
   
 </ion-content>
-<ion-footer>  
+<ion-footer class="bottom0">  
    <ion-toolbar position="bottom">
      <ion-buttons style="float: left;">
          <button royal>

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
-import {Platform, Alert, NavController} from "ionic-angular"
+import {Platform, AlertController, NavController} from "ionic-angular"
 import {Geolocation} from 'ionic-native';
 import {SignupPage} from "../../pages/signup/signup";
 
@@ -16,7 +16,7 @@ static success:boolean;
 static dataArray : Array<usercreds> = new Array();
 static code;
        
-  constructor() {
+  constructor(private alert: AlertController) {
   }
   
   static tabsData: boolean;

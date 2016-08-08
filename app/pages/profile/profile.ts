@@ -1,5 +1,5 @@
 
-import {NavController, Page, Loading,ActionSheet,Alert} from 'ionic-angular';
+import {NavController, Page, LoadingController,ActionSheetController,AlertController} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component} from "@angular/core";
 import {Http, Headers } from '@angular/http';
@@ -33,7 +33,8 @@ export class profile {
  public enableuserFields: boolean;
  public formDisabled:boolean;
  public profilePic:any
-    constructor(public nav: NavController, private http:Http, public data: DataService) {
+    constructor(public nav: NavController, private http:Http, public data: DataService, private alert: AlertController,
+    private loading: LoadingController, private actionSheet: ActionSheetController) {
         this.zone = new NgZone({enableLongStackTrace: false});
         this.enableuserFields = false;
 
@@ -100,7 +101,7 @@ console.log('options',options);
 
     //=====================================//
 upload(){
-  let actionSheet = ActionSheet.create({
+  let actionSheet = this.actionSheet.create({
     title: 'Select from Camera',
     buttons: [
       {
@@ -129,12 +130,12 @@ upload(){
             
         }, error => {
         
-           let alert = Alert.create({
+           let alert = this.alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
                       buttons: ['OK']
                 });
-                      this.nav.present(alert);
+                      alert.present();
             console.log("ERROR -> " + JSON.stringify(error));
         });
         }
@@ -164,12 +165,12 @@ upload(){
            
         }, error => {
    
-           let alert = Alert.create({
+           let alert = this.alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
                       buttons: ['OK']
                 });
-                      this.nav.present(alert);
+                      alert.present();
         });
           console.log('Archive clicked');
         }
@@ -184,17 +185,17 @@ upload(){
     ]
   });
 
-  this.nav.present(actionSheet);
+  actionSheet.present();
   
   }
   
   uploadSelectedImage(){
-  let loading = Loading.create({
+  let loading = this.loading.create({
 		  content: "Please wait...",
 		  duration: 6000,
 		  // dismissOnPageChange: true
 	  });
-	  this.nav.present(loading);
+	  loading.present();
          
    this.uploadFile().then((suc)=>{
    console.log('image success',suc);

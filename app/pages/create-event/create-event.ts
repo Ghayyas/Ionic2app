@@ -1,5 +1,5 @@
 import {Component,OnInit} from "@angular/core";
-import {NavController,Page,ActionSheet,Alert, Loading, Keyboard} from 'ionic-angular';
+import {NavController,Page,ActionSheetController,AlertController, LoadingController, Keyboard} from 'ionic-angular';
 import {DealsPage} from '../deals/deals';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
@@ -53,7 +53,7 @@ export class CreateEventPage{
    zone: any; 
    public empty: any;
 
-   public loading: Loading;
+  //  public loading: Loading;
   public fileUrl: any;
    
   public myval;
@@ -71,7 +71,8 @@ export class CreateEventPage{
 
 
    createListPeopleToInvite = CreateListPeopleInvitePage;
-  constructor(public nav: NavController, private http:Http, private keyboard: Keyboard) {
+  constructor(public nav: NavController, private http:Http, private keyboard: Keyboard, private load :LoadingController, 
+  private alert: AlertController, private actionSheet: ActionSheetController) {
     this.http = http;
     this.keyboard = keyboard;
         this.params.photo = "";    
@@ -83,13 +84,13 @@ export class CreateEventPage{
         this.params.description = '';
      
             
-        let loading = Loading.create({
+        let loading = this.load.create({
            content: "Please wait...",
-           duration: 300,
+           duration: 3000,
            dismissOnPageChange: true
             
         });
-       this.nav.present(loading);
+       loading.present();
 
       this.empty = function(){
         this.params.photo = "";    
@@ -156,13 +157,13 @@ keyboardClose(){
 uploadFile() {
 
    if(this.fileUrl  !== undefined){
-      let loading = Loading.create({
+      let loading = this.load.create({
            content: "Please wait...",
           //  duration: 300,
            dismissOnPageChange: true
             
         });
-       this.nav.present(loading);
+       loading.present(loading);
     var fileURL =  this.fileUrl ;
    console.log('fileUrl',fileURL)
    var uri = encodeURI("http://lilanisoft.com/hotworks/api/index.php/uploadImage");
@@ -191,12 +192,12 @@ console.log('options',options);
       
    },  function onError(error) {
      loading.dismiss(true);
-     let alert = Alert.create({
+     let alert = this.alert.create({
                       title: 'Error !',
                       subTitle: 'An error has occurred while sending picture to server',
                       buttons: ['OK']
                 });
-                      this.nav.present(alert);
+                      alert.present(alert);
       // alert("An error has occurred while sending picture to server: Code = " + error.code);
       // console.log("upload error source " + error.source);
       // console.log("upload error target " + error.target);
@@ -221,7 +222,7 @@ console.log('options',options);
 //=============== Picture Taken ==============//
 
 presentActionSheet():void {
-  let actionSheet = ActionSheet.create({
+  let actionSheet = this.actionSheet.create({
     title: 'Select from Camera',
     buttons: [
       {
@@ -245,12 +246,12 @@ presentActionSheet():void {
             
         }, error => {
        
-           let alert = Alert.create({
+           let alert = this.alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
                       buttons: ['OK']
                 });
-                      this.nav.present(alert);
+                      alert.present();
       });
         }
       },
@@ -273,12 +274,12 @@ presentActionSheet():void {
       
         }, error => {
       
-           let alert = Alert.create({
+           let alert = this.alert.create({
                       title: 'Error !',
                       subTitle: 'Something went wrong',
                       buttons: ['OK']
                 });
-                      this.nav.present(alert);
+                      alert.present();
         });
          
         }
@@ -293,7 +294,7 @@ presentActionSheet():void {
     ]
   });
 
-  this.nav.present(actionSheet);
+  actionSheet.present();
   
   }
 
@@ -319,25 +320,25 @@ submit(params)
     this.params.end_date = params.end_date;
     this.params.type = params.type;
      
-      console.log('params',this.params.type,'submit parms',params.type);    
+      // console.log('params',this.params.type,'submit parms',params.type);    
 
-//    if(this.params.photo == undefined ){
-//       let alert = Alert.create({
-//       title: 'Error !',
-//       subTitle: 'Event Picture is Required',
-//       buttons: ['OK']
-//     });
-//        this.nav.present(alert);
-// }
-//   else if(this.params.latitude == undefined){
-//        let alert = Alert.create({
-//       title: 'Error !',
-//       subTitle: 'Enable to get your Location try again',
-//       buttons: ['OK']
-//     });
-//        this.nav.present(alert);
-//   }
-//   else{
+   if(this.params.photo == undefined ){
+      let alert = this.alert.create({
+      title: 'Error !',
+      subTitle: 'Event Picture is Required',
+      buttons: ['OK']
+    });
+       alert.present(alert);
+}
+  else if(this.params.latitude == undefined){
+       let alert = this.alert.create({
+      title: 'Error !',
+      subTitle: 'Enable to get your Location try again',
+      buttons: ['OK']
+    });
+       alert.present(alert);
+  }
+  else{
  
   //   this.loading = Loading.create({
   //          content: "Please wait...",
@@ -420,7 +421,7 @@ submit(params)
 
 // }
   }
-
+  }
   //========================= SUBMIT FUNCTION END ================//
   }
 

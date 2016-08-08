@@ -24,7 +24,7 @@ declare var cordova:any;
 export class MyApp {
   rootPage: any;
   userEvents: any = myEvents;
-  static companyLogin:boolean;
+  // static companyLogin:boolean;
 
  @ViewChild('content') nav: NavController;
 
@@ -51,17 +51,17 @@ public local = null;
         this.menu.enable(false);
       }
       else{
-        if(getType == 1){
-          console.log('type value',getType);
-          MyApp.companyLogin = true;
-         }
-       else{
-          MyApp.companyLogin = false;
-           console.log('type value',getType);
-          }
+      //   if(getType == 1){
+      //     console.log('type value',getType);
+      //     MyApp.companyLogin = true;
+      //    }
+      //  else{
+      //     MyApp.companyLogin = false;
+      //      console.log('type value',getType);
+      //     }
           this.menu.enable(true);
           this.rootPage  = TabsPage;
-       console.log('company login',MyApp.companyLogin);
+      //  console.log('company login',MyApp.companyLogin);
       }
      
       
@@ -109,4 +109,5 @@ public local = null;
 ionicBootstrap(MyApp, [
   disableDeprecatedForms(),
   provideForms()
- ],{tabbarPlacement: "bottom"})
+ ],{tabsPlacement: "bottom",tabsHideOnSubPages: false,
+      tabsHighlight: false})
