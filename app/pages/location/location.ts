@@ -41,7 +41,7 @@ export class locationPage{
     public myLati;
     public mylongi;
     constructor(public data:DataService,public http:Http, public nav: NavController,
-    private loading: LoadingController, private alert: AlertController, toast: ToastController){
+    private loading: LoadingController, private alert: AlertController, private toast: ToastController){
        
 //   this.loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places",
 //   function(){
@@ -216,7 +216,7 @@ export class locationPage{
           icon: 'img/ic_marker.png',
           draggable: true,
 
-          title: 'Hello World!'
+        //   title: 'Hello World!'
         });
         
 
@@ -325,7 +325,9 @@ export class locationPage{
             this.http.post(SERVER_NAME + 'auth/signup', creds, { headers: headers })
             .subscribe(data => {
              console.log('data',data.json());
-            loading.dismiss(true);
+          setTimeout(function() {
+        loading.dismiss();
+      }, 3000);
               if (data.json().token){
                 window.localStorage.setItem('ecnob.token',data.json().token);
                 window.localStorage.setItem('type',data.json().type);
@@ -333,22 +335,26 @@ export class locationPage{
               }
              
               },(err)=>{
-                   loading.dismiss(true);
-         let alert = this.alert.create({
-               title: 'Error !',
-               subTitle: 'Make sure You have Working internet connection and GeoLocation is enable',
-               buttons: ['OK']
-           });
-       alert.present();
+    setTimeout(function() {
+        loading.dismiss();
+      }, 3000);
+    let toast = this.toast.create({
+      message: "Make Sure You have working internet Connection and Geolocaton is enable",
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present();
          if(err.json().status == 422){
-             let alert = this.alert.create({
-               title: 'Error !',
-               subTitle: 'Email Already Taken',
-               buttons: ['OK']
-           });
-       alert.present();
+  let toast = this.toast.create({
+      message: "Email Already Taken",
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present();
          }
-              console.log('err',err);
+            //   console.log('err',err);
             });
         
         

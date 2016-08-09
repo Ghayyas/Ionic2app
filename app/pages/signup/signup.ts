@@ -133,7 +133,9 @@ export class SignupPage {
           var obj = new usercreds(this.usercreds.email,this.usercreds.password,this.usercreds.name,this.usercreds.type,this.usercreds.photo,this.usercreds.latitude,this.usercreds.longitude,this.usercreds.radius);
  
           DataService.pushData(obj).then((data)=>{
-           loading.dismiss();
+             setTimeout(function() {
+        loading.dismiss();
+      }, 3000);
                console.log('reciveing data',data);
        
                if(data){
@@ -142,7 +144,9 @@ export class SignupPage {
                }
              else{
                
-               loading.dismiss();
+        setTimeout(function() {
+        loading.dismiss();
+      }, 3000);
                if(DataService.code == 1){
                     let alert = this.alert.create({
                      title: 'ERROR !',
@@ -180,7 +184,10 @@ export class SignupPage {
           this.emailExist = true;
         }
     },(err)=>{
-      loading.dismiss();
+      setTimeout(function() {
+        loading.dismiss();
+      }, 3000);
+      
       let alert = this.alert.create({
       title: 'ERROR !',
       subTitle: 'Make Sure you have working internet connection',

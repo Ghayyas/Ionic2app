@@ -1,6 +1,6 @@
 <!--<div class="tabshide">-->
 <!--<ion-footer>-->
-<ion-tabs class="foo-tabs" id="mytab"  #myTabs primary tabbarplacement="bottom">
+<ion-tabs class="foo-tabs" id="mytab"  #myTabs primary>
   <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Deals" tabIcon="pricetags"></ion-tab>
   <ion-tab [root]="tab3Allevent" tabTitle="Events" tabIcon="calendar"></ion-tab>
@@ -10,6 +10,9 @@
 <!--</ion-footer>-->
 <!--</div>-->
 <style type="text/css">
+ion-tabbar{
+    bottom: 0.1px;
+}
 ion-icon.tab-button{
 	font-size: 14px;
     text-transform: capitalize;

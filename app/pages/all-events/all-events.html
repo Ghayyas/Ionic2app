@@ -43,6 +43,9 @@ ion-title{
   .item-button{
     padding: 0.2em;
   }
+  .background-hide{
+    background: none !important;
+  }
 </style>
 
 
@@ -63,7 +66,7 @@ ion-title{
     </button>
   </ion-buttons>
       <ion-buttons end>
-    <button royal [navPush]="createEvent">
+    <button royal (click)="createEventgo()" >
        <ion-icon ios="ios-add" md="md-add"></ion-icon>
     </button>
   </ion-buttons>
@@ -109,9 +112,10 @@ ion-title{
   
   
   
-  
   <div [ngSwitch]="pet" *ngFor = "let arr of event; let i = index">
+ 
     <div *ngIf="arr.type == 0">
+     
   <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
 
 <div class="card-background-page"> 
@@ -179,10 +183,10 @@ ion-title{
   
   <!--  SWITCH  -->
   <div *ngIf="arr.type == 1">
-  <div *ngSwitchCase="'public'">
 
+  <div *ngSwitchCase="'public'">
   <div class="card-background-page"> 
-    <ion-card >
+    <ion-card>
       <div class="imgBlack" style="position:relative;" (click)="newTabs(i)">
      <div class="image-style">
     </div>

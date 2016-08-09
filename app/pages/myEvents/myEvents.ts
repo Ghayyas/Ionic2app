@@ -38,26 +38,26 @@ export class myEvents{
     private loading: LoadingController, private alert: AlertController){
       this.nexsusP = false; 
      this.myImg = [
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'},
-       {img: './img/event1.jpg'}   
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+      {img: './img/default-user.png'},
+      {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+        {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+      {img: './img/default-user.png'},
     ];
     
     //  ngZone.run(() => {
@@ -87,82 +87,107 @@ export class myEvents{
     ionViewWillEnter(){
     let loading = this.loading.create({
            content: "Please wait...",
-           duration: 3000,
+          //  duration: 3000,
            dismissOnPageChange: true
             
         });
   loading.present();
-  //  let headers = new Headers();
-  //    headers.append('Content-Type', 'application/json');
-  //    let ecnobToken = window.localStorage.getItem('ecnob.token');
-  //     headers.append('Authorization', `Bearer ${ecnobToken}`)
-  //       this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
-  //       .subscribe((data)=>{
-  //         loading.dismiss(true);
-  //          this.response = data.json();
-  //           console.log('data recivng',data);
-  //           console.log('dataJson',data.json());
+   let headers = new Headers();
+     headers.append('Content-Type', 'application/json');
+     let ecnobToken = window.localStorage.getItem('ecnob.token');
+      headers.append('Authorization', `Bearer ${ecnobToken}`)
+        this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
+        .subscribe((data)=>{
+          setTimeout(function() {
+            loading.dismiss(true);
+          }, 1000);
+          
+           this.response = data.json().events;
+            console.log('data recivng',data);
+            console.log('dataJson',data.json());
           
            
             
-  //       },(err)=>{
-  //         loading.dismiss(true);
-  //       console.log('error recing',err);
-  //       console.log('err Josn',err.json());
-  //       })
+        },(err)=>{
+            setTimeout(function() {
+            loading.dismiss(true);
+          }, 1000);
+        console.log('error recing',err);
+        console.log('err Josn',err.json());
+        })
         
         
-      if(this.width == 320){
+      if(this.width <= 320){
        this.totalAttendents = 5;
      }
-      else if(this.width == 350){
+      else if(this.width <= 339){
+       this.totalAttendents = 5;
+     }
+      else if(this.width <= 350){
        this.totalAttendents = 6;
      }
       
-      else if(this.width == 360){
+      else if(this.width <= 360){
        this.totalAttendents = 6;
      }
-     else if(this.width == 366){
+     else if(this.width <= 366){
        this.totalAttendents = 6;
      }
-    else  if(this.width == 375){
+      
+    else  if(this.width <= 375){
        this.totalAttendents = 6;
      }
-     else  if(this.width == 390){
+     else  if(this.width <= 390){
        this.totalAttendents = 6;
      }
-    else if(this.width == 411){
+      else  if(this.width <= 400){
+       this.totalAttendents = 6;
+     }
+    else if(this.width <= 411){
        this.totalAttendents = 7;
      }
-      else if(this.width == 414){
+      else if(this.width <= 414){
        this.totalAttendents = 7;
      }
-     else if(this.width == 435){
+       else if(this.width <= 415){
+       this.totalAttendents = 7;
+     }
+     else if(this.width <= 435){
        this.totalAttendents = 7;
        this.nexsusP = true;
      }
-     else if(this.width == 480){
+       else if(this.width <= 439){
+       this.totalAttendents = 7;
+       this.nexsusP = true;
+     }
+      else if(this.width <= 460){
        this.totalAttendents = 9;
      }
-     else if(this.width == 600){
+     else if(this.width <= 480){
        this.totalAttendents = 9;
      }
-     else if(this.width == 640){
+     else if(this.width <= 600){
+       this.totalAttendents = 9;
+     }
+     else if(this.width <= 640){
        this.totalAttendents = 13;
      }
-     else if(this.width == 639){
+     else if(this.width <= 639){
        this.totalAttendents = 13;
      }
-     else if(this.width == 720){
+     else if(this.width <= 720){
        this.totalAttendents = 12;
      }
-     else if(this.width == 768){
+     else if(this.width <= 768){
        this.totalAttendents = 14;
      }
-     else if(this.width == 800){
+     else if(this.width <= 800){
        this.totalAttendents = 16;
      }
-     else if(this.width == 801){
+     else if(this.width <= 801){
+       this.totalAttendents = 16;
+     }
+       else if(this.width <= 856){
        this.totalAttendents = 16;
      }
     else {

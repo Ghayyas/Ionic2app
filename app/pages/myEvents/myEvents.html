@@ -55,7 +55,7 @@ max-height: 100px !important;
  </ion-header>
 
    <ion-content>
-     <div class="card-background-page"> 
+     <div class="card-background-page" *ngFor="let res of response"> 
     <ion-card>
     
     <div class="imgBlack" style="position:relative;">
@@ -65,15 +65,15 @@ max-height: 100px !important;
     </div>
        <div class="image-style">
     </div>
-    <img src="img/subscription-banner.jpg" style="position: relative;"/>
+    <img src="{{res.photo}}" style="position: relative; height: 210px;"/>
 
         </div>
    <div class="">
       <!--font-size:14px;-->
-     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right; color: #81A1E3;"> July 27,2016</span></div>
-     <div class="card-title" style="z-index: 5;padding-left: 45%;font-size: large;"><!--{{arr.description}}--><span >My Event</span><span style="padding-left: 5px; font-size: initial;">(By List)</span></div>
+     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right; color: #81A1E3;"> {{res.start_date}}</span></div>
+     <div class="card-title" style="z-index: 5;padding-left: 45%;font-size: large;"><!--{{arr.description}}--><span >{{res.name}}</span><span style="padding-left: 5px; font-size: initial;" *ngIf="res.type == 0;">(By List)</span><span style="padding-left: 5px; font-size: initial;" *ngIf="res.type == 1;">(By Invitation)</span></div>
      <!--<div class="card-title" style="z-index: 5;padding-left: 261px;margin-top: 7px;width: inherit;"><span style="float: right;">(By List)</span></div>-->
-     <div class="card-time" style="padding-top: 14px; z-index: 5;padding-left: 45%;width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
+     <div class="card-time" style="padding-top: 14px; z-index: 5;padding-left: 45%;width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">{{res.location}}</span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"><span style="float:right"><ion-icon style="font-size: 32px;
     margin-top: -10px; color: white;" name="trash"></ion-icon></span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="font-size: 32px;
@@ -128,12 +128,11 @@ max-height: 100px !important;
 
 
 
- <div class="card-background-page"> 
+ <!--<div class="card-background-page"> 
     <ion-card>
     
     <div class="imgBlack" style="position:relative;">
-      <!--img/stub_profile.png-->
-      <!--img/comp-detail.jpg-->
+    
         <div class="background-image-color">
     </div>
        <div class="image-style">
@@ -142,22 +141,23 @@ max-height: 100px !important;
 
         </div>
    <div class="">
-      <!--font-size:14px;-->
-     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;">  <!--{{arr.name}}-->  <span  style="float: right; color: #81A1E3;"> July 27,2016</span></div>
-     <div class="card-title" style="z-index: 5;padding-left: 45%;width: inherit;font-size: large;"><!--{{arr.description}}--><span >My Event</span><span style="padding-left: 5px; font-size: initial;">(By List)</span></div>
-     <!--<div class="card-title" style="z-index: 5;padding-left: 261px;margin-top: 7px;width: inherit;"><span style="float: right;">(By List)</span></div>-->
-     <div class="card-time" style="padding-top: 14px; z-index: 5;padding-left: 45%;width: inherit;"> <!-- {{arr.end_date}}--><span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
+
+     <div class="card-name" style="z-index: 5;  padding-left: 45%; width: inherit;"> <span  style="float: right; color: #81A1E3;"> July 27,2016</span></div>
+     <div class="card-title" style="z-index: 5;padding-left: 45%;font-size: large;"><span >My Event</span><span style="padding-left: 5px; font-size: initial;">(By List)</span></div>
+     <div class="card-time" style="padding-top: 14px; z-index: 5;padding-left: 45%;width: inherit;"> <span style="float: right;">Bentonville, Arkansas, UnitedStates</span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"><span style="float:right"><ion-icon style="font-size: 32px;
     margin-top: -10px; color: white;" name="trash"></ion-icon></span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="font-size: 32px;
     margin-right: 22px;margin-top: -10px; color:white" name="create"></ion-icon></span> </div>
    </div>
-    <!--<ion-row no-padding>-->
+
       <div style="float: left;margin-left: 11px;margin-top: 10px;font-size: 15px;color: gray;">Attendees </div>
       <ion-row style="position: relative;font-size: smaller;padding-top: 12px; padding-left: 4px; padding-bottom:10px;">
         <div *ngFor="let image of myImg; let i = index">
         <ion-avatar *ngIf="i < totalAttendents" style="padding-right:6px;">
+        
           <img src="{{image.img}}" alt="Event Image"> 
+  
        </ion-avatar>
       </div>
         <div *ngIf="remaining !== 0 && !nexsusP" style="background: rgb(47, 116, 245);
@@ -184,7 +184,7 @@ max-height: 100px !important;
     </ion-row>
   </ion-card>
 
-</div>
+</div>-->
 
 
 

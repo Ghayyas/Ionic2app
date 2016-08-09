@@ -39,7 +39,7 @@ static code;
         else{
             resolve(true);
         }
-        }, 6000);
+        }, 16000);
     
       })
       
@@ -52,22 +52,22 @@ static getData(){
 
 
     
-   static mapService() {
+//    static mapService() {
 
-        return new Promise((resolve,reject) => {
-               var script = document.createElement("script");
-                   script.type = "text/javascript";
-                   document.getElementsByTagName("head")[0].appendChild(script);
-                   script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places';
-                //    resolve();
+//         return new Promise((resolve,reject) => {
+//                var script = document.createElement("script");
+//                    script.type = "text/javascript";
+//                    document.getElementsByTagName("head")[0].appendChild(script);
+//                    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA0mplZyMtSAN7mZtQuqu_yncvQt526eMc&libraries=places';
+//                 //    resolve();
               
-            }).then((res)=>{
-                console.log('maps working..',res);
-            },(err)=>{
-                window.alert('maps not wokring');
-            console.log('mapping error',err);
-            })
-    }
+//             }).then((res)=>{
+//                 console.log('maps working..',res);
+//             },(err)=>{
+//                 window.alert('maps not wokring');
+//             console.log('mapping error',err);
+//             })
+//     }
   
 }
 
@@ -98,7 +98,7 @@ export class usercreds{
        
         // this.longitude = SignupPage.long;
         // this.latitude = SignupPage.lat;
- Geolocation.getCurrentPosition({enableHighAccuracy:true,timeout:5000,maximumAge: 5000}).then((resp) => {
+ Geolocation.getCurrentPosition({enableHighAccuracy:true,timeout:15000,maximumAge: 15000}).then((resp) => {
      this.latitude  = resp.coords.latitude;
      this.longitude =  resp.coords.longitude;
      console.log('cordova latitude',this.latitude)

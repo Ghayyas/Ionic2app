@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Page, LoadingController,AlertController,MenuController} from 'ionic-angular';
+import {NavController, Page, Keyboard, ToastController, LoadingController,AlertController,MenuController} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
@@ -33,10 +33,35 @@ export class SigninPage {
 
 
    constructor(public auth: AuthService, public nav: NavController, public menu: MenuController,
-   private alert: AlertController, private loading: LoadingController) { 
+   private alert: AlertController, private loading: LoadingController,private toast: ToastController,
+   public keyboard:Keyboard) { 
    this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
+     if(this.keyboard.isOpen()){
+       let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+       var att = document.createAttribute('class');
+       att.value = 'keyboardHide';
+       keyboardHide.setAttributeNode(att);
+     }
+     else if(this.keyboard.onClose){
+      let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+    
+       var att = document.createAttribute('class');
+       att.value = 'keyboardclose';
+        //  keyboardHide.className = '';
+       keyboardHide.setAttributeNode(att);
+     }
+     //  var tab = document.getElementsByTagName("ion-tabs")[0];
+  //  var att = document.createAttribute("tabbarplacement");
+  //   att.value = "bottom";
+  //   tab.setAttributeNode(att);
+    //  keyboardCheck(){
+      // setTimeout(function() {
+        
+      // }, timeout);
+      //  setTimeout(()  => console.log('is the keyboard open ', this.keyboard.isOpen()),3000);
+// }
       
 	  //  this.token= window.localStorage.getItem('ecnob.token');
     //    if(this.token !== null)
@@ -74,13 +99,13 @@ ionViewWillEnter(){
    
    //=============== Alert Funciton =================//
    
-     getalert(data,msg){
-       let alert = this.alert.create({
-                   title: data,
-                   subTitle: msg,
-                   buttons: ['OK']
-                 });
-                      alert.present(alert);
+     getalert(msg){
+       let toast = this.toast.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
      }
   
   //================= Alert END =============//
@@ -99,12 +124,12 @@ ionViewWillEnter(){
 	   loading.present(loading);
       //  let getType = window.localStorage.getItem('type');
 	    this.authservice.login(usercreds).then(data => {
-		   
+		   setTimeout(function() {
+         loading.dismiss();
+       }, 3000);
        if (data){
         this.nav.setRoot(TabsPage);
-       setTimeout(() => {
-           loading.dismiss();
-         }, 3000);
+     
  }
 		   })
    }

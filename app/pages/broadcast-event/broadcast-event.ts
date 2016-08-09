@@ -160,7 +160,10 @@ let loading = this.loading.create({
     this.http.post(SERVER_NAME + 'event/create',data,{headers:headers})
     .subscribe(
       (data) => {
-        loading.dismiss(true);
+        setTimeout(function() {
+          loading.dismiss(true);
+        }, 3000);
+        
         for(var i = 0; i < CreateEventPage.arraytoSend.length; i++){
            CreateEventPage.arraytoSend[i] = '';
      }
@@ -168,7 +171,9 @@ let loading = this.loading.create({
         console.log('data send',data.json()); 
         this.nav.push(TabsPage);
          },(err)=>{
-        loading.dismiss(true);
+      setTimeout(function() {
+          loading.dismiss(true);
+        }, 3000);
         this.nav.push(TabsPage)
          console.log('err',err);
          let error = err.json();

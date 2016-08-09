@@ -1,5 +1,5 @@
 import {Component,OnInit} from "@angular/core";
-import {NavController,Page,ActionSheetController,AlertController, LoadingController, Keyboard} from 'ionic-angular';
+import {NavController,Platform,Page,ActionSheetController,AlertController, LoadingController, Keyboard,ToastController} from 'ionic-angular';
 import {DealsPage} from '../deals/deals';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
@@ -46,7 +46,7 @@ export class CreateEventPage{
       description : '',
       latitude: '', //required
       longitude: '', //required
-      created_at: new Date().getTime()
+      created_at: new Date()
     }
     
     
@@ -61,6 +61,8 @@ export class CreateEventPage{
   static myLong : any;
   static myImage:any; 
   static arraytoSend = [];
+   public platform: Platform
+    // public actionsheetCtrl: ActionSheetController
   // static start_date:any;
   // static end_date:any;
   // static description:any;
@@ -72,7 +74,7 @@ export class CreateEventPage{
 
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http, private keyboard: Keyboard, private load :LoadingController, 
-  private alert: AlertController, private actionSheet: ActionSheetController) {
+  private alert: AlertController, public actionSheet: ActionSheetController, private toast:ToastController) {
     this.http = http;
     this.keyboard = keyboard;
         this.params.photo = "";    
@@ -114,7 +116,7 @@ export class CreateEventPage{
      ngOnInit() {
     
 
-        console.log('hello world');
+        // console.log('hello world');
       //  this.params.location = '';
         var input = new google.maps.places.SearchBox(document.getElementById('locationINput'));
 
@@ -181,7 +183,9 @@ console.log('options',options);
    var ft = new FileTransfer();
 
    ft.upload(array[0], uri, function onSuccess(r) {
-     loading.dismiss(true);
+        setTimeout(function() {
+            loading.dismiss(true);
+          }, 3000);
       console.log("Code = " + r.responseCode);
       console.log("Response = " + r.response);
       let photoParse = JSON.parse(r.response);
@@ -191,16 +195,18 @@ console.log('options',options);
       // console.log("Sent = " + r.bytesSent);
       
    },  function onError(error) {
-     loading.dismiss(true);
-     let alert = this.alert.create({
-                      title: 'Error !',
-                      subTitle: 'An error has occurred while sending picture to server',
-                      buttons: ['OK']
-                });
-                      alert.present(alert);
-      // alert("An error has occurred while sending picture to server: Code = " + error.code);
-      // console.log("upload error source " + error.source);
-      // console.log("upload error target " + error.target);
+        setTimeout(function() {
+            loading.dismiss(true);
+          }, 3000);
+       let toast = this.toast.create({
+      message: "Getting Error While sending picture to server",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
+      console.log("An error has occurred while sending picture to server: Code = " + error);
+      console.log("upload error source " + error.source);
+      console.log("upload error target " + error.target);
    }, options);
    console.log('arra',array[0],"fileUrl",fileURL);
 
@@ -224,6 +230,8 @@ console.log('options',options);
 presentActionSheet():void {
   let actionSheet = this.actionSheet.create({
     title: 'Select from Camera',
+    cssClass: 'action-sheets-basic-page',
+
     buttons: [
       {
         text: 'Take Picture form Camera',
@@ -240,18 +248,18 @@ presentActionSheet():void {
             saveToPhotoAlbum: false
         }).then(imageData => {
             this.zone.run(() => {
-                 this.fileUrl  =  imageData;
-                  this.uploadFile();
+            this.fileUrl  =  imageData;
+            this.uploadFile();
             });
             
         }, error => {
        
-           let alert = this.alert.create({
-                      title: 'Error !',
-                      subTitle: 'Something went wrong',
-                      buttons: ['OK']
-                });
-                      alert.present();
+     let toast = this.toast.create({
+      message: "Something went wrong",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
       });
         }
       },
@@ -274,12 +282,12 @@ presentActionSheet():void {
       
         }, error => {
       
-           let alert = this.alert.create({
-                      title: 'Error !',
-                      subTitle: 'Something went wrong',
-                      buttons: ['OK']
-                });
-                      alert.present();
+    let toast = this.toast.create({
+      message: "Something Went Wrong",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
         });
          
         }
@@ -295,6 +303,50 @@ presentActionSheet():void {
   });
 
   actionSheet.present();
+  //  let actionSheet = this.actionSheet.create({
+  //     title: 'Albums',
+  //     cssClass: 'action-sheets-basic-page',
+  //     buttons: [
+  //       {
+  //         text: 'Delete',
+  //         role: 'destructive',
+
+  //         handler: () => {
+  //           console.log('Delete clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Share',
+
+  //         handler: () => {
+  //           console.log('Share clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Play',
+        
+  //         handler: () => {
+  //           console.log('Play clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Favorite',
+    
+  //         handler: () => {
+  //           console.log('Favorite clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel', // will always sort to be on the bottom
+      
+  //         handler: () => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   actionSheet.present()
   
   }
 
@@ -323,20 +375,20 @@ submit(params)
       // console.log('params',this.params.type,'submit parms',params.type);    
 
    if(this.params.photo == undefined ){
-      let alert = this.alert.create({
-      title: 'Error !',
-      subTitle: 'Event Picture is Required',
-      buttons: ['OK']
-    });
-       alert.present(alert);
+     let toast = this.toast.create({
+      message: "Picture is Required try again",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
 }
   else if(this.params.latitude == undefined){
-       let alert = this.alert.create({
-      title: 'Error !',
-      subTitle: 'Enable to get your Location try again',
-      buttons: ['OK']
-    });
-       alert.present(alert);
+      let toast = this.toast.create({
+      message: "Unable to get your location try again",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
   }
   else{
  

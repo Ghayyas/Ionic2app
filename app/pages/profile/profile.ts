@@ -1,5 +1,5 @@
 
-import {NavController, Page, LoadingController,ActionSheetController,AlertController} from 'ionic-angular';
+import {NavController,ToastController, Page, LoadingController,ActionSheetController,AlertController} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component} from "@angular/core";
 import {Http, Headers } from '@angular/http';
@@ -34,7 +34,7 @@ export class profile {
  public formDisabled:boolean;
  public profilePic:any
     constructor(public nav: NavController, private http:Http, public data: DataService, private alert: AlertController,
-    private loading: LoadingController, private actionSheet: ActionSheetController) {
+    private loading: LoadingController, private actionSheet: ActionSheetController, private toast:ToastController) {
         this.zone = new NgZone({enableLongStackTrace: false});
         this.enableuserFields = false;
 
@@ -65,18 +65,25 @@ console.log('options',options);
 
    ft.upload(array[0], uri, function onSuccess(r) {
 
-      console.log("Code = " + r.responseCode);
-      console.log("Response = " + r.response);
+      // console.log("Code = " + r.responseCode);
+      // console.log("Response = " + r.response);
       let photoParse = JSON.parse(r.response);
       DataService.dataArray[0].photo = photoParse.image;
-      console.log("Sent = " + r.bytesSent);
+      // console.log("Sent = " + r.bytesSent);
       // window.alert('Image upload Success..');
    }, function onError(error) {
-      alert("An error has occurred: Code = " + error.code);
-      console.log("upload error source " + error.source);
-      console.log("upload error target " + error.target);
+     let toast = this.toast.create({
+            message: "Picture not Uploaded",
+            duration: 2000,
+            position: 'bottom'
+          });
+
+    toast.present();
+      // alert("An error has occurred: Code = " + error.code);
+      // console.log("upload error source " + error.source);
+      // console.log("upload error target " + error.target);
    }, options);
-   console.log('arra',array[0],"fileUrl",fileURL);
+  //  console.log('arra',array[0],"fileUrl",fileURL);
      }
      resolve(true);
   })
@@ -130,13 +137,14 @@ upload(){
             
         }, error => {
         
-           let alert = this.alert.create({
-                      title: 'Error !',
-                      subTitle: 'Something went wrong',
-                      buttons: ['OK']
-                });
-                      alert.present();
-            console.log("ERROR -> " + JSON.stringify(error));
+           let toast = this.toast.create({
+            message: "Something went wrong",
+            duration: 2000,
+            position: 'bottom'
+          });
+
+    toast.present();
+            // console.log("ERROR -> " + JSON.stringify(error));
         });
         }
       },
@@ -165,21 +173,22 @@ upload(){
            
         }, error => {
    
-           let alert = this.alert.create({
-                      title: 'Error !',
-                      subTitle: 'Something went wrong',
-                      buttons: ['OK']
-                });
-                      alert.present();
+      let toast = this.toast.create({
+      message: "Something went wrong",
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present();
         });
-          console.log('Archive clicked');
+          // console.log('Archive clicked');
         }
       },
       {
         text: 'Cancel',
         role: 'cancel',
         handler: () => {
-          console.log('Cancel clicked');
+          // console.log('Cancel clicked');
         }
       }
     ]
@@ -199,6 +208,7 @@ upload(){
          
    this.uploadFile().then((suc)=>{
    console.log('image success',suc);
+
        this.nav.push(locationPage);
    },(err)=>{
      window.alert('Image not Uploaded');

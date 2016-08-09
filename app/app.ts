@@ -1,4 +1,4 @@
-import {Component,Inject, ViewChild} from "@angular/core";
+import {Component,Inject, ViewChild,enableProdMode} from "@angular/core";
 import {Platform, ionicBootstrap,MenuController, NavController,Keyboard} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
@@ -8,12 +8,13 @@ import {EventDetailsPage} from './pages/event-details/event-details';
 import {AuthService} from "./pages/signin/authservice";
 import {myEvents} from "./pages/myEvents/myEvents";
 import {Page1} from './pages/page1/page1';
+// import {enableProdMode} from 'angular2/core';
 
 import {Geolocation} from 'ionic-native';
 
 declare var navigator:any;
 declare var cordova:any;
-
+enableProdMode();
 
 @Component({
   templateUrl: 'build/app.html',
@@ -39,6 +40,8 @@ public local = null;
       console.log('platform works..');
       Splashscreen.hide();
       StatusBar.styleDefault();
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(false);
       // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
     // keyboard.disableScroll(true)

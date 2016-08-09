@@ -72,3 +72,6 @@ scroll-content{
  bottom: -webkit-calc(-100% + 40px) !important;
  bottom: calc(-100% + 83px) !important;
 }
+ion-tabbar.show-tabbar{
+  bottom: 0.1px !important;
+}

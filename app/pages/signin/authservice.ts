@@ -1,7 +1,7 @@
 
 import {Injectable, Inject} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {NavController,AlertController,LoadingController, MenuController} from 'ionic-angular';
+import {NavController,AlertController,LoadingController, ToastController, MenuController} from 'ionic-angular';
 import {SigninPage} from './signin';
 import {SERVER_NAME} from '../../service/dataService/dataService'
 import {myEvents} from '../myEvents/myEvents';
@@ -17,25 +17,26 @@ export class AuthService {
     static nav: NavController;
     static menu: MenuController
 
-    constructor(public http: Http ,nav:NavController, menu:MenuController, private alert: AlertController, private loading: LoadingController) {
+    constructor(public http: Http ,nav:NavController, menu:MenuController, private alert: AlertController, private loading: LoadingController
+    , private toast:ToastController) {
         this.http = http;
         AuthService.nav = nav;
         AuthService.menu = menu;
         // console.log('objc',nav);
-        AuthService.isLoggedin = false;
+        // AuthService.isLoggedin = false;
     }
 
 
 
 //=============== Alert Funciton =================//
    
-     getalert(data,msg){
-       let alert = this.alert.create({
-                   title: data,
-                   subTitle: msg,
-                   buttons: ['OK']
-                 });
-        alert.present();
+     getalert(msg){
+     let toast = this.toast.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
      }
   
   //================= Alert END =============//
@@ -63,7 +64,7 @@ export class AuthService {
     //                      MyApp.companyLogin = false;
     //                      console.log('type value',getType);
     //   }
-                    AuthService.isLoggedin = true;
+                    // AuthService.isLoggedin = true;
                    resolve(true);    
             }
             
@@ -75,11 +76,11 @@ export class AuthService {
               
                   let error = err.json();
                   if(error.status_code === 401){
-                      this.getalert('Error','Email Or password Not matched')
+                      this.getalert('Email Or password Not matched')
                       console.log('Email or Password Not found on server');
                   }
                   else{
-                      this.getalert('Error','Make Sure you have Connected to Internet');
+                      this.getalert('Make Sure you have Connected to Internet');
                   }  
                   resolve(false);
                 
@@ -144,7 +145,7 @@ export class AuthService {
     // tab.setAttributeNode(att);
     // console.log('page1 done'); 
                     AuthService.menu.close();
-                   AuthService.isLoggedin = false;
+                //    AuthService.isLoggedin = false;s
                 //    window.localStorage.clear();
                    resolve(true);    
                 }

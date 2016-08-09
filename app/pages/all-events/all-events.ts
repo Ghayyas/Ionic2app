@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, App, AlertController, LoadingController ,MenuController, ToastController} from 'ionic-angular';
+import {NavController, Platform, App, AlertController, LoadingController ,MenuController, ToastController} from 'ionic-angular';
 import {EventDetailsPage} from '../event-details/event-details';
 import {AllEventFormPage} from '../all-event-form/all-event-form';
 import {Http, Headers } from '@angular/http';
@@ -45,13 +45,15 @@ export class AllEventsPage {
   public selectedMaybe: boolean;
   public myarray = [];
   public myLocalArray = [];
+  public noPublicData: boolean;
+  public ios:boolean;
+  public android:boolean;
 
   // ============== Constructor =============//
 
 
   constructor(public nav: NavController, public http:Http, menu: MenuController,public loading: LoadingController, private alertCtrl:AlertController,
-  private toast: ToastController) {
-
+  private toast: ToastController, public plaform:Platform) {
 
     this.pet = 'public';
     this.http = http;
@@ -61,6 +63,14 @@ export class AllEventsPage {
     this.selectedYes = false;
     this.selectedNo = false;
     this.selectedMaybe = false;
+    //  if(this.plaform.is('ios')){
+    //       // this.ios = true;
+    //  }
+     if(this.plaform.is('android')){
+          // this.android = true;
+          let content = document.getElementsByTagName('ion-content')[0];
+          content.setAttribute('class','background-hide');
+     }
   
     //  this.event = [{name:'admin',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0,id:0},
     //  {name:'Ghayyas',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0, id:1},
@@ -119,6 +129,9 @@ export class AllEventsPage {
       
   }
   
+  createEventgo(){
+    this.nav.push(CreateEventPage)
+  }
 
 ionViewWillEnter(){
   //     let load = this.loading.create({
