@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, Page, Keyboard, ToastController, LoadingController,AlertController,MenuController} from 'ionic-angular';
+import {NavController, Page ,ToastController, LoadingController,AlertController,MenuController} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
+import {Keyboard} from 'ionic-native';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
 import {profile} from "../profile/profile";
@@ -33,25 +34,37 @@ export class SigninPage {
 
 
    constructor(public auth: AuthService, public nav: NavController, public menu: MenuController,
-   private alert: AlertController, private loading: LoadingController,private toast: ToastController,
-   public keyboard:Keyboard) { 
+   private alert: AlertController, private loading: LoadingController,private toast: ToastController) { 
    this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
-     if(this.keyboard.isOpen()){
-       let keyboardHide = document.getElementsByTagName('ion-footer')[0];
-       var att = document.createAttribute('class');
-       att.value = 'keyboardHide';
-       keyboardHide.setAttributeNode(att);
-     }
-     else if(this.keyboard.onClose){
-      let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+     
+          window.addEventListener('native.keyboardshow', ()=>{
+         let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+       keyboardHide.classList.add('keyboardHide');
+         console.log('from app ts keyboard is showing..');
+       });
+
+
+        window.addEventListener('native.keyboardhide', ()=>{
+     let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+       keyboardHide.classList.remove('keyboardHide');
+           console.log('from app ts keyboard is hiding');
+        })
+
+     
+    //   window.addEventListener('native.keyboardshow', function(){
+    //   document.body.classList.add('keyboard-open');
+    // });
+     
+    //  else if(this.keyboard.onClose){
+    //   let keyboardHide = document.getElementsByTagName('ion-footer')[0];
     
-       var att = document.createAttribute('class');
-       att.value = 'keyboardclose';
-        //  keyboardHide.className = '';
-       keyboardHide.setAttributeNode(att);
-     }
+    //    var att = document.createAttribute('class');
+    //    att.value = 'keyboardclose';
+    //     //  keyboardHide.className = '';
+    //    keyboardHide.setAttributeNode(att);
+    //  }
      //  var tab = document.getElementsByTagName("ion-tabs")[0];
   //  var att = document.createAttribute("tabbarplacement");
   //   att.value = "bottom";
@@ -60,7 +73,8 @@ export class SigninPage {
       // setTimeout(function() {
         
       // }, timeout);
-      //  setTimeout(()  => console.log('is the keyboard open ', this.keyboard.isOpen()),3000);
+      
+
 // }
       
 	  //  this.token= window.localStorage.getItem('ecnob.token');
@@ -73,6 +87,20 @@ export class SigninPage {
 	  //  }   
 
    }
+   
+
+  //  keyboardOpen(){
+  //       setTimeout(() =>{
+  //       console.log('is the keyboard open ', this.keyboard.isOpen());
+  //       if(this.keyboard.isOpen()){
+  //      console.log('keyboard is open')
+  //      let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+  //      var att = document.createAttribute('class');
+  //      att.value = 'keyboardHide';
+  //      keyboardHide.setAttributeNode(att);
+  //    }
+  //     },1000);     
+  //  }
 
 
 ionViewWillEnter(){

@@ -17,6 +17,9 @@
        background: #2f74f5;
     color: #fff;
 }
+/*scroll-content{
+    margin-bottom: 0 !important;
+}*/
 .bar-button-default {
     color: #ffffff;
     background-color: transparent;
@@ -73,7 +76,8 @@
     <div class="fullwidthrow">
      <div class="fieldgroup">
    <input type="email" name="email" required [(ngModel)]="usercreds.email" placeholder="Enter your Email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" #email="ngModel">
-     <div [hidden]="email.valid || email.pristine" style="color:red">
+   
+   <div [hidden]="email.valid || email.pristine" style="color:red">
          <small>*Valid Email is Required</small>
      </div>
      </div>
@@ -82,6 +86,7 @@
         <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="password" name="password" minlength="6" [(ngModel)]="usercreds.password" required #password="ngModel" placeholder="Password">
+     
      <div [hidden]="password.valid || password.pristine" style="color: red">
          <small>*Password Must be 6 Chacter Long</small>
      </div>

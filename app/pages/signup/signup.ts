@@ -68,6 +68,18 @@ export class SignupPage {
 	  this.nav = nav;
     SignupPage.clickLength = 1;
     SignupPage.userClickLength = 1;
+        window.addEventListener('native.keyboardshow', ()=>{
+         let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+       keyboardHide.classList.add('keyboardHide');
+         console.log('from app ts keyboard is showing..');
+       });
+
+
+        window.addEventListener('native.keyboardhide', ()=>{
+     let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+       keyboardHide.classList.remove('keyboardHide');
+           console.log('from app ts keyboard is hiding');
+        })
   //   Geolocation.getCurrentPosition().then((resp) => {
   //    SignupPage.lat  = resp.coords.latitude;
   //    SignupPage.long =  resp.coords.longitude;

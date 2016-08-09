@@ -105,6 +105,18 @@ export class CreateEventPage{
       }
   
         this.zone = new NgZone({enableLongStackTrace: false});
+            window.addEventListener('native.keyboardshow', ()=>{
+         let keyboardHide = document.getElementsByTagName('ion-tabs')[0];
+       keyboardHide.classList.add('keyboardHide');
+         console.log('from app ts keyboard is showing..');
+       });
+
+
+        window.addEventListener('native.keyboardhide', ()=>{
+     let keyboardHide = document.getElementsByTagName('ion-tabs')[0];
+       keyboardHide.classList.remove('keyboardHide');
+           console.log('from app ts keyboard is hiding');
+        })
   }
 
 

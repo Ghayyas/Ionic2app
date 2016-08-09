@@ -61,6 +61,18 @@ export class locationPage{
          this.http = http;
          this.Radius = 3;
       },6000);   
+          window.addEventListener('native.keyboardshow', ()=>{
+         let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+       keyboardHide.classList.add('keyboardHide');
+         console.log('from app ts keyboard is showing..');
+       });
+
+
+        window.addEventListener('native.keyboardhide', ()=>{
+     let keyboardHide = document.getElementsByTagName('ion-footer')[0];
+       keyboardHide.classList.remove('keyboardHide');
+           console.log('from app ts keyboard is hiding');
+        })
       // Map will load after 3 seconds
         //  console.log('my radius',this.myRadius)
     }
