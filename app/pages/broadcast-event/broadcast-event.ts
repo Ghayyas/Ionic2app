@@ -1,5 +1,5 @@
 import {Component,OnInit} from '@angular/core';
-import {NavController,AlertController,LoadingController,ToastController} from 'ionic-angular';
+import {NavController,MenuController,AlertController,LoadingController,ToastController} from 'ionic-angular';
 import {SubscriptionPage} from '../subscription/subscription';
 import {AllEventsPage} from '../all-events/all-events';
 import {Page1} from '../page1/page1';
@@ -35,7 +35,8 @@ export class BroadcastPage {
   static gettingPlaces: any;
   
   
-  constructor(public nav: NavController,private http:Http, private loading:LoadingController,private alert:AlertController,private toast: ToastController) {
+  constructor(public nav: NavController,private http:Http, private loading:LoadingController,private alert:AlertController,private toast: ToastController,
+  private menu:MenuController) {
    console.log('nav works')
   this.region = '';
   console.log('from broadcast event',CreateEventPage.arraytoSend[0]);
@@ -124,6 +125,7 @@ export class BroadcastPage {
      BroadcastPage.gettingPlaces = "";
      BroadcastPage.myLat = '';
      BroadcastPage.myLong = '';
+      CreateEventPage.arraytoSend = [];
    }
     showToast(message: string) {
     let toast = this.toast.create({
@@ -164,17 +166,19 @@ let loading = this.loading.create({
           loading.dismiss(true);
         }, 3000);
         
-        for(var i = 0; i < CreateEventPage.arraytoSend.length; i++){
-           CreateEventPage.arraytoSend[i] = '';
-     }
+      // CreateEventPage.arraytoSend[0]  = '';
+      CreateEventPage.arraytoSend = [];
         this.showToast('Success !');
         console.log('data send',data.json()); 
-        this.nav.push(TabsPage);
+        // this.nav.push(TabsPage);
+        this.nav.setRoot(TabsPage);
+
          },(err)=>{
       setTimeout(function() {
           loading.dismiss(true);
         }, 3000);
-        this.nav.push(TabsPage)
+       CreateEventPage.arraytoSend = [];
+        // this.nav.push(TabsPage)
          console.log('err',err);
          let error = err.json();
          console.log('getting error',error);
@@ -183,9 +187,17 @@ let loading = this.loading.create({
           if(str.status_code == 422){
           this.showToast('Fileds Missing !');
           }
-          if(str.status_code == 401){
-           this.showToast('Your Token is Expire !');
-          }
+          if(error.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+           });
+              toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
       })
 
 // this.nav.push(TabsPage)

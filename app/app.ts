@@ -40,18 +40,7 @@ public local = null;
       console.log('platform works..');
       Splashscreen.hide();
       StatusBar.styleDefault();
-    //           window.addEventListener('native.keyboardshow', ()=>{
-    //      let keyboardHide = document.getElementsByTagName('ion-footer')[0];
-    //    keyboardHide.classList.add('keyboardHide');
-    //      console.log('from app ts keyboard is showing..');
-    //    });
-
-
-    //     window.addEventListener('native.keyboardhide', ()=>{
-    //  let keyboardHide = document.getElementsByTagName('ion-footer')[0];
-    //    keyboardHide.classList.remove('keyboardHide');
-    //        console.log('from app ts keyboard is hiding');
-    //     })
+          
       // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       // cordova.plugins.Keyboard.disableScroll(false);
       // cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -110,7 +99,7 @@ public local = null;
     
      },(err)=>{
        console.log('getting error',err);
-       window.alert('Something went wrong.. Please try again');
+      //  window.alert('Something went wrong.. Please try again');
      })
 
 

@@ -38,18 +38,32 @@ export class SigninPage {
    this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
-     
-          window.addEventListener('native.keyboardshow', ()=>{
-         let keyboardHide = document.getElementsByTagName('ion-footer')[0];
-       keyboardHide.classList.add('keyboardHide');
-         console.log('from app ts keyboard is showing..');
+      var tab = document.getElementsByTagName("ion-tabbar")[0];
+      if(tab){
+   var att = document.createAttribute("class");
+    att.value = "displaynone";
+    tab.setAttributeNode(att);
+      }
+     window.addEventListener('native.keyboardshow', ()=>{
+         let keyboardHide = document.getElementById('keyboardhide');
+        //  let KeyboardHide1 = document.getElementById('keyboardhide1');
+        //  let keyboardHide2 = document.getElementById('keyboardhide2');
+        //  keyboardHide2.classList.add('keyboardHide');
+          keyboardHide.classList.add('keyboardHide');
+          // KeyboardHide1.classList.add('keyboardHide');
+
+         console.log('from signin ts keyboard is showing..');
        });
 
 
         window.addEventListener('native.keyboardhide', ()=>{
-     let keyboardHide = document.getElementsByTagName('ion-footer')[0];
-       keyboardHide.classList.remove('keyboardHide');
-           console.log('from app ts keyboard is hiding');
+         let keyboardHide = document.getElementById('keyboardhide');
+        //  let KeyboardHide1 = document.getElementById('keyboardhide1');
+        //  let keyboardHide2 = document.getElementById('keyboardhide2');
+         keyboardHide.classList.remove('keyboardHide');
+        //  keyboardHide2.classList.remove('keyboardHide');
+        //  KeyboardHide1.classList.remove('keyboardHide');
+           console.log('from signin ts keyboard is hiding');
         })
 
      
@@ -152,12 +166,12 @@ ionViewWillEnter(){
 	   loading.present(loading);
       //  let getType = window.localStorage.getItem('type');
 	    this.authservice.login(usercreds).then(data => {
-		   setTimeout(function() {
-         loading.dismiss();
+		 let timeout =   setTimeout(function() {
+         loading.dismiss(true);
        }, 3000);
        if (data){
         this.nav.setRoot(TabsPage);
-     
+      clearTimeout(timeout);
  }
 		   })
    }

@@ -1,5 +1,5 @@
 import {Component,NgZone} from '@angular/core';
-import {NavController,NavParams,LoadingController,AlertController,MenuController} from 'ionic-angular';
+import {NavController,ToastController, NavParams,LoadingController,AlertController,MenuController} from 'ionic-angular';
 // import { DataService } from '../../service/dataService/dataService';
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService';
@@ -12,6 +12,7 @@ import {DealsPage} from '../deals/deals';
 import {CreateEventPage}from '../create-event/create-event';
 import {TabsPage} from '../tabs/tabs';
 import {limit} from '../limit';
+import {SigninPage} from '../signin/signin';
 import {ChangeDetectorRef} from '@angular/core'
 
 
@@ -35,7 +36,7 @@ export class myEvents{
   public nexsusP: boolean;
   public totalAttendents: number;
     constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone,public http: Http,
-    private loading: LoadingController, private alert: AlertController){
+    private loading: LoadingController, private alert: AlertController,private toast:ToastController){
       this.nexsusP = false; 
      this.myImg = [
        {img: './img/default-user.png'},
@@ -112,8 +113,20 @@ export class myEvents{
             setTimeout(function() {
             loading.dismiss(true);
           }, 1000);
-        console.log('error recing',err);
+        // console.log('error recing',err);
         console.log('err Josn',err.json());
+        let errorjson = err.json();
+        if(errorjson.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
         })
         
         
@@ -203,7 +216,118 @@ export class myEvents{
    }
    
     }
+deleteEvent(id){
+     let loading = this.loading.create({
+           content: "Please wait...",
+          //  duration: 3000,
+           dismissOnPageChange: true
+            
+        });
+   let headers = new Headers();
+     headers.append('Content-Type', 'application/json');
+     let ecnobToken = window.localStorage.getItem('ecnob.token');
+     let deleteID = {
+          event_id : id
+     }
+     console.log('delelting ID',id);
+      headers.append('Authorization', `Bearer ${ecnobToken}`)
+        this.http.post(SERVER_NAME + 'event/delete',deleteID,{headers:headers})
+        .subscribe((data)=>{
+          setTimeout(function() {
+            loading.dismiss();
+          }, 1000);
+           
+           let mydata = data.json();
+            console.log('data recivng',data);
+            console.log('dataJson',data.json());
+             if(mydata.status){
+              //  this.response.remove(id);
+             let toast = this.toast.create({
+                message: "Event Delete Successfully",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
 
+   //============ Getting Fresh Array From Server  ===============//
+
+
+ let loading = this.loading.create({
+           content: "Please wait...",
+          //  duration: 3000,
+           dismissOnPageChange: true
+            
+        });
+  loading.present();
+   let headers = new Headers();
+     headers.append('Content-Type', 'application/json');
+     let ecnobToken = window.localStorage.getItem('ecnob.token');
+      headers.append('Authorization', `Bearer ${ecnobToken}`)
+        this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
+        .subscribe((data)=>{
+          setTimeout(function() {
+            loading.dismiss(true);
+          }, 1000);
+          
+           this.response = data.json().events;
+            console.log('data recivng',data);
+            console.log('dataJson',data.json());
+          
+           
+            
+        },(err)=>{
+            setTimeout(function() {
+            loading.dismiss(true);
+          }, 1000);
+        // console.log('error recing',err);
+        console.log('err Josn',err.json());
+        let errorjson = err.json();
+        if(errorjson.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
+        })
+
+
+ //============ Ending Fresh Array From Server  ===============//
+           }
+           
+            
+        },(err)=>{
+            setTimeout(function() {
+            loading.dismiss();
+          }, 1000);
+        console.log('error reciving',err);
+        console.log('err Json',err.json());
+        let errorjson = err.json();
+      if(errorjson.status_code== 500){
+              let toast = this.toast.create({
+                message: "Internal Server Error",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
+        }
+          else if(errorjson.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
+})
+}
     toogle(){
       console.log('toogle clicked');
       this.menu.toggle();

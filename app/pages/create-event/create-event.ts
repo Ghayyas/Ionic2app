@@ -84,7 +84,8 @@ export class CreateEventPage{
         this.params.start_date = '';//required
         this.params.end_date = ''; //required
         this.params.description = '';
-     
+      //  let paddingRemove = document.getElementsByTagName('scroll-content')[0];
+      //   paddingRemove.classList.remove('displayButtom');
             
         let loading = this.load.create({
            content: "Please wait...",
@@ -106,16 +107,21 @@ export class CreateEventPage{
   
         this.zone = new NgZone({enableLongStackTrace: false});
             window.addEventListener('native.keyboardshow', ()=>{
-         let keyboardHide = document.getElementsByTagName('ion-tabs')[0];
+         let keyboardHide = document.getElementsByTagName('ion-tabbar')[0];
        keyboardHide.classList.add('keyboardHide');
-         console.log('from app ts keyboard is showing..');
+        let paddingRemove = document.getElementsByTagName('scroll-content')[3];
+        paddingRemove.classList.add('displayButtom');
+
+   
        });
 
 
         window.addEventListener('native.keyboardhide', ()=>{
-     let keyboardHide = document.getElementsByTagName('ion-tabs')[0];
+     let keyboardHide = document.getElementsByTagName('ion-tabbar')[0];
        keyboardHide.classList.remove('keyboardHide');
-           console.log('from app ts keyboard is hiding');
+        let paddingRemove = document.getElementsByTagName('scroll-content')[3];
+        paddingRemove.classList.remove('displayButtom');
+
         })
   }
 
@@ -386,15 +392,16 @@ submit(params)
      
       // console.log('params',this.params.type,'submit parms',params.type);    
 
-   if(this.params.photo == undefined ){
-     let toast = this.toast.create({
-      message: "Picture is Required try again",
-      duration: 3000,
-      position: 'bottom'
-       });
-       toast.present();
-}
-  else if(this.params.latitude == undefined){
+//    if(this.params.photo == undefined ){
+//      let toast = this.toast.create({
+//       message: "Picture is Required try again",
+//       duration: 3000,
+//       position: 'bottom'
+//        });
+//        toast.present();
+// }
+//   else 
+  if(this.params.latitude == undefined){
       let toast = this.toast.create({
       message: "Unable to get your location try again",
       duration: 3000,

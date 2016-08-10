@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 // import {Keyboard} from 'ionic-native';
-import {NavController,AlertController,LoadingController,ToastController,Keyboard} from 'ionic-angular';
+import {NavController,AlertController,MenuController,LoadingController,ToastController,Keyboard} from 'ionic-angular';
 // import {BroadcastEventPage} from '../broadcast-event/broadcast-event';
 import {AllEventsPage} from '../all-events/all-events';
 import {Page1} from '../page1/page1';
@@ -26,7 +26,8 @@ export class CreateListPeopleInvitePage {
   public whenClick :boolean;
   public senderEmail: string;
   constructor(public nav: NavController, private http:Http, public keyboard:Keyboard,
- private loading:LoadingController, private alert: AlertController, private toast: ToastController) {
+ private loading:LoadingController, private alert: AlertController, private toast: ToastController
+ ,private menu:MenuController) {
       console.log('from list event',CreateEventPage.arraytoSend);
 
   }
@@ -93,34 +94,46 @@ let loading = this.loading.create({
         setTimeout(function() {
           loading.dismiss(true);
         }, 3000);
-      for(var i = 0; i < CreateEventPage.arraytoSend.length; i++){
-           CreateEventPage.arraytoSend[i] = '';
-       }
+   
+
+             CreateEventPage.arraytoSend = [];
+        
         this.showToast('Success !');
         console.log('data send',data.json()); 
-        this.nav.push(TabsPage);
+        this.nav.setRoot(TabsPage);
+        // this.nav.push(TabsPage);
          },(err)=>{
         setTimeout(function() {
           loading.dismiss(true);
         }, 3000);
-        this.nav.push(TabsPage);
+         CreateEventPage.arraytoSend = [];
+        // this.nav.push(TabsPage);
          console.log('err',err);
          let error = err.json();
+         if(error.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
          console.log('getting error',error);
           this.showToast('Data not Send to server !');
           let str = JSON.parse(err._body);
-          if(str.status_code == 422){
-          this.showToast('Fileds Missing !');
+         if(str.status_code == 422){
+          this.showToast('Some Fileds Missing Please resubmit!');
           }
-          if(str.status_code == 401){
-           this.showToast('Your Token is Expire !');
-          }
+         
       })
 
 // this.nav.push(TabsPage)
 //  }
-
-
-
 }
+  ionViewWillLeave(){
+      CreateEventPage.arraytoSend = [];
+  }
 }

@@ -46,6 +46,9 @@ ion-title{
   ion-content{
     background: none !important;
   }
+  .item-button{
+    padding: 6px;
+  }
 </style>
 
 
@@ -141,24 +144,24 @@ ion-title{
       </ion-col>
      <ion-item>
  
-   <button *ngIf="!arr.yes" primary clear item-right class="button-blue" (click)="myClick() || arr.yes= true ;arr.no = false;arr.maybe=false;">
+   <button *ngIf="!arr.yes" primary clear item-right class="button-blue" (click)="subscribe(arr.id, 1) || arr.yes= true ;arr.no = false;arr.maybe=false;">
       Yes
     </button>
-     <button *ngIf="arr.yes" class="selectedTrue" primary clear item-right (click)="myClick() || arr.no = false;arr.maybe= false;">
+     <button *ngIf="arr.yes" class="selectedTrue" primary clear item-right (click)="arr.no =false;arr.maybe= false;">
       Yes 
     </button>
    
-    <button *ngIf="!arr.no"  primary clear item-right class="button-blue" (click)="myClick() || arr.no =true ; arr.yes = false; arr.maybe=false;">
+    <button *ngIf="!arr.no"  primary clear item-right class="button-blue" (click)="subscribe(arr.id, 2) || arr.no =true ; arr.yes = false; arr.maybe=false;">
   
       No
     </button>
-       <button *ngIf="arr.no" class="selectedTrue" primary clear item-right (click)="myClick() || arr.yes = false; arr.maybe=false;">
+       <button *ngIf="arr.no" class="selectedTrue" primary clear item-right (click)="arr.yes = false; arr.maybe=false;">
       No
     </button>
-    <button *ngIf="!arr.maybe"  primary clear item-right class="button-blue" (click)="myClick() || arr.maybe = true; arr.yes = false; arr.no=false;">
+    <button *ngIf="!arr.maybe"  primary clear item-right class="button-blue" (click)="subscribe(arr.id, 3) || arr.maybe = true; arr.yes = false; arr.no=false;">
       MayBe
     </button>
-       <button *ngIf="arr.maybe" class="selectedTrue" primary clear item-right  (click)="myClick() || arr.yes = false; arr.no=false;">
+       <button *ngIf="arr.maybe" class="selectedTrue" primary clear item-right  (click)="arr.yes = false; arr.no=false;">
       MayBe
     </button>
   </ion-item>

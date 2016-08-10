@@ -17,7 +17,11 @@ export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
 
-  @ViewChild('myTabs') tabs: Tabs
+@ViewChild('myTabs') tabRef: Tabs;
+
+ionViewDidEnter() {
+  this.tabRef.select(0);
+ }
   tab1Root: any = Page1;
   tab2Root: any = DealsPage;  //deals Page
   tab3Allevent: any = AllEventsPage;

@@ -61,17 +61,27 @@ export class locationPage{
          this.http = http;
          this.Radius = 3;
       },6000);   
-          window.addEventListener('native.keyboardshow', ()=>{
-         let keyboardHide = document.getElementsByTagName('ion-footer')[0];
-       keyboardHide.classList.add('keyboardHide');
-         console.log('from app ts keyboard is showing..');
+
+    window.addEventListener('native.keyboardshow', ()=>{
+        //  let keyboardHide = document.getElementById('keyboardhide');
+        //  let KeyboardHide1 = document.getElementById('keyboardhide1');
+         let keyboardHide2 = document.getElementById('keyboardhide2');
+         keyboardHide2.classList.add('keyboardHide');
+        //   keyboardHide.classList.add('keyboardHide');
+        //   KeyboardHide1.classList.add('keyboardHide');
+
+         console.log('from location ts keyboard is showing..');
        });
 
 
         window.addEventListener('native.keyboardhide', ()=>{
-     let keyboardHide = document.getElementsByTagName('ion-footer')[0];
-       keyboardHide.classList.remove('keyboardHide');
-           console.log('from app ts keyboard is hiding');
+        //  let keyboardHide = document.getElementById('keyboardhide');
+        //  let KeyboardHide1 = document.getElementById('keyboardhide1');
+         let keyboardHide2 = document.getElementById('keyboardhide2');
+        //  keyboardHide.classList.remove('keyboardHide');
+         keyboardHide2.classList.remove('keyboardHide');
+        //  KeyboardHide1.classList.remove('keyboardHide');
+           console.log('from location ts keyboard is hiding');
         })
       // Map will load after 3 seconds
         //  console.log('my radius',this.myRadius)

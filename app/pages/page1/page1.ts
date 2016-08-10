@@ -34,13 +34,17 @@ export class Page1 {
   // }
    
   }
-  // ionViewWillEnter(){
+
+  ionViewWillEnter(){
+
+     
+     
   //  var tab = document.getElementsByTagName("ion-tabs")[0];
   //  var att = document.createAttribute("tabbarplacement");
   //   att.value = "bottom";
   //   tab.setAttributeNode(att);
   //   console.log('page1 done');
-  // }
+  }
 
   ionViewWillLeave(){
     // this.nav.viewWillEnter

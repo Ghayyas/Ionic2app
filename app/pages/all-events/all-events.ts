@@ -52,7 +52,7 @@ export class AllEventsPage {
   // ============== Constructor =============//
 
 
-  constructor(public nav: NavController, public http:Http, menu: MenuController,public loading: LoadingController, private alertCtrl:AlertController,
+  constructor(public nav: NavController, public http:Http, public menu: MenuController,public loading: LoadingController, private alertCtrl:AlertController,
   private toast: ToastController, public plaform:Platform) {
 
     this.pet = 'public';
@@ -63,13 +63,14 @@ export class AllEventsPage {
     this.selectedYes = false;
     this.selectedNo = false;
     this.selectedMaybe = false;
+  
     //  if(this.plaform.is('ios')){
     //       // this.ios = true;
     //  }
      if(this.plaform.is('android')){
           // this.android = true;
           let content = document.getElementsByTagName('ion-content')[0];
-          content.setAttribute('class','background-hide');
+          content.classList.add('background-hide');
      }
   
     //  this.event = [{name:'admin',title: 'Events Title', end_date: '20-15-17',location: 'Buhadurabad Karachi Pakistan',type: 0,id:0},
@@ -134,13 +135,13 @@ export class AllEventsPage {
   }
 
 ionViewWillEnter(){
-  //     let load = this.loading.create({
-  //          content: "Please wait...",
-  //         //  duration: 300, 
-  //          dismissOnPageChange: true
+      let load = this.loading.create({
+           content: "Please wait...",
+          //  duration: 300, 
+           dismissOnPageChange: true
             
-  //       });
-  //  load.present();
+        });
+   load.present();
     let headers = new Headers();
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
@@ -149,10 +150,11 @@ ionViewWillEnter(){
     .subscribe(
       (data)=>{
         // console.log('data',data);
-        // setTimeout(function() {
-        //   load.dismiss();
-        // }, 3000);
-      //  load.dismiss(true);
+        setTimeout(function() {
+          load.dismiss();
+        }, 3000);
+       load.dismiss();
+
        this.event = data.json().events;
         if(this.event == undefined){
     let toast = this.toast.create({
@@ -173,7 +175,7 @@ ionViewWillEnter(){
 
         }
         else if(this.event.length == 0){
-           let toast = this.toast.create({
+     let toast = this.toast.create({
       message: "Sorry no new Events Avalible",
       duration: 3000,
       position: 'bottom'
@@ -197,9 +199,9 @@ ionViewWillEnter(){
       },
       (err)=>{
     console.log('err',err);
-  //  setTimeout(function() {
-  //         load.dismiss();
-  //       }, 3000);
+         setTimeout(function() {
+          load.dismiss();
+        }, 3000);
      let toast = this.toast.create({
       message: "Needs Internet Connection",
       duration: 3000,
@@ -232,37 +234,21 @@ ionViewWillEnter(){
       position: 'bottom'
        });
        toast.present();
-    //   let alert = this.alertCtrl.create({
-    //   title: 'Error !',
-    //   subTitle: 'Internal Server Error',
-    //   buttons: ['OK']
-    // });
-    // alert.present();
-    // load.dismiss(true);
   
       }
-     else if(str.status_code == 401){
-       let toast = this.toast.create({
-      message: "Your Token is Expire",
-      duration: 3000,
-      position: 'bottom'
-       });
-       toast.present();
-        // let alert = this.alertCtrl.create({
-        //   title: "Error !",
-        //   subTitle: "Your Token is Expire Please logout and signin again",
-        //   buttons : ['OK']
-        // })
-        // alert.present();
-        // load.dismiss(true);
-      // }
-          
-          
-
-    //  load.dismiss(true);
-      console.log('status code',str.status_code)
-      console.log('error reciveing', str.message);
-      }
+      // let expire = 401
+      // str.status_code
+      if(str.status_code == 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
       }
     )
 }
@@ -300,8 +286,75 @@ ionViewWillEnter(){
     //  console.log('my btn',selected,i);
     // }
 
-myClick(){
-  console.log('clicked me...!!')
+subscribe(id,select){
+  console.log('id',id,'select',select);
+   let loading = this.loading.create({
+           content: "Please wait...",
+          //  duration: 3000,
+           dismissOnPageChange: true
+            
+        });
+        loading.present();
+   let headers = new Headers();
+   headers.append('Content-Type', 'application/json');
+   let ecnobToken = window.localStorage.getItem('ecnob.token');
+    // var subscribtion = "status=" + select + "&event_id=" + id;
+    let sub = {
+      status: select,
+      event_id: id
+    }
+    console.log('sub',sub);
+   headers.append('Authorization', `Bearer ${ecnobToken}`)
+    this.http.post( SERVER_NAME +'event/subscribe',sub,{headers:headers})
+    .subscribe(
+      (data)=>{
+        setTimeout(function() {
+             loading.dismiss()
+           }, 3000);
+          //  clearTimeout(setTimeout)
+          //  console.log('console log getting data',data);
+           let mydata = data.json();
+          //  console.log('mydata',mydata);
+           
+           if(mydata.status){
+             let toast = this.toast.create({
+                message: "Event subscribe Successfully",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
+           }
+           
+           
+      },(err)=>{
+        setTimeout(function() {
+             loading.dismiss()
+           }, 3000);
+          // clearTimeout(timeout)
+           console.log('gettitng error',err);
+           let myerr = err.json();
+           if(myerr.status_code== 500){
+              let toast = this.toast.create({
+                message: "Internal Server Error",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
+           }
+              // let errorjson = err.json();
+             if(myerr.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
+           console.log('my Error',myerr);
+      })
 }
 
 
