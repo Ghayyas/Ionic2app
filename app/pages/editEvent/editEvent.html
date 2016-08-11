@@ -1,0 +1,135 @@
+<!--
+  Generated template for the CreateEventPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<style>
+
+  .create-event label.radiolabel{
+    display: inline !important;
+  }
+ 
+  ion-title{
+    padding: 0;
+  }
+  .ecnob-fields .fieldgroup{
+    margin-bottom: 15px;
+  }
+  /*.ecnob-fields .fieldgroup ion-icon{
+    top: 14px;
+  }*/
+input[type="date"], 
+input[type="datetime-local"], 
+input[type="month"], 
+input[type="time"], 
+input[type="week"] {
+  -webkit-appearance: none !important;
+  }
+  ion-card{
+    max-height: 200px !important;
+    text-align: center !important;
+  }
+  img{
+     max-height: 200px;;
+  }
+  .item{
+    padding-left: 0;
+  }
+ 
+</style>
+
+ <ion-header>
+ <ion-navbar primary align-title="center">
+   <ion-title>
+     Edit Events
+    </ion-title>
+   </ion-navbar>
+ </ion-header>
+<ion-content padding class="create-event ecnob-fields">
+    	<p style="font-size: 17px; font-weight: 700;">Edit Event<p>
+        <div *ngFor="let a of gettingParams">
+  <form>
+  <ion-list class="padding">
+
+        <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" required name="Eventname" minlength="6" maxlength="13" [(ngModel)]="event.name" placeholder="Event Name" value="{{a.name}}">
+    
+  <!--<div [hidden]="name.valid || name.pristine" style="color:red">
+         <small>Minimum 6 Chacters is required and not Maximum then 13</small>
+     </div>-->
+     </div>
+    </div>
+
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="text" id="autocomplete" name="myEventlocation" value="{{a.location}}" placeholder="Event Location" required>
+     
+
+   <!--<div [hidden]="location.valid || location.pristine" style="color:red">
+         <small>*Required</small>
+     </div>-->
+     </div>
+    </div>
+
+
+<ion-grid style="padding-left: 0px;padding-right: 0px;">
+  <ion-row>
+    <ion-col width-50 style="padding-left: 0px; padding-top:0px;  padding-bottom:0px;">
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="date" name="start_date" placeholder="20/5/2016" [(ngModel)]="event.start_date" required>
+     
+       <!--<div [hidden]="start_date.valid || start_date.pristine" style="color:red">
+         <small>*Required</small>
+     </div>-->
+      <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+     </div>
+    </div>
+    </ion-col>
+    <ion-col width-50 style="padding-right: 0px; padding-top:0px;  padding-bottom:0px;">
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <input type="date" name="end_date" placeholder="20/5/2016" [(ngModel)]="event.end_date" value="{{a.end_date}}" required>
+     
+  <!--<div [hidden]="end_date.valid || end_date.pristine" style="color:red">
+         <small>*Required</small>
+     </div>-->
+       <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+     </div>
+    </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+     <div class="fullwidthrow">
+     <div class="fieldgroup">
+       <ion-card>
+  <img src="{{a.photo || './img/stub_events.png'}}"  (click)="presentActionSheet()"/>
+
+</ion-card>
+ 
+     </div>
+    </div>
+
+
+         <div class="fullwidthrow">
+     <div class="fieldgroup">
+     <textarea name="description" placeholder="Enter Events Details" [(ngModel)]="event.description"  value="{{a.description}}" rows="5" cols="50" ></textarea>
+     </div>
+    </div>
+
+
+</ion-list>
+  </form>
+ <ion-list>
+   <div style="padding: 0px 15px;">   
+  
+  <button class="button button-block button-positive"  style="font-size: 20px; height: 50px;" (click)="submit(event,a.id)">
+ Submit
+</button>
+</div>
+ </ion-list>
+ </div>
+</ion-content>

@@ -1,5 +1,5 @@
 import {Component,OnInit} from "@angular/core";
-import {NavController,Platform,Page,ActionSheetController,AlertController, LoadingController, Keyboard,ToastController} from 'ionic-angular';
+import {NavController,NavParams, Platform,Page,ActionSheetController,AlertController, LoadingController, Keyboard,ToastController} from 'ionic-angular';
 import {DealsPage} from '../deals/deals';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
@@ -7,7 +7,8 @@ import {NgZone} from "@angular/core";
 import {BroadcastPage} from '../broadcast-event/broadcast-event';
 import {CreateListPeopleInvitePage} from '../create-list-people-invite/create-list-people-invite';
 import {Http, Headers } from '@angular/http';
-import {SERVER_NAME} from '../../service/dataService/dataService'
+import {SERVER_NAME} from '../../service/dataService/dataService';
+import {EditEvent} from "../EditEvent/EditEvent";
 // import {broadcastEvent} from ''
 
 // import {RadioControlValueAccessor} from "./radio_value_accessor";
@@ -61,7 +62,8 @@ export class CreateEventPage{
   static myLong : any;
   static myImage:any; 
   static arraytoSend = [];
-   public platform: Platform
+   public platform: Platform;
+   public gettingParams:any;
     // public actionsheetCtrl: ActionSheetController
   // static start_date:any;
   // static end_date:any;
@@ -74,7 +76,7 @@ export class CreateEventPage{
 
    createListPeopleToInvite = CreateListPeopleInvitePage;
   constructor(public nav: NavController, private http:Http, private keyboard: Keyboard, private load :LoadingController, 
-  private alert: AlertController, public actionSheet: ActionSheetController, private toast:ToastController) {
+  private alert: AlertController, public actionSheet: ActionSheetController, private toast:ToastController,private navParams: NavParams ) {
     this.http = http;
     this.keyboard = keyboard;
         this.params.photo = "";    
@@ -104,6 +106,7 @@ export class CreateEventPage{
         this.params.end_date = ''; //required
         this.params.description = '';
       }
+
   
         this.zone = new NgZone({enableLongStackTrace: false});
             window.addEventListener('native.keyboardshow', ()=>{
@@ -433,6 +436,7 @@ submit(params)
 
   //      console.log('parameters',params);
    if(params.type == '0'){
+  
      this.nav.push(CreateListPeopleInvitePage);
      CreateEventPage.arraytoSend.push(this.params);
       console.log('from create events param type 2',CreateEventPage.arraytoSend);

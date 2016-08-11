@@ -12,10 +12,14 @@ export class Page1 {
   
   public pet: string;
   static nav: NavController;
+  public event = [];
   //  public tab:TabsPage
   constructor(private menu:MenuController,public nav: NavController) {
   this.pet = 'public';
 
+
+  this.event = [{type: 0,img: './img/event1.jpg',name: 'Fun party'},{type: 0, img: './img/event3.jpg',name:'wedding Event'},{type: 0 , img: 'img/event1.jpg',name: 'Fun party'},{type: 0 , img: './img/event2.jpg',name: 'launch Event'},{type: 0, img: './img/event4.jpg',name: 'Birthday Party'}
+   ,{type: 1, img: './img/deal1.jpg',name: ' More than 110%...'}, {type: 1, img: './img/deal2.jpg', name: "More than 110%.."}, {type: 1, img: './img/deal1.jpg',name: 'More than 110%'},{type: 1, img: './img/deal2.jpg', name: 'More than 110%'},{type: 1, img: './img/deal1.jpg', name: 'More than 110%'}]
 
   let token =  window.localStorage.getItem('ecnob.token');
   if(token){

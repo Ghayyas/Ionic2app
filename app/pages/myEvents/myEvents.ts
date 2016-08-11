@@ -13,7 +13,8 @@ import {CreateEventPage}from '../create-event/create-event';
 import {TabsPage} from '../tabs/tabs';
 import {limit} from '../limit';
 import {SigninPage} from '../signin/signin';
-import {ChangeDetectorRef} from '@angular/core'
+import {ChangeDetectorRef} from '@angular/core';
+import {EditEvent} from '../EditEvent/EditEvent';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class myEvents{
   tab2: any = DealsPage;  //deals Page
   tab3: any = AllEventsPage;
   tab4: any = AllCompaniesPage;
+  editEvent:any = EditEvent
   myImg: [Object];
   response:any;
   innerWidth: number;
@@ -328,6 +330,24 @@ deleteEvent(id){
         }
 })
 }
+
+  edit(i){
+    console.log('getting data',i);
+  //    let loading = this.loading.create({
+  //          content: "Please wait...",
+  //          duration: 5000,
+  //         //  dismissOnPageChange: true
+            
+  //       });
+  // loading.present();
+    this.nav.push(EditEvent,{obj:i}).then((suc)=>{
+       console.log('Success',suc);
+    },(err)=>{
+      console.log('error',err);
+      
+    });
+  }
+
     toogle(){
       console.log('toogle clicked');
       this.menu.toggle();

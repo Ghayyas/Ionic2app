@@ -5,6 +5,7 @@ import {searchDeals} from '../searchDeals/searchDeals';
 import {SigninPage} from '../signin/signin';
 import {limit} from '../limit';
 import {MyApp} from '../../app';
+import {CreateDealPage} from '../create-deal/create-deal';
 /*
   Generated class for the DealsPage page.
 
@@ -18,6 +19,7 @@ import {MyApp} from '../../app';
 
 export class DealsPage {
    search = searchDeals;
+   createDeal = CreateDealPage;
    public location;
    enable:boolean;
    isenable:boolean;

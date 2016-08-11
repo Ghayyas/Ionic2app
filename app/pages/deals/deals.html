@@ -46,7 +46,7 @@ ion-title{
     </button>
   </ion-buttons>
        <ion-buttons end *ngIf="enable || isenable">
-    <button royal>
+    <button royal [navPush]="createDeal">
        <ion-icon ios="ios-add" md="md-add"></ion-icon>
     </button>
   </ion-buttons>

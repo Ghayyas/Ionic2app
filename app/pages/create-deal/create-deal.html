@@ -5,14 +5,158 @@
   Ionic pages and navigation.
 -->
  <ion-header>
-<ion-navbar style="padding: 0px 0px; text-align: Center;">
-  <!--<ion-title>signup</ion-title>-->
-  <ion-toolbar primary>
-  <ion-title>CREATE A DEAL</ion-title>
-</ion-toolbar>
+<ion-navbar primary>
+  <!--<ion-buttons start>
+ <button>
+      Cancel
+    </button>
+    </ion-buttons>-->
+  <ion-title>Create Deal</ion-title>
+
 </ion-navbar>
  </ion-header>
-<ion-content class="create-deal ecnob-fields">
+
+
+   <style>
+     .fromTop{
+       margin-top: 25px;
+       /*margin-left: 9px;*/
+     }
+     .marginleft{
+       margin-left: 9px;
+     }
+     input[type="text"]{
+        border: 1px solid gray;
+        padding: 12px;
+        border-radius: 5px;
+        color: gray;
+     }
+     input[type="number"]{
+        border: 1px solid gray;
+        padding: 8px;
+        border-radius: 5px;
+        text-align: center;
+        color: gray;
+     }
+    .with12 ::-webkit-input-placeholder{
+       /*padding-right: 13px;*/
+       text-align: center;
+     }
+   
+     ion-label {
+      margin: -3px -15px -17px 10px;
+    }
+    ion-row {
+    width: calc(100% - 8px - 8px);
+   }
+  .with12{
+   top: -69px;
+    width: 22%;
+    float: right;
+  }
+  .colorgray{
+    color:gray;
+  }
+  .buttonColor{
+    background-image: linear-gradient(90deg, #2D6CF5 0%, #33CEF6 100%);
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.25);
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: large;
+  }
+
+   </style>
+
+
+
+
+
+   <ion-content padding>
+<div class="fromTop marginleft">
+
+     <h5 style="font-weight: bold;">Deal Name</h5>
+
+</div>
+
+
+
+  <!--<ion-item>-->
+    <ion-input type="text" placeholder="Deal Name"></ion-input>
+  <!--</ion-item>-->
+  <div class="marginleft">
+   <div class="fromTop">
+   <h5 style="font-weight: bold;">Select Type</h5>
+     </div>
+      <div class="fromTop">
+   <ion-row radio-group>
+      <!--<ion-label>Vedio</ion-label>-->
+
+    <ion-radio primary checked="vedio"></ion-radio>
+      <ion-label class="colorgray" style="max-width: 60px;">Vedio</ion-label>
+
+         <!--<ion-label>Audio</ion-label>-->
+  <ion-radio primary checked="audio"></ion-radio>
+        <ion-label class="colorgray" style="max-width: 60px;">Audio</ion-label>
+     
+  <ion-radio primary checked="text"></ion-radio>
+        <ion-label class="colorgray" style="max-width: 55px;">Text</ion-label>
+         <!--<ion-label>Newsletter</ion-label>-->
+  <ion-radio primary checked="newsletter"></ion-radio>
+        <ion-label class="colorgray">Newsletter</ion-label> 
+     
+        </ion-row>
+
+ </div>
+
+<div class="fromTop">
+
+   <ion-card>
+  <img src="./img/stub_events.png" (click)="presentActionSheet()"/>
+
+</ion-card>
+</div>
+
+  <div class="dealsQuestion fromTop">
+    <p style="max-width: 80%; font-size: 16px; color: gray;">how many times in a month you want to broadcast messages ?</p>
+    <ion-input type="number" placeholder="3" class="with12"></ion-input>
+  </div>
+  
+   <div class="fromTop">
+   <h5 style="font-weight: bold;">Select Type</h5>
+     </div>
+<div class="fromTop">
+   <ion-row radio-group>
+
+
+    <ion-radio primary checked="vedio"></ion-radio>
+      <ion-label style="max-width: 84px;" class="colorgray">Regions</ion-label>
+
+ 
+  <ion-radio primary checked="audio"></ion-radio>
+        <ion-label class="colorgray">Network Members</ion-label>
+
+  
+        </ion-row>
+  <div class="fromTop">
+    <button block class="buttonColor" style="height: 50px;">Broadcast</button>
+  </div>
+ </div>
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+    </div> 
+ </ion-content>
+
+<!--<ion-content class="create-deal ecnob-fields">
    
    <div class="createdeal-wrap">
 
@@ -62,4 +206,4 @@
 
 
 
-</ion-content>
+</ion-content>-->

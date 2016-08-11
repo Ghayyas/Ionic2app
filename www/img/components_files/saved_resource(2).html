@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)http://ionicframework.com/dist/preview-app/www/?production=true&ionicplatform=windows -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <!-- https://www.chromium.org/developers/design-documents/chromium-graphics/how-to-get-gpu-rasterization -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- ionic dynamically decides which stylesheet to load -->
+  <link ios-href="build/css/app.ios.css" rel="stylesheet">
+  <link md-href="build/css/app.md.css" rel="stylesheet">
+  <link rel="stylesheet" href="./app.wp.css">
+
+<title>Floating Action Buttons</title></head>
+<body class="platform-cordova wp platform-mobile platform-windows platform-mobileweb has-scrollbar">
+
+  <ion-app>
+    <div nav-portal=""></div><div class="app-root"><img id="md-only" src="./android-statusbar.png" style="display:none">
+<img id="ios-only" src="./ios-statusbar.png" style="display:none">
+<img id="wp-only" src="./wp-statusbar.png" style="display:none">
+
+
+<ion-menu role="navigation" ng-reflect-content="[object Object]" side="left" type="overlay">
+    <div class="menu-inner">
+
+  <ion-toolbar class="toolbar statusbar-padding" primary="">
+    <div class="toolbar-background"></div>
+    
+    
+    
+    <div class="toolbar-content">
+      
+    <ion-title><div class="toolbar-title">Menu</div></ion-title>
+  
+    </div>
+  </ion-toolbar>
+
+  <ion-content class="statusbar-padding"><scroll-content>
+    
+    <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><ion-list>
+      <!--template bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object],[object Object]"
+}--><button class="item" ion-item="" menuclose="" ng-reflect-menu-close="">
+    
+    <div class="item-inner">
+      <div class="input-wrapper">
+        
+        <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><ion-label>
+          
+        Home
+      
+        </ion-label>
+        
+      </div>
+      
+      <ion-reorder><ion-icon name="menu" role="img" class="ion-ios-menu" aria-label="menu" ng-reflect-name="menu"></ion-icon></ion-reorder>
+    </div>
+    <ion-button-effect></ion-button-effect>
+  </button><button class="item" ion-item="" menuclose="" ng-reflect-menu-close="">
+    
+    <div class="item-inner">
+      <div class="input-wrapper">
+        
+        <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><ion-label>
+          
+        Friends
+      
+        </ion-label>
+        
+      </div>
+      
+      <ion-reorder><ion-icon name="menu" role="img" class="ion-ios-menu" aria-label="menu" ng-reflect-name="menu"></ion-icon></ion-reorder>
+    </div>
+    <ion-button-effect></ion-button-effect>
+  </button><button class="item" ion-item="" menuclose="" ng-reflect-menu-close="">
+    
+    <div class="item-inner">
+      <div class="input-wrapper">
+        
+        <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><ion-label>
+          
+        Events
+      
+        </ion-label>
+        
+      </div>
+      
+      <ion-reorder><ion-icon name="menu" role="img" class="ion-ios-menu" aria-label="menu" ng-reflect-name="menu"></ion-icon></ion-reorder>
+    </div>
+    <ion-button-effect></ion-button-effect>
+  </button>
+
+      <button class="item" detail-none="" ion-item="" menuclose="" ng-reflect-menu-close="">
+    
+    <div class="item-inner">
+      <div class="input-wrapper">
+        
+        <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><ion-label>
+          
+        Close Menu
+      
+        </ion-label>
+        
+      </div>
+      
+      <ion-reorder><ion-icon name="menu" role="img" class="ion-ios-menu" aria-label="menu" ng-reflect-name="menu"></ion-icon></ion-reorder>
+    </div>
+    <ion-button-effect></ion-button-effect>
+  </button>
+    </ion-list>
+
+    
+    <!--template bindings={
+  "ng-reflect-ng-if": "false"
+}-->
+  </scroll-content></ion-content>
+
+</div>
+    <ion-backdrop disable-activated="" disablescroll="false" role="presentation" tappable="" ng-reflect-disable-scroll="false"></ion-backdrop>
+  </ion-menu>
+
+<ion-nav class="menu-content menu-content-overlay" ng-reflect-root="function BasicPage(platform, actionsheetCtrl) {
+        this.platform = platform;
+        this.actionsheetCtrl = actionsheetCtrl;
+    }">
+    <div nav-viewport=""></div><ion-page class="fab-page show-page" style="z-index: 84;">
+<ion-header>
+  <ion-navbar class="toolbar statusbar-padding show-navbar" ng-reflect-hidden="false">
+    <div class="toolbar-background"></div>
+    <button category="bar-button" class="back-button disable-hover bar-button bar-button-default" ng-reflect-category="bar-button" ng-reflect-hidden="false"><span class="button-inner">
+      <span class="button-inner">
+        <ion-icon class="back-button-icon ion-ios-arrow-back" role="img" aria-label="arrow back" ng-reflect-name="ios-arrow-back"></ion-icon>
+        <span class="back-button-text">
+          <span class="back-default"></span>
+        </span>
+      </span>
+    </span><ion-button-effect></ion-button-effect></button>
+    
+    
+    
+    <div class="toolbar-content">
+      
+    <ion-title><div class="toolbar-title">Floating Action Buttons</div></ion-title>
+  
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="buttons-fab-page statusbar-padding"><scroll-content style="margin-top: 77px;">
+  <button fab="" fab-left="" fab-top="" primary="" class="disable-hover button button-default button-fab button-fab-top button-primary button-icon-only"><span class="button-inner">
+    <ion-icon name="add" role="img" class="ion-ios-add" aria-label="add" ng-reflect-name="add"></ion-icon>
+  </span><ion-button-effect></ion-button-effect></button>
+  <button fab="" fab-center="" fab-top="" secondary="" class="disable-hover button button-default button-fab button-fab-center button-fab-top button-secondary button-icon-only"><span class="button-inner">
+    <ion-icon is-active="false" name="compass" role="img" class="ion-ios-compass" aria-label="compass" ng-reflect-name="compass"></ion-icon>
+  </span><ion-button-effect></ion-button-effect></button>
+  <button danger="" fab="" fab-right="" fab-top="" class="disable-hover button button-default button-fab button-danger button-fab-top button-icon-only"><span class="button-inner">
+    <ion-icon is-active="false" name="mic" role="img" class="ion-ios-mic" aria-label="mic" ng-reflect-name="mic"></ion-icon>
+  </span><ion-button-effect></ion-button-effect></button>
+
+  <button class="fab-footer disable-hover button button-default button-fab button-dark button-fab-bottom button-fab-center button-icon-only" dark="" fab="" fab-bottom="" fab-center=""><span class="button-inner">
+    <ion-icon is-active="false" name="heart" role="img" class="ion-ios-heart" aria-label="heart" ng-reflect-name="heart"></ion-icon>
+  </span><ion-button-effect></ion-button-effect></button>
+  <div class="bar-footer"></div>
+</scroll-content></ion-content>
+</ion-page>
+    <div class="nav-decor"></div>
+  </ion-nav>
+
+<!--template bindings={
+  "ng-reflect-ng-if": "false"
+}-->
+</div>
+    <click-block></click-block>
+  </ion-app>
+
+  <!-- Zone.js and Reflect-metadata  -->
+  <script src="./zone.js"></script>
+  <script src="./Reflect.js"></script>
+  <!-- the bundle which is built from the app's source code -->
+  <script src="./app.bundle.js"></script>
+
+
+
+</body></html>

@@ -78,7 +78,7 @@ max-height: 100px !important;
        <ion-icon (click)="deleteEvent(res.id)" style="font-size: 32px;
     margin-top: -10px; color: white;" name="trash"></ion-icon></span></div>
      <div class="card-add" style="z-index: 5; padding-right: 5%; padding-left: 49%; position:relative; top: -32px;"> <span style="float: right;"><ion-icon style="font-size: 32px;
-    margin-right: 22px;margin-top: -10px; color:white" name="create"></ion-icon></span> </div>
+    margin-right: 22px;margin-top: -10px; color:white" (click)="edit(res)" name="create"></ion-icon></span> </div>
    </div>
     <!--<ion-row no-padding>-->
       <div style="float: left;margin-left: 11px;margin-top: 10px;font-size: 15px;color: gray;">Attendees </div>

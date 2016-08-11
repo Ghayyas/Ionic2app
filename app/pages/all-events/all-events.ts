@@ -142,6 +142,7 @@ ionViewWillEnter(){
             
         });
    load.present();
+  
     let headers = new Headers();
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
@@ -250,7 +251,9 @@ ionViewWillEnter(){
                this.nav.setRoot(SigninPage);
         }
       }
-    )
+    )     
+
+
 }
   
  myclick(param){
