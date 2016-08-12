@@ -34,6 +34,10 @@ export class EditEvent {
   public location;
   public description;
   public photo;
+  static latitude;
+  static longitude;
+  public start_date;
+  public end_date;
 
   constructor(private nav: NavController,private navParams: NavParams, private toast: ToastController, private load: LoadingController,
   private actionSheet: ActionSheetController, private http:Http, private menu: MenuController){
@@ -44,7 +48,12 @@ export class EditEvent {
           this.location = this.gettingParams[0].location;
           this.description = this.gettingParams[0].description
           this.photo = this.gettingParams[0].photo;
-         console.log('arr',this.gettingParams);
+          this.start_date = this.gettingParams[0].start_date;
+          this.end_date = this.gettingParams[0].end_date;
+          EditEvent.latitude = this.gettingParams[0].latitude;
+          EditEvent.longitude = this.gettingParams[0].longitude;
+          EditEvent.myImage = this.gettingParams[0].photo;
+         console.log('latitude',EditEvent.latitude);
          
          
     this.event = {
@@ -77,14 +86,15 @@ ngOnInit() {
         google.maps.event.addListener(input,'places_changed',function(){
             console.log("search",input.getPlaces());
             var places = input.getPlaces();
-            var bounds = new google.maps.LatLngBounds();
+            // var bounds = new google.maps.LatLngBounds();
             var i, place;
+            
             for( i = 0; place=places[i];i++ ){
             console.log('place', place.geometry.location);
  
-               EditEvent.lati = place.geometry.location.lat();
+               EditEvent.latitude = place.geometry.location.lat();
 
-              EditEvent.longi = place.geometry.location.lng();
+              EditEvent.longitude = place.geometry.location.lng();
             //  console.log('lat',EditEvent.lati,'long', EditEvent.longi);
             }
    
@@ -165,6 +175,7 @@ console.log('options',options);
   let actionSheet = this.actionSheet.create({
     title: 'Select from Camera',
     cssClass: 'action-sheets-basic-page',
+    enableBackdropDismiss: true,
 
     buttons: [
       {
@@ -239,18 +250,32 @@ console.log('options',options);
   actionSheet.present();
  }
  submit(event){
-       let loading = this.load.create({
-           content: "Please wait...",
-          //  duration: 300,
-           dismissOnPageChange: true
+  //      let loading = this.load.create({
+  //          content: "Please wait...",
+  //          duration: 3000,
+  //          dismissOnPageChange: true
            
-        });
-  loading.present();
-  
-      this.event.latitude = EditEvent.lati ;
-    this.event.longitude = EditEvent.longi ;
-    this.event.photo = EditEvent.myImage;
-     console.log('This Event',this.event[0], "Event",event,"event ID",event.id);
+  //       });
+  // loading.present();
+  console.log("HEloo",EditEvent.latitude);
+  //  if(this.event.latitude == undefined || this.event.latitude == ''){
+       this.event.latitude =  EditEvent.latitude//this.gettingParams[0].latitude, //required
+       this.event.longitude = EditEvent.longitude//this.gettingParams[0].longitude
+
+   // }
+   // else{
+  //  this.event.latitude = EditEvent.lati;
+   // this.event.longitude = EditEvent.longi;
+    //}
+    // if(this.event.photo == undefined|| this.event.photo == ''){
+      this.event.photo = EditEvent.myImage
+   
+    // }
+    // else{
+    //    this.event.photo = EditEvent.myImage;
+    // }
+
+     console.log('This Event',this.event, "Event",event,"event ID",event.id);
      
     var headers = new Headers();
     var datatoSend  = this.event;
@@ -260,9 +285,9 @@ console.log('options',options);
     this.http.post(SERVER_NAME + 'event/update/'+ event.id,datatoSend,{headers:headers})
     .subscribe(
       (data) => {
-          setTimeout(function() {
-          loading.dismiss(true);  
-          }, 5000);
+          // setTimeout(function() {
+          // loading.dismiss(true);  
+          // }, 5000);
           
       let toast = this.toast.create({
       message: "Event Successfully Updated..",
@@ -273,17 +298,19 @@ console.log('options',options);
        
 
       //  console.log('data send',data.json()); 
-       EditEvent.lati = '';
-       EditEvent.longi = '';
+     
+      this.nav.pop().then((s)=>{
+       EditEvent.latitude = '';
+       EditEvent.longitude = '';
        EditEvent.myImage = '';
-      this.nav.push(myEvents);
+      });
       //  console.log('parameters',event);
       //  console.log('event',event,"eventID",event.id);
        
      },(err)=>{
-           setTimeout(function() {
-          loading.dismiss(true);  
-          }, 5000);
+          //  setTimeout(function() {
+          // loading.dismiss(true);  
+          // }, 5000);
        let error = err.json();
        EditEvent.lati = '';
        EditEvent.longi = '';

@@ -36,6 +36,7 @@ input[type="week"] {
   .item{
     padding-left: 0;
   }
+  
  
 </style>
 
@@ -79,7 +80,7 @@ input[type="week"] {
     <ion-col width-50 style="padding-left: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="start_date" placeholder="20/5/2016" [(ngModel)]="event.start_date" required>
+     <input type="date" value="{{start_end}}" name="start_date" placeholder="20/5/2016" [(ngModel)]="event.start_date" required>
      
        <!--<div [hidden]="start_date.valid || start_date.pristine" style="color:red">
          <small>*Required</small>
@@ -91,7 +92,7 @@ input[type="week"] {
     <ion-col width-50 style="padding-right: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="end_date" placeholder="20/5/2016" [(ngModel)]="event.end_date"  required>
+     <input type="date" name="end_date" value="{{end_date}}" placeholder="20/5/2016" [(ngModel)]="event.end_date"  required>
      
   <!--<div [hidden]="end_date.valid || end_date.pristine" style="color:red">
          <small>*Required</small>
@@ -106,7 +107,7 @@ input[type="week"] {
      <div class="fullwidthrow">
      <div class="fieldgroup">
        <ion-card>
-  <img src="{{photo || './img/stub_events.png'}}"  (click)="presentActionSheet()"/>
+  <img src="{{fileUrl || photo}}"  (click)="presentActionSheet()"/>
 
 </ion-card>
  

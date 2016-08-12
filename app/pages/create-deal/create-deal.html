@@ -31,7 +31,7 @@
         border-radius: 5px;
         color: gray;
      }
-     input[type="number"]{
+     input[type="number"], input[type="email"]{
         border: 1px solid gray;
         padding: 8px;
         border-radius: 5px;
@@ -45,7 +45,9 @@
    
      ion-label {
       margin: -3px -15px -17px 10px;
-    }
+      font-size: 10px;
+      font-weight: bolder;
+  }
     ion-row {
     width: calc(100% - 8px - 8px);
    }
@@ -53,6 +55,9 @@
    top: -69px;
     width: 22%;
     float: right;
+  }
+  ion-card img{
+    opacity: 0.3;
   }
   .colorgray{
     color:gray;
@@ -64,6 +69,28 @@
     font-weight: bold;
     font-size: large;
   }
+  textarea ::-webkit-input-placeholder{
+    padding:  5px;
+  }
+  .newsletter{
+   border: 1px solid gray;
+    padding: 11px;
+  }
+  .mainIcons{
+    position: relative;
+    top: 26px;
+    left: 13px;
+    padding-right: 6px;
+  }
+  .newfeedfooter input[type="email"],input[type="text"],input[type="number"]{
+     border: 1px solid gray;
+     padding: 12px;
+     border-radius: 5px;
+     color: gray;
+  }
+  .havePadding{
+    padding: 5px;
+  }
 
    </style>
 
@@ -72,7 +99,8 @@
 
 
    <ion-content padding>
-<div class="fromTop marginleft">
+     <div class="havePadding">
+   <div class="fromTop marginleft">
 
      <h5 style="font-weight: bold;">Deal Name</h5>
 
@@ -102,9 +130,34 @@
         <ion-label class="colorgray" style="max-width: 55px;">Text</ion-label>
          <!--<ion-label>Newsletter</ion-label>-->
   <ion-radio primary checked="newsletter"></ion-radio>
-        <ion-label class="colorgray">Newsletter</ion-label> 
-     
-        </ion-row>
+        <ion-label class="colorgray" >Newsletter</ion-label> 
+     </ion-row>
+
+     <div class="newsletter fromTop">
+       <h5 style="margin-top: 9px; margin-left: 7px; font-weight: 700">Header Setting</h5>
+       <ion-row>
+          <ion-input type="text" placeholder="City 2"></ion-input>   
+         <img src="./img/alignment-icons/svg/left-alignment.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+         <img src="./img/alignment-icons/svg/central-align.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+          <img src="./img/alignment-icons/svg/right-alignment.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+         <img src="./img/circle.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+       </ion-row>
+       <h5 style="margin-left: 7px; font-weight: 700; margin-top: 7px;width: 100%;"> Body Setting</h5>
+       <ion-row style="padding-bottom: 17px;">
+       <h5 style="margin-top: 25px; margin-left: 13px; font-size: 17px; color: gray; width: 100%;">Main Heading</h5>
+       <!--<div>-->
+           <img src="./img/alignment-icons/svg/left-alignment.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+         <img src="./img/alignment-icons/svg/central-align.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+          <img src="./img/alignment-icons/svg/right-alignment.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+         <img src="./img/circle.svg" alt="left aligment" style="height: 20px;" class="mainIcons">
+         <!--</div>-->
+       </ion-row>
+       <textarea rows="4" cols="50" placeholder="Body text here.." style="border: 1px solid gray; margin: 0px; width: 97%; height: 91px; margin: 8px;"></textarea>
+       <h5 class="newfeedfooter" style="margin-left: 7px; font-weight: 700">Footer Setting</h5>
+       <ion-input type="text" placeholder="Email"></ion-input>
+       <ion-input type="text"  placeholder="Website"></ion-input>
+       <ion-input type="text" placeholder="Contact No."></ion-input>
+     </div>
 
  </div>
 
@@ -154,6 +207,7 @@
    
    
     </div> 
+    </div>
  </ion-content>
 
 <!--<ion-content class="create-deal ecnob-fields">

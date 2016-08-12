@@ -135,13 +135,19 @@ export class AllEventsPage {
   }
 
 ionViewWillEnter(){
-      let load = this.loading.create({
-           content: "Please wait...",
-          //  duration: 300, 
-           dismissOnPageChange: true
+  //     let load = this.loading.create({
+  //          content: "Please wait...",
+  //         //  duration: 300, 
+  //          dismissOnPageChange: true
             
-        });
-   load.present();
+  //       });
+  //  load.present();
+    let toast = this.toast.create({
+      message: "Fetching New Results Please wait...",
+      duration: 5000,
+      position: 'bottom'
+       });
+       toast.present();
   
     let headers = new Headers();
    headers.append('Content-Type', 'application/json');
@@ -151,10 +157,10 @@ ionViewWillEnter(){
     .subscribe(
       (data)=>{
         // console.log('data',data);
-        setTimeout(function() {
-          load.dismiss();
-        }, 3000);
-       load.dismiss();
+      //   setTimeout(function() {
+      //     load.dismiss();
+      //   }, 3000);
+      //  load.dismiss();
 
        this.event = data.json().events;
         if(this.event == undefined){
@@ -200,9 +206,9 @@ ionViewWillEnter(){
       },
       (err)=>{
     console.log('err',err);
-         setTimeout(function() {
-          load.dismiss();
-        }, 3000);
+        //  setTimeout(function() {
+        //   load.dismiss();
+        // }, 3000);
      let toast = this.toast.create({
       message: "Needs Internet Connection",
       duration: 3000,

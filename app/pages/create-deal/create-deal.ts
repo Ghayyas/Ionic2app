@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, PopoverController} from 'ionic-angular';
+
 
 /*
   Generated class for the CreateDealPage page.
@@ -11,5 +12,15 @@ import {NavController} from 'ionic-angular';
   templateUrl: 'build/pages/create-deal/create-deal.html',
 })
 export class CreateDealPage {
-  constructor(public nav: NavController) {}
+  constructor(public nav: NavController, private popOver: PopoverController) {
+
+  }
+
+
+
+
+
+
+
+
 }

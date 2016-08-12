@@ -75,6 +75,8 @@ export class myEvents{
             
             this.height = window.innerHeight;
         });
+
+     
         console.log('width',this.width,'Height',this.height);
         
         
@@ -88,34 +90,55 @@ export class myEvents{
     }
     
     ionViewWillEnter(){
-    let loading = this.loading.create({
-           content: "Please wait...",
-          //  duration: 3000,
-           dismissOnPageChange: true
+  //   let loading = this.loading.create({
+  //          content: "Please wait...",
+  //         //  duration: 3000,
+  //          dismissOnPageChange: true
             
-        });
-  loading.present();
+  //       });
+  // loading.present();
+    let toast = this.toast.create({
+                message: "Please wailt..",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
    let headers = new Headers();
      headers.append('Content-Type', 'application/json');
      let ecnobToken = window.localStorage.getItem('ecnob.token');
       headers.append('Authorization', `Bearer ${ecnobToken}`)
         this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
         .subscribe((data)=>{
-          setTimeout(function() {
-            loading.dismiss(true);
-          }, 1000);
+          // setTimeout(function() {
+          //   loading.dismiss();
+          // }, 3000);
+          if(data.json().length == 0){
+            let toast = this.toast.create({
+                message: "No Result Found..",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+          }
           
            this.response = data.json().events;
+           
             console.log('data recivng',data);
             console.log('dataJson',data.json());
           
            
             
         },(err)=>{
-            setTimeout(function() {
-            loading.dismiss(true);
-          }, 1000);
+          //   setTimeout(function() {
+          //   loading.dismiss();
+          // }, 3000);
         // console.log('error recing',err);
+           let toast = this.toast.create({
+                message: "No Internet Connection",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
         console.log('err Josn',err.json());
         let errorjson = err.json();
         if(errorjson.status_code== 401){
@@ -254,12 +277,12 @@ deleteEvent(id){
    //============ Getting Fresh Array From Server  ===============//
 
 
- let loading = this.loading.create({
-           content: "Please wait...",
-          //  duration: 3000,
-           dismissOnPageChange: true
+//  let loading = this.loading.create({
+//            content: "Please wait...",
+//           //  duration: 3000,
+//            dismissOnPageChange: true
             
-        });
+//         });
   loading.present();
    let headers = new Headers();
      headers.append('Content-Type', 'application/json');
@@ -267,9 +290,9 @@ deleteEvent(id){
       headers.append('Authorization', `Bearer ${ecnobToken}`)
         this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
         .subscribe((data)=>{
-          setTimeout(function() {
-            loading.dismiss(true);
-          }, 1000);
+          // setTimeout(function() {
+          //   loading.dismiss(true);
+          // }, 1000);
           
            this.response = data.json().events;
             console.log('data recivng',data);
@@ -278,9 +301,9 @@ deleteEvent(id){
            
             
         },(err)=>{
-            setTimeout(function() {
-            loading.dismiss(true);
-          }, 1000);
+          //   setTimeout(function() {
+          //   loading.dismiss(true);
+          // }, 1000);
         // console.log('error recing',err);
         console.log('err Josn',err.json());
         let errorjson = err.json();
@@ -334,13 +357,6 @@ deleteEvent(id){
 
   edit(i){
     console.log('getting data',i);
-     let loading = this.loading.create({
-           content: "Please wait...",
-           duration: 5000,
-          //  dismissOnPageChange: true
-            
-        });
-  loading.present();
     this.nav.push(EditEvent,{obj:i}).then((suc)=>{
        console.log('Success',suc);
     },(err)=>{
