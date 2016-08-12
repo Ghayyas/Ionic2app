@@ -247,6 +247,7 @@ ionViewWillEnter(){
                 });
                 toast.present()
                window.localStorage.clear();
+               this.menu.close();
                this.menu.enable(false);
                this.nav.setRoot(SigninPage);
         }

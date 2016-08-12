@@ -14,7 +14,7 @@ import {TabsPage} from '../tabs/tabs';
 import {limit} from '../limit';
 import {SigninPage} from '../signin/signin';
 import {ChangeDetectorRef} from '@angular/core';
-import {EditEvent} from '../EditEvent/EditEvent';
+import {EditEvent} from '../editEvent/editEvent';
 
 
 @Component({
@@ -325,6 +325,7 @@ deleteEvent(id){
                 });
                 toast.present()
                window.localStorage.clear();
+               this.menu.close();               
                this.menu.enable(false);
                this.nav.setRoot(SigninPage);
         }
@@ -333,13 +334,13 @@ deleteEvent(id){
 
   edit(i){
     console.log('getting data',i);
-  //    let loading = this.loading.create({
-  //          content: "Please wait...",
-  //          duration: 5000,
-  //         //  dismissOnPageChange: true
+     let loading = this.loading.create({
+           content: "Please wait...",
+           duration: 5000,
+          //  dismissOnPageChange: true
             
-  //       });
-  // loading.present();
+        });
+  loading.present();
     this.nav.push(EditEvent,{obj:i}).then((suc)=>{
        console.log('Success',suc);
     },(err)=>{

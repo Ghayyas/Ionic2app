@@ -8,7 +8,7 @@ import {BroadcastPage} from '../broadcast-event/broadcast-event';
 import {CreateListPeopleInvitePage} from '../create-list-people-invite/create-list-people-invite';
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService';
-import {EditEvent} from "../EditEvent/EditEvent";
+// import {EditEvent} from "../EditEvent/EditEvent";
 // import {broadcastEvent} from ''
 
 // import {RadioControlValueAccessor} from "./radio_value_accessor";

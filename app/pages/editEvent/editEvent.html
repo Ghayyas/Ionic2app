@@ -48,13 +48,13 @@ input[type="week"] {
  </ion-header>
 <ion-content padding class="create-event ecnob-fields">
     	<p style="font-size: 17px; font-weight: 700;">Edit Event<p>
-        <div *ngFor="let a of gettingParams">
+        <!--<div *ngFor="let a of gettingParams">-->
   <form>
   <ion-list class="padding">
 
         <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" required name="Eventname" minlength="6" maxlength="13" [(ngModel)]="event.name" placeholder="Event Name" value="{{a.name}}">
+     <input type="text" required name="Eventname" minlength="6" maxlength="13" [(ngModel)]="event.name" placeholder="Event Name" value="{{name}}">
     
   <!--<div [hidden]="name.valid || name.pristine" style="color:red">
          <small>Minimum 6 Chacters is required and not Maximum then 13</small>
@@ -64,7 +64,7 @@ input[type="week"] {
 
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="text" id="autocomplete" name="myEventlocation" value="{{a.location}}" placeholder="Event Location" required>
+     <input type="text" id="autocomplete" name="myEventlocation" value="{{location}}"  placeholder="Event Location" required>
      
 
    <!--<div [hidden]="location.valid || location.pristine" style="color:red">
@@ -91,7 +91,7 @@ input[type="week"] {
     <ion-col width-50 style="padding-right: 0px; padding-top:0px;  padding-bottom:0px;">
      <div class="fullwidthrow">
      <div class="fieldgroup">
-     <input type="date" name="end_date" placeholder="20/5/2016" [(ngModel)]="event.end_date" value="{{a.end_date}}" required>
+     <input type="date" name="end_date" placeholder="20/5/2016" [(ngModel)]="event.end_date"  required>
      
   <!--<div [hidden]="end_date.valid || end_date.pristine" style="color:red">
          <small>*Required</small>
@@ -106,7 +106,7 @@ input[type="week"] {
      <div class="fullwidthrow">
      <div class="fieldgroup">
        <ion-card>
-  <img src="{{a.photo || './img/stub_events.png'}}"  (click)="presentActionSheet()"/>
+  <img src="{{photo || './img/stub_events.png'}}"  (click)="presentActionSheet()"/>
 
 </ion-card>
  
@@ -116,7 +116,7 @@ input[type="week"] {
 
          <div class="fullwidthrow">
      <div class="fieldgroup">
-     <textarea name="description" placeholder="Enter Events Details" [(ngModel)]="event.description"  value="{{a.description}}" rows="5" cols="50" ></textarea>
+     <textarea name="description" placeholder="Enter Events Details" [(ngModel)]="event.description"  value="{{description}}" rows="5" cols="50" ></textarea>
      </div>
     </div>
 
@@ -126,10 +126,10 @@ input[type="week"] {
  <ion-list>
    <div style="padding: 0px 15px;">   
   
-  <button class="button button-block button-positive"  style="font-size: 20px; height: 50px;" (click)="submit(event,a.id)">
- Submit
+  <button class="button button-block button-positive"  style="font-size: 20px; height: 50px;" (click)="submit(event)">
+ Update Event
 </button>
 </div>
  </ion-list>
- </div>
+ <!--</div>-->
 </ion-content>

@@ -1,5 +1,5 @@
 import {Component,OnInit} from '@angular/core';
-import {NavController,NavParams, ToastController,LoadingController, ActionSheetController} from 'ionic-angular';
+import {NavController,NavParams, ToastController,LoadingController, MenuController, ActionSheetController} from 'ionic-angular';
 import {Camera} from 'ionic-native';
 import {NgZone} from "@angular/core";
 // import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
@@ -9,6 +9,8 @@ declare var FileUploadOptions:any;
 declare var FileTransfer :any;
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService';
+import {myEvents} from '../myEvents/myEvents';
+import {SigninPage} from '../signin/signin';
 
 @Component({
   templateUrl: 'build/pages/editEvent/editEvent.html'
@@ -19,7 +21,7 @@ import {SERVER_NAME} from '../../service/dataService/dataService';
 
 
 
-export class EditEvent implements OnInit {
+export class EditEvent {
   public gettingParams = [];
   static lati:any;
   static longi:any;
@@ -27,57 +29,40 @@ export class EditEvent implements OnInit {
   public fileUrl;
   static myImage;
   public date:any;
-  public event: Object;
+  public event: any;
+  public name;
+  public location;
+  public description;
+  public photo;
 
   constructor(private nav: NavController,private navParams: NavParams, private toast: ToastController, private load: LoadingController,
-  private actionSheet: ActionSheetController, private http:Http){
+  private actionSheet: ActionSheetController, private http:Http, private menu: MenuController){
      
          let getObject = this.navParams.get('obj');
           this.gettingParams.push(getObject) ;
-          
+          this.name = this.gettingParams[0].name;
+          this.location = this.gettingParams[0].location;
+          this.description = this.gettingParams[0].description
+          this.photo = this.gettingParams[0].photo;
          console.log('arr',this.gettingParams);
+         
+         
     this.event = {
+      type: this.gettingParams[0].type,
       photo : this.gettingParams[0].photo,  
       name : this.gettingParams[0].name,  //required
       start_date : this.gettingParams[0].start_date,//required
       end_date : this.gettingParams[0].end_date, //required
       description : this.gettingParams[0].description,
-      latitude: '', //required
-      longitude: '', //required
+      latitude:  this.gettingParams[0].latitude, //required
+      longitude: this.gettingParams[0].longitude, //required
+      id: this.gettingParams[0].id
       // created_at: new Date()
      }
   
     console.log('nav params',getObject);
       this.zone = new NgZone({enableLongStackTrace: false});
      
-     
-
-  // this.initilize();
-   
-      //   setTimeout(function() {
-     
-
-
-      //  var input = new google.maps.places.SearchBox(document.getElementById('loc'));
-
-      //   google.maps.event.addListener(input,'places_changed',function(){
-      //       console.log("search",input.getPlaces());
-      //       var places = input.getPlaces();
-      //       var bounds = new google.maps.LatLngBounds();
-      //       var i, place;
-      //       for( i = 0; place=places[i];i++ ){
-      //       console.log('place', place.geometry.location);
- 
-      //          EditEvent.lati = place.geometry.location.lat();
-
-      //         EditEvent.longi = place.geometry.location.lng();
-      //        console.log('lat',EditEvent.lati ,'long', EditEvent.longi);
-      //       }
-   
-       
-      //   })
-      //   }, 3000);
-
 
 
   }
@@ -85,34 +70,28 @@ export class EditEvent implements OnInit {
 
 
 
- ngOnInit() {
-   console.log('1 break');
-   
-   var input =  new google.maps.places.SearchBox(document.getElementById('autocomplete'));
-          console.log('2 break');
-        input.addListener('places_changed',function(){
-             console.log('3 break');
+ngOnInit() {
+    
+        var input = new google.maps.places.SearchBox(document.getElementById('autocomplete'));
+
+        google.maps.event.addListener(input,'places_changed',function(){
             console.log("search",input.getPlaces());
-               console.log('4 break');
             var places = input.getPlaces();
-               console.log('5 break');
             var bounds = new google.maps.LatLngBounds();
-               console.log('6 break');
             var i, place;
-               console.log('7 break');
             for( i = 0; place=places[i];i++ ){
-                 console.log('8 break');
             console.log('place', place.geometry.location);
-             console.log('9 break');
+ 
                EditEvent.lati = place.geometry.location.lat();
-                   console.log('10 break');
+
               EditEvent.longi = place.geometry.location.lng();
-                 console.log('11 break');
-             console.log('lat',EditEvent.lati ,'long', EditEvent.longi);
-                console.log('12 break');
+            //  console.log('lat',EditEvent.lati,'long', EditEvent.longi);
             }
-})
- }
+   
+       
+        })
+     }
+
 
 
 
@@ -148,8 +127,8 @@ console.log('options',options);
         setTimeout(function() {
             loading.dismiss(true);
           }, 3000);
-      console.log("Code = " + r.responseCode);
-      console.log("Response = " + r.response);
+      // console.log("Code = " + r.responseCode);
+      // console.log("Response = " + r.response);
       let photoParse = JSON.parse(r.response);
       // alert('Image Caputured Successs');
        EditEvent.myImage  = photoParse.image;
@@ -166,11 +145,11 @@ console.log('options',options);
       position: 'bottom'
        });
        toast.present();
-      console.log("An error has occurred while sending picture to server: Code = " + error);
-      console.log("upload error source " + error.source);
-      console.log("upload error target " + error.target);
+      // console.log("An error has occurred while sending picture to server: Code = " + error);
+      // console.log("upload error source " + error.source);
+      // console.log("upload error target " + error.target);
    }, options);
-   console.log('arra',array[0],"fileUrl",fileURL);
+  //  console.log('arra',array[0],"fileUrl",fileURL);
 
 	
  }
@@ -259,31 +238,84 @@ console.log('options',options);
 
   actionSheet.present();
  }
- submit(event,eventID){
-  //      this.loading = Loading.create({
-  //          content: "Please wait...",
-  //          duration: 300,
-  //          dismissOnPageChange: true
+ submit(event){
+       let loading = this.load.create({
+           content: "Please wait...",
+          //  duration: 300,
+           dismissOnPageChange: true
            
-  //       });
-  // this.nav.present(this.loading);
- 
+        });
+  loading.present();
+  
+      this.event.latitude = EditEvent.lati ;
+    this.event.longitude = EditEvent.longi ;
+    this.event.photo = EditEvent.myImage;
+     console.log('This Event',this.event[0], "Event",event,"event ID",event.id);
+     
     var headers = new Headers();
-    var datatoSend  = event;
+    var datatoSend  = this.event;
    headers.append('Content-Type', 'application/json');
    let ecnobToken = window.localStorage.getItem('ecnob.token');
    headers.append('Authorization', `Bearer ${ecnobToken}`)
-    this.http.post(SERVER_NAME + 'event/update/'+ eventID,datatoSend,{headers:headers})
+    this.http.post(SERVER_NAME + 'event/update/'+ event.id,datatoSend,{headers:headers})
     .subscribe(
       (data) => {
-          // this.loading.dismiss(true);
+          setTimeout(function() {
+          loading.dismiss(true);  
+          }, 5000);
+          
+      let toast = this.toast.create({
+      message: "Event Successfully Updated..",
+      duration: 3000,
+      position: 'bottom'
+      });
+       toast.present();
+       
 
-       console.log('data send',data.json()); 
+      //  console.log('data send',data.json()); 
+       EditEvent.lati = '';
+       EditEvent.longi = '';
+       EditEvent.myImage = '';
+      this.nav.push(myEvents);
+      //  console.log('parameters',event);
+      //  console.log('event',event,"eventID",event.id);
+       
+     },(err)=>{
+           setTimeout(function() {
+          loading.dismiss(true);  
+          }, 5000);
+       let error = err.json();
+       EditEvent.lati = '';
+       EditEvent.longi = '';
+       EditEvent.myImage = '';
+      // console.log('getting error',err);
+     let toast = this.toast.create({
+      message: "Something Went Wrong..",
+      duration: 3000,
+      position: 'bottom'
+      });
+       toast.present();
+         if(error.status_code== 500){
+              let toast = this.toast.create({
+                message: "Internal Server Error",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
+        }
+          else if(error.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.close();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
 
-       console.log('parameters',event);
-     console.log('event',event,"eventID",eventID);
- },(err)=>{
-      console.log('getting error',err);
  })
  }
 
