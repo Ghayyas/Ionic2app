@@ -180,7 +180,6 @@ console.log('options',options);
     buttons: [
       {
         text: 'Take Picture form Camera',
-        role: 'destructive',
         handler: () => {
           Camera.getPicture({
             quality : 45,

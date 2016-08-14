@@ -10,13 +10,14 @@ import {TabsPage} from '../tabs/tabs';
 })
 export class Page1 {
   
-  public pet: string;
+  // public pet: string;
   static nav: NavController;
   public event = [];
+  private segment:any;
   //  public tab:TabsPage
   constructor(private menu:MenuController,public nav: NavController) {
-  this.pet = 'public';
-
+  // this.pet = 'public';
+  this.segment = 'private';
 
   this.event = [{type: 0,img: './img/event1.jpg',name: 'Fun party'},{type: 0, img: './img/event3.jpg',name:'wedding Event'},{type: 0 , img: 'img/event1.jpg',name: 'Fun party'},{type: 0 , img: './img/event2.jpg',name: 'launch Event'},{type: 0, img: './img/event4.jpg',name: 'Birthday Party'}
    ,{type: 1, img: './img/deal1.jpg',name: ' More than 110%...'}, {type: 1, img: './img/deal2.jpg', name: "More than 110%.."}, {type: 1, img: './img/deal1.jpg',name: 'More than 110%'},{type: 1, img: './img/deal2.jpg', name: 'More than 110%'},{type: 1, img: './img/deal1.jpg', name: 'More than 110%'}]
@@ -56,9 +57,9 @@ export class Page1 {
   }
 
   
-  myclick(param){
-     this.pet = param;
-     console.log('params',this.pet);
-   }
+  // myclick(param){
+  //    this.pet = param;
+  //    console.log('params',this.pet);
+  //  }
   
 }

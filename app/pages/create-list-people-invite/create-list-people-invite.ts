@@ -94,15 +94,33 @@ let loading = this.loading.create({
         setTimeout(function() {
           loading.dismiss(true);
         }, 3000);
-   
+        
+         CreateEventPage.myImage  = '';
 
-             CreateEventPage.arraytoSend = [];
+         CreateEventPage.arraytoSend = [];
         
         this.showToast('Success !');
         console.log('data send',data.json()); 
-        this.nav.setRoot(TabsPage);
-        // this.nav.push(TabsPage);
-         },(err)=>{
+        // this.nav.setRoot(TabsPage).then((suc)=>{
+          //  this.nav.setRoot(Page1);
+          //  console.log('is active', this.nav.isActive());
+            // this.nav.isActive;
+           this.nav.pop().then((s)=>{
+             this.nav.pop();
+           });
+               
+
+        // });      
+        //   this.nav.setRoot(TabsPage).then((suc)=>{
+        //   this.nav.push(AllEventsPage).then((suc)=>{
+        //   console.log('sucess',suc);
+        // },(err)=>{
+        //   console.log('err',err);
+        // });
+        // });
+          
+      
+        },(err)=>{
         setTimeout(function() {
           loading.dismiss(true);
         }, 3000);
@@ -134,6 +152,7 @@ let loading = this.loading.create({
 //  }
 }
   ionViewWillLeave(){
+    CreateEventPage.myImage  = '';
       CreateEventPage.arraytoSend = [];
   }
 }

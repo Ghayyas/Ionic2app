@@ -98,8 +98,8 @@ export class myEvents{
   //       });
   // loading.present();
     let toast = this.toast.create({
-                message: "Please wailt..",
-                duration: 3000,
+                message: "Please wait..",
+                // duration: 3000,
                 position: 'bottom'
                 });
                 toast.present()
@@ -109,9 +109,9 @@ export class myEvents{
       headers.append('Authorization', `Bearer ${ecnobToken}`)
         this.http.get(SERVER_NAME + 'event/myevent',{headers:headers})
         .subscribe((data)=>{
-          // setTimeout(function() {
-          //   loading.dismiss();
-          // }, 3000);
+          setTimeout(function() {
+            toast.dismiss();
+          }, 3000);
           if(data.json().length == 0){
             let toast = this.toast.create({
                 message: "No Result Found..",

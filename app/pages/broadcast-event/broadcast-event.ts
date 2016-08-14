@@ -125,8 +125,10 @@ export class BroadcastPage {
      BroadcastPage.gettingPlaces = "";
      BroadcastPage.myLat = '';
      BroadcastPage.myLong = '';
-      CreateEventPage.arraytoSend = [];
+     CreateEventPage.arraytoSend = [];
+     CreateEventPage.myImage  = '';
    }
+
     showToast(message: string) {
     let toast = this.toast.create({
       message: message,
@@ -136,6 +138,7 @@ export class BroadcastPage {
 
     toast.present();
          }
+  
   
  sendBroadCast(){
   //  console.log("BroadCast Event Works");
@@ -169,15 +172,25 @@ let loading = this.loading.create({
       // CreateEventPage.arraytoSend[0]  = '';
       CreateEventPage.arraytoSend = [];
         this.showToast('Success !');
-        console.log('data send',data.json()); 
-        // this.nav.push(TabsPage);
-        this.nav.setRoot(TabsPage);
+        console.log('data send',data.json());
+        // this.nav.popTo(TabsPage);
+          this.nav.pop().then((s)=>{
+             this.nav.pop();
+           });        // this.nav.setRoot(TabsPage);
+        
+        // this.nav.setRoot(TabsPage).then((suc)=>{
+          //  this.nav.push(Page1);
+         // });
+        //  this.nav.setRoot(TabsPage).then((suc)=>{
+        //   this.nav.push(Page1)
+        // });
 
          },(err)=>{
       setTimeout(function() {
           loading.dismiss(true);
         }, 3000);
        CreateEventPage.arraytoSend = [];
+       CreateEventPage.myImage = ''
         // this.nav.push(TabsPage)
          console.log('err',err);
          let error = err.json();
@@ -204,4 +217,7 @@ let loading = this.loading.create({
 //  }
 
 }
+
+   
+
 }

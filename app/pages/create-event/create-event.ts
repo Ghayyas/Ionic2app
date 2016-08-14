@@ -395,16 +395,15 @@ submit(params)
      
       // console.log('params',this.params.type,'submit parms',params.type);    
 
-//    if(this.params.photo == undefined ){
-//      let toast = this.toast.create({
-//       message: "Picture is Required try again",
-//       duration: 3000,
-//       position: 'bottom'
-//        });
-//        toast.present();
-// }
-//   else 
-  if(this.params.latitude == undefined){
+   if(this.params.photo == undefined ){
+     let toast = this.toast.create({
+      message: "Picture is Required try again",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
+}
+  else if(this.params.latitude == undefined){
       let toast = this.toast.create({
       message: "Unable to get your location try again",
       duration: 3000,

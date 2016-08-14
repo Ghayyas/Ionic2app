@@ -114,4 +114,4 @@ ionicBootstrap(MyApp, [
   disableDeprecatedForms(),
   provideForms()
  ],{tabsPlacement: "bottom",tabsHideOnSubPages: false,
-      tabsHighlight: false})
+      tabsHighlight: true})

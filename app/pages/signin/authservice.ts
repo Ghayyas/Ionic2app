@@ -80,7 +80,7 @@ export class AuthService {
                       console.log('Email or Password Not found on server');
                   }
                   else{
-                      this.getalert('Make Sure you have Connected to Internet');
+                      this.getalert('Make Sure you are connected to Internet');
                   }  
                   resolve(false);
                 

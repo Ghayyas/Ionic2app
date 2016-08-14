@@ -2,12 +2,12 @@
 
 <style type="text/css">
 .hometab-content.with-2col{
- -webkit-column-count: 2;
+-webkit-column-count: 2;
 -moz-column-count: 2;
 column-count: 2;
-display: inline-block;
+/*display: inline-block;*/
 width: 100%;
-height: 100%;
+/*height: 100%;*/
 float: left;
 box-sizing: border-box;
 padding-right: 0px;
@@ -55,11 +55,11 @@ ion-label{
    border-bottom: 1px  solid white !important;
 }
 
-.segment-button.activated, .segment-button.segment-activated {
-    // opacity: 1;
+/*.segment-button.activated, .segment-button.segment-activated {
+     opacity: 1;
     background: #f8f8f8 !important;
     color: #3474e1 !important;
-}
+}*/
 
 ion-item.itemcontent.item .input-wrapper ion-label{
       white-space: inherit;
@@ -92,13 +92,14 @@ ion-title{
    </ion-navbar>
 
 
-   
+   <!--(click)="myclick('public')"-->
+   <!--(click)="myclick('private')"-->
      <ion-toolbar primary>
-    <ion-segment>
-      <ion-segment-button (click)="myclick('public')" class="tab-segment segment-activated" value="private">
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button  class="tab-segment segment-activated" itemtype="radio" value="private">
         Featured Deals
       </ion-segment-button>
-      <ion-segment-button class="tab-segment" (click)="myclick('private')" value="public">
+      <ion-segment-button class="tab-segment" itemtype="radio" value="public">
         Featured Events
       </ion-segment-button>
     </ion-segment>
@@ -114,9 +115,9 @@ ion-title{
 
 
 
-<div [ngSwitch]="pet">
-      <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
-
+<!--<div [ngSwitch]="pet">-->
+      <!--<div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">-->
+<div class="hometab-content with-2col" *ngIf="segment == 'public'">
 <div class="list card">
 
   <div class="item item-image">
@@ -195,13 +196,13 @@ ion-title{
 </div>
 
 </div>
+<!--</div>-->
 
 
 
 
-
-  <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'public'">
-
+  <!--<div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'public'">-->
+<div class="hometab-content with-2col" id="status" *ngIf="segment == 'private'">
 <div class="list card">
 
   <div class="item item-image">
@@ -388,6 +389,6 @@ ion-title{
 
 </div>-->
 </div>
-</div>
+<!--</div>-->
 
 </ion-content>

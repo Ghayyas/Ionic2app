@@ -130,11 +130,13 @@ export class AllEventsPage {
       
   }
   
-  createEventgo(){
-    this.nav.push(CreateEventPage)
-  }
+  // createEventgo(){
+  //   this.nav.RootNav.push(CreateEventPage)
+  // }
+  
+  
 
-ionViewWillEnter(){
+ionViewDidEnter(){
   //     let load = this.loading.create({
   //          content: "Please wait...",
   //         //  duration: 300, 
@@ -144,7 +146,7 @@ ionViewWillEnter(){
   //  load.present();
     let toast = this.toast.create({
       message: "Fetching New Results Please wait...",
-      duration: 5000,
+      // duration: 5000,
       position: 'bottom'
        });
        toast.present();
@@ -157,9 +159,9 @@ ionViewWillEnter(){
     .subscribe(
       (data)=>{
         // console.log('data',data);
-      //   setTimeout(function() {
-      //     load.dismiss();
-      //   }, 3000);
+        setTimeout(function() {
+          toast.dismiss();
+        }, 3000);
       //  load.dismiss();
 
        this.event = data.json().events;
@@ -205,16 +207,18 @@ ionViewWillEnter(){
 
       },
       (err)=>{
-    console.log('err',err);
-        //  setTimeout(function() {
-        //   load.dismiss();
-        // }, 3000);
+    // console.log('err',err);
+     setTimeout(function() {
+          toast.dismiss();
+        }, 3000);
+        if(err){
      let toast = this.toast.create({
       message: "Needs Internet Connection",
       duration: 3000,
       position: 'bottom'
        });
        toast.present();
+       }
     // load.dismiss(true);
     //     let alert = this.alertCtrl.create({
     //       title: 'Error !',
@@ -232,8 +236,8 @@ ionViewWillEnter(){
         let str = JSON.parse(err._body);
        
       // str = str.replace(/\\/g, '')
-      
-      if(str.status_code == 500){
+             
+     if(str.status_code == 500){
         
       let toast = this.toast.create({
       message: "Internal Server error",

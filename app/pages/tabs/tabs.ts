@@ -14,22 +14,42 @@ import {DataService} from '../../service/dataService/dataService';
   templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
+  private param;
   // this tells the tabs component which Pages
   // should be each tab's root Page
 
-// @ViewChild('myTabs') tabRef: Tabs;
+@ViewChild('myTabs') myTabs: Tabs;
 
-// ionViewDidEnter() {
-//   this.tabRef.select(0);
+ionViewDidEnter() {
+  // window.alert('view enter');
+  var t: Tabs = this.nav.parent;
+   t.select(this.param);
+  //  this.nav.getActive();
+  // console.log('privous tab',this.myTabs);
+  // this.nav.parent.select(tabIndex); 
+}
+ select(param){
+   console.log('param select',param);
+   this.param = param;
+  //  var t: Tabs = this.nav.parent;
+  //  t.select(0);
+ }
+//  selected(param){
+//    console.log('params selected',param);
+//    var t: Tabs = this.nav.parent;
+//    t.select(param);
 //  }
-  tab1Root: any = Page1;
-  tab2Root: any = DealsPage;  //deals Page
-  tab3Allevent: any = AllEventsPage;
-  tab4Root: any = AllCompaniesPage;
+    tab1Root: any = Page1;
+    tab2Root: any = DealsPage; //deals Page
+    tab3Allevent: any = AllEventsPage;
+    tab4Root: any = AllCompaniesPage; 
 
   constructor(public nav:NavController){
-  //  var tab = document.getElementsByTagName("ion-tabs")[0];
- 
+  // this.tab1Root = Page1;
+  // this.tab2Root = DealsPage;
+  // this.tab3Allevent = AllEventsPage;
+  // this.tab4Root = AllCompaniesPage
+  
  }
 //  ionViewWillEnter() {
 //    let tab = document.getElementById('mytab');
