@@ -83,7 +83,8 @@ input[type="week"] {
      <div class="fullwidthrow">
      <div class="fieldgroup">
      <input type="text"  id="locationINput" [(ngModel)]="params.location" #location="ngModel" name="myEventlocation" placeholder="Event Location" required>
-     
+        <div id="locate"> 
+      </div>
    <div [hidden]="location.valid || location.pristine" style="color:red">
          <small>*Required</small>
      </div>

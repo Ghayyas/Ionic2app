@@ -1,6 +1,13 @@
-import {NavController, Page, LoadingController,AlertController,ToastController} from 'ionic-angular';
+/***
+ * 
+ * Location Page
+ * 
+ */
+
+
+import {NavController,Content,Page, LoadingController,AlertController,ToastController} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
-import {NgZone, Component, EventEmitter, OnInit} from "@angular/core";
+import {NgZone, Component, EventEmitter, OnInit,ViewChild} from "@angular/core";
 import {Http, Headers } from '@angular/http';
 import {DataService, SERVER_NAME} from '../../service/dataService/dataService';
 import {TabsPage} from '../tabs/tabs';
@@ -14,7 +21,6 @@ import {MyApp} from '../../app';
 
 declare var google:any;
 declare var load:any;    
-// declare var $:any;
 
 
 
@@ -22,6 +28,11 @@ declare var load:any;
 
 
 
+/**
+ * 
+ * Component Page
+ * 
+ */
 
 
 
@@ -29,11 +40,25 @@ declare var load:any;
   templateUrl: 'build/pages/location/location.html',
   providers: [DataService]
 })
+/**
+ * 
+ * Location Page 
+ * 
+ */
+
 
 export class locationPage{
     public map:any;
     // public authservice;
 
+/**
+ * 
+ * Child View Content
+ * 
+ */
+
+ @ViewChild(Content)
+    content:Content;
 
     public cityCircle;   //Circle Map
     public Radius;      ///Radius of the Map
@@ -62,6 +87,12 @@ export class locationPage{
          this.Radius = 3;
       },6000);   
 
+      /**
+       * 
+       * Listener to detect if keyboard is open
+       * 
+       */
+
     window.addEventListener('native.keyboardshow', ()=>{
         //  let keyboardHide = document.getElementById('keyboardhide');
         //  let KeyboardHide1 = document.getElementById('keyboardhide1');
@@ -87,6 +118,41 @@ export class locationPage{
         //  console.log('my radius',this.myRadius)
     }
 
+
+//==============  Setting Maps Drop Down  ============//
+
+
+
+  ngAfterViewInit() {
+
+        this.content.addScrollListener((event)=>{
+         document.getElementById('pac-input').blur();
+          var timer = -1;
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = '.pac-container { visibility: hidden; }';
+            document.getElementsByTagName('head')[0].appendChild(style);
+            document.getElementById('contain').className = 'pac-container';
+            
+               if(timer !== -1) {
+                  clearTimeout(timer);        
+              }
+              timer = setTimeout(function() {
+                    // do something
+           var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = '.pac-container { visibility: visible;}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+             document.getElementById('contain').className = 'pac-container';
+           }, 150);
+       
+        });
+    }
+
+
+
+
+// ==================== Maps Drop Down END ===============//
 
 
 //=========== Loading Script ==============//
@@ -327,8 +393,8 @@ export class locationPage{
          
          
       
-      //==============Update Profile Function ==================//
-      updateProfile(){
+      //============== wizard Complete Function ==================//
+      wizardComplete(){
           let loading = this.loading.create({
 		  content: "Please wait...",
         //   duration: 3000,

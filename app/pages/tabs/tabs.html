@@ -1,10 +1,10 @@
 <!--<div class="tabshide">-->
 <!--<ion-footer>-->
-<ion-tabs  class="foo-tabs"  #myTabs primary>
-  <ion-tab [root]="tab1Root" tabTitle="Home" (ionSelect)="select(0)" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Deals" (ionSelect)="select(1)" tabIcon="pricetags"  ></ion-tab>
-  <ion-tab [root]="tab3Allevent" tabTitle="Events" (ionSelect)="select(2)" tabIcon="calendar"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Companies" (ionSelect)="select(3)" tabIcon="grid"></ion-tab>
+<ion-tabs  class="foo-tabs"  #myTabs primary [selectedIndex]="mySelectedIndex">
+  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Deals"  tabIcon="pricetags"  ></ion-tab>
+  <ion-tab [root]="tab3Allevent" tabTitle="Events"  tabIcon="calendar"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="Companies" tabIcon="grid"></ion-tab>
 </ion-tabs>
 
 <!--</ion-footer>-->

@@ -1,4 +1,3 @@
-
 import {NavController,ToastController, Page, LoadingController,ActionSheetController,AlertController} from 'ionic-angular';
 import {Camera,Transfer,File} from 'ionic-native';
 import {NgZone, Component} from "@angular/core";
@@ -42,10 +41,11 @@ export class profile {
        
     }
 //=============================//
+  
+// Image Upload promise
 
  uploadFile() {
   return new Promise((resolve)=>{
-
     if(this.FileUrlAddress !== undefined){
     var fileURL = this.FileUrlAddress;
    console.log('fileUrl',fileURL)
@@ -88,23 +88,15 @@ console.log('options',options);
      resolve(true);
   })
    
-  //  var suc = function onSuccess(r) {
-  //     console.log("Code = " + r.responseCode);
-  //     console.log("Response = " + r.response);
-  //     let photoParse = JSON.parse(r.response);
-  //     DataService.dataArray[0].photo = photoParse.image;
-     
-  //     console.log("Sent = " + r.bytesSent);
-  //  }
-
-//  var err =   function onError(error) {
-//       alert("An error has occurred: Code = " + error.code);
-//       console.log("upload error source " + error.source);
-//       console.log("upload error target " + error.target);
-//    }
 	
  
 }
+
+/**
+ * Action sheet opening
+ * 
+ */
+
 
     //=====================================//
 upload(){
@@ -197,6 +189,14 @@ upload(){
   actionSheet.present();
   
   }
+
+
+/**
+ * 
+ * Upload the Selected Image and navigates to next page
+ * 
+ */
+
   
   uploadSelectedImage(){
   let loading = this.loading.create({
@@ -213,12 +213,6 @@ upload(){
    },(err)=>{
      window.alert('Image not Uploaded');
      console.log('err on profile image upload ', err);
-    //     let loading = Loading.create({
-		//   content: "Please wait...",
-		//   duration: 6000,
-		//   // dismissOnPageChange: true
-	  // });
-	  // this.nav.present(loading);
           this.nav.push(locationPage);
 
    })

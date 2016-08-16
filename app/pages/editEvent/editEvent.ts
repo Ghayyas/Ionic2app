@@ -1,5 +1,5 @@
-import {Component,OnInit} from '@angular/core';
-import {NavController,NavParams, ToastController,LoadingController, MenuController, ActionSheetController} from 'ionic-angular';
+import {Component,OnInit,ViewChild} from '@angular/core';
+import {NavController,NavParams,Content,ToastController,LoadingController, MenuController, ActionSheetController} from 'ionic-angular';
 import {Camera} from 'ionic-native';
 import {NgZone} from "@angular/core";
 // import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
@@ -22,6 +22,47 @@ import {SigninPage} from '../signin/signin';
 
 
 export class EditEvent {
+
+  @ViewChild(Content)
+    content:Content;
+
+    onPageScroll(event) {
+        console.log("page scrolling",event.target.scrollTop);
+    }
+
+    /**
+     * 
+     * on scrolling hide the suggession div
+     * 
+     */
+
+    ngAfterViewInit() {
+
+        this.content.addScrollListener((event)=>{
+         document.getElementById('autocomplete').blur();
+          var timer = -1;
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = '.pac-container { visibility: hidden; }';
+            document.getElementsByTagName('head')[0].appendChild(style);
+            document.getElementById('contain').className = 'pac-container';
+            
+               if(timer !== -1) {
+                  clearTimeout(timer);        
+              }
+              timer = setTimeout(function() {
+                    // do something
+           var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = '.pac-container { visibility: visible;}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+             document.getElementById('contain').className = 'pac-container';
+           }, 150);
+       
+        });
+    }
+
+
   public gettingParams = [];
   static lati:any;
   static longi:any;
@@ -77,7 +118,11 @@ export class EditEvent {
   }
 
 
-
+/**]
+ * 
+ * google map search box initilize
+ * 
+ */
 
 ngOnInit() {
     
@@ -170,6 +215,12 @@ console.log('options',options);
 //===========File UPload END ==========//
 
 
+/**
+ * 
+ * action sheet
+ * 
+ */
+
 
  presentActionSheet():void {
   let actionSheet = this.actionSheet.create({
@@ -248,6 +299,14 @@ console.log('options',options);
 
   actionSheet.present();
  }
+
+/**
+ * 
+ * Update the Event
+ * 
+ */
+
+
  submit(event){
   //      let loading = this.load.create({
   //          content: "Please wait...",

@@ -1,5 +1,5 @@
-import {Component,NgZone} from '@angular/core';
-import {NavController,ToastController, NavParams,LoadingController,AlertController,MenuController} from 'ionic-angular';
+import {Component,NgZone, ViewChild} from '@angular/core';
+import {NavController,Content,ToastController, NavParams,LoadingController,AlertController,MenuController} from 'ionic-angular';
 // import { DataService } from '../../service/dataService/dataService';
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService';
@@ -22,6 +22,7 @@ import {EditEvent} from '../editEvent/editEvent';
   pipes: [limit]
 })
 export class myEvents{
+
   tab1: any = Page1;
   tab2: any = DealsPage;  //deals Page
   tab3: any = AllEventsPage;
@@ -37,18 +38,11 @@ export class myEvents{
   public person;
   public nexsusP: boolean;
   public totalAttendents: number;
-    constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone,public http: Http,
-    private loading: LoadingController, private alert: AlertController,private toast:ToastController){
-      this.nexsusP = false; 
-     this.myImg = [
-       {img: './img/default-user.png'},
-       {img: './img/default-user.png'},
-       {img: './img/default-user.png'},
-      {img: './img/default-user.png'},
-      {img: './img/default-user.png'},
-       {img: './img/default-user.png'},
-       {img: './img/default-user.png'},
-        {img: './img/default-user.png'},
+  public mytoast:any;
+  constructor(public menu: MenuController,public nav: NavController,ngZone:NgZone,public http: Http,
+  private loading: LoadingController, private alert: AlertController,private toast:ToastController){
+   this.nexsusP = false; 
+   this.myImg = [
        {img: './img/default-user.png'},
        {img: './img/default-user.png'},
        {img: './img/default-user.png'},
@@ -60,7 +54,15 @@ export class myEvents{
        {img: './img/default-user.png'},
        {img: './img/default-user.png'},
        {img: './img/default-user.png'},
-      {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
+       {img: './img/default-user.png'},
     ];
     
     //  ngZone.run(() => {
@@ -100,7 +102,9 @@ export class myEvents{
     let toast = this.toast.create({
                 message: "Please wait..",
                 // duration: 3000,
-                position: 'bottom'
+                
+                position: 'bottom',
+                 dismissOnPageChange: true
                 });
                 toast.present()
    let headers = new Headers();
@@ -129,18 +133,12 @@ export class myEvents{
            
             
         },(err)=>{
-          //   setTimeout(function() {
-          //   loading.dismiss();
-          // }, 3000);
+       setTimeout(function() {
+           toast.dismiss();
+          }, 3000);
         // console.log('error recing',err);
-           let toast = this.toast.create({
-                message: "No Internet Connection",
-                duration: 3000,
-                position: 'bottom'
-                });
-                toast.present()
-        console.log('err Josn',err.json());
-        let errorjson = err.json();
+         let errorjson = err.json();
+     
         if(errorjson.status_code== 401){
                 let toast = this.toast.create({
                 message: "Session Expired",
@@ -152,10 +150,34 @@ export class myEvents{
                this.menu.enable(false);
                this.nav.setRoot(SigninPage);
         }
+       else if(errorjson.status_code== 500){
+                let toast = this.toast.create({
+                message: "Internal Server Error..",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
+        }
+          else{
+           let toast = this.toast.create({
+                message: "No Internet Connection",
+                duration: 3000,
+                position: 'bottom'
+                });
+             toast.present()
+             console.log('err Josn',err.json());
+        }
+       
         })
         
+/**
+ * 
+ * Getting Devices width
+ * 
+ */
+
         
-      if(this.width <= 320){
+      if(this.width == 320){
        this.totalAttendents = 5;
      }
       else if(this.width <= 339){
@@ -165,7 +187,7 @@ export class myEvents{
        this.totalAttendents = 6;
      }
       
-      else if(this.width <= 360){
+      else if(this.width == 360){
        this.totalAttendents = 6;
      }
      else if(this.width <= 366){
@@ -182,6 +204,9 @@ export class myEvents{
        this.totalAttendents = 6;
      }
     else if(this.width <= 411){
+       this.totalAttendents = 7;
+     }
+       else if(this.width == 412){
        this.totalAttendents = 7;
      }
       else if(this.width <= 414){
@@ -201,14 +226,17 @@ export class myEvents{
       else if(this.width <= 460){
        this.totalAttendents = 9;
      }
-     else if(this.width <= 480){
+     else if(this.width == 480){
+       this.totalAttendents = 9;
+     }
+       else if(this.width == 540){
        this.totalAttendents = 9;
      }
      else if(this.width <= 600){
        this.totalAttendents = 9;
      }
-     else if(this.width <= 640){
-       this.totalAttendents = 13;
+     else if(this.width = 640){
+       this.totalAttendents = 11;
      }
      else if(this.width <= 639){
        this.totalAttendents = 13;
@@ -216,7 +244,10 @@ export class myEvents{
      else if(this.width <= 720){
        this.totalAttendents = 12;
      }
-     else if(this.width <= 768){
+     else if(this.width == 750){
+       this.totalAttendents = 13;
+     }
+     else if(this.width == 768){
        this.totalAttendents = 14;
      }
      else if(this.width <= 800){
@@ -227,6 +258,12 @@ export class myEvents{
      }
        else if(this.width <= 856){
        this.totalAttendents = 16;
+     }
+       else if(this.width == 1242){
+       this.totalAttendents = 23;
+     }
+       else if(this.width == 1080){
+       this.totalAttendents = 20;
      }
     else {
        this.totalAttendents = 6;
@@ -241,6 +278,15 @@ export class myEvents{
    }
    
     }
+/**
+ * 
+ * 
+ * Delete Event Function
+ * 
+ */
+
+
+
 deleteEvent(id){
      let loading = this.loading.create({
            content: "Please wait...",
@@ -355,6 +401,13 @@ deleteEvent(id){
 })
 }
 
+/**
+ * 
+ * Edit Function
+ * 
+ */
+
+
   edit(i){
     console.log('getting data',i);
     this.nav.push(EditEvent,{obj:i}).then((suc)=>{
@@ -365,18 +418,22 @@ deleteEvent(id){
     });
   }
 
-    toogle(){
-      console.log('toogle clicked');
-      this.menu.toggle();
-    }
+    // toogle(){
+    //   console.log('toogle clicked');
+    //   this.menu.toggle();
+    // }
+
+
+    /**
+     * 
+     * navigates to create Event Page
+     * 
+     */
+
+
     createEvent(){
-        // this.nav.setRoot(TabsPage).then((data)=>{
-         this.nav.push(CreateEventPage);
-        // },(err)=>{
-        //   console.log('getting error');
-        // })
-         
-   
-       
+ 
+      this.nav.push(CreateEventPage);
+     
     }
 }

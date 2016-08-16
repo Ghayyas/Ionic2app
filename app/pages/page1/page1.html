@@ -95,11 +95,11 @@ ion-title{
    <!--(click)="myclick('public')"-->
    <!--(click)="myclick('private')"-->
      <ion-toolbar primary>
-    <ion-segment [(ngModel)]="segment">
-      <ion-segment-button  class="tab-segment segment-activated" itemtype="radio" value="private">
+    <ion-segment>
+      <ion-segment-button  class="tab-segment segment-activated" (click)="segmentClick('deals')" value="deals">
         Featured Deals
       </ion-segment-button>
-      <ion-segment-button class="tab-segment" itemtype="radio" value="public">
+      <ion-segment-button class="tab-segment" (click)="segmentClick('events')" value="events">
         Featured Events
       </ion-segment-button>
     </ion-segment>
@@ -115,22 +115,25 @@ ion-title{
 
 
 
-<!--<div [ngSwitch]="pet">-->
-      <!--<div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">-->
-<div class="hometab-content with-2col" *ngIf="segment == 'public'">
+<div [ngSwitch]="pet">
+    <div class="hometab-content with-2col" id="status"  *ngSwitchCase="'events'">
+<!--<div class="hometab-content with-2col" *ngIf="segment == 'public'">-->
+  <div *ngFor="let e of event " >
 <div class="list card">
 
   <div class="item item-image">
-    <img src="img/event1.jpg">
+    <img src="{{e.photo}}">
   </div>
 
   <a class="item item-icon-left assertive" href="#">
   <ion-icon name="star" class="active"></ion-icon>
-    Fun party
+ {{e.name}}
   </a>
 
 </div>
-<div class="list card">
+
+  </div>
+<!--<div class="list card">
 
   <div class="item item-image">
     <img src="img/event3.jpg">
@@ -193,7 +196,7 @@ ion-title{
     Fun party
   </a>
 
-</div>
+</div>-->
 
 </div>
 <!--</div>-->
@@ -201,8 +204,8 @@ ion-title{
 
 
 
-  <!--<div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'public'">-->
-<div class="hometab-content with-2col" id="status" *ngIf="segment == 'private'">
+  <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'deals'">
+<!--<div class="hometab-content with-2col" id="status" *ngIf="segment == 'private'">-->
 <div class="list card">
 
   <div class="item item-image">
@@ -388,6 +391,7 @@ ion-title{
 
 
 </div>-->
+</div>
 </div>
 <!--</div>-->
 

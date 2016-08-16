@@ -19,6 +19,13 @@ import {SERVER_NAME} from '../../service/dataService/dataService';
 @Component({
   templateUrl: 'build/pages/create-list-people-invite/create-list-people-invite.html',
 })
+
+/**
+ * 
+ * Create List People Invite Page
+ * 
+ */
+
 export class CreateListPeopleInvitePage {
   page1= AllEventsPage;
   eventsPage: AllEventsPage;
@@ -36,6 +43,13 @@ export class CreateListPeopleInvitePage {
     this.keyboard.close();
   }
   
+/**
+ * 
+ * Add User mail
+ * 
+ */
+
+
   add(useremail){
     console.log('emai',useremail.value);
 
@@ -46,6 +60,13 @@ export class CreateListPeopleInvitePage {
     this.whenClick = true;
 
 }
+
+/**
+ * 
+ * delete Event
+ * 
+ */
+
  delete(event){
 
   console.log('event',event);
@@ -53,6 +74,12 @@ export class CreateListPeopleInvitePage {
 
  }
 
+
+/**
+ * 
+ * Toast Message to Show
+ * 
+ */
 
    showToast(message: string) {
     let toast = this.toast.create({
@@ -63,6 +90,12 @@ export class CreateListPeopleInvitePage {
 
     toast.present();
    }
+
+/**
+ * 
+ * Send Invites function
+ * 
+ */
 
 
  sendInvites(){
@@ -101,24 +134,12 @@ let loading = this.loading.create({
         
         this.showToast('Success !');
         console.log('data send',data.json()); 
-        // this.nav.setRoot(TabsPage).then((suc)=>{
-          //  this.nav.setRoot(Page1);
-          //  console.log('is active', this.nav.isActive());
-            // this.nav.isActive;
+    
            this.nav.pop().then((s)=>{
              this.nav.pop();
            });
                
 
-        // });      
-        //   this.nav.setRoot(TabsPage).then((suc)=>{
-        //   this.nav.push(AllEventsPage).then((suc)=>{
-        //   console.log('sucess',suc);
-        // },(err)=>{
-        //   console.log('err',err);
-        // });
-        // });
-          
       
         },(err)=>{
         setTimeout(function() {

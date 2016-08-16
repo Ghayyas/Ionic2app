@@ -46,11 +46,9 @@ export class SigninPage {
       }
      window.addEventListener('native.keyboardshow', ()=>{
          let keyboardHide = document.getElementById('keyboardhide');
-        //  let KeyboardHide1 = document.getElementById('keyboardhide1');
-        //  let keyboardHide2 = document.getElementById('keyboardhide2');
-        //  keyboardHide2.classList.add('keyboardHide');
+     
           keyboardHide.classList.add('keyboardHide');
-          // KeyboardHide1.classList.add('keyboardHide');
+
 
          console.log('from signin ts keyboard is showing..');
        });
@@ -58,11 +56,9 @@ export class SigninPage {
 
         window.addEventListener('native.keyboardhide', ()=>{
          let keyboardHide = document.getElementById('keyboardhide');
-        //  let KeyboardHide1 = document.getElementById('keyboardhide1');
-        //  let keyboardHide2 = document.getElementById('keyboardhide2');
+
          keyboardHide.classList.remove('keyboardHide');
-        //  keyboardHide2.classList.remove('keyboardHide');
-        //  KeyboardHide1.classList.remove('keyboardHide');
+
            console.log('from signin ts keyboard is hiding');
         })
 
@@ -117,22 +113,13 @@ export class SigninPage {
   //  }
 
 
-ionViewWillEnter(){
- this.menu.enable(false);
- console.log('menu false');
-// }
 
 
 //============ VIEW ENTER ==========//
 
-// ionViewWillEnter(){
-
-    // let loading = Loading.create({
-		//    content: "Please wait...",
-		//   //  duration: 3000,
-		//    dismissOnPageChange: true
-	  //  });
-	  //  this.nav.present(loading);
+ionViewWillEnter(){
+ this.menu.enable(false);    //By Default Side menu will not be enable on sign in page..
+ console.log('menu false');
 
 }
 
@@ -171,7 +158,7 @@ ionViewWillEnter(){
        }, 3000);
        if (data){
         this.nav.setRoot(TabsPage);
-      clearTimeout(timeout);
+         clearTimeout(timeout);
  }
 		   })
    }

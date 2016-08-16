@@ -4,7 +4,6 @@ import {SigninPage} from '../signin/signin';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {NgZone} from "@angular/core";
 import { EqualValidator } from '../../service/equal-validator-service/equal-validator.directive';
-
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from '../signin/authservice';
 import {SERVER_NAME} from '../../service/dataService/dataService';
@@ -14,7 +13,6 @@ import {locationPage} from '../location/location';
 import {Geolocation} from "ionic-native";
 import {Http, Headers} from '@angular/http';
 
-// import {location} from "../location/location"
 
 
 /*
@@ -68,27 +66,18 @@ export class SignupPage {
 	  this.nav = nav;
     SignupPage.clickLength = 1;
     SignupPage.userClickLength = 1;
- window.addEventListener('native.keyboardshow', ()=>{
-        //  let keyboardHide = document.getElementById('keyboardhide');
+     window.addEventListener('native.keyboardshow', ()=>{
          let KeyboardHide1 = document.getElementById('keyboardhide1');
-        //  let keyboardHide2 = document.getElementById('keyboardhide2');
-        //  keyboardHide2.classList.add('keyboardHide');
-          // keyboardHide.classList.add('keyboardHide');
           KeyboardHide1.classList.add('keyboardHide');
-
-         console.log('from signup ts keyboard is showing..');
        });
-
-
         window.addEventListener('native.keyboardhide', ()=>{
-        //  let keyboardHide = document.getElementById('keyboardhide');
          let KeyboardHide1 = document.getElementById('keyboardhide1');
-        //  let keyboardHide2 = document.getElementById('keyboardhide2');
-        //  keyboardHide.classList.remove('keyboardHide');
-        //  keyboardHide2.classList.remove('keyboardHide');
          KeyboardHide1.classList.remove('keyboardHide');
            console.log('from signUp ts keyboard is hiding');
-        })
+        });
+
+
+
   //   Geolocation.getCurrentPosition().then((resp) => {
   //    SignupPage.lat  = resp.coords.latitude;
   //    SignupPage.long =  resp.coords.longitude;
@@ -108,7 +97,8 @@ export class SignupPage {
   // }
   // console.log('reciveing error ',err);
 // }) 
-    this.emailExist = false;
+    this.emailExist = false;   //by Default Email exist false
+
 	  // this.token = window.localStorage.getItem('ecnob.token');
 	  // if (this.token != null) {
 		//   this.nav.setRoot(TabsPage);
@@ -222,16 +212,20 @@ export class SignupPage {
   }
 //============================== END =================================//
 
-//===================== Two Times Calling ======================//
+
+
+
+//===================== custom css for remove borderbottom on some devices  ======================//
+ 
   myUserSegmentClick(){
       
-  document.getElementById('companyseg').classList.remove('activated');
-   console.log('class remove successfullly');
+  document.getElementById('companyseg').classList.remove('activated');  // Remove Class Activated 
+  //  console.log('class remove successfullly');
  
   }
   myCompanyClick(){
-        document.getElementById('userSeg').classList.remove('activated');
-        console.log('class remove successfullly');
+        document.getElementById('userSeg').classList.remove('activated');   // Remove Class Activated 
+        // console.log('class remove successfullly');
 
 
   }

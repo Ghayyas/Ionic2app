@@ -17,6 +17,14 @@ import {CreateDealPage} from '../create-deal/create-deal';
   pipes: [limit]
 })
 
+/**
+ * 
+ * Deals Page Class
+ * 
+ */
+
+
+
 export class DealsPage {
    search = searchDeals;
    createDeal = CreateDealPage;
@@ -48,6 +56,12 @@ export class DealsPage {
   //   return value.length > limit ? value.substring(0, limit) + trail : value;
   // }
   //============ END ===========//
+
+
+/**
+ * 
+ * Deals Detail Page
+ */
 
 dealsDetailsPage(){
   console.log('Deals Page');

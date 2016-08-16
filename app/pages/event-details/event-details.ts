@@ -22,6 +22,14 @@ import {AllEventsPage} from '../all-events/all-events';
 @Component({
   templateUrl: 'build/pages/event-details/event-details.html',
 })
+
+/**
+ * 
+ * Event Detail Class
+ * 
+ */
+
+
 export class EventDetailsPage {
  public eventDetailArray: any;
  public myArray = [];
@@ -106,6 +114,12 @@ export class EventDetailsPage {
     //     console.log('err Josn',err.json());
     //     })
   
+/**
+ * 
+ * back to page
+ * 
+ */
+
   pop(){
     this.nav.pop();
   }

@@ -25,7 +25,6 @@ enableProdMode();
 export class MyApp {
   rootPage: any;
   userEvents: any = myEvents;
-  // static companyLogin:boolean;
 
  @ViewChild('content') nav: NavController;
 
@@ -50,7 +49,7 @@ public local = null;
       let local =  window.localStorage.getItem('ecnob.token');
       let getType = window.localStorage.getItem('type');
        if(local == null){
-        this.rootPage = SigninPage;
+        this.rootPage = SigninPage;             //if local is null root page is sign in page
         //  console.log("app ts root Nav");
         this.menu.enable(false);
       }
@@ -64,7 +63,8 @@ public local = null;
       //      console.log('type value',getType);
       //     }
           this.menu.enable(true);
-          this.rootPage  = TabsPage;
+          this.rootPage  = TabsPage;        //else root page is tabs page
+          // this.nav.setRoot(TabsPage);
       //  console.log('company login',MyApp.companyLogin);
       }
      
@@ -113,5 +113,5 @@ public local = null;
 ionicBootstrap(MyApp, [
   disableDeprecatedForms(),
   provideForms()
- ],{tabsPlacement: "bottom",tabsHideOnSubPages: false,
+ ],{tabsPlacement: "bottom",tabsHideOnSubPages: true,
       tabsHighlight: true})

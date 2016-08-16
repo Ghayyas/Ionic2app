@@ -18,10 +18,23 @@ import {SERVER_NAME} from '../../service/dataService/dataService';
 
 declare var google:any;
 
+/**
+ * 
+ * Component
+ *   
+ */
 
 @Component({
   templateUrl: 'build/pages/broadcast-event/broadcast-event.html'
 })
+
+/**
+ * 
+ * BroadCast Page Class
+ * 
+ */
+
+
 export class BroadcastPage {
   subscription = SubscriptionPage;
   eventsPage = AllEventsPage;
@@ -99,6 +112,12 @@ export class BroadcastPage {
     //============ google map location api  complete============//
 
 
+/**
+ * 
+ * Adding Region
+ * 
+ */
+
 
   add(region){
     console.log('userRegion',region.value);
@@ -107,7 +126,7 @@ export class BroadcastPage {
     let region_lat = BroadcastPage.myLat;
     let region_long = BroadcastPage.myLong;
     this.region_arr.push(region_val);
-    this.region_value_arr.push({'lat': BroadcastPage.myLat, 'long': BroadcastPage.myLong})
+    this.region_value_arr.push({'lat': BroadcastPage.myLat, 'long': BroadcastPage.myLong, 'radius': 3})
     console.log('regionarr',this.region_arr);
     console.log('latitude Array',this.region_value_arr);
     // BroadcastPage.myLat = '';
@@ -115,6 +134,13 @@ export class BroadcastPage {
     this.region = '';
     region = "";
   }
+/**
+ * 
+ * Delete Function
+ * 
+ */
+
+
   delete(i){
     this.region_arr.splice(i,1);
     this.region_value_arr.splice(i,1);
@@ -129,6 +155,12 @@ export class BroadcastPage {
      CreateEventPage.myImage  = '';
    }
 
+/**
+ * 
+ * Toasting Function
+ * 
+ */
+
     showToast(message: string) {
     let toast = this.toast.create({
       message: message,
@@ -139,6 +171,13 @@ export class BroadcastPage {
     toast.present();
          }
   
+/**
+ * 
+ * Send Broadcast Page
+ * 
+ */
+
+
   
  sendBroadCast(){
   //  console.log("BroadCast Event Works");

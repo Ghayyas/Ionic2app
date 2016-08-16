@@ -16,15 +16,21 @@ import {limit} from '../limit';
   Ionic pages and navigation.
 */
 
-export interface inter {
-     id: any;
-  }
+// export interface inter {
+//      id: any;
+//   }
 
 
 @Component({
   templateUrl: 'build/pages/all-events/all-events.html',
    pipes: [limit]
 })
+
+/**
+ * 
+ * All Event Class
+ * 
+ */
 
 
 export class AllEventsPage {
@@ -134,7 +140,13 @@ export class AllEventsPage {
   //   this.nav.RootNav.push(CreateEventPage)
   // }
   
-  
+  /**
+   * 
+   * Load The Events when user enters on page
+   * 
+   */
+
+
 
 ionViewDidEnter(){
   //     let load = this.loading.create({
@@ -144,12 +156,12 @@ ionViewDidEnter(){
             
   //       });
   //  load.present();
-    let toast = this.toast.create({
-      message: "Fetching New Results Please wait...",
-      // duration: 5000,
-      position: 'bottom'
-       });
-       toast.present();
+    // let toast = this.toast.create({
+    //   message: "Fetching New Results Please wait...",
+    //   // duration: 5000,
+    //   position: 'bottom'
+    //    });
+    //    toast.present();
   
     let headers = new Headers();
    headers.append('Content-Type', 'application/json');
@@ -159,9 +171,9 @@ ionViewDidEnter(){
     .subscribe(
       (data)=>{
         // console.log('data',data);
-        setTimeout(function() {
-          toast.dismiss();
-        }, 3000);
+        // setTimeout(function() {
+        //   toast.dismiss();
+        // }, 3000);
       //  load.dismiss();
 
        this.event = data.json().events;
@@ -208,9 +220,9 @@ ionViewDidEnter(){
       },
       (err)=>{
     // console.log('err',err);
-     setTimeout(function() {
-          toast.dismiss();
-        }, 3000);
+    //  setTimeout(function() {
+    //       toast.dismiss();
+    //     }, 3000);
         if(err){
      let toast = this.toast.create({
       message: "Needs Internet Connection",
@@ -266,6 +278,12 @@ ionViewDidEnter(){
 
 
 }
+
+/**
+ * 
+ * Segments Control
+ * 
+ */
   
  myclick(param){
      this.pet = param;
@@ -299,6 +317,12 @@ ionViewDidEnter(){
     //  }
     //  console.log('my btn',selected,i);
     // }
+/**
+ * 
+ * Subscribe Events
+ * 
+ */
+
 
 subscribe(id,select){
   console.log('id',id,'select',select);
@@ -371,6 +395,12 @@ subscribe(id,select){
       })
 }
 
+
+/**
+ * 
+ * Go to Detail Event Page
+ * 
+ */
 
   newTabs(i){
     console.log('getting array',this.allEventsArray);

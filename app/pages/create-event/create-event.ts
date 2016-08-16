@@ -1,5 +1,5 @@
-import {Component,OnInit} from "@angular/core";
-import {NavController,NavParams, Platform,Page,ActionSheetController,AlertController, LoadingController, Keyboard,ToastController} from 'ionic-angular';
+import {Component,OnInit,ViewChild} from "@angular/core";
+import {NavController,NavParams, Content,Platform,Page,ActionSheetController,AlertController, LoadingController, Keyboard,ToastController} from 'ionic-angular';
 import {DealsPage} from '../deals/deals';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {Camera} from 'ionic-native';
@@ -27,6 +27,11 @@ declare var FileUploadOptions:any;
 declare var FileTransfer :any;
 
 
+/**
+ * 
+ * Components 
+ * 
+ */
 
 
 @Component({
@@ -35,7 +40,18 @@ declare var FileTransfer :any;
 
 })
 
+/**
+ * 
+ * Create Event Page
+ * 
+ */
+
+
 export class CreateEventPage{
+
+    @ViewChild(Content)
+    content:Content;
+
  
     params = {
       photo : '',  
@@ -129,9 +145,51 @@ export class CreateEventPage{
   }
 
 
+
+
+
+  //============= Hinding Suggesstion tag ===========//
+
+
+ ngAfterViewInit() {
+
+        this.content.addScrollListener((event)=>{
+         document.getElementById('locationINput').blur();
+          var timer = -1;
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = '.pac-container { visibility: hidden; }';
+            document.getElementsByTagName('head')[0].appendChild(style);
+            document.getElementById('locate').className = 'pac-container';
+            
+               if(timer !== -1) {
+                  clearTimeout(timer);        
+              }
+              timer = setTimeout(function() {
+                    // do something
+           var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = '.pac-container { visibility: visible;}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+             document.getElementById('locate').className = 'pac-container';
+           }, 150);
+       
+        });
+    }
+
+
+
+//================== Hidding map suggestion tag end =========//
+
+
    
     //============= google map location api =========//
 
+/**
+ * 
+ * On Page initilize
+ * 
+ */
    
 
      ngOnInit() {

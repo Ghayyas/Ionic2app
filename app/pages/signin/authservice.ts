@@ -42,6 +42,11 @@ export class AuthService {
   //================= Alert END =============//
 
 
+/**
+ *  login Function
+ * 
+ */
+
 
     login(user) {
         var headers = new Headers();
@@ -131,7 +136,10 @@ export class AuthService {
     
     
     
-    
+    /**
+     * logout function
+     * 
+     */
     
    static logout() {
 
