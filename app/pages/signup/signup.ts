@@ -1,5 +1,5 @@
 import {Component,Directive,Input,Output, EventEmitter} from '@angular/core';
-import {NavController, Page, LoadingController,Platform,AlertController} from 'ionic-angular';
+import {NavController, Page, LoadingController,Platform,AlertController, ViewController,Keyboard} from 'ionic-angular';
 import {SigninPage} from '../signin/signin';
 import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
 import {NgZone} from "@angular/core";
@@ -60,7 +60,7 @@ export class SignupPage {
    * @param {NavController} public nav [description]
    */
   constructor(public auth: AuthService, public nav: NavController, public data: DataService,platform:Platform,public http:Http,
-  private loading: LoadingController, private alert: AlertController) {
+  private loading: LoadingController, private alert: AlertController, private viewCtrl: ViewController, private keyboard: Keyboard) {
    this.http = http;
 	  // this.authservice = auth;
 	  this.nav = nav;
@@ -76,7 +76,7 @@ export class SignupPage {
            console.log('from signUp ts keyboard is hiding');
         });
 
-
+    //  this.viewCtrl.
 
   //   Geolocation.getCurrentPosition().then((resp) => {
   //    SignupPage.lat  = resp.coords.latitude;
@@ -212,6 +212,19 @@ export class SignupPage {
   }
 //============================== END =================================//
 
+
+
+/**
+ * 
+ * Keyboard close Event
+ * 
+ */
+
+keyboardClose(){
+  console.log('event getting');
+  
+  this.keyboard.close();
+}
 
 
 

@@ -147,12 +147,12 @@ let toast = this.toast.create({
         }, 3000);
         if(err){
           console.log('getting error',err);
-    //  let toast = this.toast.create({
-    //   message: "Needs Internet Connection",
-    //   duration: 3000,
-    //   position: 'bottom'
-    //    });
-    //    toast.present();
+     let toast = this.toast.create({
+      message: "Needs Internet Connection",
+      duration: 3000,
+      position: 'bottom'
+       });
+       toast.present();
        }
     // load.dismiss(true);
     //     let alert = this.alertCtrl.create({

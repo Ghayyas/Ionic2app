@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, Page ,ToastController, LoadingController,AlertController,MenuController} from 'ionic-angular';
+import {NavController, Page, Keyboard ,ToastController, LoadingController,AlertController,MenuController} from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
-import {Keyboard} from 'ionic-native';
+// import {Keyboard} from 'ionic-native';
 import {TabsPage} from '../tabs/tabs';
 import {AuthService} from './authservice';
 import {profile} from "../profile/profile";
@@ -34,7 +34,7 @@ export class SigninPage {
 
 
    constructor(public auth: AuthService, public nav: NavController, public menu: MenuController,
-   private alert: AlertController, private loading: LoadingController,private toast: ToastController) { 
+   private alert: AlertController, private loading: LoadingController,private toast: ToastController, private keyboard: Keyboard) { 
    this.menu.enable(false);
     this.authservice = auth;
 	   this.nav = nav;
@@ -162,6 +162,19 @@ ionViewWillEnter(){
  }
 		   })
    }
+
+
+
+/**
+ * 
+ * Keyboard close Event
+ * 
+ */
+
+keyboardClose(){
+  this.keyboard.close();
+}
+
       
 	  //  })
   //  }

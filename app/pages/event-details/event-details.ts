@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController,NavParams,Loading,Alert} from 'ionic-angular';
+import {NavController,NavParams,Loading,Alert,ToastController,MenuController} from 'ionic-angular';
 import { DataService } from '../../service/dataService/dataService';
 import {Http, Headers } from '@angular/http';
 import {SERVER_NAME} from '../../service/dataService/dataService';
 import {AllEventsPage} from '../all-events/all-events';
-
+import {SigninPage} from '../signin/signin';
 
 
 
@@ -36,7 +36,8 @@ export class EventDetailsPage {
  public selected;
  public allEventsArray = [];
  public loading: any;
-  constructor(public nav: NavController, public http:Http, private params:NavParams) {
+  constructor(public nav: NavController, public http:Http, private params:NavParams, private toast: ToastController,
+  private menu: MenuController) {
     // this.nav.viewDidEnter.subscribe((view) => { 
     this.http = http;
     this.nav = nav;
@@ -123,4 +124,83 @@ export class EventDetailsPage {
   pop(){
     this.nav.pop();
   }
+
+/**
+ * 
+ * subscribe Events
+ * 
+ */
+subscribe(id,select){
+  console.log('id',id,'select',select);
+  //  let loading = this.loading.create({
+  //          content: "Please wait...",
+  //         //  duration: 3000,
+  //          dismissOnPageChange: true
+            
+  //       });
+  //       loading.present();
+   let headers = new Headers();
+   headers.append('Content-Type', 'application/json');
+   let ecnobToken = window.localStorage.getItem('ecnob.token');
+    // var subscribtion = "status=" + select + "&event_id=" + id;
+    let sub = {
+      status: select,
+      event_id: id
+    }
+    console.log('sub',sub);
+   headers.append('Authorization', `Bearer ${ecnobToken}`)
+    this.http.post( SERVER_NAME +'event/subscribe',sub,{headers:headers})
+    .subscribe(
+      (data)=>{
+        // setTimeout(function() {
+        //      loading.dismiss()
+        //    }, 3000);
+          //  clearTimeout(setTimeout)
+          //  console.log('console log getting data',data);
+          // this.nav.pop();
+           let mydata = data.json();
+          //  console.log('mydata',mydata);
+           
+           if(mydata.status){
+             let toast = this.toast.create({
+                message: "Event subscribe Successfully",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
+           }
+           
+           
+      },(err)=>{
+        // setTimeout(function() {
+        //      loading.dismiss()
+        //    }, 3000);
+          // clearTimeout(timeout)
+            //  this.nav.pop();
+           console.log('gettitng error',err);
+           let myerr = err.json();
+           if(myerr.status_code== 500){
+              let toast = this.toast.create({
+                message: "Internal Server Error",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present();
+           }
+              // let errorjson = err.json();
+             if(myerr.status_code== 401){
+                let toast = this.toast.create({
+                message: "Session Expired",
+                duration: 3000,
+                position: 'bottom'
+                });
+                toast.present()
+               window.localStorage.clear();
+               this.menu.enable(false);
+               this.nav.setRoot(SigninPage);
+        }
+           console.log('my Error',myerr);
+      })
+}
+
 }

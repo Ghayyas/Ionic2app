@@ -21,6 +21,11 @@ enableProdMode();
     providers: [AuthService]
 })
 
+/**
+ * 
+ * My App Class
+ * 
+ */
 
 export class MyApp {
   rootPage: any;

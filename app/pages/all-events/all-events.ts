@@ -71,7 +71,8 @@ export class AllEventsPage {
     this.selectedMaybe = false;
   
     //  if(this.plaform.is('ios')){
-    //       // this.ios = true;
+    //       let content = document.getElementsByTagName('ion-content')[0];
+    //       content.classList.add('background-ios');
     //  }
      if(this.plaform.is('android')){
           // this.android = true;

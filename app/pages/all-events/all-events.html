@@ -119,7 +119,7 @@ ion-title{
  
     <div *ngIf="arr.type == 0">
      
-  <div  class="hometab-content with-2col" id="status"  *ngSwitchCase="'private'">
+  <div class="hometab-content with-2col" id="status"   *ngSwitchCase="'private'">
 
 <div class="card-background-page"> 
     <ion-card>
@@ -170,6 +170,7 @@ ion-title{
 
 </div>
       </div>
+      <!--<div  style="padding-bottom: 65px;"></div>-->
       </div>
 
 
@@ -188,7 +189,7 @@ ion-title{
   <div *ngIf="arr.type == 1">
 
   <div *ngSwitchCase="'public'">
-  <div class="card-background-page"> 
+  <div class="card-background-page" style="padding-bottom: 65px;"> 
     <ion-card>
       <div class="imgBlack" style="position:relative;" (click)="newTabs(i)">
      <div class="image-style">
@@ -209,7 +210,7 @@ ion-title{
       </ion-col>
      <ion-item> 
 
-    <button *ngIf="!arr.yes"  primary clear item-right class="button-blue" (click)="arr.yes = true; arr.maybe =false; arr.no = false;">
+    <button *ngIf="!arr.yes"  primary clear item-right class="button-blue" (click)="subscribe(arr.id, 1) || arr.yes = true; arr.maybe =false; arr.no = false;">
       Yes
     </button>
 
@@ -217,7 +218,7 @@ ion-title{
       Yes
     </button>
   
-    <button  *ngIf="!arr.no"  primary clear item-right class="button-blue" (click)="arr.no = true; arr.yes =false; arr.maybe = false">
+    <button  *ngIf="!arr.no"  primary clear item-right class="button-blue" (click)="subscribe(arr.id, 2) || arr.no = true; arr.yes =false; arr.maybe = false">
   
       No
     </button>
@@ -226,7 +227,7 @@ ion-title{
       No
     </button>
 
-    <button  *ngIf="!arr.maybe"  primary clear item-right class="button-blue" (click)="arr.maybe = true; arr.yes =false; arr.no = false">
+    <button  *ngIf="!arr.maybe"  primary clear item-right class="button-blue" (click)="subscribe(arr.id, 3) || arr.maybe = true; arr.yes =false; arr.no = false">
       MayBe
     </button>
 
@@ -306,6 +307,7 @@ ion-title{
 
   </div>
 </div>
+    <!--<div  style="padding-bottom: 65px;"></div>-->
   </div>
 
 </ion-content>

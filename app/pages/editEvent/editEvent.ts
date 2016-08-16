@@ -1,5 +1,5 @@
 import {Component,OnInit,ViewChild} from '@angular/core';
-import {NavController,NavParams,Content,ToastController,LoadingController, MenuController, ActionSheetController} from 'ionic-angular';
+import {NavController,NavParams,Keyboard,Content,ToastController,LoadingController, MenuController, ActionSheetController} from 'ionic-angular';
 import {Camera} from 'ionic-native';
 import {NgZone} from "@angular/core";
 // import {RADIO_GROUP_DIRECTIVES} from "ng2-radio-group";
@@ -81,7 +81,7 @@ export class EditEvent {
   public end_date;
 
   constructor(private nav: NavController,private navParams: NavParams, private toast: ToastController, private load: LoadingController,
-  private actionSheet: ActionSheetController, private http:Http, private menu: MenuController){
+  private actionSheet: ActionSheetController, private http:Http, private menu: MenuController, private keyboard:Keyboard){
      
          let getObject = this.navParams.get('obj');
           this.gettingParams.push(getObject) ;
@@ -146,6 +146,17 @@ ngOnInit() {
        
         })
      }
+
+
+/**
+ * 
+ * Keyboard close Event
+ * 
+ */
+
+keyboardClose(){
+  this.keyboard.close();
+}
 
 
 

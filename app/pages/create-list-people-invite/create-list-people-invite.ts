@@ -39,9 +39,17 @@ export class CreateListPeopleInvitePage {
 
   }
 
+/**
+ * 
+ * Keyboard Close
+ * 
+ */
+
   keyboardClose(){
     this.keyboard.close();
   }
+  
+
   
 /**
  * 
@@ -172,8 +180,20 @@ let loading = this.loading.create({
 // this.nav.push(TabsPage)
 //  }
 }
+
+
+
   ionViewWillLeave(){
     CreateEventPage.myImage  = '';
       CreateEventPage.arraytoSend = [];
   }
+
+
+  /**
+ * 
+ * Keyboard close Event
+ * 
+ */
+
+
 }

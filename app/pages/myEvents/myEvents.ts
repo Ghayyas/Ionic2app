@@ -278,6 +278,37 @@ export class myEvents{
    }
    
     }
+
+/***
+ * 
+ * Confirm Code
+ * 
+ */
+
+showConfirm(id) {
+    let confirm = this.alert.create({
+      title: 'Confirmation',
+      message: 'Are you Sure you want to delete this event',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteEvent(id);
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+
 /**
  * 
  * 

@@ -1,5 +1,5 @@
 import {Component,OnInit} from '@angular/core';
-import {NavController,MenuController,AlertController,LoadingController,ToastController} from 'ionic-angular';
+import {NavController,MenuController,Keyboard,AlertController,LoadingController,ToastController} from 'ionic-angular';
 import {SubscriptionPage} from '../subscription/subscription';
 import {AllEventsPage} from '../all-events/all-events';
 import {Page1} from '../page1/page1';
@@ -49,7 +49,7 @@ export class BroadcastPage {
   
   
   constructor(public nav: NavController,private http:Http, private loading:LoadingController,private alert:AlertController,private toast: ToastController,
-  private menu:MenuController) {
+  private menu:MenuController, private keyboard: Keyboard) {
    console.log('nav works')
   this.region = '';
   console.log('from broadcast event',CreateEventPage.arraytoSend[0]);
@@ -257,6 +257,14 @@ let loading = this.loading.create({
 
 }
 
-   
+   /**
+ * 
+ * Keyboard Close
+ * 
+ */
+
+  keyboardClose(){
+    this.keyboard.close();
+  }
 
 }

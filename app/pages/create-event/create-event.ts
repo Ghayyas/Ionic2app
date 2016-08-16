@@ -225,6 +225,7 @@ export class CreateEventPage{
 
 
 keyboardClose(){
+  console.log('keyboard is closing..');
   this.keyboard.close();
 }
 
